@@ -1,11 +1,12 @@
 /**
- * Tải toàn bộ hình ảnh (theo sprites.json), SFX và nhạc nền.
+ * Tải toàn bộ hình ảnh (theo sprites.json + atlas tranh từ vựng), SFX và nhạc nền.
  * Người chơi thường đang ở màn Home (React) trong lúc này nên không cần màn loading riêng.
  */
 import Phaser from 'phaser';
 import {
   MUSIC,
   SPRITE_MANIFEST,
+  WORD_ATLAS,
   musicUrls,
   type SpriteManifest,
 } from '@/games/bread-catcher/game/config/assets';
@@ -33,6 +34,7 @@ export default class PreloadScene extends Phaser.Scene {
     Object.entries(manifest)
       .filter(needed)
       .forEach(([key, info]) => this.load.image(key, info.path));
+    this.load.atlas(WORD_ATLAS.key, WORD_ATLAS.textureUrl, WORD_ATLAS.atlasUrl);
     Object.values(SFX).forEach((key) => this.load.audio(key, sfxUrls(key)));
     Object.values(MUSIC).forEach((key) => this.load.audio(key, musicUrls(key)));
   }

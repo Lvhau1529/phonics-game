@@ -11,11 +11,29 @@ export const ASSET_ROOT = 'assets/bread-catcher';
 
 export const SPRITE_MANIFEST = { key: 'sprites', url: `${ASSET_ROOT}/sprites.json` } as const;
 
+/**
+ * Tranh từ vựng (Kids Bakery pack): 1 atlas, tên frame = từ viết thường ("monkey", "map"...).
+ * Ảnh vẽ ở 2x — hiển thị ở scale WORD_PICTURE_SCALE.
+ */
+export const WORD_ATLAS = {
+  key: 'words',
+  textureUrl: `${ASSET_ROOT}/words/words.webp`,
+  atlasUrl: `${ASSET_ROOT}/words/words.json`,
+} as const;
+export const WORD_PICTURE_SCALE = 0.5;
+
+/** Tên frame tranh của một từ (từ trong game luôn viết hoa) */
+export const wordPictureFrame = (word: string): string => word.toLowerCase();
+
 /** Một entry trong sprites.json (`path` tương đối với trang) */
 export interface SpriteInfo {
   path: string;
   width: number;
   height: number;
+  /** Ảnh vẽ sẵn ở độ phân giải gấp `scale` lần kích thước hiển thị (Kids Bakery pack: 2) */
+  scale?: number;
+  /** Bánh chữ: tâm lòng kem trống để đặt chữ (px của ảnh) */
+  letter?: { x: number; y: number; radius: number };
 }
 
 export type SpriteManifest = Record<string, SpriteInfo>;

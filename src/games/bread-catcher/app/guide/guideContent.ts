@@ -57,7 +57,7 @@ export const PACK_GUIDE: Record<BuiltinPackId, PackGuide> = {
   picture_vocab: {
     short: `${packStats('picture_vocab')} — từ vựng theo tranh: sun, duck, monkey, dinosaur…`,
     detail:
-      'Toàn bộ từ vựng có tranh trong bảng học, xếp theo chữ cái đầu (monkey, apple, sun, pen, turtle, igloo, nest, cat, octopus, dog…). Có cả từ dài như alligator, astronaut, dinosaur nên cần nhiều thời gian hơn.',
+      'Toàn bộ từ vựng có tranh trong bảng học, xếp theo chữ cái đầu (monkey, apple, sun, pen, turtle, igloo, nest, cat, octopus, dog…). Có cả từ dài như alligator, astronaut, dinosaur nên cần nhiều thời gian hơn. Khi chơi, tranh của từ hiện ở ô từ (chạm tranh để nghe lại) — gói BLENDING WORDS và MY WORDS cũng có tranh cho những từ có sẵn tranh (map, cat, pot…).',
     whenToUse: 'Ôn từ vựng sau khi đã học tranh. Nên chọn thời gian 90–120 giây hoặc tự nhập dài hơn.',
   },
   mixed_review: {

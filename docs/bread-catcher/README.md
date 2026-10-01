@@ -1,7 +1,7 @@
 # 🍞 Bread Catcher
 
 Bánh chữ rơi xuống, di chuyển rổ để **hứng đúng thứ tự các chữ** ghép thành từ mục tiêu.
-Thiết kế chi tiết: [GAME_PLAN.md](GAME_PLAN.md) (từ *Phonics Bread Catcher Full Resource Pack*).
+Thiết kế chi tiết: [GAME_PLAN.md](GAME_PLAN.md) (từ _Phonics Bread Catcher Full Resource Pack_).
 Code: `src/games/bread-catcher/` — khung chung (màn chọn game, âm thanh, nút...) xem [README gốc](../../README.md).
 
 ## Cách chơi
@@ -35,15 +35,21 @@ desktop dùng chuột hoặc ← → / A D, `P` / `Esc` để tạm dừng. Game
 Lấy toàn bộ phần **Phonics** của bảng học (M A S P T I N C O D) trong `src/games/bread-catcher/data/phonics_word_bank.json`;
 phần ESL của bảng không dùng.
 
-| Gói                | Nội dung                                                          |
-| ------------------ | ----------------------------------------------------------------- |
-| BLENDING WORDS     | map, mop, man… + miss, cast (mặc định)                            |
-| EARLY BLENDING     | am, at, it, in, on, ma                                            |
+| Gói                | Nội dung                                                           |
+| ------------------ | ------------------------------------------------------------------ |
+| BLENDING WORDS     | map, mop, man… + miss, cast (mặc định)                             |
+| EARLY BLENDING     | am, at, it, in, on, ma                                             |
 | PICTURE VOCABULARY | 68 từ tranh theo chữ cái (monkey, alligator, astronaut, dinosaur…) |
-| MIXED REVIEW       | tất cả các gói trên                                               |
-| MY WORDS           | giáo viên tự gõ / dán bộ từ cho buổi chơi (xem dưới)              |
+| MIXED REVIEW       | tất cả các gói trên                                                |
+| MY WORDS           | giáo viên tự gõ / dán bộ từ cho buổi chơi (xem dưới)               |
 
 Từ dài (tới 9 chữ) tự thu nhỏ ô chữ cho vừa màn hình; nên chọn thời gian dài hơn cho gói từ tranh.
+
+**Tranh từ vựng:** từ có tranh (cả 68 từ PICTURE VOCABULARY + 28 từ BLENDING: map, man, cat, pot, dad…)
+hiện tranh ở bên trái ô từ ở mọi cấp độ; chạm tranh để nghe lại từ (nút loa nhỏ ở góc tranh). MY WORDS
+tự có tranh nếu từ gõ vào trùng tên tranh. Từ không có tranh giữ nút loa như cũ. Tranh nằm trong atlas
+`public/assets/bread-catcher/words/` (frame = từ viết thường); test `game/config/wordPictures.test.ts`
+bảo đảm mọi từ PICTURE VOCABULARY đều có tranh.
 
 **MY WORDS (tự nhập):** chọn gói này ở Setup rồi gõ / dán từ vào ô bên dưới (cách nhau bằng dấu cách,
 dấu phẩy, chấm phẩy, gạch chéo hoặc xuống dòng). Từ hợp lệ hiện thành thẻ — bấm để nghe giọng đọc thử.
@@ -65,15 +71,36 @@ Code: `session/content.ts` (`parseCustomWords`, `sessionWords`, `sessionLetters`
 
 ### Cấp độ
 
-| Level  | Rơi (px/s) | Nhịp rơi | AUTO | Gợi ý                                 |
-| ------ | ---------: | -------: | ---: | ------------------------------------- |
-| GENTLE |         58 |  1750 ms |  90s | Hiện từ + chữ mờ trong từng ô          |
-| EASY   |         72 |  1450 ms |  75s | Hiện từ, ô trống (mặc định)            |
-| NORMAL |         92 |  1200 ms |  60s | Nghe phát âm, chỉ gợi ý chữ đầu        |
-| FAST   |        115 |  1000 ms |  50s | Nghe phát âm, ô trống                  |
-| HARD   |        100 |  1100 ms |  90s | Hiện từ + **logic troll**              |
+| Level  | Rơi (px/s) | Nhịp rơi | AUTO | Gợi ý                           |
+| ------ | ---------: | -------: | ---: | ------------------------------- |
+| GENTLE |         58 |  1750 ms |  90s | Hiện từ + chữ mờ trong từng ô   |
+| EASY   |         72 |  1450 ms |  75s | Hiện từ, ô trống (mặc định)     |
+| NORMAL |         92 |  1200 ms |  60s | Nghe phát âm, chỉ gợi ý chữ đầu |
+| FAST   |        115 |  1000 ms |  50s | Nghe phát âm, ô trống           |
+| HARD   |        100 |  1100 ms |  90s | Hiện từ + **logic troll**       |
 
 Trình duyệt không có giọng đọc (hoặc tắt VOICE) thì NORMAL / FAST tự hiện từ để vẫn chơi được.
+
+Ảnh nền theo cấp độ (`game/config/stages.ts`): GENTLE — Sweet Shop (tiệm bánh ngọt hồng), EASY — Bakery
+Kitchen, NORMAL — Village Bakery, FAST — Premium Bakery, HARD — Midnight Kitchen (bếp đêm bột tung toé).
+Bánh chữ rơi ngẫu nhiên trong 16 kiểu: 4 bánh pixel-art gốc + 12 bánh ngọt có lòng kem trống (chữ đặt giữa
+lòng kem).
+
+### Kids Bakery Phonics pack
+
+Bộ tài nguyên bổ sung ở `_source/bread-catcher/bakery-pack/` (13 ảnh nền magenta), cắt bằng
+`tools/bread_catcher/bakery_pack.py` (gọi từ `pnpm assets:bread`):
+
+| Ảnh nguồn            | Dùng cho                                                                           |
+| -------------------- | ---------------------------------------------------------------------------------- |
+| `01_bakery_treats`   | `bread/letter_treat_01..12` — bánh chữ, `letter` trong sprites.json = tâm lòng kem |
+| `02`–`07`            | atlas `words/words.webp` + `words.json` — 96 tranh từ vựng                         |
+| `08` (hàng đầu)      | `rewards/trophy, medal, ribbon, chef_hat` — icon bay ra khỏi hộp quà Winner's Gift |
+| `09`                 | 8 linh vật đầu bếp — **chưa dùng** (đội vẫn là LIONS / TIGERS / PANDAS)            |
+| `10`/`11`, `12`/`13` | `bg_bakery_04` (Sweet Shop), `bg_bakery_05` (Midnight Kitchen), bản ngang + dọc    |
+
+Ảnh của pack xuất ở 2x (`scale: 2` trong sprites.json), game vẽ ở scale 0.5 cho sắc nét. Thêm tranh: thêm
+tên từ đúng thứ tự ô trong `WORD_SHEETS` (bakery_pack.py) rồi chạy lại `pnpm assets:bread`.
 
 ### Level HARD — logic troll
 
@@ -119,12 +146,13 @@ src/games/bread-catcher/
 
 ### Chỉnh game thường gặp (đường dẫn trong `src/games/bread-catcher/`)
 
-| Muốn…                               | Sửa                                              |
-| ----------------------------------- | ------------------------------------------------ |
-| Tốc độ / nhịp / thời gian mỗi level | `data/game_config.json`, HARD ở `session/settings.ts` |
+| Muốn…                               | Sửa                                                                                  |
+| ----------------------------------- | ------------------------------------------------------------------------------------ |
+| Tốc độ / nhịp / thời gian mỗi level | `data/game_config.json`, HARD ở `session/settings.ts`                                |
 | Thêm / sửa từ vựng                  | `data/phonics_word_bank.json`, gói ở `session/content.ts` (luật MY WORDS cũng ở đây) |
-| Chữ hiển thị                        | `data/ui_text.en.json`                           |
-| Phần thưởng trong hộp quà           | `session/rewards.ts`                             |
-| Nhịp rơi chữ cần hứng / chữ nhiễu   | `game/config/gameConfig.ts` (`SPAWN`)            |
-| Trò troll của level HARD            | `game/config/troll.ts`                           |
-| Nhạc nền / volume                   | `game/config/assets.ts` (SFX dùng chung: `src/platform/audio/sfx.ts`) |
+| Chữ hiển thị                        | `data/ui_text.en.json`                                                               |
+| Phần thưởng trong hộp quà           | `session/rewards.ts`                                                                 |
+| Tranh từ vựng / bánh chữ / ảnh nền  | `tools/bread_catcher/bakery_pack.py`, `game/config/stages.ts`                        |
+| Nhịp rơi chữ cần hứng / chữ nhiễu   | `game/config/gameConfig.ts` (`SPAWN`)                                                |
+| Trò troll của level HARD            | `game/config/troll.ts`                                                               |
+| Nhạc nền / volume                   | `game/config/assets.ts` (SFX dùng chung: `src/platform/audio/sfx.ts`)                |

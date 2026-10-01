@@ -99,6 +99,182 @@
     "width": 960,
     "height": 540
   },
+  "bg_bakery_04": {
+    "path": "assets/bread-catcher/backgrounds/bg_bakery_04.png",
+    "width": 360,
+    "height": 800
+  },
+  "bg_bakery_04_wide": {
+    "path": "assets/bread-catcher/backgrounds/bg_bakery_04_wide.png",
+    "width": 960,
+    "height": 540
+  },
+  "bg_bakery_05": {
+    "path": "assets/bread-catcher/backgrounds/bg_bakery_05.png",
+    "width": 360,
+    "height": 800
+  },
+  "bg_bakery_05_wide": {
+    "path": "assets/bread-catcher/backgrounds/bg_bakery_05_wide.png",
+    "width": 960,
+    "height": 540
+  },
+  "letter_treat_01": {
+    "path": "assets/bread-catcher/bread/letter_treat_01.png",
+    "width": 144,
+    "height": 136,
+    "scale": 2,
+    "letter": {
+      "x": 69,
+      "y": 63,
+      "radius": 38.1
+    }
+  },
+  "letter_treat_02": {
+    "path": "assets/bread-catcher/bread/letter_treat_02.png",
+    "width": 144,
+    "height": 137,
+    "scale": 2,
+    "letter": {
+      "x": 72,
+      "y": 68,
+      "radius": 38.7
+    }
+  },
+  "letter_treat_03": {
+    "path": "assets/bread-catcher/bread/letter_treat_03.png",
+    "width": 144,
+    "height": 137,
+    "scale": 2,
+    "letter": {
+      "x": 72,
+      "y": 68,
+      "radius": 38.7
+    }
+  },
+  "letter_treat_04": {
+    "path": "assets/bread-catcher/bread/letter_treat_04.png",
+    "width": 144,
+    "height": 130,
+    "scale": 2,
+    "letter": {
+      "x": 73,
+      "y": 65,
+      "radius": 23.0
+    }
+  },
+  "letter_treat_05": {
+    "path": "assets/bread-catcher/bread/letter_treat_05.png",
+    "width": 144,
+    "height": 139,
+    "scale": 2,
+    "letter": {
+      "x": 72,
+      "y": 69,
+      "radius": 39.3
+    }
+  },
+  "letter_treat_06": {
+    "path": "assets/bread-catcher/bread/letter_treat_06.png",
+    "width": 144,
+    "height": 139,
+    "scale": 2,
+    "letter": {
+      "x": 74,
+      "y": 63,
+      "radius": 24.5
+    }
+  },
+  "letter_treat_07": {
+    "path": "assets/bread-catcher/bread/letter_treat_07.png",
+    "width": 144,
+    "height": 127,
+    "scale": 2,
+    "letter": {
+      "x": 73,
+      "y": 70,
+      "radius": 27.6
+    }
+  },
+  "letter_treat_08": {
+    "path": "assets/bread-catcher/bread/letter_treat_08.png",
+    "width": 142,
+    "height": 144,
+    "scale": 2,
+    "letter": {
+      "x": 58,
+      "y": 81,
+      "radius": 22.8
+    }
+  },
+  "letter_treat_09": {
+    "path": "assets/bread-catcher/bread/letter_treat_09.png",
+    "width": 144,
+    "height": 134,
+    "scale": 2,
+    "letter": {
+      "x": 76,
+      "y": 76,
+      "radius": 20.0
+    }
+  },
+  "letter_treat_10": {
+    "path": "assets/bread-catcher/bread/letter_treat_10.png",
+    "width": 144,
+    "height": 139,
+    "scale": 2,
+    "letter": {
+      "x": 67,
+      "y": 64,
+      "radius": 20.4
+    }
+  },
+  "letter_treat_11": {
+    "path": "assets/bread-catcher/bread/letter_treat_11.png",
+    "width": 137,
+    "height": 144,
+    "scale": 2,
+    "letter": {
+      "x": 68,
+      "y": 72,
+      "radius": 38.7
+    }
+  },
+  "letter_treat_12": {
+    "path": "assets/bread-catcher/bread/letter_treat_12.png",
+    "width": 144,
+    "height": 138,
+    "scale": 2,
+    "letter": {
+      "x": 76,
+      "y": 69,
+      "radius": 24.2
+    }
+  },
+  "trophy": {
+    "path": "assets/bread-catcher/rewards/trophy.png",
+    "width": 110,
+    "height": 120,
+    "scale": 2
+  },
+  "medal": {
+    "path": "assets/bread-catcher/rewards/medal.png",
+    "width": 68,
+    "height": 120,
+    "scale": 2
+  },
+  "ribbon": {
+    "path": "assets/bread-catcher/rewards/ribbon.png",
+    "width": 76,
+    "height": 120,
+    "scale": 2
+  },
+  "chef_hat": {
+    "path": "assets/bread-catcher/rewards/chef_hat.png",
+    "width": 107,
+    "height": 120,
+    "scale": 2
+  },
   "tung_0": {
     "path": "assets/bread-catcher/brainrot/tung_0.png",
     "width": 84,

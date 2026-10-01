@@ -2,14 +2,17 @@
  * Ô từ mục tiêu dưới HUD (plan §9, §27):
  *
  *   ┌─────────────────────────────────┐
- *   │ 🔊          M A P               │  <- từ (tuỳ mức gợi ý)
- *   │        [M] [A] [_]              │  <- ô chữ, ô đang cần hứng sáng viền vàng
+ *   │ ┌─────┐       M A P             │  <- từ (tuỳ mức gợi ý)
+ *   │ │tranh│🔊  [M] [A] [_]           │  <- ô chữ, ô đang cần hứng sáng viền vàng
  *   └─────────────────────────────────┘
  *
  * Mức gợi ý: full (từ + chữ mờ trong ô) · word (từ) · first-letter (chữ đầu) · blank.
+ * Từ có tranh (Kids Bakery pack: Picture Vocabulary, phần lớn Blending Words) hiện tranh bên trái
+ * ở mọi mức gợi ý, chạm tranh để nghe lại từ; từ không có tranh chỉ có nút phát âm như cũ.
  * Chữ học dùng font Andika (plan §34).
  */
-import type Phaser from 'phaser';
+import Phaser from 'phaser';
+import { WORD_ATLAS, WORD_PICTURE_SCALE, wordPictureFrame } from '@/games/bread-catcher/game/config/assets';
 import { DEPTH, THEME } from '@/games/bread-catcher/game/config/gameConfig';
 import type { GameEventBus } from '@/games/bread-catcher/game/core/events';
 import IconButton from '@/games/bread-catcher/game/ui/IconButton';
@@ -25,6 +28,12 @@ const LONG_SLOT_GAP = 3;
 const MAX_SLOT = 44;
 /** Chừa chỗ bên trái cho nút phát âm */
 const SPEAKER_SPACE = 58;
+/** ...hoặc cho khung tranh (tranh 2x cạnh dài ≤ 128px -> hiển thị ≤ 64px) */
+const PICTURE_SPACE = 88;
+const PICTURE_BOX = 70;
+const PICTURE_MARGIN = 10;
+/** Nút phát âm thu nhỏ ở góc khung tranh */
+const SPEAKER_BADGE_SCALE = 0.7;
 
 interface Slot {
   box: Phaser.GameObjects.Graphics;
@@ -45,6 +54,11 @@ export default class TargetPanel {
   private cursorTween: Phaser.Tweens.Tween | null = null;
   private readonly panelWidth: number;
   private readonly centerX: number;
+  private readonly pictureWell: Phaser.GameObjects.Graphics;
+  private readonly picture: Phaser.GameObjects.Image | null;
+  private readonly speaker: IconButton | null;
+  /** Chỗ chừa bên trái của từ hiện tại (khung tranh hoặc nút phát âm) */
+  private leftSpace = SPEAKER_SPACE;
 
   constructor(
     private readonly scene: Phaser.Scene,
@@ -78,13 +92,32 @@ export default class TargetPanel {
 
     this.wordText = addText(scene, SPEAKER_SPACE / 2, -24, '', 'learning', { fontSize: '26px' });
     this.slotsRoot = scene.add.container(0, 0);
-    this.root.add([this.glow, frame, this.wordText, this.slotsRoot]);
 
-    if (onSpeak) {
-      this.root.add(
-        new IconButton(scene, -panelWidth / 2 + 30, 0, 'speaker', onSpeak, { radius: 20, sfx: null }),
-      );
+    const pictureX = -panelWidth / 2 + PICTURE_MARGIN + PICTURE_BOX / 2;
+    this.pictureWell = scene.add.graphics({ x: pictureX }).setVisible(false);
+    this.pictureWell
+      .fillStyle(0xffffff, 1)
+      .fillRoundedRect(-PICTURE_BOX / 2, -PICTURE_BOX / 2, PICTURE_BOX, PICTURE_BOX, 14)
+      .lineStyle(3, 0xd9b98a, 1)
+      .strokeRoundedRect(-PICTURE_BOX / 2, -PICTURE_BOX / 2, PICTURE_BOX, PICTURE_BOX, 14);
+    this.picture = scene.textures.exists(WORD_ATLAS.key)
+      ? scene.add.image(pictureX, 0, WORD_ATLAS.key).setVisible(false)
+      : null;
+    if (this.picture && onSpeak) {
+      this.picture.setInteractive({ useHandCursor: true });
+      this.picture.on(Phaser.Input.Events.GAMEOBJECT_POINTER_UP, () => {
+        this.wiggle();
+        onSpeak();
+      });
     }
+    this.speaker = onSpeak
+      ? new IconButton(scene, -panelWidth / 2 + 30, 0, 'speaker', onSpeak, { radius: 20, sfx: null })
+      : null;
+
+    this.root.add([this.glow, frame, this.pictureWell]);
+    if (this.picture) this.root.add(this.picture);
+    this.root.add([this.wordText, this.slotsRoot]);
+    if (this.speaker) this.root.add(this.speaker);
 
     bus
       .on('word-started', ({ word, support }) => this.showWord(word, support))
@@ -98,18 +131,20 @@ export default class TargetPanel {
     this.slotsRoot.removeAll(true);
     this.cursorTween?.stop();
 
+    this.showPicture(word);
     const showWord = support === 'full' || support === 'word';
     const isLong = word.length > LONG_WORD;
     this.wordText
       .setText(showWord ? word.split('').join(isLong ? '' : ' ') : '')
       .setVisible(showWord)
-      .setFontSize(isLong ? 22 : 26);
+      .setFontSize(isLong ? 22 : 26)
+      .setX(this.leftSpace / 2);
 
     const gap = isLong ? LONG_SLOT_GAP : SLOT_GAP;
-    const available = this.panelWidth - SPEAKER_SPACE - 20;
+    const available = this.panelWidth - this.leftSpace - 20;
     const size = Math.min(MAX_SLOT, Math.floor((available - gap * (word.length - 1)) / word.length));
     const rowWidth = word.length * size + (word.length - 1) * gap;
-    const startX = SPEAKER_SPACE / 2 - rowWidth / 2 + size / 2;
+    const startX = this.leftSpace / 2 - rowWidth / 2 + size / 2;
     const y = showWord ? 14 : 0;
 
     this.slots = word.split('').map((char, index) => {
@@ -139,6 +174,52 @@ export default class TargetPanel {
     });
   }
 
+  /** Tranh của từ (nếu có) + vị trí nút phát âm: góc khung tranh, hoặc giữa chỗ trống bên trái */
+  private showPicture(word: string): void {
+    const frame = wordPictureFrame(word);
+    const hasPicture = !!this.picture && this.scene.textures.get(WORD_ATLAS.key).has(frame);
+    const left = -this.panelWidth / 2;
+    this.leftSpace = hasPicture ? PICTURE_SPACE : SPEAKER_SPACE;
+    this.pictureWell.setVisible(hasPicture);
+
+    if (this.picture) {
+      this.scene.tweens.killTweensOf(this.picture);
+      this.picture.setVisible(hasPicture).setAngle(0);
+      if (hasPicture) {
+        this.picture.setFrame(frame).setScale(0);
+        this.scene.tweens.add({
+          targets: this.picture,
+          scale: WORD_PICTURE_SCALE,
+          duration: 300,
+          ease: 'Back.easeOut',
+        });
+      }
+    }
+
+    if (hasPicture) {
+      const corner = left + PICTURE_MARGIN + PICTURE_BOX - 4;
+      this.speaker?.setPosition(corner, PICTURE_BOX / 2 - 8).setScale(SPEAKER_BADGE_SCALE);
+    } else {
+      this.speaker?.setPosition(left + 30, 0).setScale(1);
+    }
+  }
+
+  /** Chạm tranh: lắc nhẹ */
+  private wiggle(): void {
+    const { picture } = this;
+    if (!picture) return;
+    this.scene.tweens.killTweensOf(picture);
+    picture.setAngle(0).setScale(WORD_PICTURE_SCALE);
+    this.scene.tweens.add({
+      targets: picture,
+      angle: { from: -8, to: 8 },
+      duration: 80,
+      yoyo: true,
+      repeat: 1,
+      onComplete: () => picture.setAngle(0),
+    });
+  }
+
   private fill(index: number): void {
     const slot = this.slots[index];
     if (!slot) return;
@@ -162,6 +243,18 @@ export default class TargetPanel {
   /** Hoàn thành từ: panel sáng viền vàng, các chữ nảy lần lượt */
   private celebrate(): void {
     this.cursorTween?.stop();
+    if (this.picture?.visible) {
+      this.scene.tweens.killTweensOf(this.picture);
+      this.picture.setScale(WORD_PICTURE_SCALE).setAngle(0);
+      this.scene.tweens.add({
+        targets: this.picture,
+        scale: WORD_PICTURE_SCALE * 1.2,
+        duration: 180,
+        yoyo: true,
+        repeat: 1,
+        ease: 'Quad.easeOut',
+      });
+    }
     this.scene.tweens.add({
       targets: this.glow,
       alpha: { from: 1, to: 0 },

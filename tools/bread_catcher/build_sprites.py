@@ -14,6 +14,10 @@ Mỗi sprite được:
 
 Metadata (kích thước, anchors đã quy đổi) được ghi ra `public/assets/bread-catcher/sprites.json`
 để game đọc thay vì hard-code.
+
+Kids Bakery Phonics pack (`_source/bread-catcher/bakery-pack/`, xem bakery_pack.py): 12 bánh chữ mới,
+tranh từ vựng (atlas `words/`), icon phần thưởng, 2 background mới. Ảnh của pack xuất ở 2x
+(`scale: 2` trong sprites.json — game vẽ ở scale 0.5); bánh chữ có thêm `letter` (tâm + bán kính lòng kem).
 """
 
 from __future__ import annotations
@@ -31,6 +35,9 @@ from common.imaging import (  # noqa: E402
 )
 from common.paths import PUBLIC_ASSETS, SOURCE  # noqa: E402
 
+from bakery_pack import (  # noqa: E402
+    build_backgrounds as build_bakery_backgrounds, build_reward_icons, build_treats, build_word_atlas,
+)
 from brainrot_art import build_brainrot_sprites  # noqa: E402
 from phonics_art import build_phonics_sprites  # noqa: E402
 
@@ -202,6 +209,13 @@ def main() -> None:
         meta[name] = build_sprite(ui, name, spec)
 
     meta.update(build_backgrounds())
+    for name, img in build_bakery_backgrounds(BG_SIZE, BG_WIDE_SIZE).items():
+        save(img, name)
+        meta[name] = {"width": img.width, "height": img.height}
+    for name, (img, extra) in {**build_treats(), **build_reward_icons()}.items():
+        save(img, name)
+        meta[name] = {"width": img.width, "height": img.height, **extra}
+    word_count = build_word_atlas()
     procedural = {**build_brainrot_sprites(), **build_phonics_sprites()}
     for name, img in procedural.items():
         save(img, name)
@@ -214,7 +228,7 @@ def main() -> None:
         for name, info in meta.items()
     }
     (OUT / "sprites.json").write_text(json.dumps(manifest, indent=2), encoding="utf-8")
-    print(f"Built {len(manifest)} images -> {OUT}")
+    print(f"Built {len(manifest)} images + {word_count} word pictures -> {OUT}")
 
 
 if __name__ == "__main__":

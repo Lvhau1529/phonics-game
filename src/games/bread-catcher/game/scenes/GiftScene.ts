@@ -24,6 +24,9 @@ import { shuffle } from '@/shared/random';
 
 const GIFT_COUNT = 3;
 const GIFT_SPACING = 108;
+/** Icon phần thưởng vẽ ở 2x (hiển thị ~60px), đặt cao hơn nắp hộp ngần này */
+const REWARD_ICON_SCALE = 0.5;
+const REWARD_ICON_LIFT = 26;
 
 /**
  * Vị trí các phần (toạ độ logic).
@@ -221,8 +224,34 @@ export default class GiftScene extends Phaser.Scene {
       ]);
       this.layer.add(card);
       this.tweens.add({ targets: card, scale: { from: 0, to: 1 }, duration: 350, ease: 'Back.easeOut' });
+      this.showRewardIcon(reward, gift);
 
       this.time.delayedCall(700, () => this.showActions());
+    });
+  }
+
+  /** Icon phần thưởng (ảnh 2x) bay lên từ miệng hộp rồi nhún nhảy phía trên hộp */
+  private showRewardIcon(reward: (typeof REWARDS)[number], gift: Phaser.GameObjects.Image): void {
+    if (!reward.iconKey || !this.textures.exists(reward.iconKey)) return;
+    const icon = this.add.image(gift.x, gift.y, reward.iconKey).setScale(0);
+    this.layer.addAt(icon, this.layer.getIndex(gift));
+    const top = gift.y - gift.displayHeight / 2 - REWARD_ICON_LIFT;
+    this.tweens.add({
+      targets: icon,
+      y: top,
+      scale: REWARD_ICON_SCALE,
+      duration: 450,
+      ease: 'Back.easeOut',
+      onComplete: () => {
+        this.tweens.add({
+          targets: icon,
+          y: top - 6,
+          duration: 650,
+          yoyo: true,
+          repeat: -1,
+          ease: 'Sine.easeInOut',
+        });
+      },
     });
   }
 
