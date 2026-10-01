@@ -61,12 +61,5 @@
     "food.atlas": "public/assets/atlases/food.json",
     "ui.atlas": "public/assets/atlases/ui.json"
   },
-  "backgroundKeys": [
-    "bg.streaming",
-    "bg.kitchen",
-    "bg.cafe",
-    "bg.classroom",
-    "bg.ramen",
-    "bg.dessert"
-  ]
+  "backgroundKeys": ["bg.streaming", "bg.kitchen", "bg.cafe", "bg.classroom", "bg.ramen", "bg.dessert"]
 }

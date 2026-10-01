@@ -1,7 +1,7 @@
 /**
  * Classroom: banner TEAM A / TEAM B ở hai góc sân khấu + điểm; đội tới lượt nhún nhảy.
  */
-import Phaser from 'phaser';
+import type Phaser from 'phaser';
 import { DEPTH, THEME } from '@/games/food-stream/game/config/theme';
 import { addText } from '@/games/food-stream/game/ui/text';
 import type { Team, TeamId } from '@/games/food-stream/session/types';

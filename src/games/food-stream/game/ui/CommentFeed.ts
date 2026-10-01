@@ -2,7 +2,7 @@
  * Bình luận "khán giả" nổi lên ở góc sân khấu (plan §12) — chọn từ danh sách có sẵn,
  * không có chat / mạng thật.
  */
-import Phaser from 'phaser';
+import type Phaser from 'phaser';
 import { DEPTH, THEME } from '@/games/food-stream/game/config/theme';
 import { addText } from '@/games/food-stream/game/ui/text';
 

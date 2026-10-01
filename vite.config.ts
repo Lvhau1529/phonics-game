@@ -1,3 +1,4 @@
+/// <reference types="vitest/config" />
 import { execSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
 import { readFileSync } from 'node:fs';
@@ -105,6 +106,11 @@ export default defineConfig(({ command }) => ({
       },
     }),
   ],
+  test: {
+    // Test đơn vị cạnh code: *.test.ts(x); DOM giả lập bằng jsdom (store, storage, màn React)
+    environment: 'jsdom',
+    include: ['src/**/*.test.{ts,tsx}'],
+  },
   build: {
     target: 'es2022',
     // Bundle JS/CSS/font (tên có hash) để riêng ở /static — cache vĩnh viễn được (xem vercel.json).
