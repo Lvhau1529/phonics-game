@@ -45,7 +45,7 @@
     }
   }
 
-  // ---- Thanh trên: kim cương (trái) + cập nhật (phải) ----
+  // ---- Thanh trên: kim cương (trái) + cập nhật · chuông · tài khoản (phải) ----
   .bar {
     display: flex;
     align-items: center;
@@ -54,6 +54,16 @@
     width: 100%;
     max-width: 1100px;
     min-height: 52px;
+
+    // Nhóm bên phải: xuống dòng khi màn hẹp mà có cả nút cập nhật
+    .barRight {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 10px;
+      min-width: 0;
+    }
 
     // Nút cập nhật nằm trong thanh (không nổi giữa đỉnh màn hình)
     .update {

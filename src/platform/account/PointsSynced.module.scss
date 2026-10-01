@@ -1,0 +1,51 @@
+@use '@/platform/styles/abstracts' as *;
+
+@layer components {
+  @include keyframes-pop(pop);
+
+  // Cùng dáng viên thuốc với "+N GEMS" (ui/GemReward) để xếp cạnh nhau ở màn kết quả
+  .synced {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    margin: 4px auto;
+    padding: 6px 18px;
+    border: 3px solid var(--color-ink);
+    border-radius: 999px;
+    background: rgba(46, 22, 8, 0.65);
+    color: var(--color-cream);
+    font-size: 15px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    text-align: center;
+    text-shadow: 0 2px 0 rgba(0, 0, 0, 0.4);
+    animation: pop 0.4s cubic-bezier(0.2, 1.4, 0.4, 1) 0.3s both;
+
+    small {
+      font-size: 12px;
+      opacity: 0.8;
+    }
+  }
+
+  .done {
+    padding: 4px 22px 4px 8px;
+    background:
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.18) 0 40%, transparent 40%), var(--color-purple);
+    box-shadow: 0 4px 0 rgba(0, 0, 0, 0.35);
+    font-size: 18px;
+
+    b {
+      color: var(--color-gold);
+      font-size: 24px;
+    }
+  }
+
+  .icon {
+    margin: -8px 0;
+  }
+
+  .offline {
+    border-style: dashed;
+  }
+}

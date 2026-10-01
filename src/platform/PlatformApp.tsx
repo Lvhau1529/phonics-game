@@ -1,6 +1,7 @@
 /**
- * Gốc của app: màn chọn game (hub) hoặc game đang mở.
+ * Gốc của app: màn chọn game (hub), game đang mở, hoặc màn tài khoản (#/account/...).
  * Mỗi game được tải động (chunk riêng) khi mở lần đầu; rời game thì unmount toàn bộ (kể cả Phaser).
+ * Màn tài khoản cũng là một chunk riêng, chỉ tải khi có API (ACCOUNT_ENABLED).
  */
 import {
   Component,
@@ -12,7 +13,8 @@ import {
   type ReactNode,
 } from 'react';
 import clsx from 'clsx';
-import { isUnlocked, walletStore } from '@/platform/gems/wallet';
+import { ACCOUNT_ENABLED } from '@/platform/account/config';
+import { useCatalog } from '@/platform/account/gamesSync';
 import HubScreen from '@/platform/hub/HubScreen';
 import { useStore } from '@/platform/hooks/useStore';
 import { platformActions, platformStore } from '@/platform/platformStore';
@@ -34,40 +36,53 @@ function rootOf(game: GameManifest): LazyExoticComponent<ComponentType> {
   return root;
 }
 
+const AccountRoot = lazy(() => import('@/platform/account/screens/AccountRoot'));
+
 interface PlatformAppProps {
   games: readonly GameManifest[];
   upcoming: readonly UpcomingGame[];
 }
 
-export default function PlatformApp({ games, upcoming }: PlatformAppProps) {
-  const activeId = useStore(platformStore, (state) => state.activeGameId);
-  const wallet = useStore(walletStore, (state) => state);
-  // Link mở thẳng game đang khoá (#/<id>) -> về màn chọn game
-  const game = games.find((item) => item.id === activeId && isUnlocked(item, wallet));
-  const GameRoot = game ? rootOf(game) : null;
+export default function PlatformApp({ games: baseGames, upcoming: baseUpcoming }: PlatformAppProps) {
+  const route = useStore(platformStore, (state) => state.route);
+  // Catalog server (ẩn / COMING SOON / giá) phủ lên manifest; không có API thì là manifest nguyên bản
+  const catalog = useCatalog(baseGames, baseUpcoming);
+  const { games, upcoming, isUnlocked } = catalog;
 
-  // Game không tồn tại / đang khoá: bỏ hash để lần bấm thẻ game sau vẫn mở được
+  const activeId = route.kind === 'game' ? route.gameId : null;
+  // Link mở thẳng game đang khoá (#/<id>) -> về màn chọn game
+  const game = games.find((item) => item.id === activeId && isUnlocked(item));
+  const GameRoot = game ? rootOf(game) : null;
+  const accountPage = route.kind === 'account' && ACCOUNT_ENABLED ? route.page : null;
+
+  // Game không tồn tại / đang khoá, hoặc #/account khi không có API: bỏ hash để lần bấm thẻ game sau vẫn mở được
   useEffect(() => {
-    if (activeId && !game) platformActions.exitToHub();
-  }, [activeId, game]);
+    if ((activeId && !game) || (route.kind === 'account' && !ACCOUNT_ENABLED)) platformActions.exitToHub();
+  }, [activeId, game, route.kind]);
+
+  const loading = (
+    <div className={styles.loading}>
+      <img className={clsx(styles.mascot, styles.running)} src={MASCOT.loading} alt="" />
+      LOADING…
+    </div>
+  );
 
   return (
     <>
-      {GameRoot ? (
+      {accountPage ? (
+        <LoadErrorBoundary key="account">
+          <Suspense fallback={loading}>
+            <AccountRoot page={accountPage} games={games} />
+          </Suspense>
+        </LoadErrorBoundary>
+      ) : GameRoot ? (
         <LoadErrorBoundary key={activeId}>
-          <Suspense
-            fallback={
-              <div className={styles.loading}>
-                <img className={clsx(styles.mascot, styles.running)} src={MASCOT.loading} alt="" />
-                LOADING…
-              </div>
-            }
-          >
+          <Suspense fallback={loading}>
             <GameRoot />
           </Suspense>
         </LoadErrorBoundary>
       ) : (
-        <HubScreen games={games} upcoming={upcoming} />
+        <HubScreen games={games} upcoming={upcoming} isUnlocked={isUnlocked} />
       )}
       <RotateHint />
     </>
@@ -84,7 +99,7 @@ class LoadErrorBoundary extends Component<{ children: ReactNode }, { failed: boo
 
   /** Ghi lỗi thật ra console để còn biết nguyên nhân (màn lỗi chỉ hiện câu chung chung) */
   override componentDidCatch(error: unknown): void {
-    console.error('[Phonics Arcade] Game failed to load:', error);
+    console.error('[Phonics Arcade] Screen failed to load:', error);
   }
 
   override render(): ReactNode {

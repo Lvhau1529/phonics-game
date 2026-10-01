@@ -4,6 +4,7 @@
  */
 import clsx from 'clsx';
 import { ICONS, mascotUrl } from '@/games/bread-catcher/app/assets';
+import PointsSynced from '@/platform/account/PointsSynced';
 import Button from '@/platform/ui/Button';
 import GemReward from '@/platform/ui/GemReward';
 import Leaderboard, { TeamTotalsCard } from '@/games/bread-catcher/app/components/Leaderboard';
@@ -137,6 +138,7 @@ function SoloResults({ session }: { session: ActiveSession }) {
       </div>
 
       <GemReward amount={session.gemsEarned ?? 0} />
+      <PointsSynced sessionId={session.syncId} />
 
       <div className={styles.row}>
         <Button color="green" size="lg" sfx={SFX.UI_START} onClick={() => sessionActions.playAgain()}>

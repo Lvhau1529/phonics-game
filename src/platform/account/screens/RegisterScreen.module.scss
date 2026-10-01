@@ -1,0 +1,24 @@
+@use '@/platform/styles/abstracts' as *;
+@use '@/platform/account/screens/account' as *;
+
+@layer components {
+  .form {
+    @include account-card;
+  }
+
+  .note {
+    margin: 0;
+    color: var(--color-brown);
+    font-size: 17px;
+    font-weight: 700;
+    text-align: center;
+  }
+
+  .error {
+    @include form-error;
+  }
+
+  .link {
+    @include text-link;
+  }
+}

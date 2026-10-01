@@ -1,0 +1,14 @@
+@layer components {
+  // Linh vật pixel-art giữ nét; ảnh ong (cảnh vuông) bo tròn
+  .picker {
+    img {
+      border-radius: 12px;
+      image-rendering: pixelated;
+    }
+
+    // Ô đầu tiên = Pip (ảnh webp vẽ mượt)
+    [role='radio']:first-child img {
+      image-rendering: auto;
+    }
+  }
+}

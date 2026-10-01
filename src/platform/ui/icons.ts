@@ -17,6 +17,14 @@ export const ICONS = {
   musicOff: `${UI}/icons/music_off.png`,
   voiceOn: `${UI}/icons/voice_on.png`,
   voiceOff: `${UI}/icons/voice_off.png`,
+  // Tài khoản: xếp hạng, hồ sơ, thông báo
+  trophy: `${UI}/icons/trophy.png`,
+  medal: `${UI}/icons/medal.png`,
+  crown: `${UI}/icons/crown.png`,
+  star: `${UI}/icons/star_filled.png`,
+  notificationDot: `${UI}/icons/notification_dot.png`,
+  check: `${UI}/icons/check.png`,
+  settings: `${UI}/icons/settings.png`,
   gem: `${UI}/gems/gem.png`,
   gemSmall: `${UI}/gems/gem_small.png`,
   gemBurst: `${UI}/gems/gem_burst.png`,
@@ -35,6 +43,8 @@ export const MASCOT = {
   loading: `${UI}/mascot/loading.webp`,
   error: `${UI}/mascot/error.webp`,
   hello: `${UI}/mascot/hello.webp`,
+  /** Ong ngủ: danh sách trống (chưa có thông báo...) */
+  sleep: `${UI}/mascot/sleep.webp`,
 } as const;
 
 export const COMING_SOON_COVER = `${UI}/coming_soon_cover.webp`;

@@ -1,0 +1,133 @@
+@use '@/platform/styles/abstracts' as *;
+@use '@/platform/account/screens/account' as *;
+
+@layer components {
+  .filters {
+    @include account-card;
+    gap: 8px;
+  }
+
+  .board {
+    @include account-card;
+    gap: 8px;
+  }
+
+  .className {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    margin: 0;
+    color: var(--color-ink);
+    font-size: 22px;
+    font-weight: 800;
+  }
+
+  .status {
+    margin: 6px 0;
+    color: var(--color-brown);
+    font-size: 15px;
+    font-weight: 800;
+    text-align: center;
+  }
+
+  .errorBox,
+  .empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .mascot {
+    @include mascot-frame(110px);
+  }
+
+  .list {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-height: 52px;
+    padding: 4px 10px 4px 6px;
+    border: 3px solid var(--color-tan);
+    border-radius: 14px;
+    background: #fff;
+  }
+
+  // Dòng của mình
+  .me {
+    border-color: var(--color-ink);
+    background: var(--color-honey-light);
+    box-shadow: 0 3px 0 var(--color-honey);
+  }
+
+  // Mình không nằm trong top: ghim ở cuối, cách ra một chút
+  .pinned {
+    margin-top: 8px;
+  }
+
+  .rank {
+    display: grid;
+    flex: none;
+    place-items: center;
+    width: 36px;
+    color: var(--color-brown);
+    font-size: 18px;
+    font-weight: 800;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .top {
+    color: var(--color-orange-edge);
+  }
+
+  .avatar {
+    flex: none;
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    border: 2px solid var(--color-ink);
+    border-radius: 12px;
+    background: var(--color-honey-light);
+    image-rendering: pixelated;
+  }
+
+  .scene {
+    object-fit: cover;
+    image-rendering: auto;
+  }
+
+  .name {
+    @include ellipsis;
+    flex: 1;
+    min-width: 0;
+    color: var(--color-ink);
+    font-size: 17px;
+    font-weight: 800;
+
+    small {
+      color: var(--color-orange-edge);
+      font-size: 12px;
+    }
+  }
+
+  .points {
+    display: flex;
+    flex: none;
+    align-items: center;
+    gap: 4px;
+    color: var(--color-brown);
+    font-size: 18px;
+    font-weight: 800;
+    font-variant-numeric: tabular-nums;
+  }
+}

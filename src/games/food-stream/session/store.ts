@@ -9,6 +9,7 @@
  */
 import { DEFAULT_PACK_ID, getPack, PACKS } from '@/games/food-stream/content/packs';
 import { getLevel, LEVELS, levelsForPack } from '@/games/food-stream/content/levels';
+import { foodStreamManifest } from '@/games/food-stream/manifest';
 import { randomFirstTeam } from '@/games/food-stream/session/RoundController';
 import {
   addViewers,
@@ -19,6 +20,8 @@ import {
 } from '@/games/food-stream/session/storage';
 import { buildTeams } from '@/games/food-stream/session/teams';
 import type { RoundResult, SetupDraft, Team, TeamId } from '@/games/food-stream/session/types';
+import { postSoloResult } from '@/platform/account/scoreSync';
+import { events } from '@/platform/analytics/events';
 import { awardGems } from '@/platform/gems/wallet';
 import { createStore } from '@/shared/createStore';
 
@@ -33,6 +36,8 @@ export interface ActiveSession {
   settings: SetupDraft;
   teams: Team[];
   firstTeam: TeamId;
+  /** Lúc bắt đầu lượt (ms) — tính thời lượng ván khi gửi kết quả lên API */
+  startedAt: number;
 }
 
 export interface SessionOutcome {
@@ -42,6 +47,8 @@ export interface SessionOutcome {
   totalViewers: number;
   /** Kim cương nhận được (1 viên / câu đúng của mọi đội, ví chung của Phonics Arcade) */
   gemsEarned: number;
+  /** Solo + đã đăng nhập: clientSessionId của kết quả gửi lên API (platform/account/scoreSync); null = không gửi */
+  syncId: string | null;
 }
 
 export interface FoodStreamState {
@@ -104,7 +111,42 @@ function update(patch: Partial<FoodStreamState>): void {
 
 function createSession(settings: SetupDraft): ActiveSession {
   const teams = buildTeams(settings);
-  return { id: nextSessionId++, settings, teams, firstTeam: randomFirstTeam(teams) };
+  return { id: nextSessionId++, settings, teams, firstTeam: randomFirstTeam(teams), startedAt: Date.now() };
+}
+
+/**
+ * Lượt xong: Solo của học sinh đã đăng nhập -> gửi kết quả lên API (điểm, xếp hạng); các lượt còn lại
+ * (Classroom, khách) chỉ ghi sự kiện PLAY ẩn danh (server tự ghi PLAY từ kết quả gửi lên).
+ */
+function syncResult(session: ActiveSession, result: RoundResult): string | null {
+  const { settings } = session;
+  const solo = settings.mode === 'solo';
+  const team = result.teams[0];
+  let syncId: string | null = null;
+  if (solo && team) {
+    const total = questionCount(settings);
+    syncId = postSoloResult({
+      gameId: foodStreamManifest.id,
+      levelId: settings.levelId,
+      packId: settings.packId,
+      correct: Math.min(team.correct, total),
+      total,
+      score: team.score,
+      durationMs: Math.min(3_600_000, Math.max(0, Date.now() - session.startedAt)),
+      endedBy: result.endedBy === 'questions' ? 'completed' : 'time',
+      details: {
+        stars: result.stars,
+        perfect: result.perfect,
+        viewers: result.viewers,
+        hearts: result.hearts,
+        bestStreak: team.bestStreak,
+        firstTry: result.records.filter((record) => record.firstTry).length,
+        questions: result.records.length,
+      },
+    });
+  }
+  if (!syncId) events.trackPlay(foodStreamManifest.id, solo ? 'solo' : 'class');
+  return syncId;
 }
 
 /** Số câu của lượt */
@@ -164,7 +206,8 @@ export const foodStreamActions = {
         : undefined;
     const totalViewers = addViewers(result.viewers);
     const gemsEarned = awardGems(result.teams.reduce((sum, team) => sum + team.correct, 0));
-    update({ screen: 'results', outcome: { result, previous, totalViewers, gemsEarned } });
+    const syncId = syncResult(session, result);
+    update({ screen: 'results', outcome: { result, previous, totalViewers, gemsEarned, syncId } });
   },
 
   /** Thoát giữa lượt (nút QUIT) -> về Setup, không lưu kết quả */

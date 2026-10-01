@@ -17,10 +17,26 @@ import '@fontsource/andika/latin-700.css';
 // Reset + phần tử gốc; style của từng component nằm ở *.module.scss cạnh component
 import '@/platform/styles/global.scss';
 import { GAMES, UPCOMING } from '@/games';
+import { authActions } from '@/platform/account/authStore';
+import { ACCOUNT_ENABLED } from '@/platform/account/config';
+import { gamesSync } from '@/platform/account/gamesSync';
+import { notificationsActions } from '@/platform/account/notificationsStore';
+import { scoreSync } from '@/platform/account/scoreSync';
+import { events } from '@/platform/analytics/events';
 import PlatformApp from '@/platform/PlatformApp';
 import { initPwa } from '@/platform/pwa/updateStore';
 
 initPwa();
+
+// Tài khoản & đồng bộ (chỉ khi có VITE_API_URL): khôi phục phiên, gửi điểm / sự kiện đang chờ, thông báo, catalog
+if (ACCOUNT_ENABLED) {
+  void authActions.restore().finally(() => {
+    scoreSync.init();
+    notificationsActions.init();
+    gamesSync.init();
+  });
+  events.init();
+}
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

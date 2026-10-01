@@ -4,10 +4,10 @@ Bộ game phonics cho lớp mẫu giáo (~5 tuổi) chạy trên web, cài đư�
 điện thoại và **ngang** cho máy chiếu lớp học / máy tính / tablet. Mở app là **màn chọn game**; mỗi game
 là một module độc lập, thêm game mới không phải sửa game cũ.
 
-| Game | Mô tả | Tài liệu |
-| --- | --- | --- |
-| 🍞 **Bread Catcher** | Di chuyển rổ hứng bánh chữ theo đúng thứ tự để ghép từ. Class 3 đội / Solo. | [docs/bread-catcher](docs/bread-catcher/README.md) |
-| 🍩 **Food Stream** | Livestream ăn uống: nghe âm / từ, cho streamer ăn đúng món chữ cái / tranh. Classroom 2 đội / Solo, 7 kiểu câu hỏi. | [docs/food-stream](docs/food-stream/README.md) |
+| Game                 | Mô tả                                                                                                               | Tài liệu                                           |
+| -------------------- | ------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------- |
+| 🍞 **Bread Catcher** | Di chuyển rổ hứng bánh chữ theo đúng thứ tự để ghép từ. Class 3 đội / Solo.                                         | [docs/bread-catcher](docs/bread-catcher/README.md) |
+| 🍩 **Food Stream**   | Livestream ăn uống: nghe âm / từ, cho streamer ăn đúng món chữ cái / tranh. Classroom 2 đội / Solo, 7 kiểu câu hỏi. | [docs/food-stream](docs/food-stream/README.md)     |
 
 Màn chọn game có **kim cương**: bé nhận 1 viên cho mỗi câu / từ đúng (tối đa 10 viên mỗi ván, ở mọi game),
 dùng để **mở khoá game mới** (game có `price` trong manifest); game sắp ra mắt hiện thẻ **COMING SOON**.
@@ -18,20 +18,20 @@ nút "?" cạnh từng mục ở Setup) viết bằng tiếng Việt cho giáo v
 
 ## Tech stack
 
-| Hạng mục      | Công nghệ                                                              |
-| ------------- | ---------------------------------------------------------------------- |
-| Game engine   | Phaser 3 (WebGL / Canvas, Arcade Physics, Sound Manager + Web Audio)   |
-| Ngôn ngữ      | TypeScript (strict)                                                    |
-| App shell     | React 19 — màn chọn game + màn Home / Setup / Results của từng game    |
-| Styling       | SCSS Modules (Sass) cho component + Tailwind CSS v4 cho utility / token — xem [Styling](#styling) |
-| Bundler / dev | Vite (mỗi game một chunk tải động)                                     |
-| PWA           | vite-plugin-pwa (manifest + service worker, chơi offline)              |
-| Nội dung      | JSON + Zod (kiểm tra gói nội dung của Food Stream)                     |
-| Giọng đọc     | Web Speech API (đọc âm / từ, không cần file ghi âm)                    |
-| Format code   | Prettier (+ plugin sắp xếp class Tailwind) + EditorConfig             |
-| Lưu dữ liệu   | localStorage (`phonics-arcade:prefs`, `phonics-arcade:wallet`, `phonics-arcade:<game-id>`) |
-| Asset         | PNG (hình), OGG + MP3 fallback (audio) — sinh bằng script Python        |
-| Font          | Baloo 2 (giao diện), Andika (chữ cái / từ vựng — font cho trẻ tập đọc) |
+| Hạng mục      | Công nghệ                                                                                                                                             |
+| ------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Game engine   | Phaser 3 (WebGL / Canvas, Arcade Physics, Sound Manager + Web Audio)                                                                                  |
+| Ngôn ngữ      | TypeScript (strict)                                                                                                                                   |
+| App shell     | React 19 — màn chọn game + màn Home / Setup / Results của từng game                                                                                   |
+| Styling       | SCSS Modules (Sass) cho component + Tailwind CSS v4 cho utility / token — xem [Styling](#styling)                                                     |
+| Bundler / dev | Vite (mỗi game một chunk tải động)                                                                                                                    |
+| PWA           | vite-plugin-pwa (manifest + service worker, chơi offline)                                                                                             |
+| Nội dung      | JSON + Zod (kiểm tra gói nội dung của Food Stream)                                                                                                    |
+| Giọng đọc     | Web Speech API (đọc âm / từ, không cần file ghi âm)                                                                                                   |
+| Format code   | Prettier (+ plugin sắp xếp class Tailwind) + EditorConfig                                                                                             |
+| Lưu dữ liệu   | localStorage (`phonics-arcade:prefs`, `phonics-arcade:wallet`, `phonics-arcade:<game-id>`; tài khoản: xem [Tài khoản & đồng bộ](#tài-khoản--đồng-bộ)) |
+| Asset         | PNG (hình), OGG + MP3 fallback (audio) — sinh bằng script Python                                                                                      |
+| Font          | Baloo 2 (giao diện), Andika (chữ cái / từ vựng — font cho trẻ tập đọc)                                                                                |
 
 ## Chạy
 
@@ -44,8 +44,8 @@ pnpm typecheck
 pnpm format       # Prettier
 ```
 
-Link mở thẳng một game: `/#/bread-catcher`, `/#/food-stream` (nút Back của trình duyệt / Android quay về
-màn chọn game).
+Link mở thẳng một game: `/#/bread-catcher`, `/#/food-stream`; màn tài khoản: `/#/account` (nút Back của trình
+duyệt / Android quay về màn chọn game).
 
 ## Kiến trúc
 
@@ -66,6 +66,8 @@ src/
 │   ├── ui/                  #   Button, BackButton, Icon (+ icons.ts), Dialog, GemReward, OptionGroup, Field,
 │   │                        #   NameInput, AudioToggles, RotateHint, ScreenLayer, ScreenHeader, tone.ts,
 │   │                        #   guide/ (GuideDialog, GuideButton, GuideCard, guideContent.module.scss)
+│   ├── account/             #   tài khoản học sinh & đồng bộ API (chỉ khi có VITE_API_URL) — xem bên dưới
+│   ├── analytics/events.ts  #   sự kiện ẩn danh VIEW / PLAY (thống kê game)
 │   ├── pwa/                 #   nút cập nhật khi có bản deploy mới
 │   └── styles/              #   tailwind.css (token + Tailwind), global.scss (reset), abstracts/ (mixin SCSS)
 └── games/
@@ -89,7 +91,7 @@ nội dung, dữ liệu lưu riêng. React và Phaser của một game chỉ nó
 
 1. Tạo `src/games/<id>/` với root component (dùng `PhaserHost` + `createPhaserGame`, `useGameOrientation`,
    `ScreenLayer`, `GuideDialog`...) và `manifest.ts` (`id` dùng cho URL và key lưu trữ — không đổi sau khi phát
-   hành). Phần tử gốc: `` <main className={clsx('app', `app--${orientation}`, styles.theme)}> `` — theme riêng
+   hành). Phần tử gốc: ``<main className={clsx('app', `app--${orientation}`, styles.theme)}>`` — theme riêng
    (nếu có) ghi đè token `--color-*` trong `<Root>.module.scss` (xem Food Stream).
 2. Thêm manifest vào `src/games/index.ts` (bỏ thẻ COMING SOON tương ứng trong `UPCOMING`). Muốn bé dùng
    kim cương mở khoá thì đặt `price` trong manifest; bỏ trống = miễn phí.
@@ -98,16 +100,91 @@ nội dung, dữ liệu lưu riêng. React và Phaser của một game chỉ nó
 5. Chơi xong ván gọi `awardGems(sốCâuĐúng)` (platform/gems/wallet.ts) và hiện `<GemReward amount={…} />`
    ở màn kết quả. Nút / icon dùng bộ chung (`BackButton`, `Icon`, `Dialog`) cho thống nhất.
 
+## Tài khoản & đồng bộ
+
+Học sinh có thể đăng nhập để **điểm ván Solo được lưu lên server** (API NestJS ở `apps/api`, hợp đồng chung
+`packages/contracts`): tổng điểm, xếp hạng trong lớp, thông báo của giáo viên, game được giáo viên mở khoá.
+Toàn bộ phần này nằm ở `src/platform/account/` và **chỉ bật khi có `VITE_API_URL`** — không có thì app chạy
+y như bản offline (không UI tài khoản, không gọi mạng).
+
+### Cấu hình (`apps/game/.env`, mẫu ở `.env.example`)
+
+| Biến                    | Ý nghĩa                                                                                                                                       |
+| ----------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
+| `VITE_API_URL`          | Gốc API, không có `/` cuối (vd `http://localhost:3000`); client ghép `${VITE_API_URL}/api${path}`. Rỗng = tắt tài khoản.                      |
+| `VITE_GOOGLE_CLIENT_ID` | Client id Google Identity Services cho nút **Continue with Google**; rỗng = ẩn nút Google. Script GIS chỉ nạp khi mở màn đăng nhập / đăng ký. |
+
+Biến được kiểm tra bằng zod ở `platform/account/config.ts` (`ACCOUNT_ENABLED`, `API_URL`, `GOOGLE_CLIENT_ID`).
+
+### Màn hình (hash `#/account/...`, `platformStore.ts`)
+
+| Hash                      | Màn          | Ghi chú                                                                                                                                                                                                            |
+| ------------------------- | ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `#/account`               | MY PROFILE   | avatar, tên, lớp, tổng điểm + hạng (`GET /me/points`), MY GAMES (điểm từng game, khoá / mở), nút RANKING · MESSAGES · EDIT · SIGN OUT                                                                              |
+| `#/account/login`         | SIGN IN      | email + mật khẩu hoặc Google; đã đăng nhập thì chuyển sang hồ sơ                                                                                                                                                   |
+| `#/account/register`      | NEW ACCOUNT  | email, mật khẩu, tên, avatar (preset `AVATARS` của contracts → ảnh ở `avatars.ts`), lớp (`GET /public/classes`). Google lần đầu (422 `PROFILE_REQUIRED`) → form này ở "chế độ Google" (không hỏi email / mật khẩu) |
+| `#/account/edit`          | EDIT PROFILE | tên + avatar (`PATCH /me/profile`); đổi lớp phải nhờ giáo viên                                                                                                                                                     |
+| `#/account/ranking`       | RANKING      | tab WEEK / MONTH / ALL + chip lọc game (`GET /me/class/ranking`)                                                                                                                                                   |
+| `#/account/notifications` | MESSAGES     | thông báo; mở màn là đánh dấu đã đọc (`PATCH /me/notifications/read`)                                                                                                                                              |
+
+Khách mở màn cần đăng nhập → hiện SIGN IN tại chỗ (`AccountRoot.tsx`). Màn tài khoản là một chunk tải động
+riêng (`PlatformApp.tsx`). Thanh trên màn chọn game có nút **SIGN IN** (khách) / avatar + tên (đã đăng nhập) và
+chuông thông báo kèm số chưa đọc. Chữ trong UI là tiếng Anh ngắn cho bé; mã lỗi API dịch ở `errorText.ts`.
+
+### Token & khôi phục phiên (`apiClient.ts`, `authStore.ts`)
+
+- Access token (15 phút) chỉ giữ trong bộ nhớ; refresh token nhận qua body (header `X-Refresh-Transport: body`
+  ở mọi lời gọi `/auth/*`) và lưu localStorage. Mỗi lần refresh server xoay token mới → luôn lưu bản mới.
+- Mọi lời gọi bị 401 → refresh **một lần** (gộp nhiều lời gọi cùng lúc) → gọi lại; refresh bị từ chối → đăng xuất
+  trên máy. Mở app có refresh token → `status: 'restoring'` rồi `signedIn`; mất mạng lúc mở app vẫn giữ user đã
+  lưu, điểm xếp hàng chờ.
+- Response được kiểm tra bằng zod schema của `@phonics/contracts`; lỗi gom về `ApiError { statusCode, code }`.
+
+### Đồng bộ điểm, mở khoá, sự kiện (`syncQueue.ts`)
+
+Ba hàng đợi localStorage gửi **tuần tự**, chạy khi: vừa thêm, mở app, có mạng (`online`), quay lại tab,
+đăng nhập xong. 2xx → bỏ khỏi hàng đợi; 4xx (trừ 401 / 429) → bỏ + đánh dấu bị từ chối; mất mạng / 5xx → giữ lại.
+
+| Gì                                                                                                                                                              | Khi nào                                    | Endpoint                                                                                     |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------ | -------------------------------------------------------------------------------------------- |
+| Kết quả ván **Solo** của học sinh đã đăng nhập (`scoreSync.ts`, game gọi `postSoloResult`)                                                                      | cuối ván (`finishSession` / `finishRound`) | `POST /game/results` (idempotent theo `clientSessionId`)                                     |
+| Mở khoá game bằng kim cương khi đang đăng nhập (`gamesSync.ts` › `unlockWithGems`)                                                                              | bấm UNLOCK                                 | `POST /me/games/:id/unlock`                                                                  |
+| Sự kiện ẩn danh VIEW (bấm thẻ game) / PLAY (xong ván — mọi chế độ, cả khách, **trừ** ván solo đã đăng nhập vì server tự ghi từ kết quả) (`analytics/events.ts`) | ngay lúc đó, gom ≤ 50                      | `POST /public/events` (kèm bearer nếu đang đăng nhập; đóng trang gửi bằng `fetch keepalive`) |
+
+Khách (máy lớp dùng chung) **không** xếp hàng điểm. Màn kết quả hiện `<PointsSynced sessionId />` cạnh
+`<GemReward>`: "+N POINTS · TOTAL X" / "SAVING POINTS…" / "POINTS WILL BE SAVED WHEN ONLINE".
+
+### Catalog game & mở khoá (`gamesSync.ts`)
+
+`GET /public/games` (cache localStorage) phủ lên manifest qua `useCatalog()`: `enabled=false` ẩn thẻ,
+`comingSoon=true` thành thẻ COMING SOON, `price` ghi đè giá trong manifest (`null` = miễn phí). Đã đăng nhập:
+`GET /me/games` → game server đã mở; `isUnlocked(game)` = server mở ∪ ví kim cương trên máy.
+Thông báo: `GET /me/notifications?unread=true` khi mở app, quay lại tab, mỗi 5 phút (`notificationsStore.ts`).
+
+### Key localStorage
+
+| Key                           | Nội dung                                      |
+| ----------------------------- | --------------------------------------------- |
+| `phonics-arcade:auth`         | `{ user, refreshToken }` — phiên đăng nhập    |
+| `phonics-arcade:score-queue`  | kết quả ván Solo chờ gửi (`{ userId, body }`) |
+| `phonics-arcade:unlock-queue` | mở khoá bằng kim cương chờ báo server         |
+| `phonics-arcade:event-queue`  | sự kiện VIEW / PLAY chờ gửi                   |
+| `phonics-arcade:client-id`    | UUID ẩn danh của thiết bị (sự kiện)           |
+| `phonics-arcade:catalog`      | cache `GET /public/games`                     |
+
+Icon dùng riêng cho phần này (trophy, medal, crown, star, chuông, check, settings, linh vật ong ngủ) xuất từ
+Bee pack bằng `pnpm assets:ui` (bảng `EXPORTS` / `MASCOTS` trong `tools/arcade_ui/build_ui.py`).
+
 ## Styling
 
 **SCSS Modules** cho style của component + **Tailwind CSS v4** cho utility nhỏ và token thiết kế.
 
-| Ở đâu | Dùng cho |
-| --- | --- |
-| `src/platform/styles/tailwind.css` | **Token** màu / font / bo góc (`@theme`) — nguồn duy nhất: `bg-orange`, `text-ink`, `font-learning` trong JSX hoặc `var(--color-orange)`, `var(--font-ui)`, `var(--radius-card)` trong SCSS. Biến thể `app-landscape:`, `projector:`, `wide:`; utility `text-outline`. |
-| `src/platform/styles/global.scss` | Reset, `html / body / #root`, `.app`, biến `--outline`. Không thêm style component vào đây. |
-| `src/platform/styles/abstracts/` | Mixin / biến SCSS (không sinh CSS khi chỉ `@use`): `screen`, `card`, `text-button`, `focus-ring`, `ellipsis`, `candy-scrollbar`, `app-landscape`, `projector`, `wide`, `phone-landscape`, keyframes (`keyframes-bob`, `keyframes-screen-in`, `keyframes-pop`). |
-| `Component.module.scss` cạnh `Component.tsx` | Style của component: tên class tự đổi thành duy nhất (`Button_btn_x7Gk` khi dev, `_x7GkQ2` khi build) nên không đụng nhau giữa các game. |
+| Ở đâu                                        | Dùng cho                                                                                                                                                                                                                                                               |
+| -------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `src/platform/styles/tailwind.css`           | **Token** màu / font / bo góc (`@theme`) — nguồn duy nhất: `bg-orange`, `text-ink`, `font-learning` trong JSX hoặc `var(--color-orange)`, `var(--font-ui)`, `var(--radius-card)` trong SCSS. Biến thể `app-landscape:`, `projector:`, `wide:`; utility `text-outline`. |
+| `src/platform/styles/global.scss`            | Reset, `html / body / #root`, `.app`, biến `--outline`. Không thêm style component vào đây.                                                                                                                                                                            |
+| `src/platform/styles/abstracts/`             | Mixin / biến SCSS (không sinh CSS khi chỉ `@use`): `screen`, `card`, `text-button`, `focus-ring`, `ellipsis`, `candy-scrollbar`, `app-landscape`, `projector`, `wide`, `phone-landscape`, keyframes (`keyframes-bob`, `keyframes-screen-in`, `keyframes-pop`).         |
+| `Component.module.scss` cạnh `Component.tsx` | Style của component: tên class tự đổi thành duy nhất (`Button_btn_x7Gk` khi dev, `_x7GkQ2` khi build) nên không đụng nhau giữa các game.                                                                                                                               |
 
 Quy ước:
 

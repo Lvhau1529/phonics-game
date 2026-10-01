@@ -7,7 +7,8 @@
  *   soon     — bấm thẻ COMING SOON
  */
 import { SFX } from '@/platform/audio/sfx';
-import { GEM_RULES, isUnlocked, unlockGame, walletStore } from '@/platform/gems/wallet';
+import { unlockWithGems } from '@/platform/account/gamesSync';
+import { GEM_RULES, walletStore } from '@/platform/gems/wallet';
 import { useStore } from '@/platform/hooks/useStore';
 import type { GameManifest } from '@/platform/types';
 import Button from '@/platform/ui/Button';
@@ -22,13 +23,14 @@ export type HubDialogState =
 interface HubDialogsProps {
   dialog: HubDialogState;
   games: readonly GameManifest[];
+  isUnlocked: (game: GameManifest) => boolean;
   onChange: (next: HubDialogState | null) => void;
   onPlay: (game: GameManifest) => void;
 }
 
 const EARN_RULE = `Every right answer = ${GEM_RULES.perCorrect} gem (up to ${GEM_RULES.maxPerSession} per game).`;
 
-export default function HubDialogs({ dialog, games, onChange, onPlay }: HubDialogsProps) {
+export default function HubDialogs({ dialog, games, isUnlocked, onChange, onPlay }: HubDialogsProps) {
   const wallet = useStore(walletStore, (state) => state);
   const close = () => onChange(null);
   const practice = (
@@ -41,7 +43,7 @@ export default function HubDialogs({ dialog, games, onChange, onPlay }: HubDialo
     case 'gems': {
       // Game khoá rẻ nhất chưa mở: mục tiêu gần nhất để bé phấn đấu
       const next = games
-        .filter((game) => !isUnlocked(game, wallet))
+        .filter((game) => !isUnlocked(game))
         .sort((a, b) => (a.price ?? 0) - (b.price ?? 0))[0];
       return (
         <Dialog title="KEEP GOING!" image={MASCOT.encourage} onClose={close} actions={practice}>
@@ -94,7 +96,7 @@ export default function HubDialogs({ dialog, games, onChange, onPlay }: HubDialo
               <Button
                 color="green"
                 sfx={null}
-                onClick={() => onChange(unlockGame(dialog.game) ? { ...dialog, kind: 'unlocked' } : null)}
+                onClick={() => onChange(unlockWithGems(dialog.game) ? { ...dialog, kind: 'unlocked' } : null)}
               >
                 UNLOCK
               </Button>

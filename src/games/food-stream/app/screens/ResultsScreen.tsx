@@ -16,6 +16,7 @@ import {
 } from '@/games/food-stream/session/store';
 import type { QuestionRecord, TeamScore } from '@/games/food-stream/session/types';
 import { TEXT } from '@/games/food-stream/text';
+import PointsSynced from '@/platform/account/PointsSynced';
 import Button from '@/platform/ui/Button';
 import GemReward from '@/platform/ui/GemReward';
 import Icon from '@/platform/ui/Icon';
@@ -35,6 +36,7 @@ export default function ResultsScreen() {
       )}
       <WordsLearned records={outcome.result.records} />
       <GemReward amount={outcome.gemsEarned} />
+      <PointsSynced sessionId={outcome.syncId} />
       <Actions session={session} />
     </div>
   );

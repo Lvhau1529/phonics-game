@@ -1,14 +1,18 @@
 /**
  * Màn chọn game chung của Phonics Arcade:
- *   - thanh trên: bộ đếm kim cương (bấm để xem lời động viên) + nút cập nhật PWA
+ *   - thanh trên: bộ đếm kim cương (bấm để xem lời động viên) + nút cập nhật PWA + chuông thông báo
+ *     và nút tài khoản (chỉ khi có API — platform/account)
  *   - thẻ từng game (đang khoá thì hiện giá kim cương) + thẻ COMING SOON
  *   - bật/tắt âm thanh, nút thông tin tác giả ở góc màn hình
- * Danh sách game truyền vào từ src/games/index.ts.
+ * Danh sách game truyền vào từ PlatformApp (manifest ở src/games/index.ts đã phủ catalog server).
  */
 import { useState, type CSSProperties } from 'react';
+import AccountButton from '@/platform/account/AccountButton';
+import NotificationBell from '@/platform/account/NotificationBell';
+import { events } from '@/platform/analytics/events';
 import { SFX } from '@/platform/audio/sfx';
 import { playSfx, preloadSfx } from '@/platform/audio/sfxPlayer';
-import { isUnlocked, walletStore } from '@/platform/gems/wallet';
+import { walletStore } from '@/platform/gems/wallet';
 import { useStore } from '@/platform/hooks/useStore';
 import AuthorBadge from '@/platform/hub/AuthorBadge';
 import { GameCard, UpcomingCard } from '@/platform/hub/GameCard';
@@ -41,10 +45,12 @@ const BACKGROUND_STYLE = {
 interface HubScreenProps {
   games: readonly GameManifest[];
   upcoming: readonly UpcomingGame[];
+  /** Server đã mở hoặc đã mở bằng kim cương trên máy (platform/account/gamesSync) */
+  isUnlocked: (game: GameManifest) => boolean;
 }
 
-export default function HubScreen({ games, upcoming }: HubScreenProps) {
-  const wallet = useStore(walletStore, (state) => state);
+export default function HubScreen({ games, upcoming, isUnlocked }: HubScreenProps) {
+  const gems = useStore(walletStore, (state) => state.gems);
   const [dialog, setDialog] = useState<HubDialogState | null>(null);
 
   const play = (game: GameManifest) => {
@@ -53,19 +59,24 @@ export default function HubScreen({ games, upcoming }: HubScreenProps) {
     // Tải trước chunk của game trong lúc âm thanh phát
     void game.load();
     setDialog(null);
+    events.trackView(game.id);
     platformActions.openGame(game.id);
   };
 
   const openLocked = (game: GameManifest) => {
     playSfx(SFX.LOCKED);
-    setDialog({ kind: wallet.gems >= (game.price ?? 0) ? 'unlock' : 'locked', game });
+    setDialog({ kind: gems >= (game.price ?? 0) ? 'unlock' : 'locked', game });
   };
 
   return (
     <main className={styles.hub} style={BACKGROUND_STYLE}>
       <div className={styles.bar}>
         <GemCounter onOpen={() => setDialog({ kind: 'gems' })} />
-        <UpdateBanner className={styles.update} />
+        <div className={styles.barRight}>
+          <UpdateBanner className={styles.update} />
+          <NotificationBell />
+          <AccountButton />
+        </div>
       </div>
 
       <h1 className={styles.logo} aria-label="Phonics Arcade">
@@ -84,7 +95,7 @@ export default function HubScreen({ games, upcoming }: HubScreenProps) {
 
       <ul className={styles.games}>
         {games.map((game) => {
-          const locked = !isUnlocked(game, wallet);
+          const locked = !isUnlocked(game);
           return (
             <li key={game.id}>
               <GameCard
@@ -105,7 +116,15 @@ export default function HubScreen({ games, upcoming }: HubScreenProps) {
       <AudioToggles className={styles.toggles} />
       <AuthorBadge />
 
-      {dialog && <HubDialogs dialog={dialog} games={games} onChange={setDialog} onPlay={play} />}
+      {dialog && (
+        <HubDialogs
+          dialog={dialog}
+          games={games}
+          isUnlocked={isUnlocked}
+          onChange={setDialog}
+          onPlay={play}
+        />
+      )}
     </main>
   );
 }

@@ -8,11 +8,20 @@
  * React vẽ các màn home / setup / results; Phaser (SceneDirector) chạy play / gift.
  * Hai bên chỉ giao tiếp qua store này.
  */
+import { breadCatcherManifest } from '@/games/bread-catcher/manifest';
+import { postSoloResult } from '@/platform/account/scoreSync';
+import { events } from '@/platform/analytics/events';
 import { awardGems } from '@/platform/gems/wallet';
 import { createStore } from '@/shared/createStore';
 import { shuffle } from '@/shared/random';
 import { PACKS, parseCustomWords, sessionWords } from '@/games/bread-catcher/session/content';
-import { DEFAULT_SETTINGS, isValidTime, LEVELS, RULES } from '@/games/bread-catcher/session/settings';
+import {
+  DEFAULT_SETTINGS,
+  isValidTime,
+  LEVELS,
+  RULES,
+  wordsPerTurn,
+} from '@/games/bread-catcher/session/settings';
 import {
   addSession,
   rankTotals,
@@ -55,6 +64,8 @@ export interface ActiveSession {
   leaderboard?: LeaderboardUpdate;
   /** Kim cương nhận được khi chơi xong buổi (1 viên / từ đúng, ví chung của Phonics Arcade) */
   gemsEarned?: number;
+  /** Solo + đã đăng nhập: clientSessionId của kết quả gửi lên API (platform/account/scoreSync); null = không gửi */
+  syncId?: string | null;
 }
 
 export interface AppState {
@@ -124,6 +135,37 @@ function recordGems(session: ActiveSession): ActiveSession {
   if (session.gemsEarned !== undefined) return session;
   const correctWords = session.results.reduce((sum, result) => sum + result.correctWords, 0);
   return { ...session, gemsEarned: awardGems(correctWords) };
+}
+
+/**
+ * Chơi xong: Solo của học sinh đã đăng nhập -> gửi kết quả lên API (điểm, xếp hạng); các ván còn lại
+ * (Class Mode, khách) chỉ ghi sự kiện PLAY ẩn danh (server tự ghi PLAY từ kết quả gửi lên).
+ */
+function recordSync(session: ActiveSession): ActiveSession {
+  if (session.syncId !== undefined) return session;
+  const { settings } = session;
+  const result = session.results[0];
+  let syncId: string | null = null;
+  if (settings.mode === 'solo' && result) {
+    syncId = postSoloResult({
+      gameId: breadCatcherManifest.id,
+      levelId: settings.levelId,
+      packId: settings.packId,
+      correct: result.correctWords,
+      total: wordsPerTurn(settings),
+      score: result.score,
+      durationMs: Math.max(0, result.timeLimitMs - result.timeRemainingMs),
+      endedBy: result.endedBy === 'words' ? 'completed' : 'time',
+      details: {
+        attempts: result.attempts,
+        wrongCatches: result.wrongCatches,
+        timeLimitMs: result.timeLimitMs,
+        timeRemainingMs: result.timeRemainingMs,
+      },
+    });
+  }
+  if (!syncId) events.trackPlay(breadCatcherManifest.id, settings.mode === 'solo' ? 'solo' : 'class');
+  return { ...session, syncId };
 }
 
 // ---------------------------------------------------------------------------
@@ -202,7 +244,7 @@ export const sessionActions = {
       sessionActions.abortSession();
       return;
     }
-    update({ screen: 'results', session: recordGems(recordLeaderboard(session)) });
+    update({ screen: 'results', session: recordSync(recordGems(recordLeaderboard(session))) });
   },
 
   /** Xoá bảng tổng điểm các đội (nút RESET SCORES) */

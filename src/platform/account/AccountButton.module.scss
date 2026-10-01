@@ -1,0 +1,64 @@
+@use '@/platform/styles/abstracts' as *;
+
+@layer components {
+  // SIGN IN: nút kẹo tím, cỡ vừa thanh trên (cùng chiều cao bộ đếm kim cương)
+  .signIn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    min-height: 48px;
+    padding: 4px 16px 6px 12px;
+    border-radius: 999px;
+    font-size: 16px;
+  }
+
+  // Đã đăng nhập: viên thuốc gỗ như bộ đếm kim cương, avatar tròn + tên
+  .account {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    max-width: 180px;
+    min-height: 48px;
+    padding: 3px 16px 3px 4px;
+    border: 3px solid var(--color-ink);
+    border-radius: 999px;
+    background:
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.18) 0 40%, transparent 40%), var(--color-purple);
+    box-shadow: 0 4px 0 var(--color-purple-edge);
+    color: var(--color-cream);
+    font-family: var(--font-ui);
+    font-size: 17px;
+    font-weight: 800;
+    line-height: 1;
+    text-shadow: var(--outline);
+    cursor: pointer;
+
+    &:active {
+      transform: translateY(3px);
+      box-shadow: 0 1px 0 var(--color-purple-edge);
+    }
+
+    @include focus-ring;
+  }
+
+  .avatar {
+    flex: none;
+    width: 36px;
+    height: 36px;
+    object-fit: contain;
+    border: 2px solid var(--color-ink);
+    border-radius: 50%;
+    background: var(--color-honey-light);
+    image-rendering: pixelated;
+  }
+
+  .scene {
+    object-fit: cover;
+    image-rendering: auto;
+  }
+
+  .name {
+    @include ellipsis;
+    min-width: 0;
+  }
+}

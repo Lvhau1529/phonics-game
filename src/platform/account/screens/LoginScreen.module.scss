@@ -1,0 +1,25 @@
+@use '@/platform/styles/abstracts' as *;
+@use '@/platform/account/screens/account' as *;
+
+@layer components {
+  @include keyframes-bob;
+
+  .form {
+    @include account-card;
+  }
+
+  .mascot {
+    @include mascot-frame(96px);
+    align-self: center;
+    margin: -44px 0 0;
+    animation: bob 1.6s ease-in-out infinite;
+  }
+
+  .error {
+    @include form-error;
+  }
+
+  .link {
+    @include text-link;
+  }
+}

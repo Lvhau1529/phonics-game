@@ -57,6 +57,8 @@ EXPORTS: dict[str, tuple[str, int]] = {
     "next": ("icons/next", ICON),
     "previous": ("icons/previous", ICON),
     "refresh_update_sparkle": ("icons/update", ICON),
+    "settings": ("icons/settings", ICON),
+    "check": ("icons/check", ICON),
     # 02 — âm thanh
     "speaker_on": ("icons/sound_on", ICON),
     "speaker_muted": ("icons/sound_off", ICON),
@@ -64,12 +66,18 @@ EXPORTS: dict[str, tuple[str, int]] = {
     "music_off": ("icons/music_off", ICON),
     "voice_on": ("icons/voice_on", ICON),
     "voice_off": ("icons/voice_off", ICON),
+    "star_filled": ("icons/star_filled", ICON),
     # 03 — kim cương / mở khoá
     "gem_big": ("gems/gem", 128),
     "gem_small": ("gems/gem_small", 64),
     "gem_burst": ("gems/gem_burst", 160),
     "padlock_closed": ("gems/padlock", 160),
     "unlock_burst": ("gems/unlock_burst", 160),
+    "crown": ("icons/crown", ICON),
+    # 04 — huy hiệu / trang trí (tài khoản: xếp hạng, thông báo)
+    "notification_dot": ("icons/notification_dot", 64),
+    "trophy": ("icons/trophy", ICON),
+    "medal": ("icons/medal", ICON),
 }
 
 # 05 — linh vật ong: tên trong asset_manifest -> tên file xuất
@@ -81,6 +89,7 @@ MASCOTS: dict[str, str] = {
     "loading_run": "mascot/loading",
     "error_unplugged": "mascot/error",
     "wave_hello": "mascot/hello",
+    "empty_state_sleep": "mascot/sleep",
 }
 
 # Ảnh nguyên tấm: (file nguồn, tên xuất, kích thước tối đa (rộng, cao), vùng cắt (x0, y0, x1, y1) hoặc None)

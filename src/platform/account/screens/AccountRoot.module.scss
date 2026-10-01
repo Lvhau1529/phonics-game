@@ -1,0 +1,46 @@
+// Nền + khung chung của mọi màn tài khoản (AccountRoot.tsx). Các màn con dùng mixin / class ở account.scss.
+@use '@/platform/styles/abstracts' as *;
+
+@layer components {
+  @include keyframes-screen-in;
+
+  .root {
+    --color-ink: var(--color-arcade-ink);
+    @include text-outline-vars;
+    position: fixed;
+    inset: 0;
+    overflow-y: auto;
+    touch-action: pan-y;
+    background: $arcade-sky;
+    background-attachment: fixed;
+    animation: screen-in 0.25s ease-out;
+
+    @include candy-scrollbar($size: 14px);
+  }
+
+  .screen {
+    @include screen;
+
+    // Máy chiếu / máy tính: phóng vừa phải, giữ cột hẹp cho dễ đọc
+    @include projector {
+      zoom: 1.2;
+    }
+  }
+
+  .loading {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    color: var(--color-gold);
+    font-size: 24px;
+    font-weight: 800;
+    text-shadow: var(--outline);
+  }
+
+  .mascot {
+    @include mascot-frame(140px);
+  }
+}

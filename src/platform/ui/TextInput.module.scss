@@ -1,0 +1,75 @@
+@use '@/platform/styles/abstracts' as *;
+
+@layer components {
+  .input {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-width: 0;
+  }
+
+  .label {
+    color: var(--color-orange-edge);
+    font-size: 14px;
+    font-weight: 800;
+    letter-spacing: 1px;
+  }
+
+  .box {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 0 6px 0 12px;
+    border: 3px solid var(--color-tan);
+    border-radius: 14px;
+    background: #fff;
+
+    &:focus-within {
+      border-color: var(--color-orange);
+    }
+
+    .invalid & {
+      border-color: var(--color-red);
+    }
+
+    input {
+      flex: 1;
+      min-width: 0;
+      min-height: 46px;
+      border: none;
+      outline: none;
+      background: transparent;
+      color: var(--color-brown);
+      // ≥ 16px: iOS không tự zoom khi focus
+      font-size: 18px;
+      font-weight: 700;
+      user-select: text;
+      -webkit-user-select: text;
+
+      &::placeholder {
+        color: #c4a883;
+        font-weight: 600;
+      }
+    }
+  }
+
+  // SHOW / HIDE mật khẩu
+  .toggle {
+    @include text-button;
+    flex: none;
+    min-height: 32px;
+    padding: 2px 10px;
+    color: var(--color-orange-edge);
+    font-size: 12px;
+
+    @include focus-ring(2px, 2px);
+  }
+
+  .error {
+    margin: 0 2px;
+    color: var(--color-red-edge);
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 1.3;
+  }
+}
