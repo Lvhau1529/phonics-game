@@ -1,15 +1,43 @@
-# Quy tắc làm việc cho Claude
+# Quy tắc cho `apps/game` (Phonics Arcade — React 19 + Phaser 3 + Vite)
 
-## Git
+Đọc [README.md](README.md) trước (kiến trúc, styling, asset pipeline, PWA, tài khoản & đồng bộ).
 
-- **Không tự `git push`.** Chỉ push khi người dùng yêu cầu rõ ràng. Làm xong thì commit (nếu phù hợp) và báo lại, chờ người dùng bảo mới push.
-- **Trước mỗi lần push:**
-  1. Chạy lại `pnpm run build` (gồm typecheck). Có lỗi thì sửa / báo lại, **không push**.
-  2. Đóng hết server test mình đã mở (dev / preview) và các tab trình duyệt trỏ tới chúng. Không đụng server của phiên chat khác.
-- Commit message **không** được có dòng ghi công Claude (`Co-Authored-By: Claude…`, "Generated with Claude Code"…).
-- Dùng **pnpm**; thêm / đổi package thì commit kèm `pnpm-lock.yaml` (Vercel build bằng `pnpm install --frozen-lockfile`).
+## Nguyên tắc
 
-## Dự án
+- **UI trong game chỉ tiếng Anh**, ngắn, nhãn nút VIẾT HOA (bé ~5 tuổi). Phần Hướng dẫn (GUIDE) tiếng Việt cho
+  giáo viên. Comment / JSDoc tiếng Việt.
+- Không có `VITE_API_URL` → app phải chạy y hệt bản offline: mọi code tài khoản nằm sau `ACCOUNT_ENABLED`
+  (`src/platform/account/config.ts`), không gọi mạng, không hiện nút.
+- Import bằng alias `@/` (ESLint cấm `../`). Mỗi component một `*.module.scss` (`@use '@/platform/styles/abstracts' as *;`,
+  bọc `@layer components`). Tailwind chỉ cho utility nhỏ trong JSX. Token màu / font ở `styles/tailwind.css`.
+- State: `createStore` (`src/shared/createStore.ts`) + `useStore(store, selector)`; selector trả slice ổn định.
+  React và Phaser của một game chỉ nói chuyện qua store của game đó.
+- Dữ liệu ngoài (API, localStorage, env) phải parse bằng zod (schema từ `@phonics/contracts`) trước khi dùng.
+  localStorage key dạng `phonics-arcade:<ten>` (xem README > Storage keys).
 
-- Xem [README.md](README.md) để biết cấu trúc, lệnh chạy và asset pipeline.
-- Giao diện trong game chỉ dùng tiếng Anh; từ vựng chỉ lấy phần Phonics của resource pack (không dùng phần ESL).
+## Cấu trúc nhanh
+
+| Thư mục | Vai trò |
+| --- | --- |
+| `src/platform/` | Khung chung: hub, `platformStore` (hash route), gems/wallet, ui kit, pwa, audio, phaser |
+| `src/platform/account/` | Tài khoản: `apiClient`, `authStore`, `accountApi`, `scoreSync`, `gamesSync`, `notificationsStore`, màn hình `screens/` |
+| `src/platform/analytics/` | Sự kiện lượt xem / lượt chơi (ẩn danh) |
+| `src/games/<id>/` | Từng game: `manifest.ts`, `session/` (store + luật), `app/` (màn React), `game/` (Phaser) |
+
+## Cách làm việc thường gặp
+
+- **Thêm game:** tạo `src/games/<id>/` + `manifest.ts`, thêm vào `src/games/index.ts`; thêm `GameId` trong
+  contracts + `GAME_REGISTRY` của API + seed catalog; cuối ván solo gọi `postSoloResult(...)` và `trackPlay`
+  (xem `bread-catcher/session/sessionStore.ts > finishSession`), màn kết quả thêm `<PointsSynced>`.
+- **Thêm route platform:** `ACCOUNT_PAGES` + `parseHash` trong `platformStore.ts`, màn trong `account/screens/`,
+  switch trong `AccountRoot.tsx`. Id game không được trùng `account`.
+- **Gọi API mới:** schema trong contracts → hàm trong `account/accountApi.ts` (`request(path, { schema })`) →
+  store / màn hình. Lỗi hiển thị cho bé qua `account/errorText.ts` (map `ErrorCode` → câu tiếng Anh).
+- **Thêm icon:** thêm vào `EXPORTS` trong `tools/arcade_ui/build_ui.py` → `pnpm assets:ui` (root) → commit PNG →
+  khai báo trong `src/platform/ui/icons.ts`. Không chỉnh tay `public/assets`.
+- **Test:** Vitest + jsdom, file `*.test.ts(x)` cạnh code (`pnpm test`). Store / queue / parse hash phải có test.
+
+## Kiểm tra trước khi commit
+
+`pnpm typecheck && pnpm exec eslint . && pnpm test && pnpm build` trong `apps/game` (hoặc
+`pnpm turbo run build --filter=@phonics/game...` ở root). Build phải thành công cả khi không có `.env`.
