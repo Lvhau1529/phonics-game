@@ -111,7 +111,7 @@ y như bản offline (không UI tài khoản, không gọi mạng).
 
 | Biến                    | Ý nghĩa                                                                                                                                       |
 | ----------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
-| `VITE_API_URL`          | Gốc API, không có `/` cuối (vd `http://localhost:3000`); client ghép `${VITE_API_URL}/api${path}`. Rỗng = tắt tài khoản.                      |
+| `VITE_API_URL`          | Gốc API, không có `/` cuối (vd `http://localhost:3000`); client ghép `${VITE_API_URL}${API_PREFIX}${path}` (`/api/v1/...`, hằng số trong contracts). Rỗng = tắt tài khoản.                      |
 | `VITE_GOOGLE_CLIENT_ID` | Client id Google Identity Services cho nút **Continue with Google**; rỗng = ẩn nút Google. Script GIS chỉ nạp khi mở màn đăng nhập / đăng ký. |
 
 Biến được kiểm tra bằng zod ở `platform/account/config.ts` (`ACCOUNT_ENABLED`, `API_URL`, `GOOGLE_CLIENT_ID`).

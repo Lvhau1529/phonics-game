@@ -1,3 +1,4 @@
+import { API_PREFIX } from '@phonics/contracts';
 import { z } from 'zod';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
@@ -53,7 +54,7 @@ describe('apiClient.request', () => {
     expect(result).toEqual({ ok: true });
     expect(fetchMock).toHaveBeenCalledTimes(3);
     const [, refreshCall, retryCall] = fetchMock.mock.calls;
-    expect(refreshCall[0]).toBe('http://api.test/api/auth/refresh');
+    expect(refreshCall[0]).toBe(`http://api.test${API_PREFIX}/auth/refresh`);
     expect((refreshCall[1]?.headers as Record<string, string>)['X-Refresh-Transport']).toBe('body');
     expect((retryCall[1]?.headers as Record<string, string>).Authorization).toBe('Bearer new-access');
     expect(tokenStore.get()).toEqual({ accessToken: 'new-access', refreshToken: 'new-refresh' });

@@ -1,5 +1,5 @@
 /**
- * Gọi API của Phonics Arcade (`${API_URL}/api${path}`), kiểm tra response bằng zod schema của
+ * Gọi API của Phonics Arcade (`${API_URL}${API_PREFIX}${path}` → /api/v1/...), kiểm tra response bằng zod schema của
  * @phonics/contracts, lỗi gom về `ApiError` (có `code` để UI dịch sang câu tiếng Anh cho bé).
  *
  * Token:
