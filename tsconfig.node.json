@@ -1,13 +1,10 @@
 {
+  "extends": "@phonics/config/tsconfig/base.json",
   "compilerOptions": {
-    "target": "ES2022",
     "module": "ESNext",
     "moduleResolution": "Bundler",
-    "types": ["node"],
-    "strict": true,
-    "skipLibCheck": true,
-    "noEmit": true,
-    "verbatimModuleSyntax": true
+    "types": ["node", "vitest/config"],
+    "noEmit": true
   },
   "include": ["vite.config.ts"]
 }

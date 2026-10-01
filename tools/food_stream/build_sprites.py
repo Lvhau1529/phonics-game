@@ -30,12 +30,12 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from common.imaging import (  # noqa: E402
     clean_alpha, drop_fragments, load_rgba, resize_rgba, save_png, target_size, tight_bbox,
 )
-from common.paths import PUBLIC_ASSETS, ROOT, SOURCE  # noqa: E402
+from common.paths import GAME_APP, PUBLIC_ASSETS, SOURCE  # noqa: E402
 
 SRC = SOURCE / "food-stream" / "art"
 OUT = PUBLIC_ASSETS / "food-stream"
 ASSET_URL = "assets/food-stream"
-MANIFEST = ROOT / "src" / "games" / "food-stream" / "sprites.json"
+MANIFEST = GAME_APP / "src" / "games" / "food-stream" / "sprites.json"
 
 BOARD_ALPHA = SRC / "asset-board-initial.png"
 PAD = 2

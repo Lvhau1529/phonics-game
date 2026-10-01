@@ -23,10 +23,10 @@ from PIL import Image, ImageFilter
 from scipy import ndimage
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from common.paths import ROOT, SOURCE  # noqa: E402
+from common.paths import GAME_APP, SOURCE  # noqa: E402
 
 PACK_DIR = SOURCE / "platform" / "app-icon"
-ICONS_DIR = ROOT / "public" / "icons"
+ICONS_DIR = GAME_APP / "public" / "icons"
 
 # Pixel "trắng nền": kênh nhỏ nhất > ngưỡng (mây hồng / cánh hoa nằm trong khung tím nên không bị nối)
 WHITE_MIN = 200
