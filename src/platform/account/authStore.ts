@@ -23,6 +23,7 @@ import {
   tokenStore,
 } from '@/platform/account/apiClient';
 import { ACCOUNT_ENABLED } from '@/platform/account/config';
+import { clearRequestCache } from '@/platform/account/hooks/useRequest';
 import { useStore } from '@/platform/hooks/useStore';
 import { readJson, removeKeys, writeJson } from '@/platform/storage';
 import { createStore } from '@/shared/createStore';
@@ -156,6 +157,8 @@ export const authActions = {
     authStore.set({ status: 'guest', user: null, accessToken: null, pendingGoogleIdToken: null });
     clearTokens();
     removeKeys([AUTH_KEY]);
+    // Bỏ xếp hạng / điểm đã cache của người vừa đăng xuất (máy lớp dùng chung)
+    clearRequestCache();
   },
 
   /** Sau khi sửa hồ sơ */

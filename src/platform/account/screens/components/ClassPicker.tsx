@@ -5,7 +5,9 @@ import { getPublicClasses } from '@/platform/account/accountApi';
 import { errorText } from '@/platform/account/errorText';
 import { useRequest } from '@/platform/account/hooks/useRequest';
 import Button from '@/platform/ui/Button';
+import { useDelayedLoading } from '@/platform/hooks/useDelayedLoading';
 import Field, { FieldHint } from '@/platform/ui/Field';
+import LottieLoader from '@/platform/ui/LottieLoader';
 import OptionGroup, { type Option } from '@/platform/ui/OptionGroup';
 import styles from '@/platform/account/screens/components/ClassPicker.module.scss';
 
@@ -17,6 +19,7 @@ interface ClassPickerProps {
 
 export default function ClassPicker({ value, onChange, error }: ClassPickerProps) {
   const classes = useRequest(() => getPublicClasses().then((response) => response.items), 'classes');
+  const showLoading = useDelayedLoading(classes.loading);
 
   const options: Option<string>[] = (classes.data ?? []).map((item) => ({
     value: item.id,
@@ -27,7 +30,11 @@ export default function ClassPicker({ value, onChange, error }: ClassPickerProps
 
   return (
     <Field label="MY CLASS">
-      {classes.loading && <FieldHint>Loading classes…</FieldHint>}
+      {showLoading && (
+        <FieldHint>
+          <LottieLoader size="sm" /> Loading classes…
+        </FieldHint>
+      )}
       {classes.error != null && (
         <div className={styles.retry}>
           <FieldHint hard>{errorText(classes.error)}</FieldHint>

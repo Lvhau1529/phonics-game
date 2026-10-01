@@ -131,6 +131,23 @@ Khách mở màn cần đăng nhập → hiện SIGN IN tại chỗ (`AccountRoo
 riêng (`PlatformApp.tsx`). Thanh trên màn chọn game có nút **SIGN IN** (khách) / avatar + tên (đã đăng nhập) và
 chuông thông báo kèm số chưa đọc. Chữ trong UI là tiếng Anh ngắn cho bé; mã lỗi API dịch ở `errorText.ts`.
 
+**Hộp thông báo ở chuông** (`NotificationBell.tsx` + `NotificationPopover.tsx`): bấm chuông mở thẻ nhỏ neo dưới
+chuông (màn hẹp ≤ 420px: thẻ rộng hết màn ngay dưới thanh trên) với 5 thông báo mới nhất từ `notificationsStore`
+(chấm chưa đọc, "JUST NOW / 3 MIN AGO" — `timeAgo.ts`), bấm một mục = đã đọc, MARK ALL READ, SEE ALL → màn
+MESSAGES. Mở hộp thì tải lại (khi online) và thêm một mục `history` để nút Back đóng hộp; Esc / bấm ra ngoài
+cũng đóng. `role="dialog"`, `aria-expanded` trên chuông, focus vào mục đầu khi mở.
+
+**Màn chờ & chống nháy** (`ui/LottieLoader.tsx`, `hooks/useDelayedLoading.ts`, `account/hooks/useRequest.ts`):
+
+- `LottieLoader` (lottie-web bản light, file `assets/shared/ui/lottie/loading.json` tải một lần): `sm` nằm trong
+  dòng chữ (SAVING POINTS…, góc header đang tải lại), `lg` khối giữa màn + nhãn LOADING…; `prefers-reduced-motion`
+  hoặc không tải được file → ba chấm tĩnh.
+- Màn chờ lớn chỉ hiện sau **200 ms** và giữ ít nhất **400 ms** (`useDelayedLoading(loading, { delay, minDuration })`);
+  tải nhanh hơn thì không hiện gì.
+- `useRequest` giữ kết quả mới nhất theo key trong bộ nhớ (xoá khi đăng xuất): mở lại RANKING / hồ sơ hiện ngay bản
+  cũ rồi tải lại ngầm (`isRefreshing` → chấm nhỏ ở header, không unmount danh sách). Đổi tab WEEK / MONTH / ALL ×
+  game: bảng cũ mờ đi (`stale`, opacity .6) tới khi có bảng mới. Thông báo cache sẵn trong `notificationsStore`.
+
 ### Token & khôi phục phiên (`apiClient.ts`, `authStore.ts`)
 
 - Access token (15 phút) chỉ giữ trong bộ nhớ; refresh token nhận qua body (header `X-Refresh-Transport: body`

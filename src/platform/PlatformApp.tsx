@@ -20,7 +20,9 @@ import { useStore } from '@/platform/hooks/useStore';
 import { platformActions, platformStore } from '@/platform/platformStore';
 import type { GameManifest, UpcomingGame } from '@/platform/types';
 import Button from '@/platform/ui/Button';
+import { useDelayedLoading } from '@/platform/hooks/useDelayedLoading';
 import { MASCOT } from '@/platform/ui/icons';
+import LottieLoader from '@/platform/ui/LottieLoader';
 import RotateHint from '@/platform/ui/RotateHint';
 import styles from '@/platform/PlatformApp.module.scss';
 
@@ -60,12 +62,7 @@ export default function PlatformApp({ games: baseGames, upcoming: baseUpcoming }
     if ((activeId && !game) || (route.kind === 'account' && !ACCOUNT_ENABLED)) platformActions.exitToHub();
   }, [activeId, game, route.kind]);
 
-  const loading = (
-    <div className={styles.loading}>
-      <img className={clsx(styles.mascot, styles.running)} src={MASCOT.loading} alt="" />
-      LOADING…
-    </div>
-  );
+  const loading = <LoadingScreen />;
 
   return (
     <>
@@ -86,6 +83,21 @@ export default function PlatformApp({ games: baseGames, upcoming: baseUpcoming }
       )}
       <RotateHint />
     </>
+  );
+}
+
+/** Màn chờ tải chunk: nền vườn hiện ngay, linh vật + chấm nhún chỉ hiện sau 200ms (tải nhanh thì không nháy) */
+function LoadingScreen() {
+  const show = useDelayedLoading(true);
+  return (
+    <div className={styles.loading}>
+      {show && (
+        <>
+          <img className={clsx(styles.mascot, styles.running)} src={MASCOT.loading} alt="" />
+          <LottieLoader size="lg" label="LOADING…" />
+        </>
+      )}
+    </div>
   );
 }
 

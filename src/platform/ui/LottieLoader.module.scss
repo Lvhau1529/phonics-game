@@ -1,0 +1,87 @@
+@use '@/platform/styles/abstracts' as *;
+
+@layer components {
+  // Ba chấm tĩnh nhún nhẹ (dự phòng khi không tải được Lottie; "giảm chuyển động" tắt animation ở global.scss)
+  @include keyframes-bob(dot-bob, -5px);
+
+  .loader {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    vertical-align: middle;
+  }
+
+  // Trong dòng chữ: cao bằng một dòng
+  .sm {
+    width: 60px;
+    height: 30px;
+    margin: -4px 0;
+  }
+
+  // Khối giữa màn + nhãn
+  .lg {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    width: 100%;
+    padding: 12px 0;
+
+    .anim {
+      width: 120px;
+      height: 60px;
+    }
+  }
+
+  .anim {
+    display: block;
+    width: 100%;
+    height: 100%;
+
+    svg {
+      display: block;
+    }
+  }
+
+  .dots {
+    display: flex;
+    gap: 6px;
+
+    i {
+      display: block;
+      width: 12px;
+      height: 12px;
+      border: 2px solid var(--color-arcade-ink);
+      border-radius: 50%;
+      background: var(--color-gold);
+      animation: dot-bob 0.9s ease-in-out infinite;
+
+      &:nth-child(2) {
+        background: var(--color-orange);
+        animation-delay: 0.15s;
+      }
+
+      &:nth-child(3) {
+        background: var(--color-leaf);
+        animation-delay: 0.3s;
+      }
+    }
+
+    .sm & {
+      gap: 4px;
+
+      i {
+        width: 9px;
+        height: 9px;
+      }
+    }
+  }
+
+  // Màu chữ theo chỗ đặt (vàng viền mực trên nền vườn, nâu trong thẻ kem)
+  .label {
+    color: inherit;
+    font-size: 18px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    text-align: center;
+  }
+}

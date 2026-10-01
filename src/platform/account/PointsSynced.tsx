@@ -9,6 +9,7 @@ import clsx from 'clsx';
 import { syncStore } from '@/platform/account/scoreSync';
 import { useStore } from '@/platform/hooks/useStore';
 import Icon from '@/platform/ui/Icon';
+import LottieLoader from '@/platform/ui/LottieLoader';
 import styles from '@/platform/account/PointsSynced.module.scss';
 
 export default function PointsSynced({ sessionId }: { sessionId: string | null | undefined }) {
@@ -32,7 +33,13 @@ export default function PointsSynced({ sessionId }: { sessionId: string | null |
   const offline = sync.offline || !navigator.onLine;
   return (
     <p className={clsx(styles.synced, offline && styles.offline)} role="status">
-      {offline ? 'POINTS WILL BE SAVED WHEN ONLINE' : 'SAVING POINTS…'}
+      {offline ? (
+        'POINTS WILL BE SAVED WHEN ONLINE'
+      ) : (
+        <>
+          <LottieLoader size="sm" /> SAVING POINTS…
+        </>
+      )}
     </p>
   );
 }

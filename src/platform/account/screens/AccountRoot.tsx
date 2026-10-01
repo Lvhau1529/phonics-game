@@ -15,6 +15,7 @@ import RegisterScreen from '@/platform/account/screens/RegisterScreen';
 import type { AccountPage } from '@/platform/platformStore';
 import type { GameManifest } from '@/platform/types';
 import { MASCOT } from '@/platform/ui/icons';
+import LottieLoader from '@/platform/ui/LottieLoader';
 import styles from '@/platform/account/screens/AccountRoot.module.scss';
 
 interface AccountRootProps {
@@ -32,7 +33,7 @@ export default function AccountRoot({ page, games }: AccountRootProps) {
     content = (
       <div className={styles.loading}>
         <img className={styles.mascot} src={MASCOT.loading} alt="" />
-        LOADING…
+        <LottieLoader size="lg" label="LOADING…" />
       </div>
     );
   } else if (!signedIn) {

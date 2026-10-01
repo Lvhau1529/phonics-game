@@ -1,6 +1,7 @@
 /**
  * Bảng xếp hạng lớp (GET /me/class/ranking): tab WEEK / MONTH / ALL + chip lọc theo game (ALL / từng game).
  * Dòng của chính mình được tô màu; không nằm trong danh sách thì ghim thêm ở cuối.
+ * Đổi tab: giữ bảng cũ làm mờ tới khi có bảng mới (useRequest cache theo key); mở lại màn hiện ngay bản đã tải.
  */
 import { useState } from 'react';
 import clsx from 'clsx';
@@ -10,11 +11,13 @@ import { useAuth } from '@/platform/account/authStore';
 import { avatarUrl, isSceneAvatar } from '@/platform/account/avatars';
 import { errorText } from '@/platform/account/errorText';
 import { useRequest } from '@/platform/account/hooks/useRequest';
+import { useDelayedLoading } from '@/platform/hooks/useDelayedLoading';
 import { platformActions } from '@/platform/platformStore';
 import type { GameManifest } from '@/platform/types';
 import Button from '@/platform/ui/Button';
 import Icon from '@/platform/ui/Icon';
 import { MASCOT } from '@/platform/ui/icons';
+import LottieLoader from '@/platform/ui/LottieLoader';
 import OptionGroup, { type Option } from '@/platform/ui/OptionGroup';
 import ScreenHeader from '@/platform/ui/ScreenHeader';
 import styles from '@/platform/account/screens/RankingScreen.module.scss';
@@ -44,6 +47,10 @@ export default function RankingScreen({ games }: { games: readonly GameManifest[
     ...games.map((game) => ({ value: game.id, label: game.title, tone: 'purple' as const })),
   ];
 
+  // Màn chờ lớn chỉ khi chưa có gì để hiện (trễ 200ms, giữ ≥ 400ms); đang có bảng thì chấm nhỏ ở header
+  const showLoading = useDelayedLoading(ranking.loading);
+  const showRefreshing = useDelayedLoading(ranking.isRefreshing);
+
   const items = ranking.data?.items ?? [];
   const me = ranking.data?.me ?? null;
   const mePinned = me !== null && !items.some((item) => item.isMe);
@@ -54,6 +61,7 @@ export default function RankingScreen({ games }: { games: readonly GameManifest[
         title="RANKING"
         backLabel="My profile"
         onBack={() => platformActions.openAccount('profile')}
+        trailing={showRefreshing && <LottieLoader size="sm" />}
       />
 
       <div className={styles.filters}>
@@ -67,11 +75,11 @@ export default function RankingScreen({ games }: { games: readonly GameManifest[
         />
       </div>
 
-      <section className={styles.board}>
+      <section className={clsx(styles.board, ranking.stale && styles.stale)}>
         <h2 className={styles.className}>
           <Icon name="trophy" size={26} /> {ranking.data ? ranking.data.className : (user?.class?.name ?? '')}
         </h2>
-        {ranking.loading && <p className={styles.status}>LOADING…</p>}
+        {showLoading && <LottieLoader size="lg" label="LOADING…" className={styles.status} />}
         {ranking.error != null && (
           <div className={styles.errorBox}>
             <p className={styles.status}>{errorText(ranking.error)}</p>

@@ -2,6 +2,8 @@
 @use '@/platform/account/screens/account' as *;
 
 @layer components {
+  @include keyframes-screen-in;
+
   .filters {
     @include account-card;
     gap: 8px;
@@ -10,6 +12,12 @@
   .board {
     @include account-card;
     gap: 8px;
+  }
+
+  // Vừa đổi tab: bảng cũ mờ đi tới khi có bảng mới (không trống màn)
+  .stale .list {
+    opacity: 0.6;
+    transition: opacity 0.15s;
   }
 
   .className {
@@ -50,6 +58,8 @@
     margin: 0;
     padding: 0;
     list-style: none;
+    // Lần đầu hiện bảng: trượt nhẹ lên (đổi tab giữ nguyên <ol> nên không chạy lại)
+    animation: screen-in 0.25s ease-out;
   }
 
   .row {

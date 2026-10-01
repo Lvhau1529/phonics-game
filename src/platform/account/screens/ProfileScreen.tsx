@@ -11,6 +11,7 @@ import { errorText } from '@/platform/account/errorText';
 import { catalogStore, isUnlocked } from '@/platform/account/gamesSync';
 import { useRequest } from '@/platform/account/hooks/useRequest';
 import { useUnreadCount } from '@/platform/account/notificationsStore';
+import { useDelayedLoading } from '@/platform/hooks/useDelayedLoading';
 import { walletStore } from '@/platform/gems/wallet';
 import { useStore } from '@/platform/hooks/useStore';
 import { platformActions } from '@/platform/platformStore';
@@ -19,6 +20,7 @@ import Button from '@/platform/ui/Button';
 import Dialog from '@/platform/ui/Dialog';
 import Icon from '@/platform/ui/Icon';
 import { MASCOT } from '@/platform/ui/icons';
+import LottieLoader from '@/platform/ui/LottieLoader';
 import ScreenHeader from '@/platform/ui/ScreenHeader';
 import BellIcon from '@/platform/ui/svg/BellIcon';
 import styles from '@/platform/account/screens/ProfileScreen.module.scss';
@@ -30,6 +32,8 @@ export default function ProfileScreen({ games }: { games: readonly GameManifest[
   const mine = useStore(catalogStore, (state) => state.mine);
   const wallet = useStore(walletStore, (state) => state);
   const [confirmSignOut, setConfirmSignOut] = useState(false);
+  // Chưa có điểm để hiện (lần đầu, không cache): chấm nhún trong ô POINTS / RANK
+  const showLoading = useDelayedLoading(points.loading);
   if (!user) return null;
 
   const pointsByGame = new Map(points.data?.byGame.map((item) => [item.gameId as string, item.points]) ?? []);
@@ -53,13 +57,25 @@ export default function ProfileScreen({ games }: { games: readonly GameManifest[
             <dt>
               <Icon name="star" size={22} /> POINTS
             </dt>
-            <dd>{points.data ? points.data.total : '…'}</dd>
+            <dd>{points.data ? points.data.total : showLoading ? <LottieLoader size="sm" /> : '…'}</dd>
           </div>
           <div className={styles.stat}>
             <dt>
               <Icon name="trophy" size={22} /> RANK
             </dt>
-            <dd>{points.loading ? '…' : rank !== null ? `#${rank}` : '—'}</dd>
+            <dd>
+              {points.data ? (
+                rank !== null ? (
+                  `#${rank}`
+                ) : (
+                  '—'
+                )
+              ) : showLoading ? (
+                <LottieLoader size="sm" />
+              ) : (
+                '…'
+              )}
+            </dd>
           </div>
         </dl>
         {points.error != null && (

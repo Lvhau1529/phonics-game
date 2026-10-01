@@ -1,6 +1,13 @@
 @use '@/platform/styles/abstracts' as *;
 
 @layer components {
+  // Bọc chuông + hộp thông báo (hộp neo theo phần tử này)
+  .wrap {
+    position: relative;
+    display: flex;
+    flex: none;
+  }
+
   @keyframes ring {
     0%,
     70%,

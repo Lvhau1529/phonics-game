@@ -12,4 +12,12 @@
       text-shadow: var(--outline);
     }
   }
+
+  // Chấm "đang tải lại" ở cuối header
+  .trailing {
+    display: inline-flex;
+    flex: none;
+    align-items: center;
+    margin-left: auto;
+  }
 }
