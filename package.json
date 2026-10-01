@@ -1,9 +1,10 @@
 {
-  "name": "@phonics/game",
+  "name": "phonics-game",
   "version": "3.0.0",
   "private": true,
   "type": "module",
   "description": "Phonics Arcade — classroom phonics games (Bread Catcher, Food Stream) built with Phaser 3 + React",
+  "packageManager": "pnpm@12.8.1",
   "engines": {
     "node": ">=22.12"
   },
@@ -11,36 +12,53 @@
     "dev": "vite --host",
     "build": "pnpm run typecheck && vite build",
     "preview": "vite preview --host",
-    "typecheck": "tsc -p tsconfig.json && tsc -p tsconfig.node.json",
+    "typecheck": "node node_modules/typescript-7/bin/tsc -p tsconfig.json && node node_modules/typescript-7/bin/tsc -p tsconfig.node.json",
     "lint": "eslint .",
-    "test": "vitest run"
+    "test": "vitest run",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "assets:bread": "python tools/bread_catcher/build_sprites.py",
+    "assets:food-stream": "python tools/food_stream/build_sprites.py",
+    "assets:audio": "python tools/build_audio.py",
+    "assets:icons": "python tools/build_app_icons.py",
+    "assets:ui": "python tools/arcade_ui/build_ui.py",
+    "assets": "pnpm run assets:bread && pnpm run assets:food-stream && pnpm run assets:ui && pnpm run assets:audio && pnpm run assets:icons"
   },
   "dependencies": {
     "@fontsource/andika": "^5.3.0",
     "@fontsource/baloo-2": "^5.3.0",
-    "@phonics/contracts": "workspace:*",
+    "@phonics/contracts": "npm:@lvhau1529/phonics-contracts@^1.0.0",
     "@vercel/analytics": "^2.0.1",
     "clsx": "^2.1.1",
     "lottie-web": "^5.13.0",
     "phaser": "^3.90.0",
-    "react": "catalog:",
-    "react-dom": "catalog:",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
     "workbox-window": "^7.4.1",
-    "zod": "catalog:"
+    "zod": "^4.6.5"
   },
   "devDependencies": {
-    "@phonics/config": "workspace:*",
+    "@eslint/js": "^10.0.0",
     "@tailwindcss/vite": "^4.3.3",
     "@types/node": "^26.6.3",
-    "@types/react": "catalog:",
-    "@types/react-dom": "catalog:",
-    "@vitejs/plugin-react": "catalog:",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "^6.1.1",
+    "eslint": "^10.11.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "eslint-plugin-react-refresh": "^0.5.7",
+    "globals": "^17.13.0",
     "jsdom": "^28.0.0",
+    "prettier": "^3.9.9",
+    "prettier-plugin-tailwindcss": "^0.8.1",
     "sass-embedded": "^1.105.1",
     "tailwindcss": "^4.3.3",
-    "typescript": "catalog:",
-    "vite": "catalog:",
+    "typescript": "~6.0.3",
+    "typescript-7": "npm:typescript@^7.0.2",
+    "typescript-eslint": "^8.71.0",
+    "vite": "^8.3.1",
     "vite-plugin-pwa": "^1.3.0",
-    "vitest": "catalog:"
+    "vitest": "^5.0.0"
   }
 }

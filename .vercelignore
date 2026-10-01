@@ -1,9 +1,9 @@
 # Không cần cho build trên Vercel — giảm dung lượng upload (vercel CLI)
 _source
 tools
+docs
 dist
 dev-dist
 node_modules
 .claude
 *.local
-docs

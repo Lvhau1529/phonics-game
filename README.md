@@ -36,7 +36,7 @@ nút "?" cạnh từng mục ở Setup) viết bằng tiếng Việt cho giáo v
 ## Chạy
 
 ```bash
-pnpm install
+pnpm install      # cần token GitHub Packages cho @phonics/contracts (xem mục Gói @phonics/contracts)
 pnpm dev          # http://localhost:5173 (có --host để mở từ điện thoại cùng mạng LAN)
 pnpm build        # typecheck + build vào dist/
 pnpm preview      # chạy thử bản build (có service worker)
@@ -102,12 +102,12 @@ nội dung, dữ liệu lưu riêng. React và Phaser của một game chỉ nó
 
 ## Tài khoản & đồng bộ
 
-Học sinh có thể đăng nhập để **điểm ván Solo được lưu lên server** (API NestJS ở `apps/api`, hợp đồng chung
-`packages/contracts`): tổng điểm, xếp hạng trong lớp, thông báo của giáo viên, game được giáo viên mở khoá.
+Học sinh có thể đăng nhập để **điểm ván Solo được lưu lên server** (API NestJS ở repo [phonics-api](https://github.com/Lvhau1529/phonics-api),
+hợp đồng chung `@phonics/contracts` — xem [bên dưới](#gói-phonicscontracts-github-packages)): tổng điểm, xếp hạng trong lớp, thông báo của giáo viên, game được giáo viên mở khoá.
 Toàn bộ phần này nằm ở `src/platform/account/` và **chỉ bật khi có `VITE_API_URL`** — không có thì app chạy
 y như bản offline (không UI tài khoản, không gọi mạng).
 
-### Cấu hình (`apps/game/.env`, mẫu ở `.env.example`)
+### Cấu hình (`.env`, mẫu ở `.env.example`)
 
 | Biến                    | Ý nghĩa                                                                                                                                       |
 | ----------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -250,10 +250,27 @@ pnpm assets               # chạy tất cả
   cắt góc nền trắng của `master-1024.png`, sinh bản maskable / apple-touch; favicon chép nguyên bản crop của pack.
 - Chỉ dùng khung / icon **không có chữ in sẵn** (hoặc che chữ in sẵn) — chữ cái, tên đội, nhãn nút vẽ live.
 
+## Gói `@phonics/contracts` (GitHub Packages)
+
+Schema / type / hằng số dùng chung với API là gói `@lvhau1529/phonics-contracts` (phát hành từ repo phonics-api), cài qua alias
+`"@phonics/contracts": "npm:@lvhau1529/phonics-contracts@^1"` nên code vẫn `import … from '@phonics/contracts'`.
+GitHub Packages cần token kể cả khi chỉ đọc; pnpm **không** đọc token trong `.npmrc` của repo, nên đặt ở cấp user:
+
+- Máy dev: tạo GitHub PAT (classic) quyền `read:packages`, rồi
+  `pnpm config set //npm.pkg.github.com/:_authToken <token> --location=user`.
+- CI (GitHub Actions): đã cấu hình sẵn bằng `GITHUB_TOKEN`; ở trang package `phonics-contracts` > Package settings >
+  Manage Actions access, thêm repo này với quyền Read.
+- Vercel: biến môi trường `NPM_RC` gồm 2 dòng `@lvhau1529:registry=https://npm.pkg.github.com` và
+  `//npm.pkg.github.com/:_authToken=<token>`.
+
+Nâng version: `pnpm up @phonics/contracts` rồi commit lockfile. Sửa contracts và thấy ngay ở app (không cần phát hành):
+chạy trong phonics-workspace.
+
 ## Deploy (Vercel)
 
 Cấu hình sẵn trong `vercel.json`: cài bằng `pnpm install --frozen-lockfile`, build bằng
-`pnpm run build`, xuất ra `dist/`. Chỉ cần import repo GitHub vào Vercel (hoặc chạy `vercel --prod`).
+`pnpm run build`, xuất ra `dist/`. Import repo GitHub vào Vercel (Root Directory = gốc repo) và đặt biến `NPM_RC`
+(token đọc GitHub Packages, xem trên) cùng các biến `VITE_*`.
 
 - Dùng **pnpm** (chỉ giữ `pnpm-lock.yaml`). Thêm / đổi package xong nhớ commit lại `pnpm-lock.yaml`,
   nếu không Vercel báo `ERR_PNPM_OUTDATED_LOCKFILE`.

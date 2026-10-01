@@ -1,8 +1,9 @@
 dist
 dev-dist
 node_modules
-public/assets
-_source
+coverage
 pnpm-lock.yaml
 *.md
+public/assets
 src/games/food-stream/sprites.json
+_source
