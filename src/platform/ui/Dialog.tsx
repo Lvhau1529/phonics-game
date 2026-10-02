@@ -77,11 +77,14 @@ export default function Dialog({
           <Icon name="close" size={22} />
         </button>
         {image && <img className={styles.image} src={image} alt="" draggable={false} />}
-        <h2 id={titleId} className={styles.title}>
-          {title}
-        </h2>
-        <div className={styles.body}>{children}</div>
-        {actions && <div className={styles.actions}>{actions}</div>}
+        {/* Chỉ phần nội dung cuộn: nút đóng / linh vật nhô ra ngoài hộp không bị cắt và không sinh thanh cuộn ngang */}
+        <div className={styles.content}>
+          <h2 id={titleId} className={styles.title}>
+            {title}
+          </h2>
+          <div className={styles.body}>{children}</div>
+          {actions && <div className={styles.actions}>{actions}</div>}
+        </div>
       </div>
     </div>
   );
