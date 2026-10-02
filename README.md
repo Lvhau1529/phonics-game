@@ -107,18 +107,20 @@ Mỗi game tự chứa (`src/games/<id>/`): `manifest.ts` (thẻ game + `load: (
 
 Học sinh có thể đăng nhập để **điểm ván Solo được lưu lên server** (API NestJS ở repo [phonics-api](https://github.com/Lvhau1529/phonics-api),
 hợp đồng chung `@phonics/contracts` — xem [bên dưới](#gói-phonicscontracts-github-packages)): tổng điểm, xếp hạng trong lớp, thông báo của giáo viên, game được giáo viên mở khoá.
-Toàn bộ phần này nằm ở `src/platform/account/` và **chỉ bật khi có `VITE_API_URL`** — không có thì app chạy
-y như bản offline (không gọi mạng). Riêng nút **SIGN IN** vẫn hiện ở màn chọn game; bấm vào chỉ mở hộp **COMING SOON**
+Toàn bộ phần này nằm ở `src/platform/account/` và **chỉ bật khi có `VITE_API_URL` và `VITE_OFFLINE_MODE=false`**.
+Mặc định (BE chưa lên) game chạy **offline mode**: không gọi mạng, kể cả khi đã đặt `VITE_API_URL`. Riêng nút **SIGN IN** vẫn hiện ở màn chọn game; bấm vào chỉ mở hộp **COMING SOON**
 (đăng nhập, điểm, xếp hạng đang phát triển — dùng khi BE chưa lên).
 
 ### Cấu hình (`.env`, mẫu ở `.env.example`)
 
 | Biến                    | Ý nghĩa                                                                                                                                       |
 | ----------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
+| `VITE_OFFLINE_MODE`     | **Mặc định bật** (thiếu biến cũng tính là bật): game chạy offline, không gọi API. `false` / `0` / `off` = bật tài khoản khi API đã sẵn sàng. |
 | `VITE_API_URL`          | Gốc API, không có `/` cuối (vd `http://localhost:3000`); client ghép `${VITE_API_URL}${API_PREFIX}${path}` (`/api/v1/...`, hằng số trong contracts). Rỗng = tắt tài khoản.                      |
 | `VITE_GOOGLE_CLIENT_ID` | Client id Google Identity Services cho nút **Continue with Google**; rỗng = ẩn nút Google. Script GIS chỉ nạp khi mở màn đăng nhập / đăng ký. |
 
-Biến được kiểm tra bằng zod ở `platform/account/config.ts` (`ACCOUNT_ENABLED`, `API_URL`, `GOOGLE_CLIENT_ID`).
+Biến được kiểm tra bằng zod ở `platform/account/config.ts` (`OFFLINE_MODE`, `ACCOUNT_ENABLED`, `API_URL`,
+`GOOGLE_CLIENT_ID`). Chạy cả hệ thống qua phonics-dev mà muốn thử tài khoản thì đặt `VITE_OFFLINE_MODE=false` trong `.env`.
 
 ### Màn hình (hash `#/account/...`, `platformStore.ts`)
 

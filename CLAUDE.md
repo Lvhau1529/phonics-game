@@ -23,8 +23,9 @@ xem `vite.config.ts` của game / admin) — sửa contracts thấy ngay, không
 
 - **UI trong game chỉ tiếng Anh**, ngắn, nhãn nút VIẾT HOA (bé ~5 tuổi). Phần Hướng dẫn (GUIDE) tiếng Việt cho
   giáo viên. Comment / JSDoc tiếng Việt.
-- Không có `VITE_API_URL` (BE chưa lên) → app chạy như bản offline: mọi code tài khoản nằm sau `ACCOUNT_ENABLED`
-  (`src/platform/account/config.ts`), không gọi mạng. Lối vào tính năng cần API vẫn hiện nhưng bấm thì báo
+- **Offline mode mặc định** (BE chưa lên): `VITE_OFFLINE_MODE` thiếu / khác `false` hoặc không có `VITE_API_URL` →
+  app chạy như bản offline: mọi code tài khoản nằm sau `ACCOUNT_ENABLED` (`src/platform/account/config.ts`), không
+  gọi mạng. Bật tài khoản: `VITE_OFFLINE_MODE=false` + `VITE_API_URL`. Lối vào tính năng cần API vẫn hiện nhưng bấm thì báo
   **COMING SOON** thay vì gọi API (vd `AccountButton` → `onUnavailable` → hộp `accountSoon` trong `HubDialogs`);
   tính năng API mới có nút cho bé bấm cũng làm như vậy.
 - Import bằng alias `@/` (ESLint cấm `../`). Mỗi component một `*.module.scss` (`@use '@/platform/styles/abstracts' as *;`,

@@ -1,12 +1,23 @@
 /**
  * Cấu hình tài khoản / đồng bộ từ biến môi trường Vite (apps/game/.env, xem .env.example):
+ *   VITE_OFFLINE_MODE     — **mặc định bật** (BE chưa lên): game chạy như bản offline kể cả khi đã có
+ *                           VITE_API_URL — không gọi mạng, nút SIGN IN chỉ báo COMING SOON. Đặt `false` để bật
+ *                           tài khoản khi API đã sẵn sàng.
  *   VITE_API_URL          — gốc API (không có dấu / cuối), vd http://localhost:3000. Rỗng = TẮT toàn bộ
- *                           tính năng tài khoản: app chạy y như bản offline (không UI, không gọi mạng).
+ *                           tính năng tài khoản (như offline).
  *   VITE_GOOGLE_CLIENT_ID — OAuth client id của Google Identity Services; rỗng = ẩn nút Google.
  */
 import { z } from 'zod';
 
+/** Giá trị coi là "tắt" cho cờ boolean trong env (không phân biệt hoa thường) */
+const FALSY = ['false', '0', 'no', 'off'];
+
 const Env = z.object({
+  VITE_OFFLINE_MODE: z
+    .string()
+    .trim()
+    .default('')
+    .transform((value) => !FALSY.includes(value.toLowerCase())),
   VITE_API_URL: z
     .string()
     .trim()
@@ -18,23 +29,30 @@ const Env = z.object({
   VITE_GOOGLE_CLIENT_ID: z.string().trim().default(''),
 });
 
-function readEnv(): z.infer<typeof Env> {
-  const parsed = Env.safeParse({
-    VITE_API_URL: import.meta.env.VITE_API_URL,
-    VITE_GOOGLE_CLIENT_ID: import.meta.env.VITE_GOOGLE_CLIENT_ID,
-  });
+export type AccountEnv = z.infer<typeof Env>;
+
+const OFFLINE_ENV: AccountEnv = { VITE_OFFLINE_MODE: true, VITE_API_URL: '', VITE_GOOGLE_CLIENT_ID: '' };
+
+/** Parse env thô (tách riêng để test); cấu hình sai thì coi như offline (không chặn game), chỉ báo ở console */
+export function parseAccountEnv(raw: Partial<Record<keyof AccountEnv, string | undefined>>): AccountEnv {
+  const parsed = Env.safeParse(raw);
   if (parsed.success) return parsed.data;
-  // Cấu hình sai thì coi như không có API (không chặn game), chỉ báo ở console
   console.error(
     '[Phonics Arcade] Invalid env:',
     parsed.error.issues.map((issue) => issue.message).join('; '),
   );
-  return { VITE_API_URL: '', VITE_GOOGLE_CLIENT_ID: '' };
+  return OFFLINE_ENV;
 }
 
-const env = readEnv();
+const env = parseAccountEnv({
+  VITE_OFFLINE_MODE: import.meta.env.VITE_OFFLINE_MODE,
+  VITE_API_URL: import.meta.env.VITE_API_URL,
+  VITE_GOOGLE_CLIENT_ID: import.meta.env.VITE_GOOGLE_CLIENT_ID,
+});
 
-export const API_URL: string = env.VITE_API_URL;
+/** Đang chạy chế độ offline (mặc định, hoặc chưa cấu hình API) */
+export const OFFLINE_MODE: boolean = env.VITE_OFFLINE_MODE || env.VITE_API_URL === '';
+export const API_URL: string = OFFLINE_MODE ? '' : env.VITE_API_URL;
 export const GOOGLE_CLIENT_ID: string = env.VITE_GOOGLE_CLIENT_ID;
-/** Có API thì mới có đăng nhập, điểm, xếp hạng, thông báo, catalog game */
-export const ACCOUNT_ENABLED: boolean = API_URL !== '';
+/** Có API (và đã tắt offline mode) thì mới có đăng nhập, điểm, xếp hạng, thông báo, catalog game */
+export const ACCOUNT_ENABLED: boolean = !OFFLINE_MODE;
