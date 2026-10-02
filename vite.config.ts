@@ -2,10 +2,10 @@
 import { execSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
 import { readFileSync } from 'node:fs';
-import { basename, relative } from 'node:path';
+import { basename, relative, resolve } from 'node:path';
 import { fileURLToPath, URL } from 'node:url';
 import tailwindcss from '@tailwindcss/vite';
-import { defineConfig } from 'vite';
+import { defineConfig, searchForWorkspaceRoot } from 'vite';
 import react from '@vitejs/plugin-react';
 import { VitePWA } from 'vite-plugin-pwa';
 
@@ -39,13 +39,29 @@ function scopedClassName(isBuild: boolean) {
   };
 }
 
+/**
+ * Dev cùng phonics-api: launcher phonics-dev đặt PHONICS_CONTRACTS_SRC = thư mục packages/contracts của API →
+ * `@phonics/contracts` đọc thẳng mã nguồn (sửa schema thấy ngay, không cần phát hành). Không có biến (CI, Vercel,
+ * chạy repo riêng) = dùng gói đã cài từ GitHub Packages.
+ */
+const contractsSrc = process.env.PHONICS_CONTRACTS_SRC;
+const contractsAlias: Record<string, string> = contractsSrc
+  ? { '@phonics/contracts': resolve(contractsSrc, 'src/index.ts') }
+  : {};
+const contractsFs = contractsSrc
+  ? { fs: { allow: [searchForWorkspaceRoot(process.cwd()), contractsSrc] } }
+  : {};
+
 export default defineConfig(({ command }) => ({
   // Đường dẫn tương đối để deploy được ở bất kỳ thư mục con nào (itch.io, GitHub Pages...)
   base: './',
   resolve: {
     // import '@/game/...' thay cho '../../game/...' (khai báo tương ứng trong tsconfig.json > paths)
-    alias: { '@': fileURLToPath(new URL('./src', import.meta.url)) },
+    alias: { '@': fileURLToPath(new URL('./src', import.meta.url)), ...contractsAlias },
+    // contracts đọc từ mã nguồn API vẫn dùng chung một bản zod với app
+    dedupe: ['zod'],
   },
+  server: { ...contractsFs },
   define: {
     // Hiện trong Hướng dẫn để biết máy đang chạy bản nào (so với `git log`)
     __BUILD_ID__: JSON.stringify(`${version} · ${commitSha()}`),

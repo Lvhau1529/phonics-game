@@ -1,7 +1,7 @@
 # Quy tắc cho phonics-game (Phonics Arcade — React 19 + Phaser 3 + Vite)
 
 Đọc [README.md](README.md) trước (kiến trúc, styling, asset pipeline, PWA, tài khoản & đồng bộ). API: repo
-phonics-api; kiến trúc hệ thống + ADR: repo phonics-workspace.
+phonics-api; kiến trúc hệ thống + ADR: repo phonics-dev.
 
 ## Git
 
@@ -14,9 +14,10 @@ phonics-api; kiến trúc hệ thống + ADR: repo phonics-workspace.
 
 ## Dev cùng các repo khác
 
-Repo này độc lập (clone, cài, build, deploy riêng). Muốn chạy cả hệ thống (API + game + admin) và sửa
-`@phonics/contracts` thấy ngay ở mọi app: dùng repo **phonics-workspace** (README ở đó). Trong workspace, chạy lệnh
-từ gốc workspace (`pnpm --filter <app> ...`), không `cd` vào repo rồi `pnpm install` (sẽ ghi đè liên kết contracts local).
+Repo này độc lập (clone, cài, build, deploy riêng). Muốn chạy cả hệ thống cùng lúc (API + game + admin): đặt 3 repo
+nằm cạnh nhau cùng repo **phonics-dev** rồi `pnpm dev` trong phonics-dev (README ở đó). Khi chạy qua phonics-dev, game /
+admin đọc `@phonics/contracts` thẳng từ mã nguồn `../phonics-api/packages/contracts` (biến `PHONICS_CONTRACTS_SRC`,
+xem `vite.config.ts` của game / admin) — sửa contracts thấy ngay, không cần phát hành.
 
 ## Nguyên tắc
 

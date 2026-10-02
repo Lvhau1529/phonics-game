@@ -264,7 +264,7 @@ GitHub Packages cần token kể cả khi chỉ đọc; pnpm **không** đọc t
   `//npm.pkg.github.com/:_authToken=<token>`.
 
 Nâng version: `pnpm up @phonics/contracts` rồi commit lockfile. Sửa contracts và thấy ngay ở app (không cần phát hành):
-chạy trong phonics-workspace.
+chạy qua launcher phonics-dev (`pnpm dev`).
 
 ## Deploy (Vercel)
 
