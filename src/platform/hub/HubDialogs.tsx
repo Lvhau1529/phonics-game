@@ -4,7 +4,8 @@
  *   locked   — bấm game đang khoá khi chưa đủ kim cương
  *   unlock   — đủ kim cương: hỏi có mở khoá không
  *   unlocked — vừa mở khoá xong
- *   soon     — bấm thẻ COMING SOON
+ *   soon        — bấm thẻ COMING SOON
+ *   accountSoon — bấm SIGN IN khi chưa có API (đăng nhập, điểm, xếp hạng, thông báo đang phát triển)
  */
 import { SFX } from '@/platform/audio/sfx';
 import { unlockWithGems } from '@/platform/account/gamesSync';
@@ -18,7 +19,10 @@ import { MASCOT } from '@/platform/ui/icons';
 import styles from '@/platform/hub/HubDialogs.module.scss';
 
 export type HubDialogState =
-  { kind: 'gems' } | { kind: 'locked' | 'unlock' | 'unlocked'; game: GameManifest } | { kind: 'soon' };
+  | { kind: 'gems' }
+  | { kind: 'locked' | 'unlock' | 'unlocked'; game: GameManifest }
+  | { kind: 'soon' }
+  | { kind: 'accountSoon' };
 
 interface HubDialogsProps {
   dialog: HubDialogState;
@@ -145,6 +149,24 @@ export default function HubDialogs({ dialog, games, isUnlocked, onChange, onPlay
         >
           <p>A new game is on the way.</p>
           <p>Keep learning and collect gems for it!</p>
+        </Dialog>
+      );
+
+    case 'accountSoon':
+      return (
+        <Dialog
+          title="COMING SOON!"
+          image={MASCOT.comingSoon}
+          openSfx={SFX.COMING_SOON}
+          onClose={close}
+          actions={
+            <Button color="orange" onClick={close}>
+              OK!
+            </Button>
+          }
+        >
+          <p>Sign in, points and class ranking are on the way.</p>
+          <p>For now, keep playing and collect gems!</p>
         </Dialog>
       );
   }

@@ -108,7 +108,8 @@ Mỗi game tự chứa (`src/games/<id>/`): `manifest.ts` (thẻ game + `load: (
 Học sinh có thể đăng nhập để **điểm ván Solo được lưu lên server** (API NestJS ở repo [phonics-api](https://github.com/Lvhau1529/phonics-api),
 hợp đồng chung `@phonics/contracts` — xem [bên dưới](#gói-phonicscontracts-github-packages)): tổng điểm, xếp hạng trong lớp, thông báo của giáo viên, game được giáo viên mở khoá.
 Toàn bộ phần này nằm ở `src/platform/account/` và **chỉ bật khi có `VITE_API_URL`** — không có thì app chạy
-y như bản offline (không UI tài khoản, không gọi mạng).
+y như bản offline (không gọi mạng). Riêng nút **SIGN IN** vẫn hiện ở màn chọn game; bấm vào chỉ mở hộp **COMING SOON**
+(đăng nhập, điểm, xếp hạng đang phát triển — dùng khi BE chưa lên).
 
 ### Cấu hình (`.env`, mẫu ở `.env.example`)
 

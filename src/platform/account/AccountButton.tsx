@@ -1,6 +1,7 @@
 /**
  * Nút tài khoản ở thanh trên màn chọn game: khách -> SIGN IN (tím); đã đăng nhập -> avatar + tên.
- * Không có API (ACCOUNT_ENABLED=false) thì không hiện.
+ * Chưa có API (ACCOUNT_ENABLED=false, BE chưa lên): vẫn hiện SIGN IN nhưng bấm chỉ gọi `onUnavailable`
+ * (màn chọn game mở hộp COMING SOON) — không mở màn tài khoản, không gọi mạng.
  */
 import clsx from 'clsx';
 import { useAuth } from '@/platform/account/authStore';
@@ -13,16 +14,21 @@ import Button from '@/platform/ui/Button';
 import UserIcon from '@/platform/ui/svg/UserIcon';
 import styles from '@/platform/account/AccountButton.module.scss';
 
-export default function AccountButton({ className }: { className?: string }) {
-  const { user } = useAuth();
-  if (!ACCOUNT_ENABLED) return null;
+interface AccountButtonProps {
+  className?: string;
+  /** Bấm SIGN IN khi chưa có API (tính năng đang phát triển) */
+  onUnavailable: () => void;
+}
 
-  if (!user) {
+export default function AccountButton({ className, onUnavailable }: AccountButtonProps) {
+  const { user } = useAuth();
+
+  if (!ACCOUNT_ENABLED || !user) {
     return (
       <Button
         color="purple"
         className={clsx(styles.signIn, className)}
-        onClick={() => platformActions.openAccount('login')}
+        onClick={() => (ACCOUNT_ENABLED ? platformActions.openAccount('login') : onUnavailable())}
       >
         <UserIcon size={22} /> SIGN IN
       </Button>

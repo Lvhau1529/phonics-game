@@ -23,8 +23,10 @@ xem `vite.config.ts` của game / admin) — sửa contracts thấy ngay, không
 
 - **UI trong game chỉ tiếng Anh**, ngắn, nhãn nút VIẾT HOA (bé ~5 tuổi). Phần Hướng dẫn (GUIDE) tiếng Việt cho
   giáo viên. Comment / JSDoc tiếng Việt.
-- Không có `VITE_API_URL` → app phải chạy y hệt bản offline: mọi code tài khoản nằm sau `ACCOUNT_ENABLED`
-  (`src/platform/account/config.ts`), không gọi mạng, không hiện nút.
+- Không có `VITE_API_URL` (BE chưa lên) → app chạy như bản offline: mọi code tài khoản nằm sau `ACCOUNT_ENABLED`
+  (`src/platform/account/config.ts`), không gọi mạng. Lối vào tính năng cần API vẫn hiện nhưng bấm thì báo
+  **COMING SOON** thay vì gọi API (vd `AccountButton` → `onUnavailable` → hộp `accountSoon` trong `HubDialogs`);
+  tính năng API mới có nút cho bé bấm cũng làm như vậy.
 - Import bằng alias `@/` (ESLint cấm `../`). Mỗi component một `*.module.scss` (`@use '@/platform/styles/abstracts' as *;`,
   bọc `@layer components`). Tailwind chỉ cho utility nhỏ trong JSX. Token màu / font ở `styles/tailwind.css`.
 - State: `createStore` (`src/shared/createStore.ts`) + `useStore(store, selector)`; selector trả slice ổn định.

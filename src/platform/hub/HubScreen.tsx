@@ -1,7 +1,7 @@
 /**
  * Màn chọn game chung của Phonics Arcade:
  *   - thanh trên: bộ đếm kim cương (bấm để xem lời động viên) + nút cập nhật PWA + chuông thông báo
- *     và nút tài khoản (chỉ khi có API — platform/account)
+ *     (khi đã đăng nhập) và nút tài khoản (chưa có API thì bấm ra hộp COMING SOON — platform/account)
  *   - thẻ từng game (đang khoá thì hiện giá kim cương) + thẻ COMING SOON
  *   - bật/tắt âm thanh, nút thông tin tác giả ở góc màn hình
  * Danh sách game truyền vào từ PlatformApp (manifest ở src/games/index.ts đã phủ catalog server).
@@ -75,7 +75,7 @@ export default function HubScreen({ games, upcoming, isUnlocked }: HubScreenProp
         <div className={styles.barRight}>
           <UpdateBanner className={styles.update} />
           <NotificationBell />
-          <AccountButton />
+          <AccountButton onUnavailable={() => setDialog({ kind: 'accountSoon' })} />
         </div>
       </div>
 
