@@ -1,7 +1,7 @@
 /**
- * Toàn bộ chữ hiển thị (tiếng Anh — plan §30). Nguồn: src/data/ui_text.en.json.
+ * Toàn bộ chữ hiển thị (tiếng Anh — plan §30). Nguồn: content/ui_text.en.json.
  */
-import uiText from '@/games/bread-catcher/data/ui_text.en.json';
+import uiText from '@/games/bread-catcher/content/ui_text.en.json';
 
 export const UI_TEXT = uiText;
 

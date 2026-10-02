@@ -1,6 +1,7 @@
 /**
- * Gọi API của Phonics Arcade (`${API_URL}${API_PREFIX}${path}` → /api/v1/...), kiểm tra response bằng zod schema của
- * @phonics/contracts, lỗi gom về `ApiError` (có `code` để UI dịch sang câu tiếng Anh cho bé).
+ * HTTP client dùng chung (tài khoản + analytics): gọi API của Phonics Arcade (`${API_URL}${API_PREFIX}${path}` →
+ * /api/v1/...), kiểm tra response bằng zod schema của @phonics/contracts, lỗi gom về `ApiError` (có `code` để UI
+ * dịch sang câu tiếng Anh cho bé). Chỉ các `*Repository` gọi `request`; store / màn hình đi qua `*Service`.
  *
  * Token:
  *   - access token (15 phút) chỉ giữ trong bộ nhớ (`tokenStore`), gắn `Authorization: Bearer`;
@@ -73,11 +74,13 @@ export type AuthMode =
   /** Không gắn bearer (đăng nhập, đăng ký, public) */
   | 'none';
 
+/** Query string (bỏ qua giá trị undefined) */
+export type QueryParams = Record<string, string | number | boolean | undefined>;
+
 export interface RequestOptions<T> {
   method?: 'GET' | 'POST' | 'PATCH' | 'PUT' | 'DELETE';
   body?: unknown;
-  /** Query string (bỏ qua giá trị undefined) */
-  query?: Record<string, string | number | boolean | undefined>;
+  query?: QueryParams;
   /** Schema kiểm tra response; không có = không đọc body */
   schema?: ZodType<T>;
   auth?: AuthMode;
@@ -87,7 +90,7 @@ export interface RequestOptions<T> {
 
 const JSON_HEADERS = { 'Content-Type': 'application/json' } as const;
 
-function buildUrl(path: string, query?: RequestOptions<unknown>['query']): string {
+function buildUrl(path: string, query?: QueryParams): string {
   const url = new URL(`${API_URL}${API_PREFIX}${path}`);
   if (query) {
     Object.entries(query).forEach(([key, value]) => {

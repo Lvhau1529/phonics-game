@@ -8,7 +8,7 @@
  */
 import { useEffect, type ComponentType } from 'react';
 import clsx from 'clsx';
-import { FOOD_STREAM_GUIDE_SECTIONS, GUIDE_TITLE } from '@/games/food-stream/app/guideSections';
+import { FOOD_STREAM_GUIDE_SECTIONS, GUIDE_TITLE } from '@/games/food-stream/app/guide/guideSections';
 import { useFoodStream } from '@/games/food-stream/app/hooks';
 import HomeScreen from '@/games/food-stream/app/screens/HomeScreen';
 import ResultsScreen from '@/games/food-stream/app/screens/ResultsScreen';

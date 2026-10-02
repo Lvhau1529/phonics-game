@@ -3,7 +3,7 @@
  */
 import { useState, type FormEvent } from 'react';
 import { DisplayName, type AvatarKey } from '@phonics/contracts';
-import { updateProfile } from '@/platform/account/accountApi';
+import { authService } from '@/platform/account/api/authService';
 import { authActions, useAuth } from '@/platform/account/authStore';
 import { errorText, fieldError } from '@/platform/account/errorText';
 import AvatarPicker from '@/platform/account/screens/components/AvatarPicker';
@@ -42,7 +42,7 @@ export default function EditProfileScreen() {
     setError(null);
     setNameError(undefined);
     try {
-      const updated = await updateProfile({
+      const updated = await authService.updateProfile({
         ...(displayName.trim() !== user.displayName ? { displayName: displayName.trim() } : {}),
         ...(avatarKey !== user.avatarKey ? { avatarKey } : {}),
       });
@@ -73,7 +73,7 @@ export default function EditProfileScreen() {
         />
         <AvatarPicker value={avatarKey} onChange={setAvatarKey} />
         <p className={styles.note}>
-          {user.class ? `Class: ${user.class.name}. ` : ''}Ask your teacher to change your class.
+          {user.hasClass ? `Class: ${user.className}. ` : ''}Ask your teacher to change your class.
         </p>
         {error && (
           <p className={styles.error} role="alert">

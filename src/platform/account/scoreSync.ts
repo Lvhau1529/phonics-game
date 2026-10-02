@@ -8,7 +8,7 @@
  *   - Khách KHÔNG xếp hàng (máy lớp dùng chung); mục của người dùng khác (đổi tài khoản) giữ lại chờ họ.
  */
 import { GameResultBody, POINT_RULES, type GameResultResponse } from '@phonics/contracts';
-import { postGameResult } from '@/platform/account/accountApi';
+import { resultsService } from '@/platform/account/api/resultsService';
 import { authStore, isSignedIn } from '@/platform/account/authStore';
 import { ACCOUNT_ENABLED } from '@/platform/account/config';
 import { createSyncQueue } from '@/platform/account/syncQueue';
@@ -61,7 +61,7 @@ const queue = createSyncQueue<QueuedResult>({
   },
   canSend: (item) => item.userId === authStore.get().user?.id,
   async send(item) {
-    const result = await postGameResult(item.body);
+    const result = await resultsService.post(item.body);
     syncStore.set((state) => ({
       ...state,
       offline: false,

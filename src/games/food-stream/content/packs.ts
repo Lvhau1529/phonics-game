@@ -8,7 +8,7 @@
 import letterD from '@/games/food-stream/content/packs/letter-d.json';
 import letterO from '@/games/food-stream/content/packs/letter-o.json';
 import { LetterPackSchema, type LetterPackData, type WordTarget } from '@/games/food-stream/content/schema';
-import { hasSprite } from '@/games/food-stream/sprites';
+import { hasSprite } from '@/games/food-stream/game/config/sprites';
 
 export type { WordTarget };
 

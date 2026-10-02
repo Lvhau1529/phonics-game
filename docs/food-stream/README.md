@@ -50,20 +50,21 @@ Máy không đọc được (hoặc tắt VOICE) thì tự hiện ký hiệu âm
 
 ```text
 src/games/food-stream/
-├── manifest.ts, FoodStreamGame.tsx, text.ts
+├── manifest.ts, FoodStreamGame.tsx
 ├── FoodStreamGame.module.scss  # theme kẹo hồng / tím: ghi đè token --color-* trên phần tử gốc
-├── sprites.json / sprites.ts   # manifest ảnh (sinh bởi tool) — React và Phaser cùng dùng
 ├── content/                    # gói nội dung (JSON + schema), cấp độ
 ├── session/                    # KHÔNG phụ thuộc React/Phaser
 │   ├── store.ts                #   màn hiện tại, form Setup, phiên chơi, kết quả
 │   ├── RoundController.ts      #   luật một lượt: trả lời, steal, gợi ý, điểm, ghi kết quả
 │   ├── roundState.ts           #   state machine tường minh (plan §9)
 │   ├── questions.ts            #   QuestionDeck (plan §8)
+│   ├── text.ts                 #   chữ hiển thị, bình luận khán giả
 │   ├── scoring.ts, teams.ts, storage.ts, types.ts
-├── app/                        # React: Home / Setup / Results + nội dung Hướng dẫn
+├── app/                        # React: Home / Setup / Results, Hướng dẫn (guide/), ảnh (assets.ts)
 └── game/                       # Phaser
     ├── createGame.ts, SceneDirector.ts
-    ├── config/                 #   nhạc (assets.ts), theme + thời lượng hiệu ứng (theme.ts)
+    ├── config/                 #   nhạc (assets.ts), theme + thời lượng hiệu ứng (theme.ts),
+    │                           #   manifest ảnh sprites.json / sprites.ts (sinh bởi tool) — React và Phaser cùng dùng
     ├── scenes/                 #   Boot → Preload → Studio (nền màn React) | Live (+ Pause)
     ├── objects/                #   StreamRoom, Streamer, FoodPiece, FoodChoice, PromptPanel
     ├── systems/                #   Effects, feeding (bay vào miệng / ăn), Voice (giọng đọc + duck nhạc)
@@ -79,7 +80,7 @@ LiveScene chỉ **diễn**: gọi `RoundController.answer()` rồi chạy hiệu
   cắt từ board **nền trong suốt** (`asset-board-initial.png`): 2 nhân vật × 3 tư thế, 8 món ăn
   (+ frame cắn 1 / cắn 2 tạo bằng code), đĩa, đạo cụ phòng, icon UI; tranh từ vựng lấy từ board 01–03
   (xoá nền thẻ bằng flood fill). Chữ in sẵn trên món ăn được che bằng huy hiệu chữ vẽ live
-  (anchor `badge` trong `sprites.json`).
+  (anchor `badge` trong `game/config/sprites.json`).
 - Còn thiếu: tranh "ostrich" (gói O vẫn chơi được, từ này không dùng ở câu hỏi cần tranh), SFX riêng
   (đang dùng thư viện SFX chung), file ghi âm giọng đọc (đang dùng Web Speech — thay trong `game/systems/Voice.ts`).
 - Nhạc: `_source/food-stream/audio/bgm/*.wav` → `pnpm assets:audio`.
@@ -91,6 +92,6 @@ LiveScene chỉ **diễn**: gọi `RoundController.answer()` rồi chạy hiệu
 | Từ / âm / chữ nhiễu            | `content/packs/*.json`                         |
 | Cấp độ, số câu, số lựa chọn    | `content/levels.ts`                            |
 | Điểm, combo, người xem, sao    | `session/scoring.ts`                           |
-| Bình luận khán giả, chữ hiển thị | `text.ts`                                    |
+| Bình luận khán giả, chữ hiển thị | `session/text.ts`                            |
 | Tốc độ hiệu ứng, màu           | `game/config/theme.ts`                         |
 | Vị trí cắt sprite / huy hiệu   | `tools/food_stream/build_sprites.py`           |

@@ -1,7 +1,7 @@
 /**
  * Dịch mã lỗi API (contracts ErrorCode + lỗi mạng) sang câu tiếng Anh ngắn, dễ hiểu cho bé / phụ huynh.
  */
-import { isApiError, type ApiErrorCode } from '@/platform/account/apiClient';
+import { isApiError, type ApiErrorCode } from '@/platform/api/client';
 
 const MESSAGES: Partial<Record<ApiErrorCode, string>> = {
   NETWORK: 'No internet. Try again later.',

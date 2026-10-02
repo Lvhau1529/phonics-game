@@ -15,11 +15,24 @@ vi.mock('@/platform/account/authStore', () => ({
 vi.mock('@/platform/account/notificationsStore', async () => {
   const { createStore } = await import('@/shared/createStore');
   const { useStore } = await import('@/platform/hooks/useStore');
+  const { NotificationModel } = await import('@/platform/account/models/NotificationModel');
   const base = { type: 'SYSTEM', data: null, createdAt: new Date().toISOString() } as const;
   const store = createStore({
     items: [
-      { ...base, id: 'n1', title: 'GREAT JOB!', body: 'You got 10 bonus points.', readAt: null },
-      { ...base, id: 'n2', title: 'NEW GAME', body: 'Food Stream is open.', readAt: base.createdAt },
+      new NotificationModel({
+        ...base,
+        id: 'n1',
+        title: 'GREAT JOB!',
+        body: 'You got 10 bonus points.',
+        readAt: null,
+      }),
+      new NotificationModel({
+        ...base,
+        id: 'n2',
+        title: 'NEW GAME',
+        body: 'Food Stream is open.',
+        readAt: base.createdAt,
+      }),
     ],
     unreadCount: 1,
     loading: false,

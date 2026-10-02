@@ -1,17 +1,20 @@
 /**
  * Catalog game từ server phủ lên manifest + trạng thái mở khoá của học sinh:
- *   - GET /public/games (cache `phonics-arcade:catalog`): `enabled=false` ẩn thẻ, `comingSoon` thành thẻ
- *     COMING SOON, `price` (null = miễn phí) ghi đè `manifest.price`. Không có API / chưa tải được -> manifest.
+ *   - GET /public/games (cache `phonics-arcade:catalog` = DTO, đọc lại thành `CatalogGameModel`):
+ *     `enabled=false` ẩn thẻ, `comingSoon` thành thẻ COMING SOON, `price` (null = miễn phí) ghi đè
+ *     `manifest.price`. Không có API / chưa tải được -> manifest.
  *   - Đã đăng nhập: GET /me/games -> game server đã mở (admin / GV mở, hoặc đã ghi nhận mở bằng kim cương).
  *     `isUnlocked(game)` = server mở ∪ ví kim cương trên máy (platform/gems/wallet.ts).
  *   - Mở khoá bằng kim cương khi đang đăng nhập -> trừ ví như cũ + xếp hàng POST /me/games/:id/unlock
  *     (`phonics-arcade:unlock-queue`, idempotent, gửi lại như điểm).
  */
-import { GameCatalogItem, type StudentGameStatus } from '@phonics/contracts';
+import { GameCatalogItem } from '@phonics/contracts';
 import { useMemo } from 'react';
-import { getMyGames, getPublicGames, unlockGameWithGems } from '@/platform/account/accountApi';
+import { gamesService } from '@/platform/account/api/gamesService';
 import { authStore, isSignedIn } from '@/platform/account/authStore';
 import { ACCOUNT_ENABLED } from '@/platform/account/config';
+import { CatalogGameModel } from '@/platform/account/models/CatalogGameModel';
+import type { StudentGameModel } from '@/platform/account/models/StudentGameModel';
 import { createSyncQueue } from '@/platform/account/syncQueue';
 import {
   isUnlocked as walletUnlocked,
@@ -29,18 +32,18 @@ export const UNLOCK_QUEUE_KEY = 'phonics-arcade:unlock-queue';
 
 export interface CatalogState {
   /** null = chưa tải được lần nào -> dùng manifest */
-  items: GameCatalogItem[] | null;
+  items: CatalogGameModel[] | null;
   /** Trạng thái game của học sinh đang đăng nhập (null = khách / chưa tải) */
-  mine: StudentGameStatus[] | null;
+  mine: StudentGameModel[] | null;
 }
 
-function loadCatalog(): GameCatalogItem[] | null {
+function loadCatalog(): CatalogGameModel[] | null {
   const stored = readJson<{ items: unknown[] }>(CATALOG_KEY);
   if (!Array.isArray(stored?.items)) return null;
   return stored.items
     .map((item) => GameCatalogItem.safeParse(item))
     .filter((result) => result.success)
-    .map((result) => result.data);
+    .map((result) => new CatalogGameModel(result.data));
 }
 
 export const catalogStore = createStore<CatalogState>({
@@ -66,7 +69,7 @@ const unlockQueue = createSyncQueue<QueuedUnlock>({
     };
   },
   canSend: (item) => item.userId === authStore.get().user?.id,
-  send: (item) => unlockGameWithGems(item.gameId, item.gemsSpent),
+  send: (item) => gamesService.unlockWithGems(item.gameId, item.gemsSpent),
   onSent: () => void gamesSync.refreshMine(),
 });
 
@@ -74,9 +77,9 @@ export const gamesSync = {
   async refreshCatalog(): Promise<void> {
     if (!ACCOUNT_ENABLED) return;
     try {
-      const { items } = await getPublicGames();
+      const items = await gamesService.catalog();
       catalogStore.set((state) => ({ ...state, items }));
-      writeJson(CATALOG_KEY, { items });
+      writeJson(CATALOG_KEY, { items: items.map((item) => item.toJSON()) });
     } catch {
       // Giữ bản cache / manifest
     }
@@ -85,8 +88,8 @@ export const gamesSync = {
   async refreshMine(): Promise<void> {
     if (!ACCOUNT_ENABLED || !isSignedIn()) return;
     try {
-      const { items } = await getMyGames();
-      catalogStore.set((state) => ({ ...state, mine: items }));
+      const mine = await gamesService.mine();
+      catalogStore.set((state) => ({ ...state, mine }));
     } catch {
       // Lần sau
     }
@@ -154,7 +157,7 @@ export interface Catalog {
 export function overlayCatalog(
   games: readonly GameManifest[],
   upcoming: readonly UpcomingGame[],
-  items: GameCatalogItem[] | null,
+  items: readonly CatalogGameModel[] | null,
 ): { games: GameManifest[]; upcoming: UpcomingGame[] } {
   if (!items) return { games: [...games], upcoming: [...upcoming] };
   const byId = new Map(items.map((item) => [item.id as string, item]));
@@ -166,12 +169,12 @@ export function overlayCatalog(
       visible.push(game);
       return;
     }
-    if (!item.enabled) return;
+    if (item.isHidden) return;
     if (item.comingSoon) {
       soon.push({ id: game.id, title: game.title, tagline: game.tagline });
       return;
     }
-    const price = item.price === null ? undefined : item.price;
+    const price = item.manifestPrice;
     visible.push(price === game.price ? game : { ...game, price });
   });
   // Thứ tự server (sortOrder); game không có trong catalog giữ nguyên thứ tự manifest ở cuối

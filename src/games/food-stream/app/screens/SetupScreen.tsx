@@ -5,7 +5,7 @@
  * Lựa chọn được nhớ cho lần sau (session/storage.ts).
  */
 import { useFoodStream, useProgress } from '@/games/food-stream/app/hooks';
-import { imageUrl, streamerUrl } from '@/games/food-stream/app/images';
+import { imageUrl, streamerUrl } from '@/games/food-stream/app/assets';
 import { levelsForPack } from '@/games/food-stream/content/levels';
 import { getPack, packPreview, PACKS } from '@/games/food-stream/content/packs';
 import {
@@ -15,7 +15,7 @@ import {
 } from '@/games/food-stream/session/store';
 import { DEFAULT_TEAM_NAMES, MAX_NAME_LENGTH, TEAM_STREAMERS } from '@/games/food-stream/session/teams';
 import type { GameMode, SetupDraft, StreamerId } from '@/games/food-stream/session/types';
-import { TEXT } from '@/games/food-stream/text';
+import { TEXT } from '@/games/food-stream/session/text';
 import { SFX } from '@/platform/audio/sfx';
 import Button from '@/platform/ui/Button';
 import Field, { FieldHint } from '@/platform/ui/Field';

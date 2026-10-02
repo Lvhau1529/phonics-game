@@ -5,7 +5,7 @@
  */
 import clsx from 'clsx';
 import { useFoodStream } from '@/games/food-stream/app/hooks';
-import { imageUrl, streamerUrl } from '@/games/food-stream/app/images';
+import { imageUrl, streamerUrl } from '@/games/food-stream/app/assets';
 import { getLevel } from '@/games/food-stream/content/levels';
 import { getPack } from '@/games/food-stream/content/packs';
 import {
@@ -15,7 +15,7 @@ import {
   type SessionOutcome,
 } from '@/games/food-stream/session/store';
 import type { QuestionRecord, TeamScore } from '@/games/food-stream/session/types';
-import { TEXT } from '@/games/food-stream/text';
+import { TEXT } from '@/games/food-stream/session/text';
 import PointsSynced from '@/platform/account/PointsSynced';
 import Button from '@/platform/ui/Button';
 import GemReward from '@/platform/ui/GemReward';

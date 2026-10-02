@@ -38,7 +38,7 @@ import {
   type ActiveSession,
 } from '@/games/food-stream/session/store';
 import type { Question, RoundResult, StreamerId, Team } from '@/games/food-stream/session/types';
-import { chantComment, COMMENTS, TEXT } from '@/games/food-stream/text';
+import { chantComment, COMMENTS, TEXT } from '@/games/food-stream/session/text';
 import { SFX } from '@/platform/audio/sfx';
 import { setupView } from '@/platform/phaser/view';
 import { pickRandom, shuffle } from '@/shared/random';

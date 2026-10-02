@@ -5,12 +5,13 @@
  */
 import { useState } from 'react';
 import clsx from 'clsx';
-import type { GameId, RangePreset, RankingEntry } from '@phonics/contracts';
-import { getClassRanking } from '@/platform/account/accountApi';
+import type { GameId, RangePreset } from '@phonics/contracts';
+import { pointsService } from '@/platform/account/api/pointsService';
 import { useAuth } from '@/platform/account/authStore';
 import { avatarUrl, isSceneAvatar } from '@/platform/account/avatars';
 import { errorText } from '@/platform/account/errorText';
 import { useRequest } from '@/platform/account/hooks/useRequest';
+import type { RankingEntryModel } from '@/platform/account/models/RankingEntryModel';
 import { useDelayedLoading } from '@/platform/hooks/useDelayedLoading';
 import { platformActions } from '@/platform/platformStore';
 import type { GameManifest } from '@/platform/types';
@@ -38,7 +39,7 @@ export default function RankingScreen({ games }: { games: readonly GameManifest[
   const [gameId, setGameId] = useState<string>(ALL_GAMES);
   const gameFilter = gameId === ALL_GAMES ? undefined : (gameId as GameId);
   const ranking = useRequest(
-    () => getClassRanking(range, gameFilter),
+    () => pointsService.classRanking(range, gameFilter),
     `${range}:${gameId}:${user?.id ?? ''}`,
   );
 
@@ -77,7 +78,7 @@ export default function RankingScreen({ games }: { games: readonly GameManifest[
 
       <section className={clsx(styles.board, ranking.stale && styles.stale)}>
         <h2 className={styles.className}>
-          <Icon name="trophy" size={26} /> {ranking.data ? ranking.data.className : (user?.class?.name ?? '')}
+          <Icon name="trophy" size={26} /> {ranking.data ? ranking.data.className : (user?.className ?? '')}
         </h2>
         {showLoading && <LottieLoader size="lg" label="LOADING…" className={styles.status} />}
         {ranking.error != null && (
@@ -107,13 +108,13 @@ export default function RankingScreen({ games }: { games: readonly GameManifest[
   );
 }
 
-function Row({ entry, pinned = false }: { entry: RankingEntry; pinned?: boolean }) {
+function Row({ entry, pinned = false }: { entry: RankingEntryModel; pinned?: boolean }) {
   return (
     <li className={clsx(styles.row, entry.isMe && styles.me, pinned && styles.pinned)}>
-      <span className={clsx(styles.rank, entry.rank <= 3 && styles.top)}>
-        {entry.rank === 1 ? (
+      <span className={clsx(styles.rank, entry.isPodium && styles.top)}>
+        {entry.isChampion ? (
           <Icon name="crown" size={30} />
-        ) : entry.rank <= 3 ? (
+        ) : entry.isPodium ? (
           <Icon name="medal" size={28} />
         ) : (
           entry.rank

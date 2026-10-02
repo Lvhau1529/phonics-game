@@ -1,7 +1,7 @@
 /**
  * Đội chơi: tên mặc định là tên con vật tiếng Anh (plan §2), mỗi đội một mascot cố định.
  */
-import gameConfig from '@/games/bread-catcher/data/game_config.json';
+import gameConfig from '@/games/bread-catcher/content/game_config.json';
 import type { MascotId, SetupDraft, Team, TeamId } from '@/games/bread-catcher/session/types';
 
 export const TEAM_MASCOTS: readonly MascotId[] = ['lion', 'tiger', 'panda'];

@@ -8,7 +8,7 @@ import { getAudio } from '@/games/food-stream/game/core/services';
 import CandyButton from '@/games/food-stream/game/ui/CandyButton';
 import { addText } from '@/games/food-stream/game/ui/text';
 import { foodStreamActions } from '@/games/food-stream/session/store';
-import { TEXT } from '@/games/food-stream/text';
+import { TEXT } from '@/games/food-stream/session/text';
 import { SFX } from '@/platform/audio/sfx';
 import { setupView } from '@/platform/phaser/view';
 

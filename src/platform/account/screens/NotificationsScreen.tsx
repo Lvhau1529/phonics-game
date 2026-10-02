@@ -5,7 +5,7 @@
  */
 import { useEffect } from 'react';
 import clsx from 'clsx';
-import type { NotificationView } from '@phonics/contracts';
+import type { NotificationModel } from '@/platform/account/models/NotificationModel';
 import { notificationsActions, useNotifications } from '@/platform/account/notificationsStore';
 import { timeAgo } from '@/platform/account/timeAgo';
 import { useDelayedLoading } from '@/platform/hooks/useDelayedLoading';
@@ -60,9 +60,9 @@ export default function NotificationsScreen() {
   );
 }
 
-function Message({ item }: { item: NotificationView }) {
+function Message({ item }: { item: NotificationModel }) {
   return (
-    <li className={clsx(styles.message, !item.readAt && styles.unread)}>
+    <li className={clsx(styles.message, item.isUnread && styles.unread)}>
       <span className={styles.icon}>
         <BellIcon size={20} />
       </span>

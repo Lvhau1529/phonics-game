@@ -3,17 +3,17 @@
  * GET /me/notifications?unread=true khi mở app, quay lại tab và mỗi 5 phút lúc đang đăng nhập;
  * chuông ở màn chọn game hiện số chưa đọc; mở màn MESSAGES thì tải cả đã đọc và đánh dấu đã đọc.
  */
-import type { NotificationView } from '@phonics/contracts';
-import { getNotifications, markNotificationsRead } from '@/platform/account/accountApi';
+import { notificationsService } from '@/platform/account/api/notificationsService';
 import { authStore, isSignedIn } from '@/platform/account/authStore';
 import { ACCOUNT_ENABLED } from '@/platform/account/config';
+import type { NotificationModel } from '@/platform/account/models/NotificationModel';
 import { useStore } from '@/platform/hooks/useStore';
 import { createStore } from '@/shared/createStore';
 
 const POLL_INTERVAL_MS = 5 * 60 * 1000;
 
 export interface NotificationsState {
-  items: NotificationView[];
+  items: NotificationModel[];
   unreadCount: number;
   loading: boolean;
   /** Đã tải được ít nhất một lần (màn MESSAGES biết lúc nào hiện "no messages") */
@@ -32,7 +32,7 @@ export const notificationsActions = {
     if (!ACCOUNT_ENABLED || !isSignedIn()) return;
     notificationsStore.set((state) => ({ ...state, loading: true }));
     try {
-      const { items, unreadCount } = await getNotifications(unreadOnly);
+      const { items, unreadCount } = await notificationsService.list(unreadOnly);
       notificationsStore.set((state) => ({
         ...state,
         // Chỉ tải chưa đọc thì giữ các mục đã đọc đang có (gộp theo id, mới nhất trước)
@@ -51,14 +51,13 @@ export const notificationsActions = {
     if (!ACCOUNT_ENABLED || !isSignedIn()) return;
     if (notificationsStore.get().unreadCount === 0 && !ids) return;
     try {
-      const { unreadCount } = await markNotificationsRead(ids);
+      const { unreadCount } = await notificationsService.markRead(ids);
       const now = new Date().toISOString();
       notificationsStore.set((state) => ({
         ...state,
         unreadCount,
-        items: state.items.map((item) =>
-          item.readAt || (ids && !ids.includes(item.id)) ? item : { ...item, readAt: now },
-        ),
+        // Không spread model (mất getter): markedRead tạo bản mới (đã đọc rồi thì giữ nguyên)
+        items: state.items.map((item) => (ids && !ids.includes(item.id) ? item : item.markedRead(now))),
       }));
     } catch {
       // Lần sau
@@ -92,7 +91,7 @@ export const notificationsActions = {
   },
 };
 
-function merge(fresh: NotificationView[], existing: NotificationView[]): NotificationView[] {
+function merge(fresh: NotificationModel[], existing: NotificationModel[]): NotificationModel[] {
   const seen = new Set(fresh.map((item) => item.id));
   return [...fresh, ...existing.filter((item) => !seen.has(item.id))].sort((a, b) =>
     b.createdAt.localeCompare(a.createdAt),

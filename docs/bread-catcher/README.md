@@ -32,7 +32,7 @@ desktop dùng chuột hoặc ← → / A D, `P` / `Esc` để tạm dừng. Game
 
 ### Từ vựng
 
-Lấy toàn bộ phần **Phonics** của bảng học (M A S P T I N C O D) trong `src/games/bread-catcher/data/phonics_word_bank.json`;
+Lấy toàn bộ phần **Phonics** của bảng học (M A S P T I N C O D) trong `src/games/bread-catcher/content/phonics_word_bank.json`;
 phần ESL của bảng không dùng.
 
 | Gói                | Nội dung                                                           |
@@ -123,7 +123,7 @@ Thông số ở `game/config/troll.ts`, logic ở `game/systems/troll/`.
 src/games/bread-catcher/
 ├── manifest.ts              # thẻ game ở màn chọn game + import động
 ├── BreadCatcherGame.tsx     # root: Phaser + màn React phủ lên
-├── data/                    # JSON từ resource pack: game_config, phonics_word_bank, ui_text.en
+├── content/                 # JSON từ resource pack: game_config, phonics_word_bank, ui_text.en
 ├── session/                 # logic buổi học, KHÔNG phụ thuộc React/Phaser
 │   ├── sessionStore.ts      #   màn hiện tại + phiên chơi (React và Phaser cùng đọc)
 │   ├── settings.ts          #   cấp độ, thời gian, luật
@@ -131,7 +131,7 @@ src/games/bread-catcher/
 │   ├── WordPool.ts          #   chọn từ ít lặp (từ đúng rút ra, từ sai luyện lại, sàn dự trữ 30%)
 │   ├── ranking.ts           #   xếp hạng + tie-breaker, đội thắng
 │   ├── leaderboard.ts, teams.ts, rewards.ts, storage.ts, text.ts, types.ts
-├── app/                     # React: Home / Setup / Results, Leaderboard, TimeInput, nội dung Hướng dẫn
+├── app/                     # React: Home / Setup / Results, Leaderboard, TimeInput, Hướng dẫn (guide/), ảnh (assets.ts)
 │                            #   (mỗi component một *.module.scss cạnh nó; màu cấp độ: levelTone.ts)
 └── game/                    # Phaser
     ├── createGame.ts, SceneDirector.ts
@@ -148,9 +148,9 @@ src/games/bread-catcher/
 
 | Muốn…                               | Sửa                                                                                  |
 | ----------------------------------- | ------------------------------------------------------------------------------------ |
-| Tốc độ / nhịp / thời gian mỗi level | `data/game_config.json`, HARD ở `session/settings.ts`                                |
-| Thêm / sửa từ vựng                  | `data/phonics_word_bank.json`, gói ở `session/content.ts` (luật MY WORDS cũng ở đây) |
-| Chữ hiển thị                        | `data/ui_text.en.json`                                                               |
+| Tốc độ / nhịp / thời gian mỗi level | `content/game_config.json`, HARD ở `session/settings.ts`                             |
+| Thêm / sửa từ vựng                  | `content/phonics_word_bank.json`, gói ở `session/content.ts` (luật MY WORDS cũng ở đây) |
+| Chữ hiển thị                        | `content/ui_text.en.json`                                                            |
 | Phần thưởng trong hộp quà           | `session/rewards.ts`                                                                 |
 | Tranh từ vựng / bánh chữ / ảnh nền  | `tools/bread_catcher/bakery_pack.py`, `game/config/stages.ts`                        |
 | Nhịp rơi chữ cần hứng / chữ nhiễu   | `game/config/gameConfig.ts` (`SPAWN`)                                                |

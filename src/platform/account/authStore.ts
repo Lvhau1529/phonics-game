@@ -2,28 +2,17 @@
  * Phiên đăng nhập của học sinh (chỉ khi ACCOUNT_ENABLED):
  *   status  guest      — khách (máy lớp dùng chung: không gửi điểm)
  *           restoring  — mở app thấy refresh token đã lưu, đang lấy access token mới
- *           signedIn   — có user; access token (bộ nhớ) do apiClient giữ, mirror ở đây để UI đọc
- * Lưu localStorage `phonics-arcade:auth` = { user, refreshToken }. Mất mạng lúc mở app thì vẫn coi
- * như đang đăng nhập với user đã lưu (điểm xếp hàng chờ), có mạng lại là refresh tự chạy.
+ *           signedIn   — có user (`UserModel`); access token (bộ nhớ) do `platform/api/client` giữ,
+ *                        mirror ở đây để UI đọc
+ * Lưu localStorage `phonics-arcade:auth` = { user: user.toJSON(), refreshToken }. Mất mạng lúc mở app thì vẫn
+ * coi như đang đăng nhập với user đã lưu (điểm xếp hàng chờ), có mạng lại là refresh tự chạy.
  */
-import {
-  User,
-  type AuthResponse,
-  type GoogleProfile,
-  type LoginBody,
-  type RegisterBody,
-} from '@phonics/contracts';
-import * as api from '@/platform/account/accountApi';
-import {
-  clearTokens,
-  isApiError,
-  refreshAccessToken,
-  setTokens,
-  takeRefreshedAuth,
-  tokenStore,
-} from '@/platform/account/apiClient';
+import { User, type GoogleProfile, type LoginBody, type RegisterBody } from '@phonics/contracts';
+import { authService, type AuthSession } from '@/platform/account/api/authService';
 import { ACCOUNT_ENABLED } from '@/platform/account/config';
 import { clearRequestCache } from '@/platform/account/hooks/useRequest';
+import { UserModel } from '@/platform/account/models/UserModel';
+import { clearTokens, isApiError, setTokens, tokenStore } from '@/platform/api/client';
 import { useStore } from '@/platform/hooks/useStore';
 import { readJson, removeKeys, writeJson } from '@/platform/storage';
 import { createStore } from '@/shared/createStore';
@@ -32,7 +21,7 @@ export type AuthStatus = 'guest' | 'restoring' | 'signedIn';
 
 export interface AuthState {
   status: AuthStatus;
-  user: User | null;
+  user: UserModel | null;
   accessToken: string | null;
   /** Google: tài khoản mới, server cần tên + lớp (422 PROFILE_REQUIRED) -> màn đăng ký "chế độ Google" */
   pendingGoogleIdToken: string | null;
@@ -40,16 +29,17 @@ export interface AuthState {
 
 export const AUTH_KEY = 'phonics-arcade:auth';
 
+/** Bản lưu localStorage: user là DTO (`UserModel.toJSON()`) */
 interface AuthSnapshot {
   user: User;
   refreshToken: string;
 }
 
-function loadSnapshot(): AuthSnapshot | null {
+function loadSnapshot(): { user: UserModel; refreshToken: string } | null {
   const stored = readJson<AuthSnapshot>(AUTH_KEY);
   if (!stored || typeof stored.refreshToken !== 'string' || !stored.refreshToken) return null;
   const user = User.safeParse(stored.user);
-  return user.success ? { user: user.data, refreshToken: stored.refreshToken } : null;
+  return user.success ? { user: new UserModel(user.data), refreshToken: stored.refreshToken } : null;
 }
 
 const snapshot = ACCOUNT_ENABLED ? loadSnapshot() : null;
@@ -65,7 +55,7 @@ export const authStore = createStore<AuthState>({
 function persist(): void {
   const { user } = authStore.get();
   const { refreshToken } = tokenStore.get();
-  if (user && refreshToken) writeJson(AUTH_KEY, { user, refreshToken } satisfies AuthSnapshot);
+  if (user && refreshToken) writeJson(AUTH_KEY, { user: user.toJSON(), refreshToken } satisfies AuthSnapshot);
   else removeKeys([AUTH_KEY]);
 }
 
@@ -80,7 +70,7 @@ tokenStore.subscribe(() => {
   persist();
 });
 
-function applyAuth(response: AuthResponse): void {
+function applyAuth(response: AuthSession): void {
   setTokens({ accessToken: response.accessToken, refreshToken: response.refreshToken ?? null });
   authStore.set((state) => ({
     ...state,
@@ -97,13 +87,12 @@ export const authActions = {
   async restore(): Promise<void> {
     if (authStore.get().status !== 'restoring') return;
     try {
-      const ok = await refreshAccessToken();
-      if (!ok) return; // tokenStore đã bị xoá -> signOutLocal chạy qua subscribe
-      const refreshed = takeRefreshedAuth();
+      const session = await authService.refreshSession();
+      if (!session) return; // tokenStore đã bị xoá -> signOutLocal chạy qua subscribe
       authStore.set((state) => ({
         ...state,
         status: 'signedIn',
-        user: refreshed?.user ?? state.user,
+        user: session.user ?? state.user,
         accessToken: tokenStore.get().accessToken,
       }));
       persist();
@@ -116,11 +105,11 @@ export const authActions = {
   },
 
   async login(body: LoginBody): Promise<void> {
-    applyAuth(await api.login(body));
+    applyAuth(await authService.login(body));
   },
 
   async register(body: RegisterBody): Promise<void> {
-    applyAuth(await api.register(body));
+    applyAuth(await authService.register(body));
   },
 
   /**
@@ -129,7 +118,7 @@ export const authActions = {
    */
   async google(idToken: string, profile?: GoogleProfile): Promise<'ok' | 'profile-required'> {
     try {
-      applyAuth(await api.googleSignIn(profile ? { idToken, profile } : { idToken }));
+      applyAuth(await authService.googleSignIn(profile ? { idToken, profile } : { idToken }));
       return 'ok';
     } catch (error) {
       if (isApiError(error) && error.code === 'PROFILE_REQUIRED') {
@@ -148,7 +137,7 @@ export const authActions = {
   async signOut(): Promise<void> {
     const { refreshToken } = tokenStore.get();
     authActions.signOutLocal();
-    if (refreshToken) await api.logout(refreshToken).catch(() => {});
+    if (refreshToken) await authService.logout(refreshToken).catch(() => {});
   },
 
   /** Xoá phiên trên máy này (token hết hạn / bị thu hồi / đăng xuất) */
@@ -162,7 +151,7 @@ export const authActions = {
   },
 
   /** Sau khi sửa hồ sơ */
-  setUser(user: User): void {
+  setUser(user: UserModel): void {
     authStore.set((state) => ({ ...state, user }));
     persist();
   },
@@ -172,6 +161,3 @@ export const useAuth = (): AuthState => useStore(authStore, (state) => state);
 
 export const isSignedIn = (state: AuthState = authStore.get()): boolean =>
   state.status === 'signedIn' && state.user !== null;
-
-/** Tên gọi ngắn (từ đầu tiên của displayName) cho nút ở màn chọn game */
-export const firstName = (user: User): string => user.displayName.trim().split(/\s+/)[0] ?? '';

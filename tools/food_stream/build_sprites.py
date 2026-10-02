@@ -1,6 +1,6 @@
 """
 Food Stream: cắt art board gốc (`_source/food-stream/art/`) thành từng PNG trong
-`public/assets/food-stream/`, kèm manifest `src/games/food-stream/sprites.json`
+`public/assets/food-stream/`, kèm manifest `src/games/food-stream/game/config/sprites.json`
 (key ổn định -> đường dẫn, kích thước, anchors) — code import thẳng manifest nên React và Phaser
 cùng biết có những ảnh nào ngay lúc build.
 
@@ -35,7 +35,7 @@ from common.paths import GAME_APP, PUBLIC_ASSETS, SOURCE  # noqa: E402
 SRC = SOURCE / "food-stream" / "art"
 OUT = PUBLIC_ASSETS / "food-stream"
 ASSET_URL = "assets/food-stream"
-MANIFEST = GAME_APP / "src" / "games" / "food-stream" / "sprites.json"
+MANIFEST = GAME_APP / "src" / "games" / "food-stream" / "game" / "config" / "sprites.json"
 
 BOARD_ALPHA = SRC / "asset-board-initial.png"
 PAD = 2

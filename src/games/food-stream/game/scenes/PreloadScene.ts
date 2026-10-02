@@ -5,7 +5,7 @@
 import Phaser from 'phaser';
 import { JINGLE, MUSIC, musicUrls } from '@/games/food-stream/game/config/assets';
 import { ASSETS_READY, SCENES } from '@/games/food-stream/game/core/keys';
-import { SPRITES } from '@/games/food-stream/sprites';
+import { SPRITES } from '@/games/food-stream/game/config/sprites';
 import { SFX, sfxUrls } from '@/platform/audio/sfx';
 
 export default class PreloadScene extends Phaser.Scene {

@@ -37,9 +37,12 @@ xem `vite.config.ts` của game / admin) — sửa contracts thấy ngay, không
 | Thư mục | Vai trò |
 | --- | --- |
 | `src/platform/` | Khung chung: hub, `platformStore` (hash route), gems/wallet, ui kit, pwa, audio, phaser |
-| `src/platform/account/` | Tài khoản: `apiClient`, `authStore`, `accountApi`, `scoreSync`, `gamesSync`, `notificationsStore`, màn hình `screens/` |
-| `src/platform/analytics/` | Sự kiện lượt xem / lượt chơi (ẩn danh) |
-| `src/games/<id>/` | Từng game: `manifest.ts`, `session/` (store + luật), `app/` (màn React), `game/` (Phaser) |
+| `src/platform/api/` | HTTP client dùng chung (`client.ts`: `request`, token, refresh single flight, `ApiError`) |
+| `src/platform/account/` | Tài khoản: `authStore`, `scoreSync`, `gamesSync`, `notificationsStore`, màn hình `screens/` |
+| `src/platform/account/api/` | `<x>Repository.ts` (chỉ khai báo endpoint, trả DTO) + `<x>Service.ts` (DTO → model): `auth`, `classes`, `games`, `points`, `notifications`, `results` |
+| `src/platform/account/models/` | `<Name>Model.ts`: class bọc DTO contracts (field `readonly` cùng tên + getter FE), vd `UserModel`, `NotificationModel` |
+| `src/platform/analytics/` | Sự kiện lượt xem / lượt chơi (ẩn danh); `api/events{Repository,Service}.ts` |
+| `src/games/<id>/` | Từng game: `manifest.ts`, `<Name>Game.tsx`, `content/` (dữ liệu / nội dung JSON + schema), `session/` (store + luật + text), `app/` (màn React, `guide/`, `assets.ts`), `game/` (Phaser) |
 
 ## Cách làm việc thường gặp
 
@@ -48,8 +51,14 @@ xem `vite.config.ts` của game / admin) — sửa contracts thấy ngay, không
   (xem `bread-catcher/session/sessionStore.ts > finishSession`), màn kết quả thêm `<PointsSynced>`.
 - **Thêm route platform:** `ACCOUNT_PAGES` + `parseHash` trong `platformStore.ts`, màn trong `account/screens/`,
   switch trong `AccountRoot.tsx`. Id game không được trùng `account`.
-- **Gọi API mới:** schema trong contracts (phonics-api) → hàm trong `account/accountApi.ts` (`request(path, { schema })`) →
-  store / màn hình. Lỗi hiển thị cho bé qua `account/errorText.ts` (map `ErrorCode` → câu tiếng Anh).
+- **Gọi API mới:** schema trong contracts (phonics-api) → `account/api/<x>Repository.ts` (chỉ
+  `request(ENDPOINTS.x, { method, body, query, schema, auth })`, trả DTO như BE, không map) → `<x>Service.ts` (gọi
+  repository, đổi DTO → model) + `account/models/<Name>Model.ts` (constructor nhận DTO contracts, gán từng field
+  `readonly` cùng tên; getter cho dữ liệu FE; lưu localStorage thì có `toJSON()` và đọc lại bằng `Schema.safeParse` →
+  `new XModel(...)`) → store / màn hình. Store / hook / màn hình **chỉ gọi service** (không gọi repository /
+  `request`). Số liệu thống kê / ack của mutation thì service trả thẳng DTO (ghi chú ngắn). **Không spread model**
+  (`{ ...model }` mất getter) — tạo instance mới (vd `item.markedRead(now)`). Lỗi hiển thị cho bé qua
+  `account/errorText.ts` (map `ErrorCode` → câu tiếng Anh).
 - **Thêm icon:** thêm vào `EXPORTS` trong `tools/arcade_ui/build_ui.py` → `pnpm assets:ui` (root) → commit PNG →
   khai báo trong `src/platform/ui/icons.ts`. Không chỉnh tay `public/assets`.
 - **Test:** Vitest + jsdom, file `*.test.ts(x)` cạnh code (`pnpm test`). Store / queue / parse hash phải có test.

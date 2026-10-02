@@ -3,7 +3,7 @@
  * Không có API (ACCOUNT_ENABLED=false) thì không hiện.
  */
 import clsx from 'clsx';
-import { firstName, useAuth } from '@/platform/account/authStore';
+import { useAuth } from '@/platform/account/authStore';
 import { avatarUrl, isSceneAvatar } from '@/platform/account/avatars';
 import { ACCOUNT_ENABLED } from '@/platform/account/config';
 import { SFX } from '@/platform/audio/sfx';
@@ -44,7 +44,7 @@ export default function AccountButton({ className }: { className?: string }) {
         src={avatarUrl(user.avatarKey)}
         alt=""
       />
-      <span className={styles.name}>{firstName(user).toUpperCase()}</span>
+      <span className={styles.name}>{user.firstName.toUpperCase()}</span>
     </button>
   );
 }

@@ -4,7 +4,7 @@
  */
 import { useEffect, useRef } from 'react';
 import clsx from 'clsx';
-import type { NotificationView } from '@phonics/contracts';
+import type { NotificationModel } from '@/platform/account/models/NotificationModel';
 import { notificationsActions, useNotifications } from '@/platform/account/notificationsStore';
 import { timeAgo } from '@/platform/account/timeAgo';
 import { SFX } from '@/platform/audio/sfx';
@@ -80,8 +80,8 @@ export default function NotificationPopover({ id, onSeeAll }: NotificationPopove
   );
 }
 
-function Item({ item }: { item: NotificationView }) {
-  const unread = !item.readAt;
+function Item({ item }: { item: NotificationModel }) {
+  const unread = item.isUnread;
   return (
     <li>
       <button

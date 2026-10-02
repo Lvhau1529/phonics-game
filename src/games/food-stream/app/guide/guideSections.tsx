@@ -2,7 +2,7 @@
  * Nội dung HƯỚNG DẪN (tiếng Việt, cho giáo viên / phụ huynh) của Food Stream —
  * khung hiển thị dùng chung (platform GuideDialog). Số liệu lấy thẳng từ cấu hình để luôn khớp game.
  */
-import { streamerUrl } from '@/games/food-stream/app/images';
+import { streamerUrl } from '@/games/food-stream/app/assets';
 import { LEVELS } from '@/games/food-stream/content/levels';
 import { PACKS, packPreview } from '@/games/food-stream/content/packs';
 import { SCORING } from '@/games/food-stream/session/scoring';

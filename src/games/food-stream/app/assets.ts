@@ -1,8 +1,8 @@
 /**
- * Ảnh dùng trong màn React (cùng file với game — sprites.json).
+ * Ảnh dùng trong màn React (cùng manifest với game — game/config/sprites.json).
  */
 import type { StreamerId } from '@/games/food-stream/session/types';
-import { spriteUrl } from '@/games/food-stream/sprites';
+import { spriteUrl } from '@/games/food-stream/game/config/sprites';
 
 export type Pose = 'happy' | 'wow' | 'think';
 

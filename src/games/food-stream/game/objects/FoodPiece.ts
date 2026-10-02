@@ -8,7 +8,7 @@ import Phaser from 'phaser';
 import { THEME } from '@/games/food-stream/game/config/theme';
 import { addText } from '@/games/food-stream/game/ui/text';
 import type { Choice } from '@/games/food-stream/session/types';
-import { SPRITES } from '@/games/food-stream/sprites';
+import { SPRITES } from '@/games/food-stream/game/config/sprites';
 
 /** Mọi món ăn có trong manifest (không tính frame cắn) */
 export const FOOD_KEYS: readonly string[] = Object.keys(SPRITES).filter(

@@ -1,10 +1,10 @@
 /**
- * Gói từ vựng (PHONICS PACK) dựng từ src/data/phonics_word_bank.json.
+ * Gói từ vựng (PHONICS PACK) dựng từ content/phonics_word_bank.json.
  * Chỉ dùng phần Phonics của bảng từ (không dùng phần ESL review).
  * Thêm gói MY WORDS: giáo viên tự gõ từ cho buổi chơi ở màn Setup.
  * Chữ luôn viết HOA khi chơi (plan §34: chữ rơi in hoa, cỡ lớn).
  */
-import wordBank from '@/games/bread-catcher/data/phonics_word_bank.json';
+import wordBank from '@/games/bread-catcher/content/phonics_word_bank.json';
 import type { BuiltinPackId, SessionSettings } from '@/games/bread-catcher/session/types';
 
 export interface PackDef {

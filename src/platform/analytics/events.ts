@@ -8,9 +8,9 @@
  * quay lại tab / đóng trang (fetch keepalive). Không có API (ACCOUNT_ENABLED=false) thì mọi hàm là no-op.
  */
 import { EVENT_BATCH_MAX, EVENT_MAX_AGE_MS, GameEventInput, GameId, type PlayMode } from '@phonics/contracts';
-import { postEvents } from '@/platform/account/accountApi';
-import { isApiError } from '@/platform/account/apiClient';
 import { ACCOUNT_ENABLED } from '@/platform/account/config';
+import { eventsService } from '@/platform/analytics/api/eventsService';
+import { isApiError } from '@/platform/api/client';
 import { readJson, writeJson } from '@/platform/storage';
 
 export const CLIENT_ID_KEY = 'phonics-arcade:client-id';
@@ -58,7 +58,7 @@ async function flush(keepalive = false): Promise<void> {
   try {
     while (items.length > 0) {
       const batch = items.slice(0, EVENT_BATCH_MAX);
-      await postEvents({ clientId: clientId(), events: batch }, keepalive);
+      await eventsService.send({ clientId: clientId(), events: batch }, keepalive);
       items = items.slice(batch.length);
       save();
       if (keepalive) break; // Trang đang đóng: chỉ kịp một lô

@@ -1,8 +1,8 @@
 /**
- * Cấp độ, thời gian và luật chơi. Số liệu lấy từ src/data/game_config.json (resource pack),
+ * Cấp độ, thời gian và luật chơi. Số liệu lấy từ content/game_config.json (resource pack),
  * riêng level HARD được thêm vào: tốc độ vừa phải nhưng bật toàn bộ logic troll.
  */
-import gameConfig from '@/games/bread-catcher/data/game_config.json';
+import gameConfig from '@/games/bread-catcher/content/game_config.json';
 import { UI_TEXT } from '@/games/bread-catcher/session/text';
 import type {
   LevelId,

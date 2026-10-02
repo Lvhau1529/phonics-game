@@ -8,7 +8,7 @@ vi.mock('@/platform/account/config', () => ({
   ACCOUNT_ENABLED: true,
 }));
 
-import { ApiError, request, setTokens, tokenStore } from '@/platform/account/apiClient';
+import { ApiError, request, setTokens, tokenStore } from '@/platform/api/client';
 
 const json = (status: number, body: unknown) =>
   new Response(JSON.stringify(body), { status, headers: { 'Content-Type': 'application/json' } });
@@ -30,7 +30,7 @@ const authBody = (accessToken: string, refreshToken: string) => ({
   },
 });
 
-describe('apiClient.request', () => {
+describe('api client request', () => {
   const fetchMock = vi.fn<typeof fetch>();
 
   beforeEach(() => {

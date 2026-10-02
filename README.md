@@ -66,8 +66,11 @@ src/
 │   ├── ui/                  #   Button, BackButton, Icon (+ icons.ts), Dialog, GemReward, OptionGroup, Field,
 │   │                        #   NameInput, AudioToggles, RotateHint, ScreenLayer, ScreenHeader, tone.ts,
 │   │                        #   guide/ (GuideDialog, GuideButton, GuideCard, guideContent.module.scss)
+│   ├── api/client.ts        #   HTTP client dùng chung: request + zod, token, refresh single flight, ApiError
 │   ├── account/             #   tài khoản học sinh & đồng bộ API (chỉ khi có VITE_API_URL) — xem bên dưới
-│   ├── analytics/events.ts  #   sự kiện ẩn danh VIEW / PLAY (thống kê game)
+│   │   ├── api/             #     <x>Repository (endpoint → DTO) + <x>Service (DTO → model)
+│   │   └── models/          #     UserModel, NotificationModel, CatalogGameModel… (DTO contracts + getter FE)
+│   ├── analytics/           #   sự kiện ẩn danh VIEW / PLAY (events.ts; api/events{Repository,Service}.ts)
 │   ├── pwa/                 #   nút cập nhật khi có bản deploy mới
 │   └── styles/              #   tailwind.css (token + Tailwind), global.scss (reset), abstracts/ (mixin SCSS)
 └── games/
@@ -76,9 +79,9 @@ src/
     └── food-stream/         # xem docs/food-stream
 ```
 
-Mỗi game tự chứa: `manifest.ts` (thẻ game + `load: () => import(root)`), root component (Phaser + màn React),
-store / luật chơi thuần TS (`session/`), màn React (`app/`, mỗi component một `*.module.scss`), Phaser (`game/`),
-nội dung, dữ liệu lưu riêng. React và Phaser của một game chỉ nói chuyện qua store của game đó.
+Mỗi game tự chứa (`src/games/<id>/`): `manifest.ts` (thẻ game + `load: () => import(root)`), `<Name>Game.tsx`
+(root: Phaser + màn React), `content/` (dữ liệu / nội dung JSON + schema), `session/` (store + luật + text, thuần TS),
+`app/` (màn React, `guide/`, `assets.ts`; mỗi component một `*.module.scss`), `game/` (Phaser), dữ liệu lưu riêng. React và Phaser của một game chỉ nói chuyện qua store của game đó.
 
 **Độ phân giải:** toạ độ game là 360 × (640–800) khi dọc, (720–960) × 540 khi ngang, canvas render gấp đôi
 (`RENDER_SCALE`) qua camera zoom → chữ học sắc nét. Code layout luôn dùng `view(scene)` / `isLandscape(scene)`
@@ -148,7 +151,21 @@ cũng đóng. `role="dialog"`, `aria-expanded` trên chuông, focus vào mục �
   cũ rồi tải lại ngầm (`isRefreshing` → chấm nhỏ ở header, không unmount danh sách). Đổi tab WEEK / MONTH / ALL ×
   game: bảng cũ mờ đi (`stale`, opacity .6) tới khi có bảng mới. Thông báo cache sẵn trong `notificationsStore`.
 
-### Token & khôi phục phiên (`apiClient.ts`, `authStore.ts`)
+### Gọi API: repository → service → model
+
+Mọi lời gọi API đi qua hai lớp + model:
+
+| Lớp        | File                                                         | Việc                                                                                                                                                                                                   |
+| ---------- | ------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Repository | `account/api/<x>Repository.ts`, `analytics/api/eventsRepository.ts` | Chỉ khai báo endpoint: `request(ENDPOINTS.x, { method, body, query, schema, auth })` (`platform/api/client.ts`), trả DTO đúng như BE. Không map / logic.                                              |
+| Service    | `account/api/<x>Service.ts`, `analytics/api/eventsService.ts`       | Gọi repository, đổi DTO → model. Store / hook / màn hình **chỉ gọi service**. Số liệu thống kê / ack của mutation (điểm của tôi, kết quả ván, sự kiện, đánh dấu đã đọc) trả thẳng DTO.          |
+| Model      | `account/models/<Name>Model.ts`                              | Class nhận DTO contracts, gán từng field `readonly` cùng tên; getter cho dữ liệu chỉ FE dùng (`UserModel.firstName / hasClass / className`, `NotificationModel.isUnread`…). Lưu localStorage: `toJSON()`; đọc lại `Schema.safeParse` → `new XModel(...)`. |
+
+Resource: `auth` (đăng nhập / đăng ký / Google / đăng xuất / me / sửa hồ sơ), `classes` (lớp công khai), `games`
+(catalog, game của tôi, mở khoá bằng kim cương), `points` (điểm của tôi, xếp hạng lớp), `notifications`, `results`
+(kết quả ván). **Không spread model** (`{ ...model }` mất getter): tạo instance mới (`item.markedRead(now)`).
+
+### Token & khôi phục phiên (`platform/api/client.ts`, `authStore.ts`)
 
 - Access token (15 phút) chỉ giữ trong bộ nhớ; refresh token nhận qua body (header `X-Refresh-Transport: body`
   ở mọi lời gọi `/auth/*`) và lưu localStorage. Mỗi lần refresh server xoay token mới → luôn lưu bản mới.
@@ -230,7 +247,7 @@ vào build. Script Python sinh file dùng trong game ở `public/assets/`:
 ```bash
 pip install -r tools/requirements.txt
 pnpm assets:bread         # Bread Catcher: cắt sprite + vẽ pixel-art bằng code -> public/assets/bread-catcher
-pnpm assets:food-stream   # Food Stream: cắt art board -> public/assets/food-stream + src/games/food-stream/sprites.json
+pnpm assets:food-stream   # Food Stream: cắt art board -> public/assets/food-stream + src/games/food-stream/game/config/sprites.json
 pnpm assets:audio         # mọi WAV master -> .ogg + .mp3 (SFX chung -> public/assets/shared/sfx)
 pnpm assets:ui            # giao diện chung (icon, kim cương, linh vật ong, nền màn chọn game) -> public/assets/shared/ui
 pnpm assets:icons         # icon PWA / favicon hoa cúc pixel (_source/platform/app-icon) -> public/icons

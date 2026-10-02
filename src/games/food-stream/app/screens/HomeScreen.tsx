@@ -3,7 +3,7 @@
  * Trẻ không cần đọc: nút PLAY to; hai streamer ngồi chờ ở phòng stream phía sau (StudioScene).
  */
 import { foodStreamActions } from '@/games/food-stream/session/store';
-import { TEXT } from '@/games/food-stream/text';
+import { TEXT } from '@/games/food-stream/session/text';
 import { SFX } from '@/platform/audio/sfx';
 import { platformActions } from '@/platform/platformStore';
 import AudioToggles from '@/platform/ui/AudioToggles';

@@ -5,7 +5,7 @@
  *   - mất mạng / 5xx / 401 / 429 -> dừng, giữ nguyên, lần flush sau thử lại (online, quay lại tab...).
  * Dùng cho kết quả ván (scoreSync), mở khoá game (gamesSync) và sự kiện ẩn danh (analytics/events).
  */
-import { isApiError } from '@/platform/account/apiClient';
+import { isApiError } from '@/platform/api/client';
 import { readJson, writeJson } from '@/platform/storage';
 import { createStore, type Store } from '@/shared/createStore';
 

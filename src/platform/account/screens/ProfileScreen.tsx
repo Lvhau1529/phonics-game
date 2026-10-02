@@ -4,7 +4,7 @@
  */
 import { useState } from 'react';
 import clsx from 'clsx';
-import { getMyPoints } from '@/platform/account/accountApi';
+import { pointsService } from '@/platform/account/api/pointsService';
 import { authActions, useAuth } from '@/platform/account/authStore';
 import { avatarUrl, isSceneAvatar } from '@/platform/account/avatars';
 import { errorText } from '@/platform/account/errorText';
@@ -28,7 +28,7 @@ import styles from '@/platform/account/screens/ProfileScreen.module.scss';
 export default function ProfileScreen({ games }: { games: readonly GameManifest[] }) {
   const { user } = useAuth();
   const unread = useUnreadCount();
-  const points = useRequest(() => getMyPoints('all'), `points:${user?.id ?? ''}`);
+  const points = useRequest(() => pointsService.mine('all'), `points:${user?.id ?? ''}`);
   const mine = useStore(catalogStore, (state) => state.mine);
   const wallet = useStore(walletStore, (state) => state);
   const [confirmSignOut, setConfirmSignOut] = useState(false);
@@ -50,7 +50,7 @@ export default function ProfileScreen({ games }: { games: readonly GameManifest[
           alt=""
         />
         <h2 className={styles.name}>{user.displayName}</h2>
-        <p className={styles.classLine}>{user.class ? `CLASS ${user.class.name}` : 'NO CLASS YET'}</p>
+        <p className={styles.classLine}>{user.hasClass ? `CLASS ${user.className}` : 'NO CLASS YET'}</p>
 
         <dl className={styles.stats}>
           <div className={styles.stat}>

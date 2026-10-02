@@ -1,7 +1,7 @@
 /**
  * Chọn lớp khi đăng ký (GET /public/classes — lớp giáo viên đang cho học sinh tự vào).
  */
-import { getPublicClasses } from '@/platform/account/accountApi';
+import { classesService } from '@/platform/account/api/classesService';
 import { errorText } from '@/platform/account/errorText';
 import { useRequest } from '@/platform/account/hooks/useRequest';
 import Button from '@/platform/ui/Button';
@@ -18,13 +18,13 @@ interface ClassPickerProps {
 }
 
 export default function ClassPicker({ value, onChange, error }: ClassPickerProps) {
-  const classes = useRequest(() => getPublicClasses().then((response) => response.items), 'classes');
+  const classes = useRequest(() => classesService.publicList(), 'classes');
   const showLoading = useDelayedLoading(classes.loading);
 
   const options: Option<string>[] = (classes.data ?? []).map((item) => ({
     value: item.id,
     label: item.name,
-    sub: `${item.grade} · ${item.schoolYear}`,
+    sub: item.subtitle,
     tone: 'teal',
   }));
 
