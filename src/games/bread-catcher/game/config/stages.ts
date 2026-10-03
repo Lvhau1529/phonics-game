@@ -24,7 +24,7 @@ export function basketTierFor(correctWords: number): BasketTier {
 
 /**
  * Bánh chữ: 4 kiểu bánh pixel-art gốc (tròn / baguette / loaf / premium)
- * + 12 bánh ngọt có lòng kem trống của Kids Bakery pack (cookie, donut, croissant, muffin, su kem...).
+ * + 12 bánh ngọt 16-bit của Kids Bakery pack (cookie, donut, croissant, muffin, su kem...).
  */
 export const LETTER_BREADS = [
   ...['01', '02', '03', '04'].map((id) => `letter_bread_${id}`),

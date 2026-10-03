@@ -1,11 +1,23 @@
 /**
- * Hiệu ứng "game feel": sparkle, pháo sao, khói xám, popup chữ, rung camera.
+ * Hiệu ứng "game feel": sparkle, pháo sao, pháo hoa / confetti, khói, vụn bánh, popup chữ, rung camera.
  * Phản hồi sai luôn nhẹ nhàng — không chớp mạnh, không rung dữ (plan §13, §34).
+ * Ảnh FX của Kids Bakery pack (`fx/*`) vẽ ở 2x -> scale hiển thị nhân FX_IMAGE_SCALE.
  */
-import type Phaser from 'phaser';
+import Phaser from 'phaser';
 import { DEPTH, THEME, TIMING } from '@/games/bread-catcher/game/config/gameConfig';
 import { view } from '@/platform/phaser/view';
 import { addText } from '@/games/bread-catcher/game/ui/text';
+
+const FX_IMAGE_SCALE = 0.5;
+
+/** Ảnh FX nở từ `from` -> `to` (scale logic) rồi mờ dần */
+interface PopOptions {
+  from: number;
+  to: number;
+  duration: number;
+  angle?: number;
+  tint?: number;
+}
 
 export default class EffectsSystem {
   private readonly sparkles: Phaser.GameObjects.Particles.ParticleEmitter;
@@ -64,15 +76,23 @@ export default class EffectsSystem {
     });
   }
 
-  /** Pháo sao khi hoàn thành cả từ */
+  /** Pháo hoa + confetti + pháo sao khi hoàn thành cả từ */
   wordBurst(x: number, y: number): void {
+    this.pop('fireworks', x, y - 20, { from: 0.3, to: 1.3, duration: 800 });
+    this.pop('confetti', x, y - 10, {
+      from: 0.5,
+      to: 1.3,
+      duration: 700,
+      angle: Phaser.Math.Between(-12, 12),
+    });
     this.stars.explode(14, x, y);
     this.sparkles.explode(20, x, y);
   }
 
-  /** Khói xám / đỏ nhạt khi hứng nhầm (plan §13) */
+  /** Cụm khói xám nhạt + bụi nhỏ khi hứng nhầm (plan §13) */
   wrongPuff(x: number, y: number): void {
-    this.puffs.explode(12, x, y);
+    this.pop('puff', x, y, { from: 0.4, to: 0.9, duration: 500, tint: 0xd9cec8 });
+    this.puffs.explode(8, x, y);
   }
 
   /** Vụ nổ: chớp cam lớn + tia lửa + rung (bom — level HARD) */
@@ -90,8 +110,27 @@ export default class EffectsSystem {
       ease: 'Quad.easeOut',
       onComplete: () => flash.destroy(),
     });
+    this.pop('crumbs', x, y, { from: 0.5, to: 1.4, duration: 450, angle: Phaser.Math.Between(-30, 30) });
     this.sparkles.explode(18, x, y);
     this.scene.cameras.main.shake(220, 0.012);
+  }
+
+  private pop(key: string, x: number, y: number, { from, to, duration, angle = 0, tint }: PopOptions): void {
+    if (!this.scene.textures.exists(key)) return;
+    const image = this.scene.add
+      .image(x, y, key)
+      .setDepth(DEPTH.FX)
+      .setScale(from * FX_IMAGE_SCALE)
+      .setAngle(angle);
+    if (tint !== undefined) image.setTint(tint);
+    this.scene.tweens.add({
+      targets: image,
+      scale: to * FX_IMAGE_SCALE,
+      alpha: { from: 1, to: 0, ease: 'Quad.easeIn' },
+      duration,
+      ease: 'Quad.easeOut',
+      onComplete: () => image.destroy(),
+    });
   }
 
   /** Chữ bay lên ~24px rồi mờ dần */

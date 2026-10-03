@@ -15,8 +15,9 @@ Mỗi sprite được:
 Metadata (kích thước, anchors đã quy đổi) được ghi ra `public/assets/bread-catcher/sprites.json`
 để game đọc thay vì hard-code.
 
-Kids Bakery Phonics pack (`_source/bread-catcher/bakery-pack/`, xem bakery_pack.py): 12 bánh chữ mới,
-tranh từ vựng (atlas `words/`), icon phần thưởng, 2 background mới. Ảnh của pack xuất ở 2x
+Kids Bakery Phonics pack 16-bit (`_source/bread-catcher/bakery-pack/`, xem bakery_pack.py): 12 bánh chữ mới,
+tranh từ vựng (atlas `words/`), icon phần thưởng, ảnh FX (`fx/puff`, `crumbs`, `confetti`, `fireworks`),
+2 background mới. Ảnh của pack xuất ở 2x
 (`scale: 2` trong sprites.json — game vẽ ở scale 0.5); bánh chữ có thêm `letter` (tâm + bán kính lòng kem).
 """
 

@@ -5,7 +5,7 @@
  * để chữ rơi vẫn là 1 Arcade Sprite: xoay, mờ, tween, physics đều áp cho cả bánh lẫn chữ.
  * Texture có độ phân giải gấp RENDER_SCALE (bánh phóng nearest, chữ vẽ sắc nét),
  * sprite hiển thị ở scale 1 / RENDER_SCALE. Bánh của Kids Bakery pack đã vẽ sẵn ở 2x
- * (`scale` trong sprites.json) và có `letter` = tâm lòng kem trống để đặt chữ.
+ * (`scale` trong sprites.json) và có `letter` = tâm lòng kem để đặt chữ (không có lòng kem -> giữa bánh).
  */
 import type Phaser from 'phaser';
 import { SPRITE_MANIFEST, type SpriteManifest } from '@/games/bread-catcher/game/config/assets';

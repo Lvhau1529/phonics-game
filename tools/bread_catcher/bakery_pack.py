@@ -1,12 +1,16 @@
 """
-Kids Bakery Phonics pack (`_source/bread-catcher/bakery-pack/`): sheet nền magenta (#FF00FF) không alpha,
-vài sheet còn dải trắng ở mép + nhãn số in sẵn ở góc trên trái; background có nhãn số ở góc.
+Kids Bakery Phonics pack — bản 16-bit (`_source/bread-catcher/bakery-pack/*_16bit.png`): sheet 1254×1254 nền
+magenta (#FF00FF) không alpha, lưới 4×4 (hoặc 3×4), không nhãn số; background không viền.
 
-  01_bakery_treats.png        12 bánh có lòng kem trống -> bánh chữ (chữ vẽ live ở giữa lòng kem)
-  02..07_*.png                tranh từ vựng (Picture Vocabulary + Blending) -> atlas words.webp
-  08_sprite_sheet.png         huy chương / cúp / mũ đầu bếp -> icon phần thưởng ở hộp quà
-  09_sprite_sheet.png         8 linh vật đầu bếp (chưa dùng)
+  01_bakery_treats            12 bánh ngọt -> bánh chữ (chữ vẽ live ở lòng kem nếu có, không thì giữa bánh)
+  02..07_vocab_*              tranh từ vựng (Picture Vocabulary + Blending) -> atlas words.webp
+  08_rewards_fx               cúp / huy chương / nơ / mũ đầu bếp / pháo giấy / bóng bay / cầu vồng / like
+                              -> icon phần thưởng ở hộp quà; khói / vụn bánh / confetti / pháo hoa -> FX trong lượt
+  09_animal_mascots           8 linh vật đầu bếp (chưa dùng)
   10 / 12 (ngang), 11 / 13 (dọc) -> bg_bakery_04 (tiệm bánh ngọt), bg_bakery_05 (bếp đêm bột tung toé)
+
+Bản 16-bit không có doll / duck / drum / dinosaur (sheet 06 bắt đầu từ "map") -> 4 tranh này lấy từ hàng đầu
+sheet 06 của bản cũ (`v1_06_sprite_sheet.png`: 1024×1024, còn dải trắng ở mép + nhãn số ở góc trên trái).
 
 Tách nền: flood fill từ mép sheet qua vùng magenta / trắng (không ăn vào màu tím / trắng bên trong vật),
 viền chuyển tiếp được "gỡ" màu magenta. Vật được gom theo mảng liền (giãn nở để gom chi tiết rời
@@ -33,7 +37,7 @@ OUT = PUBLIC_ASSETS / "bread-catcher"
 HI_RES = 2
 
 MAGENTA = np.array([255, 0, 255], dtype=float)
-# Nhãn số in sẵn ở góc trên trái các sheet (bỏ mọi mảng nằm gọn trong vùng này)
+# Sheet bản cũ: nhãn số in sẵn ở góc trên trái (bỏ mọi mảng nằm gọn trong vùng này)
 BADGE_ZONE = (200, 135)
 # Mảng nhỏ hơn MIN_AREA không tự tạo thành một vật (chỉ là chi tiết rời / lấp lánh)
 MIN_AREA = 1500
@@ -94,13 +98,14 @@ def _centers(values: np.ndarray, weights: np.ndarray, k: int) -> np.ndarray:
     return np.sort(centers)
 
 
-def find_items(rgba: np.ndarray, rows: int, cols: int) -> list[np.ndarray]:
+def find_items(rgba: np.ndarray, rows: int, cols: int, legacy: bool = False) -> list[np.ndarray]:
     """Cắt từng vật theo thứ tự đọc (trái -> phải, trên -> dưới).
 
-    Mảng lớn xác định tâm hàng / cột của lưới; mọi mảng (kể cả chi tiết rời: dây bóng bay, hơi nóng...)
-    được gán vào ô gần trọng tâm nhất. Mảng nằm gọn trong góc nhãn số bị bỏ.
+    Mảng lớn xác định tâm hàng / cột của lưới; mọi mảng (kể cả chi tiết rời: dây bóng bay, confetti...)
+    được gán vào ô gần trọng tâm nhất. Sheet bản cũ (`legacy`): bỏ mảng nằm gọn trong góc nhãn số và
+    đường mảnh dài (mép dải trắng) — bản 16-bit không cần, lọc này còn ăn nhầm vật mảnh như cần câu.
     """
-    bx, by = BADGE_ZONE
+    bx, by = BADGE_ZONE if legacy else (0, 0)
     rgba = rgba.copy()
     # Nhãn số (khối nâu đậm) có thể dính vào vật bên cạnh -> xoá phần tối trong góc nhãn
     corner = rgba[:by, :bx]
@@ -115,6 +120,8 @@ def find_items(rgba: np.ndarray, rows: int, cols: int) -> list[np.ndarray]:
 
     def usable(sl: tuple[slice, slice], area: float) -> bool:
         h, w = sl[0].stop - sl[0].start, sl[1].stop - sl[1].start
+        if not legacy:
+            return area >= 30
         in_badge = sl[1].stop <= bx and sl[0].stop <= by
         # Đường mảnh dài: mép dải trắng / khung sheet còn sót lại
         stray_line = max(w, h) > 60 and (min(w, h) <= 14 or (max(w, h) > 150 and area < 0.12 * w * h))
@@ -158,7 +165,7 @@ def sticker(img: Image.Image, width: int = 2 * HI_RES) -> Image.Image:
 # --------------------------------------------------------------------------- #
 # Bánh chữ: chữ đặt ở điểm "sâu" nhất của lòng kem (xa mép kem nhất)
 # --------------------------------------------------------------------------- #
-TREAT_SHEET = "01_bakery_treats.png"
+TREAT_SHEET = "01_bakery_treats_16bit.png"
 # Kích thước hiển thị (cạnh dài, px logic) — bánh cũ 62..74
 TREAT_MAX_SIDE = 68
 TREAT_OUTLINE = 2
@@ -198,31 +205,37 @@ def build_treats() -> dict[str, tuple[Image.Image, dict]]:
 # --------------------------------------------------------------------------- #
 # Tranh từ vựng -> 1 atlas (frame = từ viết thường)
 # --------------------------------------------------------------------------- #
+# (sheet, từ theo thứ tự ô, sheet bản cũ?) — None = bỏ ô (tranh không thuộc bảng từ)
 WORD_SHEETS = [
-    ("02_m_a_vocab.png", [
+    ("02_vocab_monkey_to_anchor_16bit.png", [
         "monkey", "milk", "money", "mouse", "moon", "mop", "muffin", "mittens",
         "apple", "ant", "ax", "alligator", "angel", "arm", "astronaut", "anchor",
-    ]),
-    ("03_sprite_sheet.png", [
+    ], False),
+    ("03_vocab_seal_to_turtle_16bit.png", [
         "seal", "soap", "sun", "socks", "square", "spider", "sink", "salad",
         "pen", "pineapple", "panda", "pizza", "parrot", "pumpkin", "puzzle", "turtle",
-    ]),
-    ("04_sprite_sheet.png", [
+    ], False),
+    ("04_vocab_tent_to_nose_16bit.png", [
         "tent", "teacher", "tiger", "table", "two", "insect", "igloo", "ink",
         "iguana", "in", "italy", "infant", "nest", "nut", "net", "nose",
-    ]),
-    ("05_sprite_sheet.png", [
+    ], False),
+    ("05_vocab_nine_to_desk_16bit.png", [
         "nine", "ninja", "cat", "cup", "car", "computer", "cake", "carrot",
         "octopus", "olive", "ostrich", "oven", "otter", "onion", "dog", "desk",
-    ]),
-    ("06_sprite_sheet.png", [
-        "doll", "duck", "drum", "dinosaur", "map", "man", "mat", "men",
-        "tap", "sit", "sip", "bin", "nap", "tin", "pan", "can",
-    ]),
-    ("07_sprite_sheet.png", [
-        "cap", "top", "pot", "hop", "dot", "dip", "cod", "dad",
-        "mom", "dam", "rod", "pad", "pat", "hid", "mad", "cast",
-    ]),
+    ], False),
+    ("v1_06_sprite_sheet.png", [
+        "doll", "duck", "drum", "dinosaur", None, None, None, None,
+        None, None, None, None, None, None, None, None,
+    ], True),
+    ("06_vocab_doll_to_can_16bit.png", [
+        "map", "man", "mat", "men", "tap", "sit", "sip", "bin",
+        "nap", "tin", "pan", "can", "cap", "top", "pot", "hop",
+    ], False),
+    # Hàng cuối: lon thiếc, mèo ngủ, cậu bé xem bản đồ, ghế dài — trùng nghĩa / ngoài bảng từ
+    ("07_vocab_cap_to_cast_16bit.png", [
+        "dot", "dip", "cod", "dad", "mom", "dam", "rod", "pad",
+        "pat", "hid", "mad", "cast", None, None, None, None,
+    ], False),
 ]
 # Cạnh dài của tranh (px logic) — ô từ cao 84..88
 WORD_MAX_SIDE = 60
@@ -233,9 +246,11 @@ WORD_ATLAS = OUT / "words"
 def build_word_atlas() -> int:
     """Ghi words/words.webp + words/words.json (Phaser atlas JSON hash). Trả về số tranh."""
     pictures: dict[str, Image.Image] = {}
-    for sheet, words in WORD_SHEETS:
-        for word, crop in zip(words, find_items(key_sheet(SRC / sheet), rows=4, cols=4), strict=True):
-            pictures[word] = sticker(fit(crop, WORD_MAX_SIDE * HI_RES))
+    for sheet, words, legacy in WORD_SHEETS:
+        crops = find_items(key_sheet(SRC / sheet), rows=4, cols=4, legacy=legacy)
+        for word, crop in zip(words, crops, strict=True):
+            if word:
+                pictures[word] = sticker(fit(crop, WORD_MAX_SIDE * HI_RES))
 
     cell = max(max(img.size) for img in pictures.values()) + 2
     rows = -(-len(pictures) // WORD_ATLAS_COLS)
@@ -261,32 +276,42 @@ def build_word_atlas() -> int:
 
 
 # --------------------------------------------------------------------------- #
-# Icon phần thưởng (hàng đầu sheet 08: cúp, huy chương, nơ, mũ đầu bếp)
+# Sheet 08: icon phần thưởng (hộp quà) + ảnh FX trong lượt chơi
+#   ô theo thứ tự đọc -> (tên file, cạnh dài px logic); None = chưa dùng
 # --------------------------------------------------------------------------- #
-REWARD_SHEET = "08_sprite_sheet.png"
-REWARD_ICONS = ["trophy", "medal", "ribbon", "chef_hat"]
-REWARD_MAX_SIDE = 56
+REWARD_SHEET = "08_rewards_fx_16bit.png"
+REWARD_FX_CELLS = [
+    ("rewards/trophy", 56), ("rewards/medal", 56), ("rewards/ribbon", 56), ("rewards/chef_hat", 56),
+    None, ("rewards/party_popper", 56), ("rewards/balloons", 56), ("rewards/rainbow", 56),
+    ("fx/confetti", 96), ("fx/puff", 56), ("fx/crumbs", 56), ("fx/fireworks", 120),
+    None, ("rewards/thumbs_up", 56), None, None,
+]
 
 
 def build_reward_icons() -> dict[str, tuple[Image.Image, dict]]:
+    """Icon phần thưởng có viền sticker; ảnh FX để trần (bay / nổ trên nền, không cần nổi khối)."""
+    out = {}
     items = find_items(key_sheet(SRC / REWARD_SHEET), rows=4, cols=4)
-    return {
-        f"rewards/{name}": (sticker(fit(crop, REWARD_MAX_SIDE * HI_RES)), {"scale": HI_RES})
-        for name, crop in zip(REWARD_ICONS, items)
-    }
+    for cell, crop in zip(REWARD_FX_CELLS, items, strict=True):
+        if cell is None:
+            continue
+        name, max_side = cell
+        img = fit(crop, max_side * HI_RES)
+        out[name] = (sticker(img) if name.startswith("rewards/") else img, {"scale": HI_RES})
+    return out
 
 
 # --------------------------------------------------------------------------- #
-# Background: cắt bỏ nhãn số ở góc trên trái (và viền trắng của ảnh 13)
-#   (file nguồn, vùng crop x0, y0, x1, y1) — vùng crop đúng tỉ lệ ảnh xuất
+# Background: crop về đúng tỉ lệ ảnh xuất (dọc 360×800, ngang 960×540)
+#   (file nguồn, vùng crop x0, y0, x1, y1)
 # --------------------------------------------------------------------------- #
 BACKGROUNDS = {
-    # Tiệm bánh ngọt hồng ban ngày
-    "backgrounds/bg_bakery_04": ("11_background.png", (190, 0, 996, 1792)),
-    "backgrounds/bg_bakery_04_wide": ("10_background.png", (84, 63, 1792, 1024)),
-    # Bếp ban đêm, bột mì tung toé (level HARD)
-    "backgrounds/bg_bakery_05": ("13_background.png", (256, 205, 963, 1776)),
-    "backgrounds/bg_bakery_05_wide": ("12_background.png", (104, 74, 1792, 1024)),
+    # Tiệm bánh ngọt hồng ban ngày (1024×1792 / 1672×941)
+    "backgrounds/bg_bakery_04": ("11_candy_shop_portrait_16bit.png", (109, 0, 915, 1792)),
+    "backgrounds/bg_bakery_04_wide": ("10_candy_shop_landscape_16bit.png", (0, 0, 1672, 940)),
+    # Bếp ban đêm, bột mì tung toé — level HARD (1024×1792 / 1792×1024); bản dọc lấy lò nướng làm tâm
+    "backgrounds/bg_bakery_05": ("13_crazy_bakery_night_portrait_16bit.png", (162, 0, 968, 1792)),
+    "backgrounds/bg_bakery_05_wide": ("12_crazy_bakery_night_landscape_16bit.png", (0, 16, 1792, 1024)),
 }
 
 

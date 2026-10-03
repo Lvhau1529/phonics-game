@@ -32,7 +32,7 @@ export interface SpriteInfo {
   height: number;
   /** Ảnh vẽ sẵn ở độ phân giải gấp `scale` lần kích thước hiển thị (Kids Bakery pack: 2) */
   scale?: number;
-  /** Bánh chữ: tâm lòng kem trống để đặt chữ (px của ảnh) */
+  /** Bánh chữ: tâm lòng kem để đặt chữ (px của ảnh; bánh không có lòng kem -> giữa bánh) */
   letter?: { x: number; y: number; radius: number };
 }
 

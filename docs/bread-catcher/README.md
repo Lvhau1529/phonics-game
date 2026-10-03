@@ -83,21 +83,27 @@ Trình duyệt không có giọng đọc (hoặc tắt VOICE) thì NORMAL / FAST
 
 Ảnh nền theo cấp độ (`game/config/stages.ts`): GENTLE — Sweet Shop (tiệm bánh ngọt hồng), EASY — Bakery
 Kitchen, NORMAL — Village Bakery, FAST — Premium Bakery, HARD — Midnight Kitchen (bếp đêm bột tung toé).
-Bánh chữ rơi ngẫu nhiên trong 16 kiểu: 4 bánh pixel-art gốc + 12 bánh ngọt có lòng kem trống (chữ đặt giữa
-lòng kem).
+Bánh chữ rơi ngẫu nhiên trong 16 kiểu: 4 bánh pixel-art gốc + 12 bánh ngọt 16-bit (chữ đặt giữa lòng kem nếu
+có, không thì giữa bánh; chữ có viền kem nên vẫn đọc rõ trên bánh nhiều chi tiết).
 
 ### Kids Bakery Phonics pack
 
-Bộ tài nguyên bổ sung ở `_source/bread-catcher/bakery-pack/` (13 ảnh nền magenta), cắt bằng
-`tools/bread_catcher/bakery_pack.py` (gọi từ `pnpm assets:bread`):
+Bộ tài nguyên bổ sung ở `_source/bread-catcher/bakery-pack/` — bản 16-bit (`*_16bit.png`: 9 sheet 1254×1254
+nền magenta không nhãn số + 4 background), cắt bằng `tools/bread_catcher/bakery_pack.py` (gọi từ
+`pnpm assets:bread`):
 
 | Ảnh nguồn            | Dùng cho                                                                           |
 | -------------------- | ---------------------------------------------------------------------------------- |
 | `01_bakery_treats`   | `bread/letter_treat_01..12` — bánh chữ, `letter` trong sprites.json = tâm lòng kem |
-| `02`–`07`            | atlas `words/words.webp` + `words.json` — 96 tranh từ vựng                         |
-| `08` (hàng đầu)      | `rewards/trophy, medal, ribbon, chef_hat` — icon bay ra khỏi hộp quà Winner's Gift |
+| `02`–`07`            | atlas `words/words.webp` + `words.json` — 96 tranh từ vựng (xem ghi chú dưới)      |
+| `08` (icon)          | `rewards/trophy, medal, ribbon, chef_hat, party_popper, balloons, rainbow, thumbs_up` — icon bay ra khỏi hộp quà Winner's Gift |
+| `08` (FX)            | `fx/fireworks` + `fx/confetti` (ghép đúng cả từ), `fx/puff` (hứng nhầm / trứng), `fx/crumbs` (bom nổ) |
 | `09`                 | 8 linh vật đầu bếp — **chưa dùng** (đội vẫn là LIONS / TIGERS / PANDAS)            |
 | `10`/`11`, `12`/`13` | `bg_bakery_04` (Sweet Shop), `bg_bakery_05` (Midnight Kitchen), bản ngang + dọc    |
+
+Bản 16-bit không có doll / duck / drum / dinosaur (sheet `06` bắt đầu từ map, hàng cuối sheet `07` là 4 tranh
+ngoài bảng từ — bỏ qua): 4 tranh này vẫn cắt từ hàng đầu sheet 06 bản cũ (`v1_06_sprite_sheet.png`, có nhãn số + dải
+trắng → `legacy=True` trong `WORD_SHEETS`).
 
 Ảnh của pack xuất ở 2x (`scale: 2` trong sprites.json), game vẽ ở scale 0.5 cho sắc nét. Thêm tranh: thêm
 tên từ đúng thứ tự ô trong `WORD_SHEETS` (bakery_pack.py) rồi chạy lại `pnpm assets:bread`.
