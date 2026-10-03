@@ -3,7 +3,7 @@
 
 Chạy:  pnpm assets:avatars   (= python tools/build_avatars.py)
 
-Nguồn: Animal Avatar sheet 16-bit (`_source/platform/avatars/animal_avatars_16bit.webp`): 1254×1254 nền magenta,
+Nguồn: Animal Avatar sheet 16-bit (`_source/platform/avatars/animal_avatars_16bit.png`): 1254×1254 nền magenta,
 2 hàng × 4 chân dung thú trong khung gỗ tròn. Tách nền bằng common/magenta_sheet.py; các khung trong một hàng
 chạm nhau vài pixel nên không cắt theo mảng liền mà theo khe: hàng tách ở dải trống, cột tách ở cột ít pixel nhất
 quanh mỗi đường chia đều. Mỗi ảnh căn giữa trên canvas vuông AVATAR_SIZE (UI hiển thị 36–112px CSS,
@@ -27,7 +27,7 @@ from common.imaging import resize_rgba  # noqa: E402
 from common.magenta_sheet import key_sheet  # noqa: E402
 from common.paths import SHARED_ASSETS, SOURCE  # noqa: E402
 
-SHEET = SOURCE / "platform" / "avatars" / "animal_avatars_16bit.webp"
+SHEET = SOURCE / "platform" / "avatars" / "animal_avatars_16bit.png"
 OUT = SHARED_ASSETS / "avatars"
 
 # Thứ tự ô trên sheet = key AvatarKey của contracts

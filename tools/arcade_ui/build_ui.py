@@ -13,7 +13,7 @@ Sheet 01–04: lưới 4×4 trên nền VÀNG gradient (RGB, không có alpha), 
 Sheet 05: 9 cảnh linh vật ong (khung chữ nhật có nền vườn) -> cắt ô vuông giữa cảnh, khung bo do CSS vẽ.
 Thứ tự ô theo `_source/platform/asset_manifest.json`. Chỉ xuất những ảnh app đang dùng (bảng EXPORTS / MASCOTS);
 muốn dùng thêm ảnh nào thì thêm tên của nó vào bảng. Ảnh lớn (bìa, nền, linh vật) xuất WebP cho nhẹ.
-Thư mục xuất được xoá sạch trước mỗi lần chạy.
+Thư mục xuất được dọn trước mỗi lần chạy (trừ KEEP_DIRS: `lottie/` đặt tay).
 """
 
 from __future__ import annotations
@@ -93,11 +93,13 @@ MASCOTS: dict[str, str] = {
 }
 
 # Ảnh nguyên tấm: (file nguồn, tên xuất, kích thước tối đa (rộng, cao), vùng cắt (x0, y0, x1, y1) hoặc None)
-# Bản dọc: tranh thật chỉ ở dải giữa, hai bên là bản phóng mờ + viền trắng -> cắt bỏ
+# Nền menu chính: tranh rừng tổ ong 16-bit (10_hub_background_forest.png, 1672×941, chỉ có bản ngang) —
+# bản dọc cắt dải 9:16 giữa tranh (gốc cây, thác nước, mặt trời); CSS `cover` tự cắt tiếp theo tỉ lệ máy.
+# (08 / 09: nền vườn hoa cũ của Bee pack, không dùng nữa.)
 FULL_IMAGES = [
     ("06_coming_soon_game_cover.png", "coming_soon_cover", (800, 457), None),
-    ("08_hub_background_landscape.png", "hub_bg_landscape", (1792, 1024), None),
-    ("09_hub_background_portrait.png", "hub_bg_portrait", (900, 1792), (206, 4, 808, 1786)),
+    ("10_hub_background_forest.png", "hub_bg_landscape", (1792, 1024), None),
+    ("10_hub_background_forest.png", "hub_bg_portrait", (900, 1792), (572, 0, 1101, 941)),
 ]
 WEBP_QUALITY = 84
 
@@ -208,8 +210,15 @@ def export_full(source: str, name: str, max_size: tuple[int, int], box: tuple[in
     print(f"  {source:34s} -> ui/{name}.webp {img.size}")
 
 
+# Thư mục trong OUT không do script này sinh (đặt tay) — giữ nguyên khi dọn
+KEEP_DIRS = {"lottie"}
+
+
 def main() -> None:
-    shutil.rmtree(OUT, ignore_errors=True)
+    for child in OUT.glob("*") if OUT.exists() else []:
+        if child.name in KEEP_DIRS:
+            continue
+        shutil.rmtree(child) if child.is_dir() else child.unlink()
     manifest = json.loads((PACK / "asset_manifest.json").read_text(encoding="utf-8"))
     exported: set[str] = set()
     for sheet_info in manifest["image_assets"]:

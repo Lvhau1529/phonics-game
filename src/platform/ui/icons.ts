@@ -49,7 +49,7 @@ export const MASCOT = {
 
 export const COMING_SOON_COVER = `${UI}/coming_soon_cover.webp`;
 
-/** Nền màn chọn game (vườn hoa, tổ ong) */
+/** Nền màn chọn game (rừng tổ ong, hồ, thác nước) */
 export const HUB_BACKGROUND = {
   portrait: `${UI}/hub_bg_portrait.webp`,
   landscape: `${UI}/hub_bg_landscape.webp`,
