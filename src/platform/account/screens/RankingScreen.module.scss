@@ -108,12 +108,10 @@
     border: 2px solid var(--color-ink);
     border-radius: 12px;
     background: var(--color-honey-light);
-    image-rendering: pixelated;
   }
 
   .scene {
     object-fit: cover;
-    image-rendering: auto;
   }
 
   .name {

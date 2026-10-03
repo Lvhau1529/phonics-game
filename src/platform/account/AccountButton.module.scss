@@ -49,12 +49,10 @@
     border: 2px solid var(--color-ink);
     border-radius: 50%;
     background: var(--color-honey-light);
-    image-rendering: pixelated;
   }
 
   .scene {
     object-fit: cover;
-    image-rendering: auto;
   }
 
   .name {

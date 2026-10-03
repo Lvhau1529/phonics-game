@@ -23,14 +23,12 @@
     border-radius: 26%;
     background: var(--color-honey-light);
     box-shadow: 0 5px 0 rgba(0, 0, 0, 0.3);
-    image-rendering: pixelated;
     animation: bob 1.8s ease-in-out infinite;
   }
 
-  // Ảnh ong (cảnh vuông vẽ mượt)
+  // Ảnh ong (cảnh vuông) phủ kín khung
   .scene {
     object-fit: cover;
-    image-rendering: auto;
   }
 
   .name {

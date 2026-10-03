@@ -397,26 +397,6 @@
     "width": 46,
     "height": 52
   },
-  "mascot_lion": {
-    "path": "assets/bread-catcher/phonics/mascot_lion.png",
-    "width": 72,
-    "height": 81
-  },
-  "mascot_tiger": {
-    "path": "assets/bread-catcher/phonics/mascot_tiger.png",
-    "width": 72,
-    "height": 81
-  },
-  "mascot_panda": {
-    "path": "assets/bread-catcher/phonics/mascot_panda.png",
-    "width": 72,
-    "height": 81
-  },
-  "mascot_bunny": {
-    "path": "assets/bread-catcher/phonics/mascot_bunny.png",
-    "width": 72,
-    "height": 81
-  },
   "crown": {
     "path": "assets/bread-catcher/phonics/crown.png",
     "width": 54,

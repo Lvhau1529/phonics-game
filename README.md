@@ -254,10 +254,12 @@ pnpm assets:food-stream   # Food Stream: cắt art board -> public/assets/food-s
 pnpm assets:audio         # mọi WAV master -> .ogg + .mp3 (SFX chung -> public/assets/shared/sfx)
 pnpm assets:ui            # giao diện chung (icon, kim cương, linh vật ong, nền màn chọn game) -> public/assets/shared/ui
 pnpm assets:icons         # icon PWA / favicon hoa cúc pixel (_source/platform/app-icon) -> public/icons
+pnpm assets:avatars       # ảnh đại diện tài khoản (Animal Avatar sheet, _source/platform/avatars) -> public/assets/shared/avatars
 pnpm assets               # chạy tất cả
 ```
 
-- `tools/common/`: xử lý ảnh dùng chung (làm sạch alpha, cắt sát, resize, viền sticker), đường dẫn.
+- `tools/common/`: xử lý ảnh dùng chung (làm sạch alpha, cắt sát, resize, viền sticker), cắt sheet nền magenta
+  (`magenta_sheet.py`), đường dẫn.
 - `tools/bread_catcher/`: `build_sprites.py` (toạ độ cắt, ảnh bìa), `phonics_art.py`, `brainrot_art.py`.
 - `tools/food_stream/build_sprites.py`: toạ độ cắt nhân vật / món ăn / đạo cụ / tranh, huy hiệu che chữ in sẵn,
   frame cắn, ảnh bìa.
@@ -268,6 +270,9 @@ pnpm assets               # chạy tất cả
   (khung bo vẽ bằng CSS — mixin `mascot-frame`). Chỉ xuất ảnh đang dùng (bảng `EXPORTS` / `MASCOTS`), ảnh lớn ra WebP.
 - `tools/build_app_icons.py`: icon app của cả Phonics Arcade từ Daisy Pixel Icon Pack (`_source/platform/app-icon/`):
   cắt góc nền trắng của `master-1024.png`, sinh bản maskable / apple-touch; favicon chép nguyên bản crop của pack.
+- `tools/build_avatars.py`: 8 avatar con vật (preset `AVATARS` của contracts) từ Animal Avatar sheet
+  (`_source/platform/avatars/`, nền magenta 2×4, khung gỗ tròn) -> WebP vuông 224px. Avatar cũ `pip` / `girl` / `boy`
+  (không còn trong picker) vẫn dùng ảnh ong / streamer — map ở `src/platform/account/avatars.ts`.
 - Chỉ dùng khung / icon **không có chữ in sẵn** (hoặc che chữ in sẵn) — chữ cái, tên đội, nhãn nút vẽ live.
 
 ## Gói `@phonics/contracts` (GitHub Packages)

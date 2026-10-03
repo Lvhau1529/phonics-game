@@ -1,6 +1,6 @@
 """
 Pixel-art cho phần lớp học của Phonics Bread Catcher (vẽ bằng code, không cần file gốc):
-mascot 4 đội, xúc xắc 6 mặt, hộp quà đóng / mở, vương miện.
+xúc xắc 6 mặt, hộp quà đóng / mở, vương miện (linh vật đội: Kids Bakery pack, bakery_pack.py).
 
 Không có chữ nào được "nướng" vào hình — tên đội, chữ cái, điểm... đều vẽ live trong game.
 Được gọi từ tools/build_sprites.py — không cần chạy riêng.
@@ -10,27 +10,11 @@ from __future__ import annotations
 
 from PIL import Image, ImageDraw
 
-from brainrot_art import OUTLINE, WHITE, BLACK, _outline
+from brainrot_art import WHITE, _outline
 
 SCALE = 3
 
 # Bảng màu
-FUR_LION = (255, 196, 72, 255)
-MANE = (214, 112, 38, 255)
-MANE_DARK = (170, 78, 24, 255)
-FUR_TIGER = (255, 150, 46, 255)
-STRIPE = (60, 34, 20, 255)
-MUZZLE = (255, 246, 228, 255)
-PANDA_WHITE = (250, 250, 250, 255)
-PANDA_BLACK = (40, 40, 48, 255)
-BUNNY = (255, 255, 255, 255)
-PINK = (255, 150, 180, 255)
-BLUSH = (255, 170, 170, 255)
-NOSE = (92, 44, 30, 255)
-HAT = (255, 255, 255, 255)
-HAT_SHADE = (222, 222, 232, 255)
-EYE_SHINE = (255, 255, 255, 255)
-
 DICE_FACE = (255, 252, 244, 255)
 DICE_SHADE = (226, 214, 196, 255)
 PIP = (226, 58, 72, 255)
@@ -53,111 +37,6 @@ SPARKLE = (255, 244, 160, 255)
 def _finish(img: Image.Image, scale: int = SCALE) -> Image.Image:
     img = _outline(img)
     return img.resize((img.width * scale, img.height * scale), Image.NEAREST)
-
-
-# --------------------------------------------------------------------------- #
-# Mascot — đầu thú đội mũ đầu bếp (canvas 24x27)
-# --------------------------------------------------------------------------- #
-def _chef_hat(d: ImageDraw.ImageDraw) -> None:
-    d.ellipse([5, 2, 11, 8], fill=HAT)
-    d.ellipse([13, 2, 19, 8], fill=HAT)
-    d.ellipse([8, 0, 16, 7], fill=HAT)
-    d.rectangle([7, 7, 17, 9], fill=HAT_SHADE)
-    d.point([(10, 3), (14, 4)], fill=HAT_SHADE)
-
-
-def _eyes(d: ImageDraw.ImageDraw, y: int = 16) -> None:
-    for x in (8, 14):
-        d.rectangle([x, y, x + 2, y + 2], fill=BLACK)
-        d.point((x + 1, y), fill=EYE_SHINE)
-
-
-def _smile(d: ImageDraw.ImageDraw, y: int = 21) -> None:
-    d.rectangle([11, y - 2, 13, y - 1], fill=NOSE)
-    d.point([(10, y), (14, y)], fill=NOSE)
-    d.point([(11, y + 1), (13, y + 1)], fill=NOSE)
-
-
-def _lion() -> Image.Image:
-    img = Image.new("RGBA", (24, 27), (0, 0, 0, 0))
-    d = ImageDraw.Draw(img)
-    # Bờm răng cưa
-    d.ellipse([1, 6, 23, 27], fill=MANE)
-    for x, y in [(2, 10), (19, 10), (0, 16), (21, 16), (2, 22), (19, 22), (6, 24), (15, 24)]:
-        d.rectangle([x, y, x + 2, y + 2], fill=MANE)
-    d.arc([2, 7, 22, 26], 200, 340, fill=MANE_DARK)
-    # Tai + mặt
-    d.ellipse([4, 8, 8, 12], fill=FUR_LION)
-    d.ellipse([16, 8, 20, 12], fill=FUR_LION)
-    d.ellipse([5, 10, 19, 25], fill=FUR_LION)
-    d.ellipse([8, 18, 16, 24], fill=MUZZLE)
-    _eyes(d)
-    _smile(d)
-    d.point([(6, 20), (18, 20)], fill=BLUSH)
-    _chef_hat(d)
-    return _finish(img)
-
-
-def _tiger() -> Image.Image:
-    img = Image.new("RGBA", (24, 27), (0, 0, 0, 0))
-    d = ImageDraw.Draw(img)
-    # Tai
-    d.ellipse([2, 7, 8, 13], fill=FUR_TIGER)
-    d.ellipse([16, 7, 22, 13], fill=FUR_TIGER)
-    d.rectangle([4, 9, 5, 10], fill=PINK)
-    d.rectangle([18, 9, 19, 10], fill=PINK)
-    # Mặt + vằn
-    d.ellipse([2, 9, 22, 26], fill=FUR_TIGER)
-    d.line([(12, 10), (12, 13)], fill=STRIPE)
-    d.line([(9, 11), (10, 13)], fill=STRIPE)
-    d.line([(15, 11), (14, 13)], fill=STRIPE)
-    for y in (16, 19):
-        d.line([(2, y), (5, y + 1)], fill=STRIPE)
-        d.line([(22, y), (19, y + 1)], fill=STRIPE)
-    d.ellipse([7, 18, 17, 25], fill=MUZZLE)
-    _eyes(d)
-    _smile(d)
-    d.point([(6, 21), (18, 21)], fill=BLUSH)
-    _chef_hat(d)
-    return _finish(img)
-
-
-def _panda() -> Image.Image:
-    img = Image.new("RGBA", (24, 27), (0, 0, 0, 0))
-    d = ImageDraw.Draw(img)
-    # Tai đen
-    d.ellipse([1, 6, 8, 13], fill=PANDA_BLACK)
-    d.ellipse([16, 6, 23, 13], fill=PANDA_BLACK)
-    # Mặt trắng + quầng mắt
-    d.ellipse([2, 9, 22, 26], fill=PANDA_WHITE)
-    d.ellipse([6, 14, 11, 20], fill=PANDA_BLACK)
-    d.ellipse([13, 14, 18, 20], fill=PANDA_BLACK)
-    for x in (8, 14):
-        d.rectangle([x, 16, x + 1, 17], fill=WHITE)
-        d.point((x, 16), fill=BLACK)
-    d.rectangle([11, 20, 13, 21], fill=PANDA_BLACK)
-    d.point([(10, 22), (14, 22), (11, 23), (13, 23)], fill=PANDA_BLACK)
-    d.point([(5, 21), (19, 21)], fill=BLUSH)
-    _chef_hat(d)
-    return _finish(img)
-
-
-def _bunny() -> Image.Image:
-    img = Image.new("RGBA", (24, 27), (0, 0, 0, 0))
-    d = ImageDraw.Draw(img)
-    # Tai dài (không đội mũ)
-    d.ellipse([5, 0, 10, 14], fill=BUNNY)
-    d.ellipse([14, 0, 19, 14], fill=BUNNY)
-    d.ellipse([7, 2, 8, 12], fill=PINK)
-    d.ellipse([16, 2, 17, 12], fill=PINK)
-    d.ellipse([3, 10, 21, 26], fill=BUNNY)
-    _eyes(d, 16)
-    d.rectangle([11, 19, 13, 20], fill=PINK)
-    d.point([(10, 21), (14, 21)], fill=NOSE)
-    d.rectangle([11, 22, 13, 23], fill=WHITE)
-    d.line([(12, 22), (12, 23)], fill=HAT_SHADE)
-    d.point([(6, 20), (18, 20)], fill=BLUSH)
-    return _finish(img)
 
 
 # --------------------------------------------------------------------------- #
@@ -245,10 +124,6 @@ def _crown() -> Image.Image:
 
 def build_phonics_sprites() -> dict[str, Image.Image]:
     sprites: dict[str, Image.Image] = {
-        "phonics/mascot_lion": _lion(),
-        "phonics/mascot_tiger": _tiger(),
-        "phonics/mascot_panda": _panda(),
-        "phonics/mascot_bunny": _bunny(),
         "phonics/crown": _crown(),
     }
     for value in range(1, 7):

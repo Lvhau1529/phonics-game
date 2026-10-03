@@ -1,14 +1,8 @@
 @layer components {
-  // Linh vật pixel-art giữ nét; ảnh ong (cảnh vuông) bo tròn
+  // Chân dung con vật trong khung gỗ tròn (Animal Avatar sheet)
   .picker {
     img {
       border-radius: 12px;
-      image-rendering: pixelated;
-    }
-
-    // Ô đầu tiên = Pip (ảnh webp vẽ mượt)
-    [role='radio']:first-child img {
-      image-rendering: auto;
     }
   }
 }

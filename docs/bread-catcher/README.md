@@ -98,7 +98,7 @@ nền magenta không nhãn số + 4 background), cắt bằng `tools/bread_catch
 | `02`–`07`            | atlas `words/words.webp` + `words.json` — 96 tranh từ vựng (xem ghi chú dưới)      |
 | `08` (icon)          | `rewards/trophy, medal, ribbon, chef_hat, party_popper, balloons, rainbow, thumbs_up` — icon bay ra khỏi hộp quà Winner's Gift |
 | `08` (FX)            | `fx/fireworks` + `fx/confetti` (ghép đúng cả từ), `fx/puff` (hứng nhầm / trứng), `fx/crumbs` (bom nổ) |
-| `09`                 | `phonics/mascot_fox, frog, penguin` (3 đội) + `mascot_bear` (Solo) — linh vật đầu bếp; mascot pixel cũ lion / tiger / panda / bunny vẫn sinh vì là ảnh đại diện tài khoản |
+| `09`                 | `phonics/mascot_fox, frog, penguin` (3 đội) + `mascot_bear` (Solo) — linh vật đầu bếp |
 | `10`/`11`, `12`/`13` | `bg_bakery_04` (Sweet Shop), `bg_bakery_05` (Midnight Kitchen), bản ngang + dọc    |
 
 Bản 16-bit không có doll / duck / drum / dinosaur (sheet `06` bắt đầu từ map, hàng cuối sheet `07` là 4 tranh
