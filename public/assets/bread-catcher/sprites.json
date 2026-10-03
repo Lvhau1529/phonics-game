@@ -253,74 +253,98 @@
   },
   "trophy": {
     "path": "assets/bread-catcher/rewards/trophy.png",
-    "width": 62,
-    "height": 120,
+    "width": 120,
+    "height": 110,
     "scale": 2
   },
   "medal": {
     "path": "assets/bread-catcher/rewards/medal.png",
-    "width": 57,
+    "width": 94,
     "height": 120,
     "scale": 2
   },
   "ribbon": {
     "path": "assets/bread-catcher/rewards/ribbon.png",
-    "width": 56,
+    "width": 100,
     "height": 120,
     "scale": 2
   },
   "chef_hat": {
     "path": "assets/bread-catcher/rewards/chef_hat.png",
-    "width": 70,
-    "height": 120,
+    "width": 120,
+    "height": 107,
     "scale": 2
   },
   "party_popper": {
     "path": "assets/bread-catcher/rewards/party_popper.png",
-    "width": 120,
-    "height": 93,
+    "width": 114,
+    "height": 120,
     "scale": 2
   },
   "balloons": {
     "path": "assets/bread-catcher/rewards/balloons.png",
-    "width": 120,
-    "height": 57,
+    "width": 103,
+    "height": 120,
     "scale": 2
   },
   "rainbow": {
     "path": "assets/bread-catcher/rewards/rainbow.png",
     "width": 120,
-    "height": 64,
+    "height": 90,
     "scale": 2
   },
   "confetti": {
     "path": "assets/bread-catcher/fx/confetti.png",
     "width": 192,
-    "height": 113,
+    "height": 187,
     "scale": 2
   },
   "puff": {
     "path": "assets/bread-catcher/fx/puff.png",
     "width": 112,
-    "height": 98,
+    "height": 111,
     "scale": 2
   },
   "crumbs": {
     "path": "assets/bread-catcher/fx/crumbs.png",
     "width": 112,
-    "height": 73,
+    "height": 110,
     "scale": 2
   },
   "fireworks": {
     "path": "assets/bread-catcher/fx/fireworks.png",
     "width": 240,
-    "height": 202,
+    "height": 233,
     "scale": 2
   },
   "thumbs_up": {
     "path": "assets/bread-catcher/rewards/thumbs_up.png",
     "width": 113,
     "height": 120,
+    "scale": 2
+  },
+  "mascot_fox": {
+    "path": "assets/bread-catcher/phonics/mascot_fox.png",
+    "width": 144,
+    "height": 162,
+    "scale": 2
+  },
+  "mascot_frog": {
+    "path": "assets/bread-catcher/phonics/mascot_frog.png",
+    "width": 144,
+    "height": 162,
+    "scale": 2
+  },
+  "mascot_penguin": {
+    "path": "assets/bread-catcher/phonics/mascot_penguin.png",
+    "width": 144,
+    "height": 162,
+    "scale": 2
+  },
+  "mascot_bear": {
+    "path": "assets/bread-catcher/phonics/mascot_bear.png",
+    "width": 144,
+    "height": 162,
     "scale": 2
   },
   "tung_0": {

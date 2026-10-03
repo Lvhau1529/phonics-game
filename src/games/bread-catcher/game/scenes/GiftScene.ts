@@ -4,7 +4,7 @@
  * Nội dung quà lấy từ session/rewards.ts (đang là placeholder).
  */
 import Phaser from 'phaser';
-import { MUSIC, mascotTexture } from '@/games/bread-catcher/game/config/assets';
+import { MASCOT_IMAGE_SCALE, MUSIC, mascotTexture } from '@/games/bread-catcher/game/config/assets';
 import { SFX } from '@/platform/audio/sfx';
 import { DEPTH, THEME } from '@/games/bread-catcher/game/config/gameConfig';
 import { STAGE_BACKGROUNDS } from '@/games/bread-catcher/game/config/stages';
@@ -24,9 +24,9 @@ import { shuffle } from '@/shared/random';
 
 const GIFT_COUNT = 3;
 const GIFT_SPACING = 108;
-/** Icon phần thưởng vẽ ở 2x (hiển thị ~60px), đặt cao hơn nắp hộp ngần này */
+/** Icon phần thưởng vẽ ở 2x (hiển thị ~60px); đáy icon chạm mép trên hộp, lấn xuống ngần này */
 const REWARD_ICON_SCALE = 0.5;
-const REWARD_ICON_LIFT = 26;
+const REWARD_ICON_OVERLAP = 2;
 
 /**
  * Vị trí các phần (toạ độ logic).
@@ -125,7 +125,7 @@ export default class GiftScene extends Phaser.Scene {
     const title = addText(this, layout.winnerX, layout.titleY, UI_TEXT.winner, 'title', { fontSize: '44px' });
     const mascot = this.add
       .image(layout.winnerX, layout.mascotY, mascotTexture(standing.team.mascot))
-      .setScale(layout.mascotScale);
+      .setScale(layout.mascotScale * MASCOT_IMAGE_SCALE);
     const crown = this.add.image(layout.winnerX, mascot.y - mascot.displayHeight / 2 - 8, 'crown');
     const name = fitText(
       addText(this, layout.winnerX, layout.nameY, standing.team.name, 'title', {
@@ -235,7 +235,8 @@ export default class GiftScene extends Phaser.Scene {
     if (!reward.iconKey || !this.textures.exists(reward.iconKey)) return;
     const icon = this.add.image(gift.x, gift.y, reward.iconKey).setScale(0);
     this.layer.addAt(icon, this.layer.getIndex(gift));
-    const top = gift.y - gift.displayHeight / 2 - REWARD_ICON_LIFT;
+    // Nâng theo chiều cao thật của icon: icon dẹt (cầu vồng, pháo giấy) không bị nắp hộp che
+    const top = gift.y - gift.displayHeight / 2 - (icon.height * REWARD_ICON_SCALE) / 2 + REWARD_ICON_OVERLAP;
     this.tweens.add({
       targets: icon,
       y: top,

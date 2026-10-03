@@ -5,6 +5,7 @@
  */
 import { createStore } from '@/shared/createStore';
 import type { TeamTotal } from '@/games/bread-catcher/session/leaderboard';
+import { TEAM_MASCOTS } from '@/games/bread-catcher/session/teams';
 import type { LevelId, SetupDraft } from '@/games/bread-catcher/session/types';
 import { gameStorageKey, readJson, removeKeys, writeJson } from '@/platform/storage';
 
@@ -30,7 +31,10 @@ function read(): SaveData {
   return {
     lastSetup: stored.lastSetup ?? DEFAULTS.lastSetup,
     soloBest: { ...stored.soloBest },
-    teamTotals: Array.isArray(stored.teamTotals) ? stored.teamTotals : [],
+    // Mascot theo vị trí đội (save cũ còn lion / tiger / panda)
+    teamTotals: Array.isArray(stored.teamTotals)
+      ? stored.teamTotals.map((row) => ({ ...row, mascot: TEAM_MASCOTS[row.teamId] ?? TEAM_MASCOTS[0] }))
+      : [],
   };
 }
 

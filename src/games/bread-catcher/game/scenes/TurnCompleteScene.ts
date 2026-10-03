@@ -7,7 +7,7 @@
  *   [NEXT TEAM]  (đội cuối: [FINAL RESULTS] · Solo: [SEE RESULTS])
  */
 import Phaser from 'phaser';
-import { mascotTexture } from '@/games/bread-catcher/game/config/assets';
+import { MASCOT_IMAGE_SCALE, mascotTexture } from '@/games/bread-catcher/game/config/assets';
 import { SFX, SFX_VOLUME } from '@/platform/audio/sfx';
 import { THEME } from '@/games/bread-catcher/game/config/gameConfig';
 import { SCENES } from '@/games/bread-catcher/game/core/keys';
@@ -42,7 +42,9 @@ export default class TurnCompleteScene extends Phaser.Scene {
     const panel = createPanel(this, 420);
     const top = panel.top;
 
-    const mascot = this.add.image(0, top + 160, mascotTexture(team.mascot)).setScale(1.1);
+    const mascot = this.add
+      .image(0, top + 160, mascotTexture(team.mascot))
+      .setScale(1.1 * MASCOT_IMAGE_SCALE);
     this.tweens.add({
       targets: mascot,
       y: mascot.y - 6,

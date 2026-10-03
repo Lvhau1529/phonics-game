@@ -19,7 +19,8 @@ export type TimeOption = 'auto' | number;
 
 export type TeamId = 0 | 1 | 2;
 
-export type MascotId = 'lion' | 'tiger' | 'panda' | 'bunny';
+/** Linh vật đầu bếp (Kids Bakery pack) — 3 đội Class Mode + Solo */
+export type MascotId = 'fox' | 'frog' | 'penguin' | 'bear';
 
 /**
  * Mức gợi ý ở ô từ (plan §27):

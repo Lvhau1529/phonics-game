@@ -4,8 +4,8 @@
 import gameConfig from '@/games/bread-catcher/content/game_config.json';
 import type { MascotId, SetupDraft, Team, TeamId } from '@/games/bread-catcher/session/types';
 
-export const TEAM_MASCOTS: readonly MascotId[] = ['lion', 'tiger', 'panda'];
-export const SOLO_MASCOT: MascotId = 'bunny';
+export const TEAM_MASCOTS: readonly MascotId[] = ['fox', 'frog', 'penguin'];
+export const SOLO_MASCOT: MascotId = 'bear';
 
 export const DEFAULT_TEAM_NAMES = gameConfig.classMode.defaultTeamNames as [string, string, string];
 export const DEFAULT_PLAYER_NAME = gameConfig.soloMode.defaultPlayerName;

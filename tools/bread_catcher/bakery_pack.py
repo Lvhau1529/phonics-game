@@ -6,7 +6,7 @@ magenta (#FF00FF) không alpha, lưới 4×4 (hoặc 3×4), không nhãn số; b
   02..07_vocab_*              tranh từ vựng (Picture Vocabulary + Blending) -> atlas words.webp
   08_rewards_fx               cúp / huy chương / nơ / mũ đầu bếp / pháo giấy / bóng bay / cầu vồng / like
                               -> icon phần thưởng ở hộp quà; khói / vụn bánh / confetti / pháo hoa -> FX trong lượt
-  09_animal_mascots           8 linh vật đầu bếp (chưa dùng)
+  09_animal_mascots           8 linh vật đầu bếp -> mascot đội (cáo / ếch / cánh cụt) + Solo (gấu)
   10 / 12 (ngang), 11 / 13 (dọc) -> bg_bakery_04 (tiệm bánh ngọt), bg_bakery_05 (bếp đêm bột tung toé)
 
 Bản 16-bit không có doll / duck / drum / dinosaur (sheet 06 bắt đầu từ "map") -> 4 tranh này lấy từ hàng đầu
@@ -84,8 +84,12 @@ def key_sheet(path: Path) -> np.ndarray:
 
 
 def _centers(values: np.ndarray, weights: np.ndarray, k: int) -> np.ndarray:
-    """K-means 1 chiều (có trọng số) — tâm hàng / cột của lưới trên sheet."""
-    centers = np.quantile(values, (np.arange(k) + 0.5) / k)
+    """K-means 1 chiều (có trọng số) — tâm hàng / cột của lưới trên sheet.
+
+    Khởi tạo chia đều từ vật đầu tới vật cuối (lưới đều): khởi tạo theo phân vị bị lệch khi một hàng có nhiều
+    mảnh rời (confetti, vụn bánh ở sheet 08) -> hai hàng trên bị gộp làm một.
+    """
+    centers = np.linspace(values.min(), values.max(), k) if k > 1 else np.array([np.average(values, weights=weights)])
     for _ in range(50):
         nearest = np.abs(values[:, None] - centers[None, :]).argmin(axis=1)
         updated = np.array([
@@ -298,6 +302,33 @@ def build_reward_icons() -> dict[str, tuple[Image.Image, dict]]:
         name, max_side = cell
         img = fit(crop, max_side * HI_RES)
         out[name] = (sticker(img) if name.startswith("rewards/") else img, {"scale": HI_RES})
+    return out
+
+
+# --------------------------------------------------------------------------- #
+# Linh vật đầu bếp (sheet 09: 2 hàng × 4) -> phonics/mascot_<id>
+#   Canvas cố định MASCOT_SIZE (2x, cùng tỉ lệ 72×81 của mascot pixel cũ — UI React đặt sẵn width / height),
+#   con vật căn giữa, sát đáy. Mascot pixel cũ (lion / tiger / panda / bunny) vẫn sinh ở phonics_art.py
+#   vì là ảnh đại diện tài khoản (AVATARS của contracts).
+# --------------------------------------------------------------------------- #
+MASCOT_SHEET = "09_animal_mascots_16bit.png"
+MASCOT_CELLS = ["fox", "bear", "cat", "frog", "penguin", "koala", "elephant", "monkey"]
+MASCOTS = ["fox", "frog", "penguin", "bear"]
+MASCOT_SIZE = (72 * HI_RES, 81 * HI_RES)
+
+
+def build_mascots() -> dict[str, tuple[Image.Image, dict]]:
+    crops = dict(zip(MASCOT_CELLS, find_items(key_sheet(SRC / MASCOT_SHEET), rows=2, cols=4), strict=True))
+    out = {}
+    pad = 2 * HI_RES  # viền sticker
+    box_w, box_h = MASCOT_SIZE[0] - 2 * pad, MASCOT_SIZE[1] - 2 * pad
+    for name in MASCOTS:
+        crop = crops[name]
+        scale = min(box_w / crop.shape[1], box_h / crop.shape[0])
+        img = sticker(resize_rgba(Image.fromarray(crop), (round(crop.shape[1] * scale), round(crop.shape[0] * scale))))
+        canvas = Image.new("RGBA", MASCOT_SIZE, (0, 0, 0, 0))
+        canvas.alpha_composite(img, ((MASCOT_SIZE[0] - img.width) // 2, MASCOT_SIZE[1] - img.height))
+        out[f"phonics/mascot_{name}"] = (canvas, {"scale": HI_RES})
     return out
 
 

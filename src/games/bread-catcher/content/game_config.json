@@ -3,7 +3,7 @@
   "language": "en",
   "classMode": {
     "teamCount": 3,
-    "defaultTeamNames": ["Lions", "Tigers", "Pandas"],
+    "defaultTeamNames": ["Foxes", "Frogs", "Penguins"],
     "wordsPerTurn": 5,
     "showFinalStatsOnlyWhenAllTeamsComplete": true
   },

@@ -16,7 +16,7 @@ Metadata (kích thước, anchors đã quy đổi) được ghi ra `public/asset
 để game đọc thay vì hard-code.
 
 Kids Bakery Phonics pack 16-bit (`_source/bread-catcher/bakery-pack/`, xem bakery_pack.py): 12 bánh chữ mới,
-tranh từ vựng (atlas `words/`), icon phần thưởng, ảnh FX (`fx/puff`, `crumbs`, `confetti`, `fireworks`),
+tranh từ vựng (atlas `words/`), linh vật đầu bếp của đội, icon phần thưởng, ảnh FX (`fx/puff`, `crumbs`, `confetti`, `fireworks`),
 2 background mới. Ảnh của pack xuất ở 2x
 (`scale: 2` trong sprites.json — game vẽ ở scale 0.5); bánh chữ có thêm `letter` (tâm + bán kính lòng kem).
 """
@@ -37,7 +37,7 @@ from common.imaging import (  # noqa: E402
 from common.paths import PUBLIC_ASSETS, SOURCE  # noqa: E402
 
 from bakery_pack import (  # noqa: E402
-    build_backgrounds as build_bakery_backgrounds, build_reward_icons, build_treats, build_word_atlas,
+    build_backgrounds as build_bakery_backgrounds, build_mascots, build_reward_icons, build_treats, build_word_atlas,
 )
 from brainrot_art import build_brainrot_sprites  # noqa: E402
 from phonics_art import build_phonics_sprites  # noqa: E402
@@ -187,14 +187,16 @@ def build_cover() -> None:
 
     def paste(name: str, x: float, y: float, scale: float) -> None:
         sprite = Image.open(OUT / f"{name}.png").convert("RGBA")
-        sprite = sprite.resize((round(sprite.width * scale), round(sprite.height * scale)), Image.NEAREST)
+        size = (round(sprite.width * scale), round(sprite.height * scale))
+        # Phóng to pixel-art: nearest; thu nhỏ ảnh 2x: Lanczos
+        sprite = sprite.resize(size, Image.NEAREST) if scale >= 1 else resize_rgba(sprite, size)
         cover.alpha_composite(sprite, (round(x - sprite.width / 2), round(y - sprite.height / 2)))
 
     paste("basket/basket_04", w * 0.5, h * 0.8, 1.0)
     for index, (x, y) in enumerate([(0.32, 0.3), (0.52, 0.16), (0.7, 0.36)]):
         paste(f"bread/letter_bread_0{index + 1}", w * x, h * y, 1.0)
-    for x, mascot in [(0.1, "lion"), (0.24, "tiger"), (0.76, "panda"), (0.9, "bunny")]:
-        paste(f"phonics/mascot_{mascot}", w * x, h * 0.84, 0.75)
+    for x, mascot in [(0.1, "fox"), (0.24, "frog"), (0.76, "penguin"), (0.9, "bear")]:
+        paste(f"phonics/mascot_{mascot}", w * x, h * 0.84, 0.375)
     save(cover, "cover")
 
 
@@ -213,7 +215,7 @@ def main() -> None:
     for name, img in build_bakery_backgrounds(BG_SIZE, BG_WIDE_SIZE).items():
         save(img, name)
         meta[name] = {"width": img.width, "height": img.height}
-    for name, (img, extra) in {**build_treats(), **build_reward_icons()}.items():
+    for name, (img, extra) in {**build_treats(), **build_reward_icons(), **build_mascots()}.items():
         save(img, name)
         meta[name] = {"width": img.width, "height": img.height, **extra}
     word_count = build_word_atlas()

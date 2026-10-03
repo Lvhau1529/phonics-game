@@ -60,3 +60,5 @@ export const MUSIC_VOLUME: Record<MusicKey, number> = {
 export const musicUrls = (key: MusicKey): string[] => audioUrls(`${ASSET_ROOT}/music/${key}`);
 
 export const mascotTexture = (mascot: MascotId): string => `mascot_${mascot}`;
+/** Ảnh linh vật vẽ ở 2x (Kids Bakery pack) — scale hiển thị nhân hệ số này */
+export const MASCOT_IMAGE_SCALE = 0.5;

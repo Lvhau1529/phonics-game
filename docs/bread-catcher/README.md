@@ -10,7 +10,7 @@ Code: `src/games/bread-catcher/` — khung chung (màn chọn game, âm thanh, n
 - **Setup:** chế độ, gói từ (Blending Words / Early Blending / Picture Vocabulary / Mixed Review /
   **My Words** tự nhập),
   cấp độ, thời gian (AUTO / 45–120s, hoặc **tự nhập** 15–600 giây ở ô CUSTOM), tên đội
-  (bỏ trống = LIONS / TIGERS / PANDAS). Lựa chọn được nhớ cho lần sau.
+  (bỏ trống = FOXES / FROGS / PENGUINS). Lựa chọn được nhớ cho lần sau.
 - **Magic Dice** (Class): thứ tự lượt được xáo **một lần** đầu buổi, xúc xắc chỉ hé lộ đội kế tiếp
   → mỗi đội chơi đúng 1 lần. Lượt cuối chỉ còn 1 đội nên không đổ: hiện luôn `LAST TEAM` + `START`.
 - **Một lượt:** `GET READY! 3-2-1-GO!` → tối đa **5 từ**. Hứng đúng lần lượt từng chữ; hứng nhầm
@@ -98,7 +98,7 @@ nền magenta không nhãn số + 4 background), cắt bằng `tools/bread_catch
 | `02`–`07`            | atlas `words/words.webp` + `words.json` — 96 tranh từ vựng (xem ghi chú dưới)      |
 | `08` (icon)          | `rewards/trophy, medal, ribbon, chef_hat, party_popper, balloons, rainbow, thumbs_up` — icon bay ra khỏi hộp quà Winner's Gift |
 | `08` (FX)            | `fx/fireworks` + `fx/confetti` (ghép đúng cả từ), `fx/puff` (hứng nhầm / trứng), `fx/crumbs` (bom nổ) |
-| `09`                 | 8 linh vật đầu bếp — **chưa dùng** (đội vẫn là LIONS / TIGERS / PANDAS)            |
+| `09`                 | `phonics/mascot_fox, frog, penguin` (3 đội) + `mascot_bear` (Solo) — linh vật đầu bếp; mascot pixel cũ lion / tiger / panda / bunny vẫn sinh vì là ảnh đại diện tài khoản |
 | `10`/`11`, `12`/`13` | `bg_bakery_04` (Sweet Shop), `bg_bakery_05` (Midnight Kitchen), bản ngang + dọc    |
 
 Bản 16-bit không có doll / duck / drum / dinosaur (sheet `06` bắt đầu từ map, hàng cuối sheet `07` là 4 tranh

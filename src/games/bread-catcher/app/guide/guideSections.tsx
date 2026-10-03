@@ -86,7 +86,7 @@ const CONTENT: Record<GuideSectionId, { heading: string; content: GuideSection['
               CLASS MODE — Lớp học
             </h3>
             <p>
-              3 đội thi đua (để trống tên sẽ là LIONS / TIGERS / PANDAS). <b>Xúc xắc</b> chọn đội chơi trước;
+              3 đội thi đua (để trống tên sẽ là FOXES / FROGS / PENGUINS). <b>Xúc xắc</b> chọn đội chơi trước;
               thứ tự đã được xáo sẵn từ đầu nên mỗi đội chơi đúng 1 lượt, cùng cấp độ và thời gian → công
               bằng. Lượt cuối chỉ còn một đội nên không cần đổ xúc xắc.
             </p>
