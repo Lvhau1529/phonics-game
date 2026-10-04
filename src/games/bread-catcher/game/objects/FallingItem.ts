@@ -7,10 +7,11 @@
  *   - hazard: vật cản của level HARD (trứng vỡ, bom)
  */
 import Phaser from 'phaser';
-import { DEPTH } from '@/games/bread-catcher/game/config/gameConfig';
+import { DEPTH, SPAWN } from '@/games/bread-catcher/game/config/gameConfig';
 import { HAZARDS, type HazardId } from '@/games/bread-catcher/game/config/hazards';
 import { LETTER_TEXTURE_SCALE, ensureLetterTexture } from '@/games/bread-catcher/game/objects/letterTextures';
 import type { ItemTrickState } from '@/games/bread-catcher/game/systems/troll/types';
+import { isLandscape } from '@/platform/phaser/view';
 
 /** Hitbox nhỏ hơn sprite một chút cho cảm giác công bằng */
 const HITBOX_RATIO = 0.7;
@@ -27,7 +28,7 @@ export default class FallingItem extends Phaser.Physics.Arcade.Sprite {
   hazard: HazardId | null = null;
   /** Kiểu bánh đang dùng (để vẽ lại khi đổi chữ) */
   private bread = '';
-  /** Scale gốc: texture bánh chữ có độ phân giải gấp đôi */
+  /** Scale gốc: texture bánh chữ có độ phân giải gấp đôi; màn dọc nhỏ hơn (SPAWN.portraitItemScale) */
   private baseScale = 1;
   /** Trò troll đang gán (chỉ có ở level HARD) */
   trick: ItemTrickState | null = null;
@@ -45,7 +46,7 @@ export default class FallingItem extends Phaser.Physics.Arcade.Sprite {
     this.hazard = null;
     this.bread = bread;
     this.letter = letter;
-    this.baseScale = LETTER_TEXTURE_SCALE;
+    this.baseScale = LETTER_TEXTURE_SCALE * this.viewScale();
     this.setTexture(ensureLetterTexture(this.scene, bread, letter));
     return this.activate(x, y, speed);
   }
@@ -54,7 +55,7 @@ export default class FallingItem extends Phaser.Physics.Arcade.Sprite {
     this.kind = 'hazard';
     this.hazard = hazard;
     this.letter = null;
-    this.baseScale = 1;
+    this.baseScale = this.viewScale();
     this.setTexture(HAZARDS[hazard].texture);
     return this.activate(x, y, speed);
   }
@@ -105,6 +106,10 @@ export default class FallingItem extends Phaser.Physics.Arcade.Sprite {
     this.letter = null;
     this.hazard = null;
     this.trick = null;
+  }
+
+  private viewScale(): number {
+    return isLandscape(this.scene) ? 1 : SPAWN.portraitItemScale;
   }
 
   private activate(x: number, y: number, speed: number): this {

@@ -58,6 +58,11 @@ export const PLAYER = {
    * để các đội chơi trong điều kiện như nhau (tier chỉ là phần thưởng hình ảnh).
    */
   catchZone: { width: 78, height: 20, topRatio: 0.36 },
+  /**
+   * Màn dọc (điện thoại, rộng 360 — chưa bằng 40% màn ngang): rổ vẽ nhỏ lại, vùng hứng (Arcade body
+   * co theo scale) thu theo. Giữ cỡ gốc thì rổ chiếm ~30% bề ngang, dễ hứng nhầm chữ rơi sát bên.
+   */
+  portraitScale: 0.8,
   /** Bị choáng / đóng băng: không di chuyển được */
   frozenTint: 0x9ecbff,
 } as const;
@@ -68,8 +73,15 @@ export const PLAYER = {
 export const SPAWN = {
   /** Khoảng cách tối thiểu tới mép màn hình (bánh rộng ~70px) */
   edgeMargin: 40,
-  /** Chữ mới không rơi quá gần chữ trước (px) */
-  minGapFromLast: 64,
+  /** Màn dọc: bánh rơi nhỏ lại (cùng lý do với PLAYER.portraitScale) — chữ vẫn cao ~35px */
+  portraitItemScale: 0.85,
+  /**
+   * Giãn cách ngang: bánh mới phải cách mọi bánh tới miệng rổ gần cùng lúc (chênh dưới
+   * `arrivalWindow` × nhịp rơi) ít nhất một "cửa hứng" = vùng hứng của rổ + hitbox bánh + `gapMargin`
+   * -> không vị trí rổ nào hứng được cả hai.
+   */
+  arrivalWindow: 1.5,
+  gapMargin: 6,
   /** Tốc độ rơi dao động ±8% */
   speedVariance: 0.08,
   poolSize: 30,

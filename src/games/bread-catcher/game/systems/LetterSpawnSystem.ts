@@ -5,6 +5,8 @@
  *     SPAWN.maxWaitForExpected lượt rơi.
  *   - Chữ nhiễu lấy từ bộ chữ của gói từ đang học, tránh trùng lặp nhiều; một phần là
  *     các chữ PHÍA SAU của từ — "sai lúc này" nhưng sẽ cần ngay sau đó, giữ nhịp chơi liền mạch.
+ *   - Bánh tới miệng rổ gần cùng lúc thì cách nhau ít nhất một "cửa hứng" (xem pickX) — không hứng
+ *     nhầm chữ rơi sát bên, nhất là trên màn dọc hẹp.
  *   - Hết từ thì dọn sạch mọi chữ đang rơi.
  *
  * Dùng Arcade Group làm object pool.
@@ -16,8 +18,17 @@ import { LETTER_BREADS } from '@/games/bread-catcher/game/config/stages';
 import type { GameEventBus } from '@/games/bread-catcher/game/core/events';
 import { view } from '@/platform/phaser/view';
 import FallingItem from '@/games/bread-catcher/game/objects/FallingItem';
+import { pickSpawnX } from '@/games/bread-catcher/game/systems/spawnSpacing';
 import type { LevelDef } from '@/games/bread-catcher/session/settings';
 import { pickRandom } from '@/shared/random';
+
+/** Thông tin về rổ để giãn cách chỗ rơi */
+export interface CatchLine {
+  /** Toạ độ Y của miệng rổ */
+  lineY: number;
+  /** Bề rộng vùng hứng hiện tại (đã nhân scale — đổi theo prank rổ teo) */
+  catchWidth: () => number;
+}
 
 export interface SpawnOptions {
   y?: number;
@@ -33,7 +44,6 @@ export default class LetterSpawnSystem {
   private upcoming: string[] = [];
   /** Số lượt rơi liên tiếp không có chữ cần hứng */
   private sinceExpected = 0;
-  private lastX: number | null = null;
   private lastLetter: string | null = null;
 
   constructor(
@@ -44,6 +54,7 @@ export default class LetterSpawnSystem {
     private readonly letters: readonly string[],
     /** Chữ xuất hiện ngay dưới HUD */
     private readonly startY: number,
+    private readonly catchLine: CatchLine,
   ) {
     this.group = scene.physics.add.group({
       classType: FallingItem,
@@ -132,7 +143,8 @@ export default class LetterSpawnSystem {
     const item = this.acquire();
     if (!item) return; // pool đầy
 
-    item.spawnLetter(letter, pickRandom(LETTER_BREADS), this.pickX(), this.startY, this.speed());
+    const speed = this.speed();
+    item.spawnLetter(letter, pickRandom(LETTER_BREADS), this.pickX(speed), this.startY, speed);
     this.lastLetter = letter;
     this.sinceExpected = letter === this.expected ? 0 : this.sinceExpected + 1;
     this.bus.emit('item-spawned', item);
@@ -180,16 +192,32 @@ export default class LetterSpawnSystem {
     return this.level.fallSpeed * variance * scale;
   }
 
-  private pickX(): number {
-    const min = SPAWN.edgeMargin;
-    const max = view(this.scene).width - SPAWN.edgeMargin;
-    let x = Phaser.Math.Between(min, max);
-    for (let tries = 0; tries < 6 && this.lastX !== null; tries += 1) {
-      if (Math.abs(x - this.lastX) >= SPAWN.minGapFromLast) break;
-      x = Phaser.Math.Between(min, max);
-    }
-    this.lastX = x;
-    return x;
+  /**
+   * Chỗ rơi của bánh mới (rơi với tốc độ `speed`): cách mọi "đối thủ" — bánh đang rơi sẽ tới miệng rổ chênh
+   * dưới SPAWN.arrivalWindow nhịp rơi so với bánh mới — ít nhất một cửa hứng (spawnSpacing.ts).
+   */
+  private pickX(speed: number): number {
+    const { lineY } = this.catchLine;
+    const arrival = (y: number, vy: number) => (vy > 0 ? (lineY - y) / vy : Infinity);
+    const ownArrival = arrival(this.startY, speed);
+    const window = (this.level.spawnMs / 1000) * SPAWN.arrivalWindow;
+    const rivals = this.activeItems
+      .filter(
+        (item) =>
+          item.body.enable &&
+          item.y < lineY &&
+          Math.abs(arrival(item.y, item.body.velocity.y) - ownArrival) < window,
+      )
+      .map((item) => ({ x: item.x, width: item.body.width }));
+
+    return pickSpawnX({
+      min: SPAWN.edgeMargin,
+      max: view(this.scene).width - SPAWN.edgeMargin,
+      rivals,
+      catchWidth: this.catchLine.catchWidth(),
+      margin: SPAWN.gapMargin,
+      pick: pickRandom,
+    });
   }
 
   private recycleFallen(): void {

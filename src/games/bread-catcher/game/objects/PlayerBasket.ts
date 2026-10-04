@@ -1,19 +1,22 @@
 /**
  * Rổ hứng — chỉ di chuyển ngang, không ra khỏi màn hình.
  * Vùng va chạm là dải mỏng ở miệng rổ, rộng CỐ ĐỊNH (PLAYER.catchZone) cho mọi tier.
- * Arcade body co giãn theo scale, nên `setSizeScale` (prank rổ teo) thu nhỏ luôn vùng hứng.
+ * Arcade body co giãn theo scale, nên cả cỡ theo hướng màn hình (`viewScale`: màn dọc nhỏ hơn) lẫn
+ * `setSizeScale` (prank rổ teo) đều thu nhỏ luôn vùng hứng.
  */
 import Phaser from 'phaser';
 import { DEPTH, PLAYER, TIMING } from '@/games/bread-catcher/game/config/gameConfig';
 import { PORTRAIT } from '@/platform/phaser/viewport';
 import { BASKET_TEXTURES, type BasketTier } from '@/games/bread-catcher/game/config/stages';
-import { view } from '@/platform/phaser/view';
+import { isLandscape, view } from '@/platform/phaser/view';
 import type InputController from '@/games/bread-catcher/game/systems/InputController';
 
 export default class PlayerBasket extends Phaser.Physics.Arcade.Image {
   declare body: Phaser.Physics.Arcade.Body;
   tier: BasketTier;
-  /** Scale gốc (1 = bình thường); các tween squash / pop tính quanh giá trị này */
+  /** Cỡ theo hướng màn hình: ngang 1, dọc PLAYER.portraitScale */
+  private readonly viewScale: number;
+  /** Hệ số của prank (1 = bình thường) */
   private sizeScale = 1;
   private sizeTween: Phaser.Tweens.Tween | null = null;
   /** Lực đẩy ngang (px/s) cộng thêm mỗi frame — prank "gió" */
@@ -26,7 +29,8 @@ export default class PlayerBasket extends Phaser.Physics.Arcade.Image {
     scene.physics.add.existing(this);
 
     this.tier = tier;
-    this.setOrigin(0.5, 1).setDepth(DEPTH.BASKET);
+    this.viewScale = isLandscape(scene) ? 1 : PLAYER.portraitScale;
+    this.setOrigin(0.5, 1).setDepth(DEPTH.BASKET).setScale(this.viewScale);
     this.body.setAllowGravity(false).setImmovable(true);
     this.updateBody();
   }
@@ -34,6 +38,11 @@ export default class PlayerBasket extends Phaser.Physics.Arcade.Image {
   /** Toạ độ Y của miệng rổ (dùng cho popup / hiệu ứng) */
   get rimY(): number {
     return this.y - this.displayHeight * (1 - PLAYER.catchZone.topRatio);
+  }
+
+  /** Scale lúc nghỉ; các tween squash / pop tính quanh giá trị này */
+  private get restScale(): number {
+    return this.viewScale * this.sizeScale;
   }
 
   get isFrozen(): boolean {
@@ -49,8 +58,8 @@ export default class PlayerBasket extends Phaser.Physics.Arcade.Image {
     this.x = this.clampX(this.x);
     this.scene.tweens.add({
       targets: this,
-      scaleX: { from: this.sizeScale * 1.3, to: this.sizeScale },
-      scaleY: { from: this.sizeScale * 1.3, to: this.sizeScale },
+      scaleX: { from: this.restScale * 1.3, to: this.restScale },
+      scaleY: { from: this.restScale * 1.3, to: this.restScale },
       duration: 350,
       ease: 'Back.easeOut',
     });
@@ -80,7 +89,12 @@ export default class PlayerBasket extends Phaser.Physics.Arcade.Image {
   setSizeScale(scale: number): void {
     this.sizeScale = scale;
     this.sizeTween?.stop();
-    this.sizeTween = this.scene.tweens.add({ targets: this, scale, duration: 200, ease: 'Back.easeOut' });
+    this.sizeTween = this.scene.tweens.add({
+      targets: this,
+      scale: this.restScale,
+      duration: 200,
+      ease: 'Back.easeOut',
+    });
   }
 
   setWind(speed: number): void {
@@ -90,7 +104,7 @@ export default class PlayerBasket extends Phaser.Physics.Arcade.Image {
   /** scaleY 1 → 0.90 → 1.05 → 1 (~150ms) khi hứng */
   squash(): void {
     const step = TIMING.basketSquash / 3;
-    const s = this.sizeScale;
+    const s = this.restScale;
     this.scene.tweens.chain({
       targets: this,
       tweens: [
@@ -147,7 +161,7 @@ export default class PlayerBasket extends Phaser.Physics.Arcade.Image {
   }
 
   private clampX(x: number): number {
-    const half = this.width / 2;
+    const half = (this.width * this.restScale) / 2;
     return Phaser.Math.Clamp(x, half, view(this.scene).width - half);
   }
 

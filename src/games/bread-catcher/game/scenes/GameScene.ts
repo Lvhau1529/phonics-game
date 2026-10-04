@@ -129,6 +129,7 @@ export default class GameScene extends Phaser.Scene {
       this.level,
       sessionLetters(session.settings),
       hudLayout(this).playTop,
+      { lineY: this.basket.rimY, catchWidth: () => this.basket.body.width },
     );
     this.timer = new TurnTimer(this.bus, timeLimitSeconds(session.settings) * 1000, () => this.timeUp());
 

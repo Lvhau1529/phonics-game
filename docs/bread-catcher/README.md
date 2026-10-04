@@ -30,6 +30,12 @@ Code: `src/games/bread-catcher/` — khung chung (màn chọn game, âm thanh, n
 **Điều khiển:** mobile kéo ngang ở bất kỳ đâu (kéo tương đối, ngón tay không che rổ);
 desktop dùng chuột hoặc ← → / A D, `P` / `Esc` để tạm dừng. Game tự dừng khi chuyển app.
 
+**Cỡ rổ / bánh & giãn cách:** màn dọc (điện thoại, rộng 360) vẽ rổ ×0.8 (vùng hứng co theo, 78 → 62) và bánh
+×0.85 (`PLAYER.portraitScale`, `SPAWN.portraitItemScale`); màn ngang giữ cỡ gốc. Bánh mới rơi cách mọi bánh sẽ
+tới miệng rổ gần cùng lúc (chênh < 1.5 nhịp rơi) ít nhất một "cửa hứng" = vùng hứng + hitbox bánh + 6px
+(`game/systems/spawnSpacing.ts`) → không vị trí rổ nào hứng được hai bánh sát nhau. Trước đây chỉ giãn 64px với
+bánh ngay trước, trên điện thoại ~52% cặp bánh liên tiếp lọt chung một cửa hứng → bé hay hứng nhầm.
+
 ### Từ vựng
 
 Lấy toàn bộ phần **Phonics** của bảng học (M A S P T I N C O D) trong `src/games/bread-catcher/content/phonics_word_bank.json`;
