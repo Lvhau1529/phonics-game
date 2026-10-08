@@ -1,0 +1,184 @@
+@use '@/platform/styles/abstracts' as *;
+
+@layer components {
+  @include keyframes-bob($distance: -6px);
+
+  @keyframes star-pop {
+    from {
+      opacity: 0;
+      transform: scale(0.3) rotate(-20deg);
+    }
+  }
+
+  @keyframes swim {
+    0%,
+    100% {
+      transform: translateX(-10px) rotate(-3deg);
+    }
+    50% {
+      transform: translateX(10px) rotate(3deg);
+    }
+  }
+
+  .results {
+    @include screen;
+    gap: 14px;
+  }
+
+  .title {
+    margin: 4px 0 0;
+    color: var(--color-gold);
+    font-size: 34px;
+    font-weight: 800;
+    line-height: 1.1;
+    text-align: center;
+    text-shadow: var(--outline);
+    animation: bob 1.4s ease-in-out infinite;
+  }
+
+  // Chưa qua màn: màu dịu, không có phản ứng tiêu cực
+  .soft {
+    color: #7fe3ff;
+  }
+
+  // Máy chiếu: các khối kết quả không kéo hết chiều ngang
+  .card,
+  .words,
+  .actions {
+    @include app-landscape {
+      width: min(100%, 640px);
+      align-self: center;
+    }
+  }
+
+  .card {
+    @include card;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    text-align: center;
+  }
+
+  .fish {
+    height: 96px;
+    animation: swim 2.4s ease-in-out infinite;
+  }
+
+  .level {
+    margin: 0;
+    font-size: 15px;
+    font-weight: 800;
+  }
+
+  .best {
+    margin: 0;
+    color: var(--color-red);
+    font-size: 18px;
+    font-weight: 800;
+    animation: bob 1s ease-in-out infinite;
+  }
+
+  .encourage {
+    margin: 0;
+    color: var(--color-orange-edge);
+    font-size: 18px;
+    font-weight: 800;
+  }
+
+  .stars {
+    display: flex;
+    gap: 8px;
+
+    img {
+      width: 50px;
+      height: 50px;
+      object-fit: contain;
+      filter: grayscale(1) opacity(0.35);
+    }
+
+    .earned {
+      filter: none;
+      animation: star-pop 0.5s cubic-bezier(0.34, 1.6, 0.64, 1) both;
+    }
+  }
+
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 6px;
+    width: 100%;
+    margin: 6px 0 0;
+
+    dt {
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.3px;
+      opacity: 0.7;
+    }
+
+    dd {
+      margin: 0;
+      color: var(--color-ink);
+      font-size: 18px;
+      font-weight: 800;
+    }
+  }
+
+  .statsItem {
+    padding: 4px 2px;
+    border-radius: 10px;
+    background: #fff;
+    text-align: center;
+  }
+
+  // ---- Từ đã ăn ----
+  .words {
+    @include card;
+
+    h2 {
+      margin: 0 0 8px;
+      color: var(--color-orange-edge);
+      font-size: 16px;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+    }
+
+    ul {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    li {
+      padding: 2px 12px;
+      border-radius: 999px;
+      background: #fff;
+      font-family: var(--font-learning);
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    // Đúng ngay lần đầu
+    .firstTry {
+      background: #dff7e6;
+      color: #1f7a45;
+    }
+  }
+
+  .actions {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-top: auto;
+  }
+
+  .row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+}

@@ -1,0 +1,199 @@
+﻿level,level_name,focus,target,word,image_key,audio_key
+1,Sound Reef,Letter-sound + short vowel listening,a,ant,pic_ant,word_ant.mp3
+1,Sound Reef,Letter-sound + short vowel listening,a,apple,pic_apple,word_apple.mp3
+1,Sound Reef,Letter-sound + short vowel listening,e,egg,pic_egg,word_egg.mp3
+1,Sound Reef,Letter-sound + short vowel listening,e,elf,pic_elf,word_elf.mp3
+1,Sound Reef,Letter-sound + short vowel listening,i,ink,pic_ink,word_ink.mp3
+1,Sound Reef,Letter-sound + short vowel listening,i,igloo,pic_igloo,word_igloo.mp3
+1,Sound Reef,Letter-sound + short vowel listening,o,octopus,pic_octopus,word_octopus.mp3
+1,Sound Reef,Letter-sound + short vowel listening,o,ox,pic_ox,word_ox.mp3
+1,Sound Reef,Letter-sound + short vowel listening,u,up,pic_up,word_up.mp3
+1,Sound Reef,Letter-sound + short vowel listening,u,umbrella,pic_umbrella,word_umbrella.mp3
+1,Sound Reef,Letter-sound + short vowel listening,m,map,pic_map,word_map.mp3
+1,Sound Reef,Letter-sound + short vowel listening,s,sun,pic_sun,word_sun.mp3
+1,Sound Reef,Letter-sound + short vowel listening,f,fish,pic_fish,word_fish.mp3
+1,Sound Reef,Letter-sound + short vowel listening,n,net,pic_net,word_net.mp3
+1,Sound Reef,Letter-sound + short vowel listening,t,top,pic_top,word_top.mp3
+1,Sound Reef,Letter-sound + short vowel listening,p,pig,pic_pig,word_pig.mp3
+1,Sound Reef,Letter-sound + short vowel listening,b,bat,pic_bat,word_bat.mp3
+1,Sound Reef,Letter-sound + short vowel listening,c,cat,pic_cat,word_cat.mp3
+1,Sound Reef,Letter-sound + short vowel listening,d,dog,pic_dog,word_dog.mp3
+1,Sound Reef,Letter-sound + short vowel listening,h,hat,pic_hat,word_hat.mp3
+2,CVC Lagoon A-I,CVC blending: short a / short i,-at,cat,pic_cat,word_cat.mp3
+2,CVC Lagoon A-I,CVC blending: short a / short i,-at,bat,pic_bat,word_bat.mp3
+2,CVC Lagoon A-I,CVC blending: short a / short i,-at,hat,pic_hat,word_hat.mp3
+2,CVC Lagoon A-I,CVC blending: short a / short i,-at,mat,pic_mat,word_mat.mp3
+2,CVC Lagoon A-I,CVC blending: short a / short i,-at,rat,pic_rat,word_rat.mp3
+2,CVC Lagoon A-I,CVC blending: short a / short i,-an,man,pic_man,word_man.mp3
+2,CVC Lagoon A-I,CVC blending: short a / short i,-an,fan,pic_fan,word_fan.mp3
+2,CVC Lagoon A-I,CVC blending: short a / short i,-an,pan,pic_pan,word_pan.mp3
+2,CVC Lagoon A-I,CVC blending: short a / short i,-an,van,pic_van,word_van.mp3
+2,CVC Lagoon A-I,CVC blending: short a / short i,-ap,cap,pic_cap,word_cap.mp3
+2,CVC Lagoon A-I,CVC blending: short a / short i,-ap,map,pic_map,word_map.mp3
+2,CVC Lagoon A-I,CVC blending: short a / short i,-ap,tap,pic_tap,word_tap.mp3
+2,CVC Lagoon A-I,CVC blending: short a / short i,-ad,dad,pic_dad,word_dad.mp3
+2,CVC Lagoon A-I,CVC blending: short a / short i,-ad,sad,pic_sad,word_sad.mp3
+2,CVC Lagoon A-I,CVC blending: short a / short i,-ig,pig,pic_pig,word_pig.mp3
+2,CVC Lagoon A-I,CVC blending: short a / short i,-ig,fig,pic_fig,word_fig.mp3
+2,CVC Lagoon A-I,CVC blending: short a / short i,-ig,dig,pic_dig,word_dig.mp3
+2,CVC Lagoon A-I,CVC blending: short a / short i,-in,pin,pic_pin,word_pin.mp3
+2,CVC Lagoon A-I,CVC blending: short a / short i,-in,fin,pic_fin,word_fin.mp3
+2,CVC Lagoon A-I,CVC blending: short a / short i,-in,win,pic_win,word_win.mp3
+2,CVC Lagoon A-I,CVC blending: short a / short i,-it,sit,pic_sit,word_sit.mp3
+2,CVC Lagoon A-I,CVC blending: short a / short i,-it,hit,pic_hit,word_hit.mp3
+2,CVC Lagoon A-I,CVC blending: short a / short i,-it,fit,pic_fit,word_fit.mp3
+2,CVC Lagoon A-I,CVC blending: short a / short i,-ip,lip,pic_lip,word_lip.mp3
+2,CVC Lagoon A-I,CVC blending: short a / short i,-ip,sip,pic_sip,word_sip.mp3
+2,CVC Lagoon A-I,CVC blending: short a / short i,-ip,tip,pic_tip,word_tip.mp3
+3,CVC Deep Sea,CVC blending: short e / o / u,-et,pet,pic_pet,word_pet.mp3
+3,CVC Deep Sea,CVC blending: short e / o / u,-et,net,pic_net,word_net.mp3
+3,CVC Deep Sea,CVC blending: short e / o / u,-et,jet,pic_jet,word_jet.mp3
+3,CVC Deep Sea,CVC blending: short e / o / u,-en,hen,pic_hen,word_hen.mp3
+3,CVC Deep Sea,CVC blending: short e / o / u,-en,pen,pic_pen,word_pen.mp3
+3,CVC Deep Sea,CVC blending: short e / o / u,-en,ten,pic_ten,word_ten.mp3
+3,CVC Deep Sea,CVC blending: short e / o / u,-ed,red,pic_red,word_red.mp3
+3,CVC Deep Sea,CVC blending: short e / o / u,-ed,bed,pic_bed,word_bed.mp3
+3,CVC Deep Sea,CVC blending: short e / o / u,-og,dog,pic_dog,word_dog.mp3
+3,CVC Deep Sea,CVC blending: short e / o / u,-og,log,pic_log,word_log.mp3
+3,CVC Deep Sea,CVC blending: short e / o / u,-og,fog,pic_fog,word_fog.mp3
+3,CVC Deep Sea,CVC blending: short e / o / u,-ot,hot,pic_hot,word_hot.mp3
+3,CVC Deep Sea,CVC blending: short e / o / u,-ot,pot,pic_pot,word_pot.mp3
+3,CVC Deep Sea,CVC blending: short e / o / u,-ot,dot,pic_dot,word_dot.mp3
+3,CVC Deep Sea,CVC blending: short e / o / u,-op,hop,pic_hop,word_hop.mp3
+3,CVC Deep Sea,CVC blending: short e / o / u,-op,mop,pic_mop,word_mop.mp3
+3,CVC Deep Sea,CVC blending: short e / o / u,-op,top,pic_top,word_top.mp3
+3,CVC Deep Sea,CVC blending: short e / o / u,-un,sun,pic_sun,word_sun.mp3
+3,CVC Deep Sea,CVC blending: short e / o / u,-un,fun,pic_fun,word_fun.mp3
+3,CVC Deep Sea,CVC blending: short e / o / u,-un,run,pic_run,word_run.mp3
+3,CVC Deep Sea,CVC blending: short e / o / u,-ug,bug,pic_bug,word_bug.mp3
+3,CVC Deep Sea,CVC blending: short e / o / u,-ug,mug,pic_mug,word_mug.mp3
+3,CVC Deep Sea,CVC blending: short e / o / u,-ug,hug,pic_hug,word_hug.mp3
+3,CVC Deep Sea,CVC blending: short e / o / u,-ut,hut,pic_hut,word_hut.mp3
+3,CVC Deep Sea,CVC blending: short e / o / u,-ut,cut,pic_cut,word_cut.mp3
+3,CVC Deep Sea,CVC blending: short e / o / u,-ut,nut,pic_nut,word_nut.mp3
+3,CVC Deep Sea,CVC blending: short e / o / u,-um,gum,pic_gum,word_gum.mp3
+3,CVC Deep Sea,CVC blending: short e / o / u,-um,sum,pic_sum,word_sum.mp3
+3,CVC Deep Sea,CVC blending: short e / o / u,-um,hum,pic_hum,word_hum.mp3
+3,CVC Deep Sea,CVC blending: short e / o / u,-ub,cub,pic_cub,word_cub.mp3
+3,CVC Deep Sea,CVC blending: short e / o / u,-ub,tub,pic_tub,word_tub.mp3
+3,CVC Deep Sea,CVC blending: short e / o / u,-ub,rub,pic_rub,word_rub.mp3
+3,CVC Deep Sea,CVC blending: short e / o / u,-up,cup,pic_cup,word_cup.mp3
+3,CVC Deep Sea,CVC blending: short e / o / u,-up,pup,pic_pup,word_pup.mp3
+4,Rhyme Current,Word families + rhyming,-at,cat,pic_cat,word_cat.mp3
+4,Rhyme Current,Word families + rhyming,-at,hat,pic_hat,word_hat.mp3
+4,Rhyme Current,Word families + rhyming,-at,bat,pic_bat,word_bat.mp3
+4,Rhyme Current,Word families + rhyming,-an,man,pic_man,word_man.mp3
+4,Rhyme Current,Word families + rhyming,-an,fan,pic_fan,word_fan.mp3
+4,Rhyme Current,Word families + rhyming,-an,van,pic_van,word_van.mp3
+4,Rhyme Current,Word families + rhyming,-ap,cap,pic_cap,word_cap.mp3
+4,Rhyme Current,Word families + rhyming,-ap,map,pic_map,word_map.mp3
+4,Rhyme Current,Word families + rhyming,-ap,tap,pic_tap,word_tap.mp3
+4,Rhyme Current,Word families + rhyming,-ig,pig,pic_pig,word_pig.mp3
+4,Rhyme Current,Word families + rhyming,-ig,fig,pic_fig,word_fig.mp3
+4,Rhyme Current,Word families + rhyming,-ig,dig,pic_dig,word_dig.mp3
+4,Rhyme Current,Word families + rhyming,-in,pin,pic_pin,word_pin.mp3
+4,Rhyme Current,Word families + rhyming,-in,fin,pic_fin,word_fin.mp3
+4,Rhyme Current,Word families + rhyming,-in,win,pic_win,word_win.mp3
+4,Rhyme Current,Word families + rhyming,-it,sit,pic_sit,word_sit.mp3
+4,Rhyme Current,Word families + rhyming,-it,hit,pic_hit,word_hit.mp3
+4,Rhyme Current,Word families + rhyming,-it,fit,pic_fit,word_fit.mp3
+4,Rhyme Current,Word families + rhyming,-og,dog,pic_dog,word_dog.mp3
+4,Rhyme Current,Word families + rhyming,-og,log,pic_log,word_log.mp3
+4,Rhyme Current,Word families + rhyming,-og,fog,pic_fog,word_fog.mp3
+4,Rhyme Current,Word families + rhyming,-ot,hot,pic_hot,word_hot.mp3
+4,Rhyme Current,Word families + rhyming,-ot,pot,pic_pot,word_pot.mp3
+4,Rhyme Current,Word families + rhyming,-ot,dot,pic_dot,word_dot.mp3
+4,Rhyme Current,Word families + rhyming,-ug,bug,pic_bug,word_bug.mp3
+4,Rhyme Current,Word families + rhyming,-ug,mug,pic_mug,word_mug.mp3
+4,Rhyme Current,Word families + rhyming,-ug,hug,pic_hug,word_hug.mp3
+4,Rhyme Current,Word families + rhyming,-un,sun,pic_sun,word_sun.mp3
+4,Rhyme Current,Word families + rhyming,-un,fun,pic_fun,word_fun.mp3
+4,Rhyme Current,Word families + rhyming,-un,run,pic_run,word_run.mp3
+4,Rhyme Current,Word families + rhyming,-ut,hut,pic_hut,word_hut.mp3
+4,Rhyme Current,Word families + rhyming,-ut,cut,pic_cut,word_cut.mp3
+4,Rhyme Current,Word families + rhyming,-ut,nut,pic_nut,word_nut.mp3
+4,Rhyme Current,Word families + rhyming,-um,gum,pic_gum,word_gum.mp3
+4,Rhyme Current,Word families + rhyming,-um,sum,pic_sum,word_sum.mp3
+4,Rhyme Current,Word families + rhyming,-um,hum,pic_hum,word_hum.mp3
+4,Rhyme Current,Word families + rhyming,-ub,cub,pic_cub,word_cub.mp3
+4,Rhyme Current,Word families + rhyming,-ub,tub,pic_tub,word_tub.mp3
+4,Rhyme Current,Word families + rhyming,-ub,rub,pic_rub,word_rub.mp3
+5,Blend Wreck,CCVC / CVCC consonant blends,bl,black,pic_black,word_black.mp3
+5,Blend Wreck,CCVC / CVCC consonant blends,cl,clap,pic_clap,word_clap.mp3
+5,Blend Wreck,CCVC / CVCC consonant blends,fl,flag,pic_flag,word_flag.mp3
+5,Blend Wreck,CCVC / CVCC consonant blends,gl,glad,pic_glad,word_glad.mp3
+5,Blend Wreck,CCVC / CVCC consonant blends,pl,plan,pic_plan,word_plan.mp3
+5,Blend Wreck,CCVC / CVCC consonant blends,sl,slip,pic_slip,word_slip.mp3
+5,Blend Wreck,CCVC / CVCC consonant blends,fr,frog,pic_frog,word_frog.mp3
+5,Blend Wreck,CCVC / CVCC consonant blends,cr,crab,pic_crab,word_crab.mp3
+5,Blend Wreck,CCVC / CVCC consonant blends,dr,drum,pic_drum,word_drum.mp3
+5,Blend Wreck,CCVC / CVCC consonant blends,gr,grin,pic_grin,word_grin.mp3
+5,Blend Wreck,CCVC / CVCC consonant blends,tr,tree,pic_tree,word_tree.mp3
+5,Blend Wreck,CCVC / CVCC consonant blends,st,stop,pic_stop,word_stop.mp3
+5,Blend Wreck,CCVC / CVCC consonant blends,st,step,pic_step,word_step.mp3
+5,Blend Wreck,CCVC / CVCC consonant blends,nd,hand,pic_hand,word_hand.mp3
+5,Blend Wreck,CCVC / CVCC consonant blends,nd,sand,pic_sand,word_sand.mp3
+5,Blend Wreck,CCVC / CVCC consonant blends,mp,lamp,pic_lamp,word_lamp.mp3
+5,Blend Wreck,CCVC / CVCC consonant blends,mp,jump,pic_jump,word_jump.mp3
+5,Blend Wreck,CCVC / CVCC consonant blends,nt,tent,pic_tent,word_tent.mp3
+5,Blend Wreck,CCVC / CVCC consonant blends,st,nest,pic_nest,word_nest.mp3
+5,Blend Wreck,CCVC / CVCC consonant blends,sk,desk,pic_desk,word_desk.mp3
+5,Blend Wreck,CCVC / CVCC consonant blends,sk,mask,pic_mask,word_mask.mp3
+5,Blend Wreck,CCVC / CVCC consonant blends,blend,milk,pic_milk,word_milk.mp3
+5,Blend Wreck,CCVC / CVCC consonant blends,blend,help,pic_help,word_help.mp3
+6,Digraph Trench,Common digraphs,sh,ship,pic_ship,word_ship.mp3
+6,Digraph Trench,Common digraphs,sh,shop,pic_shop,word_shop.mp3
+6,Digraph Trench,Common digraphs,sh,fish,pic_fish,word_fish.mp3
+6,Digraph Trench,Common digraphs,sh,dish,pic_dish,word_dish.mp3
+6,Digraph Trench,Common digraphs,ch,chat,pic_chat,word_chat.mp3
+6,Digraph Trench,Common digraphs,ch,chin,pic_chin,word_chin.mp3
+6,Digraph Trench,Common digraphs,ch,chop,pic_chop,word_chop.mp3
+6,Digraph Trench,Common digraphs,ch,much,pic_much,word_much.mp3
+6,Digraph Trench,Common digraphs,th,thin,pic_thin,word_thin.mp3
+6,Digraph Trench,Common digraphs,th,bath,pic_bath,word_bath.mp3
+6,Digraph Trench,Common digraphs,th,moth,pic_moth,word_moth.mp3
+6,Digraph Trench,Common digraphs,th,this,pic_this,word_this.mp3
+6,Digraph Trench,Common digraphs,th,that,pic_that,word_that.mp3
+6,Digraph Trench,Common digraphs,ph,phone,pic_phone,word_phone.mp3
+6,Digraph Trench,Common digraphs,ph,photo,pic_photo,word_photo.mp3
+6,Digraph Trench,Common digraphs,wh,whip,pic_whip,word_whip.mp3
+6,Digraph Trench,Common digraphs,wh,when,pic_when,word_when.mp3
+6,Digraph Trench,Common digraphs,ck,duck,pic_duck,word_duck.mp3
+6,Digraph Trench,Common digraphs,ck,sock,pic_sock,word_sock.mp3
+6,Digraph Trench,Common digraphs,ng,ring,pic_ring,word_ring.mp3
+6,Digraph Trench,Common digraphs,ng,king,pic_king,word_king.mp3
+6,Digraph Trench,Common digraphs,ng,song,pic_song,word_song.mp3
+7,Magic-E Bay,CVCe / silent e,a_e,cake,pic_cake,word_cake.mp3
+7,Magic-E Bay,CVCe / silent e,a_e,game,pic_game,word_game.mp3
+7,Magic-E Bay,CVCe / silent e,a_e,gate,pic_gate,word_gate.mp3
+7,Magic-E Bay,CVCe / silent e,a_e,lake,pic_lake,word_lake.mp3
+7,Magic-E Bay,CVCe / silent e,a_e,name,pic_name,word_name.mp3
+7,Magic-E Bay,CVCe / silent e,i_e,bike,pic_bike,word_bike.mp3
+7,Magic-E Bay,CVCe / silent e,i_e,five,pic_five,word_five.mp3
+7,Magic-E Bay,CVCe / silent e,i_e,kite,pic_kite,word_kite.mp3
+7,Magic-E Bay,CVCe / silent e,i_e,ride,pic_ride,word_ride.mp3
+7,Magic-E Bay,CVCe / silent e,i_e,time,pic_time,word_time.mp3
+7,Magic-E Bay,CVCe / silent e,o_e,home,pic_home,word_home.mp3
+7,Magic-E Bay,CVCe / silent e,o_e,nose,pic_nose,word_nose.mp3
+7,Magic-E Bay,CVCe / silent e,o_e,rope,pic_rope,word_rope.mp3
+7,Magic-E Bay,CVCe / silent e,o_e,rose,pic_rose,word_rose.mp3
+7,Magic-E Bay,CVCe / silent e,u_e,cube,pic_cube,word_cube.mp3
+7,Magic-E Bay,CVCe / silent e,u_e,cute,pic_cute,word_cute.mp3
+7,Magic-E Bay,CVCe / silent e,u_e,mule,pic_mule,word_mule.mp3
+7,Magic-E Bay,CVCe / silent e,u_e,tube,pic_tube,word_tube.mp3
+8,Treasure Review,Mixed decoding + simple sentence transfer,mixed,cat,pic_cat,word_cat.mp3
+8,Treasure Review,Mixed decoding + simple sentence transfer,mixed,ship,pic_ship,word_ship.mp3
+8,Treasure Review,Mixed decoding + simple sentence transfer,mixed,frog,pic_frog,word_frog.mp3
+8,Treasure Review,Mixed decoding + simple sentence transfer,mixed,black,pic_black,word_black.mp3
+8,Treasure Review,Mixed decoding + simple sentence transfer,mixed,time,pic_time,word_time.mp3
+8,Treasure Review,Mixed decoding + simple sentence transfer,mixed,rose,pic_rose,word_rose.mp3
+8,Treasure Review,Mixed decoding + simple sentence transfer,mixed,cube,pic_cube,word_cube.mp3
+8,Treasure Review,Mixed decoding + simple sentence transfer,mixed,sun,pic_sun,word_sun.mp3
+8,Treasure Review,Mixed decoding + simple sentence transfer,mixed,fish,pic_fish,word_fish.mp3
+8,Treasure Review,Mixed decoding + simple sentence transfer,mixed,tree,pic_tree,word_tree.mp3
+8,Treasure Review,Mixed decoding + simple sentence transfer,mixed,shop,pic_shop,word_shop.mp3
+8,Treasure Review,Mixed decoding + simple sentence transfer,mixed,kite,pic_kite,word_kite.mp3
+8,Treasure Review,Mixed decoding + simple sentence transfer,mixed,dog,pic_dog,word_dog.mp3
+8,Treasure Review,Mixed decoding + simple sentence transfer,mixed,jump,pic_jump,word_jump.mp3
+8,Treasure Review,Mixed decoding + simple sentence transfer,mixed,hat,pic_hat,word_hat.mp3
+8,Treasure Review,Mixed decoding + simple sentence transfer,mixed,mug,pic_mug,word_mug.mp3

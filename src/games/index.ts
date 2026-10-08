@@ -6,10 +6,15 @@
  */
 import { breadCatcherManifest } from '@/games/bread-catcher/manifest';
 import { foodStreamManifest } from '@/games/food-stream/manifest';
+import { phonicsOceanManifest } from '@/games/phonics-ocean/manifest';
 import { ACCOUNT_SEGMENT } from '@/platform/platformStore';
 import type { GameManifest, UpcomingGame } from '@/platform/types';
 
-export const GAMES: readonly GameManifest[] = [breadCatcherManifest, foodStreamManifest];
+export const GAMES: readonly GameManifest[] = [
+  breadCatcherManifest,
+  foodStreamManifest,
+  phonicsOceanManifest,
+];
 
 export const UPCOMING: readonly UpcomingGame[] = [
   { id: 'next-game', title: 'NEW GAME', tagline: 'A brand-new phonics game is on the way!' },

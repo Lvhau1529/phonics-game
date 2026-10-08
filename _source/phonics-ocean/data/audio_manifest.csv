@@ -1,0 +1,162 @@
+﻿key,type,script,notes
+phoneme_a,phoneme,/a/,"Use clean phoneme, avoid adding an extra schwa where possible."
+phoneme_e,phoneme,/e/,"Use clean phoneme, avoid adding an extra schwa where possible."
+phoneme_i,phoneme,/i/,"Use clean phoneme, avoid adding an extra schwa where possible."
+phoneme_o,phoneme,/o/,"Use clean phoneme, avoid adding an extra schwa where possible."
+phoneme_u,phoneme,/u/,"Use clean phoneme, avoid adding an extra schwa where possible."
+phoneme_m,phoneme,/m/,"Use clean phoneme, avoid adding an extra schwa where possible."
+phoneme_s,phoneme,/s/,"Use clean phoneme, avoid adding an extra schwa where possible."
+phoneme_f,phoneme,/f/,"Use clean phoneme, avoid adding an extra schwa where possible."
+phoneme_n,phoneme,/n/,"Use clean phoneme, avoid adding an extra schwa where possible."
+phoneme_t,phoneme,/t/,"Use clean phoneme, avoid adding an extra schwa where possible."
+phoneme_p,phoneme,/p/,"Use clean phoneme, avoid adding an extra schwa where possible."
+phoneme_b,phoneme,/b/,"Use clean phoneme, avoid adding an extra schwa where possible."
+phoneme_c,phoneme,/c/,"Use clean phoneme, avoid adding an extra schwa where possible."
+phoneme_d,phoneme,/d/,"Use clean phoneme, avoid adding an extra schwa where possible."
+phoneme_h,phoneme,/h/,"Use clean phoneme, avoid adding an extra schwa where possible."
+phoneme_sh,phoneme,/sh/,"Use clean phoneme, avoid adding an extra schwa where possible."
+phoneme_ch,phoneme,/ch/,"Use clean phoneme, avoid adding an extra schwa where possible."
+phoneme_th,phoneme,/th/,"Use clean phoneme, avoid adding an extra schwa where possible."
+phoneme_ph,phoneme,/ph/,"Use clean phoneme, avoid adding an extra schwa where possible."
+phoneme_wh,phoneme,/wh/,"Use clean phoneme, avoid adding an extra schwa where possible."
+word_ant,word,ant,Natural child-friendly English pronunciation; 1 clip per word.
+word_apple,word,apple,Natural child-friendly English pronunciation; 1 clip per word.
+word_bat,word,bat,Natural child-friendly English pronunciation; 1 clip per word.
+word_bath,word,bath,Natural child-friendly English pronunciation; 1 clip per word.
+word_bed,word,bed,Natural child-friendly English pronunciation; 1 clip per word.
+word_bike,word,bike,Natural child-friendly English pronunciation; 1 clip per word.
+word_black,word,black,Natural child-friendly English pronunciation; 1 clip per word.
+word_bug,word,bug,Natural child-friendly English pronunciation; 1 clip per word.
+word_cake,word,cake,Natural child-friendly English pronunciation; 1 clip per word.
+word_cap,word,cap,Natural child-friendly English pronunciation; 1 clip per word.
+word_cat,word,cat,Natural child-friendly English pronunciation; 1 clip per word.
+word_chat,word,chat,Natural child-friendly English pronunciation; 1 clip per word.
+word_chin,word,chin,Natural child-friendly English pronunciation; 1 clip per word.
+word_chop,word,chop,Natural child-friendly English pronunciation; 1 clip per word.
+word_clap,word,clap,Natural child-friendly English pronunciation; 1 clip per word.
+word_crab,word,crab,Natural child-friendly English pronunciation; 1 clip per word.
+word_cub,word,cub,Natural child-friendly English pronunciation; 1 clip per word.
+word_cube,word,cube,Natural child-friendly English pronunciation; 1 clip per word.
+word_cup,word,cup,Natural child-friendly English pronunciation; 1 clip per word.
+word_cut,word,cut,Natural child-friendly English pronunciation; 1 clip per word.
+word_cute,word,cute,Natural child-friendly English pronunciation; 1 clip per word.
+word_dad,word,dad,Natural child-friendly English pronunciation; 1 clip per word.
+word_desk,word,desk,Natural child-friendly English pronunciation; 1 clip per word.
+word_dig,word,dig,Natural child-friendly English pronunciation; 1 clip per word.
+word_dish,word,dish,Natural child-friendly English pronunciation; 1 clip per word.
+word_dog,word,dog,Natural child-friendly English pronunciation; 1 clip per word.
+word_dot,word,dot,Natural child-friendly English pronunciation; 1 clip per word.
+word_drum,word,drum,Natural child-friendly English pronunciation; 1 clip per word.
+word_duck,word,duck,Natural child-friendly English pronunciation; 1 clip per word.
+word_egg,word,egg,Natural child-friendly English pronunciation; 1 clip per word.
+word_elf,word,elf,Natural child-friendly English pronunciation; 1 clip per word.
+word_fan,word,fan,Natural child-friendly English pronunciation; 1 clip per word.
+word_fig,word,fig,Natural child-friendly English pronunciation; 1 clip per word.
+word_fin,word,fin,Natural child-friendly English pronunciation; 1 clip per word.
+word_fish,word,fish,Natural child-friendly English pronunciation; 1 clip per word.
+word_fit,word,fit,Natural child-friendly English pronunciation; 1 clip per word.
+word_five,word,five,Natural child-friendly English pronunciation; 1 clip per word.
+word_flag,word,flag,Natural child-friendly English pronunciation; 1 clip per word.
+word_fog,word,fog,Natural child-friendly English pronunciation; 1 clip per word.
+word_frog,word,frog,Natural child-friendly English pronunciation; 1 clip per word.
+word_fun,word,fun,Natural child-friendly English pronunciation; 1 clip per word.
+word_game,word,game,Natural child-friendly English pronunciation; 1 clip per word.
+word_gate,word,gate,Natural child-friendly English pronunciation; 1 clip per word.
+word_glad,word,glad,Natural child-friendly English pronunciation; 1 clip per word.
+word_grin,word,grin,Natural child-friendly English pronunciation; 1 clip per word.
+word_gum,word,gum,Natural child-friendly English pronunciation; 1 clip per word.
+word_hand,word,hand,Natural child-friendly English pronunciation; 1 clip per word.
+word_hat,word,hat,Natural child-friendly English pronunciation; 1 clip per word.
+word_help,word,help,Natural child-friendly English pronunciation; 1 clip per word.
+word_hen,word,hen,Natural child-friendly English pronunciation; 1 clip per word.
+word_hit,word,hit,Natural child-friendly English pronunciation; 1 clip per word.
+word_home,word,home,Natural child-friendly English pronunciation; 1 clip per word.
+word_hop,word,hop,Natural child-friendly English pronunciation; 1 clip per word.
+word_hot,word,hot,Natural child-friendly English pronunciation; 1 clip per word.
+word_hug,word,hug,Natural child-friendly English pronunciation; 1 clip per word.
+word_hum,word,hum,Natural child-friendly English pronunciation; 1 clip per word.
+word_hut,word,hut,Natural child-friendly English pronunciation; 1 clip per word.
+word_igloo,word,igloo,Natural child-friendly English pronunciation; 1 clip per word.
+word_ink,word,ink,Natural child-friendly English pronunciation; 1 clip per word.
+word_jet,word,jet,Natural child-friendly English pronunciation; 1 clip per word.
+word_jump,word,jump,Natural child-friendly English pronunciation; 1 clip per word.
+word_king,word,king,Natural child-friendly English pronunciation; 1 clip per word.
+word_kite,word,kite,Natural child-friendly English pronunciation; 1 clip per word.
+word_lake,word,lake,Natural child-friendly English pronunciation; 1 clip per word.
+word_lamp,word,lamp,Natural child-friendly English pronunciation; 1 clip per word.
+word_lip,word,lip,Natural child-friendly English pronunciation; 1 clip per word.
+word_log,word,log,Natural child-friendly English pronunciation; 1 clip per word.
+word_man,word,man,Natural child-friendly English pronunciation; 1 clip per word.
+word_map,word,map,Natural child-friendly English pronunciation; 1 clip per word.
+word_mask,word,mask,Natural child-friendly English pronunciation; 1 clip per word.
+word_mat,word,mat,Natural child-friendly English pronunciation; 1 clip per word.
+word_milk,word,milk,Natural child-friendly English pronunciation; 1 clip per word.
+word_mop,word,mop,Natural child-friendly English pronunciation; 1 clip per word.
+word_moth,word,moth,Natural child-friendly English pronunciation; 1 clip per word.
+word_much,word,much,Natural child-friendly English pronunciation; 1 clip per word.
+word_mug,word,mug,Natural child-friendly English pronunciation; 1 clip per word.
+word_mule,word,mule,Natural child-friendly English pronunciation; 1 clip per word.
+word_name,word,name,Natural child-friendly English pronunciation; 1 clip per word.
+word_nest,word,nest,Natural child-friendly English pronunciation; 1 clip per word.
+word_net,word,net,Natural child-friendly English pronunciation; 1 clip per word.
+word_nose,word,nose,Natural child-friendly English pronunciation; 1 clip per word.
+word_nut,word,nut,Natural child-friendly English pronunciation; 1 clip per word.
+word_octopus,word,octopus,Natural child-friendly English pronunciation; 1 clip per word.
+word_ox,word,ox,Natural child-friendly English pronunciation; 1 clip per word.
+word_pan,word,pan,Natural child-friendly English pronunciation; 1 clip per word.
+word_pen,word,pen,Natural child-friendly English pronunciation; 1 clip per word.
+word_pet,word,pet,Natural child-friendly English pronunciation; 1 clip per word.
+word_phone,word,phone,Natural child-friendly English pronunciation; 1 clip per word.
+word_photo,word,photo,Natural child-friendly English pronunciation; 1 clip per word.
+word_pig,word,pig,Natural child-friendly English pronunciation; 1 clip per word.
+word_pin,word,pin,Natural child-friendly English pronunciation; 1 clip per word.
+word_plan,word,plan,Natural child-friendly English pronunciation; 1 clip per word.
+word_pot,word,pot,Natural child-friendly English pronunciation; 1 clip per word.
+word_pup,word,pup,Natural child-friendly English pronunciation; 1 clip per word.
+word_rat,word,rat,Natural child-friendly English pronunciation; 1 clip per word.
+word_red,word,red,Natural child-friendly English pronunciation; 1 clip per word.
+word_ride,word,ride,Natural child-friendly English pronunciation; 1 clip per word.
+word_ring,word,ring,Natural child-friendly English pronunciation; 1 clip per word.
+word_rope,word,rope,Natural child-friendly English pronunciation; 1 clip per word.
+word_rose,word,rose,Natural child-friendly English pronunciation; 1 clip per word.
+word_rub,word,rub,Natural child-friendly English pronunciation; 1 clip per word.
+word_run,word,run,Natural child-friendly English pronunciation; 1 clip per word.
+word_sad,word,sad,Natural child-friendly English pronunciation; 1 clip per word.
+word_sand,word,sand,Natural child-friendly English pronunciation; 1 clip per word.
+word_ship,word,ship,Natural child-friendly English pronunciation; 1 clip per word.
+word_shop,word,shop,Natural child-friendly English pronunciation; 1 clip per word.
+word_sip,word,sip,Natural child-friendly English pronunciation; 1 clip per word.
+word_sit,word,sit,Natural child-friendly English pronunciation; 1 clip per word.
+word_slip,word,slip,Natural child-friendly English pronunciation; 1 clip per word.
+word_sock,word,sock,Natural child-friendly English pronunciation; 1 clip per word.
+word_song,word,song,Natural child-friendly English pronunciation; 1 clip per word.
+word_step,word,step,Natural child-friendly English pronunciation; 1 clip per word.
+word_stop,word,stop,Natural child-friendly English pronunciation; 1 clip per word.
+word_sum,word,sum,Natural child-friendly English pronunciation; 1 clip per word.
+word_sun,word,sun,Natural child-friendly English pronunciation; 1 clip per word.
+word_tap,word,tap,Natural child-friendly English pronunciation; 1 clip per word.
+word_ten,word,ten,Natural child-friendly English pronunciation; 1 clip per word.
+word_tent,word,tent,Natural child-friendly English pronunciation; 1 clip per word.
+word_that,word,that,Natural child-friendly English pronunciation; 1 clip per word.
+word_thin,word,thin,Natural child-friendly English pronunciation; 1 clip per word.
+word_this,word,this,Natural child-friendly English pronunciation; 1 clip per word.
+word_time,word,time,Natural child-friendly English pronunciation; 1 clip per word.
+word_tip,word,tip,Natural child-friendly English pronunciation; 1 clip per word.
+word_top,word,top,Natural child-friendly English pronunciation; 1 clip per word.
+word_tree,word,tree,Natural child-friendly English pronunciation; 1 clip per word.
+word_tub,word,tub,Natural child-friendly English pronunciation; 1 clip per word.
+word_tube,word,tube,Natural child-friendly English pronunciation; 1 clip per word.
+word_umbrella,word,umbrella,Natural child-friendly English pronunciation; 1 clip per word.
+word_up,word,up,Natural child-friendly English pronunciation; 1 clip per word.
+word_van,word,van,Natural child-friendly English pronunciation; 1 clip per word.
+word_when,word,when,Natural child-friendly English pronunciation; 1 clip per word.
+word_whip,word,whip,Natural child-friendly English pronunciation; 1 clip per word.
+word_win,word,win,Natural child-friendly English pronunciation; 1 clip per word.
+prompt_01,prompt,Find the sound.,"Short, upbeat voice line."
+prompt_02,prompt,Find the word.,"Short, upbeat voice line."
+prompt_03,prompt,Which word rhymes?,"Short, upbeat voice line."
+prompt_04,prompt,Find the blend.,"Short, upbeat voice line."
+prompt_05,prompt,Find the digraph.,"Short, upbeat voice line."
+prompt_06,prompt,Magic E!,"Short, upbeat voice line."
+prompt_07,prompt,Great job!,"Short, upbeat voice line."
+prompt_08,prompt,Try again.,"Short, upbeat voice line."

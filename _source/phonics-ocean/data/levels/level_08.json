@@ -1,0 +1,49 @@
+{
+  "id": 8,
+  "name": "Treasure Review",
+  "focus": "Mixed decoding + simple sentence transfer",
+  "biome": "treasure_zone",
+  "target_pool": [
+    "CVC",
+    "rhyme",
+    "blend",
+    "digraph",
+    "magic_e"
+  ],
+  "word_pool": [
+    "cat",
+    "ship",
+    "frog",
+    "black",
+    "time",
+    "rose",
+    "cube",
+    "sun",
+    "fish",
+    "tree",
+    "shop",
+    "kite",
+    "dog",
+    "jump",
+    "hat",
+    "mug"
+  ],
+  "gameplay_mode": "Mixed review. After each feeding wave, complete a short oral prompt such as “I can see a ___.”",
+  "round_seconds": 90,
+  "correct_to_clear": 15,
+  "mastery_gate": {
+    "min_accuracy": 0.8,
+    "min_correct_streak": 5
+  },
+  "difficulty": {
+    "start_choices": 3,
+    "max_choices": 6,
+    "predator_spawn_sec": 10,
+    "speed_multiplier": 1.33
+  },
+  "feedback": {
+    "wrong_answer_beginner": "stun_and_replay_audio",
+    "wrong_answer_advanced": "break_combo",
+    "do_not_remove_life_for_literacy_error": true
+  }
+}

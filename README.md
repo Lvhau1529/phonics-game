@@ -8,6 +8,7 @@ là một module độc lập, thêm game mới không phải sửa game cũ.
 | -------------------- | ------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------- |
 | 🍞 **Bread Catcher** | Di chuyển rổ hứng bánh chữ theo đúng thứ tự để ghép từ. Class 3 đội / Solo.                                         | [docs/bread-catcher](docs/bread-catcher/README.md) |
 | 🍩 **Food Stream**   | Livestream ăn uống: nghe âm / từ, cho streamer ăn đúng món chữ cái / tranh. Classroom 2 đội / Solo, 7 kiểu câu hỏi. | [docs/food-stream](docs/food-stream/README.md)     |
+| 🐟 **Phonics Ocean** | Kiểu Feeding Frenzy: bơi ăn đúng cá mang chữ để lớn dần, né cá săn mồi. 8 cấp: âm đầu → CVC → vần → blend → digraph → Magic E → ôn tập. | [docs/phonics-ocean](docs/phonics-ocean/README.md) |
 
 Màn chọn game có **kim cương**: bé nhận 1 viên cho mỗi câu / từ đúng (tối đa 10 viên mỗi ván, ở mọi game),
 dùng để **mở khoá game mới** (game có `price` trong manifest); game sắp ra mắt hiện thẻ **COMING SOON**.
@@ -26,7 +27,7 @@ nút "?" cạnh từng mục ở Setup) viết bằng tiếng Việt cho giáo v
 | Styling       | SCSS Modules (Sass) cho component + Tailwind CSS v4 cho utility / token — xem [Styling](#styling)                                                     |
 | Bundler / dev | Vite (mỗi game một chunk tải động)                                                                                                                    |
 | PWA           | vite-plugin-pwa (manifest + service worker, chơi offline)                                                                                             |
-| Nội dung      | JSON + Zod (kiểm tra gói nội dung của Food Stream)                                                                                                    |
+| Nội dung      | JSON + Zod (kiểm tra gói nội dung của Food Stream, Phonics Ocean)                                                                                                    |
 | Giọng đọc     | Web Speech API (đọc âm / từ, không cần file ghi âm)                                                                                                   |
 | Format code   | Prettier (+ plugin sắp xếp class Tailwind) + EditorConfig                                                                                             |
 | Lưu dữ liệu   | localStorage (`phonics-arcade:prefs`, `phonics-arcade:wallet`, `phonics-arcade:<game-id>`; tài khoản: xem [Tài khoản & đồng bộ](#tài-khoản--đồng-bộ)) |
@@ -44,7 +45,7 @@ pnpm typecheck
 pnpm format       # Prettier
 ```
 
-Link mở thẳng một game: `/#/bread-catcher`, `/#/food-stream`; màn tài khoản: `/#/account` (nút Back của trình
+Link mở thẳng một game: `/#/bread-catcher`, `/#/food-stream`, `/#/phonics-ocean`; màn tài khoản: `/#/account` (nút Back của trình
 duyệt / Android quay về màn chọn game).
 
 ## Kiến trúc
@@ -76,7 +77,8 @@ src/
 └── games/
     ├── index.ts             # danh sách game ở màn chọn game
     ├── bread-catcher/       # xem docs/bread-catcher
-    └── food-stream/         # xem docs/food-stream
+    ├── food-stream/         # xem docs/food-stream
+    └── phonics-ocean/       # xem docs/phonics-ocean
 ```
 
 Mỗi game tự chứa (`src/games/<id>/`): `manifest.ts` (thẻ game + `load: () => import(root)`), `<Name>Game.tsx`
@@ -251,6 +253,7 @@ vào build. Script Python sinh file dùng trong game ở `public/assets/`:
 pip install -r tools/requirements.txt
 pnpm assets:bread         # Bread Catcher: cắt sprite + vẽ pixel-art bằng code -> public/assets/bread-catcher
 pnpm assets:food-stream   # Food Stream: cắt art board -> public/assets/food-stream + src/games/food-stream/game/config/sprites.json
+pnpm assets:phonics-ocean # Phonics Ocean: cắt board của pack -> public/assets/phonics-ocean + sprites.json; word_bank.csv -> content/levels.json
 pnpm assets:audio         # mọi WAV master -> .ogg + .mp3 (SFX chung -> public/assets/shared/sfx)
 pnpm assets:ui            # giao diện chung (icon, kim cương, linh vật ong, nền màn chọn game) -> public/assets/shared/ui
 pnpm assets:icons         # icon PWA / favicon hoa cúc pixel (_source/platform/app-icon) -> public/icons
@@ -263,6 +266,9 @@ pnpm assets               # chạy tất cả
 - `tools/bread_catcher/`: `build_sprites.py` (toạ độ cắt, ảnh bìa), `phonics_art.py`, `brainrot_art.py`.
 - `tools/food_stream/build_sprites.py`: toạ độ cắt nhân vật / món ăn / đạo cụ / tranh, huy hiệu che chữ in sẵn,
   frame cắn, ảnh bìa.
+- `tools/phonics_ocean/`: `build_sprites.py` (cá người chơi 3 cỡ, cá mồi, cá săn mồi, vật phẩm từ board nền
+  navy / nền sáng — xoá nền bằng flood fill; 6 nền biome; ảnh bìa), `build_content.py` (word_bank.csv +
+  level_0x.json -> `src/games/phonics-ocean/content/levels.json`).
 - `tools/build_audio.py`: bảng nguồn -> đích cho mọi game (đã mix sẵn, không normalize lại).
 - `tools/arcade_ui/build_ui.py`: cắt Phonics Arcade Bee resource pack (`_source/platform/`: sheet lưới 4×4 / 3×3
   nền vàng gradient không alpha, thứ tự ô trong `asset_manifest.json`). Tách nền bằng flood fill từ mép sheet (giữ

@@ -1,0 +1,960 @@
+{
+  "levels": [
+    {
+      "id": "sound-reef",
+      "number": 1,
+      "title": "SOUND REEF",
+      "focus": "Letter-sound + short vowel listening",
+      "mode": "initial",
+      "biome": "coral_reef",
+      "roundSeconds": 75,
+      "correctToClear": 12,
+      "minAccuracy": 0.8,
+      "startChoices": 3,
+      "maxChoices": 5,
+      "predatorEverySec": 14,
+      "speed": 0.91,
+      "predators": [
+        "puffer"
+      ],
+      "targets": [
+        {
+          "id": "a",
+          "label": "/a/",
+          "speech": [
+            "ah"
+          ],
+          "words": [
+            "ant",
+            "apple"
+          ]
+        },
+        {
+          "id": "e",
+          "label": "/e/",
+          "speech": [
+            "eh"
+          ],
+          "words": [
+            "egg",
+            "elf"
+          ]
+        },
+        {
+          "id": "i",
+          "label": "/i/",
+          "speech": [
+            "ih"
+          ],
+          "words": [
+            "ink",
+            "igloo"
+          ]
+        },
+        {
+          "id": "o",
+          "label": "/o/",
+          "speech": [
+            "aw"
+          ],
+          "words": [
+            "octopus",
+            "ox"
+          ]
+        },
+        {
+          "id": "u",
+          "label": "/u/",
+          "speech": [
+            "uh"
+          ],
+          "words": [
+            "up",
+            "umbrella"
+          ]
+        },
+        {
+          "id": "m",
+          "label": "/m/",
+          "speech": [
+            "mmm"
+          ],
+          "words": [
+            "map"
+          ]
+        },
+        {
+          "id": "s",
+          "label": "/s/",
+          "speech": [
+            "sss"
+          ],
+          "words": [
+            "sun"
+          ]
+        },
+        {
+          "id": "f",
+          "label": "/f/",
+          "speech": [
+            "fff"
+          ],
+          "words": [
+            "fish"
+          ]
+        },
+        {
+          "id": "n",
+          "label": "/n/",
+          "speech": [
+            "nnn"
+          ],
+          "words": [
+            "net"
+          ]
+        },
+        {
+          "id": "t",
+          "label": "/t/",
+          "speech": [
+            "tuh"
+          ],
+          "words": [
+            "top"
+          ]
+        },
+        {
+          "id": "p",
+          "label": "/p/",
+          "speech": [
+            "puh"
+          ],
+          "words": [
+            "pig"
+          ]
+        },
+        {
+          "id": "b",
+          "label": "/b/",
+          "speech": [
+            "buh"
+          ],
+          "words": [
+            "bat"
+          ]
+        },
+        {
+          "id": "c",
+          "label": "/c/",
+          "speech": [
+            "kuh"
+          ],
+          "words": [
+            "cat"
+          ]
+        },
+        {
+          "id": "d",
+          "label": "/d/",
+          "speech": [
+            "duh"
+          ],
+          "words": [
+            "dog"
+          ]
+        },
+        {
+          "id": "h",
+          "label": "/h/",
+          "speech": [
+            "huh"
+          ],
+          "words": [
+            "hat"
+          ]
+        }
+      ],
+      "words": [
+        "ant",
+        "apple",
+        "egg",
+        "elf",
+        "ink",
+        "igloo",
+        "octopus",
+        "ox",
+        "up",
+        "umbrella",
+        "map",
+        "sun",
+        "fish",
+        "net",
+        "top",
+        "pig",
+        "bat",
+        "cat",
+        "dog",
+        "hat"
+      ],
+      "extraDistractors": []
+    },
+    {
+      "id": "cvc-lagoon",
+      "number": 2,
+      "title": "CVC LAGOON A-I",
+      "focus": "CVC blending: short a / short i",
+      "mode": "word",
+      "biome": "shipwreck",
+      "roundSeconds": 75,
+      "correctToClear": 12,
+      "minAccuracy": 0.8,
+      "startChoices": 3,
+      "maxChoices": 5,
+      "predatorEverySec": 14,
+      "speed": 0.97,
+      "predators": [
+        "puffer"
+      ],
+      "targets": [],
+      "words": [
+        "cat",
+        "bat",
+        "hat",
+        "mat",
+        "rat",
+        "man",
+        "fan",
+        "pan",
+        "van",
+        "cap",
+        "map",
+        "tap",
+        "dad",
+        "sad",
+        "pig",
+        "fig",
+        "dig",
+        "pin",
+        "fin",
+        "win",
+        "sit",
+        "hit",
+        "fit",
+        "lip",
+        "sip",
+        "tip"
+      ],
+      "extraDistractors": []
+    },
+    {
+      "id": "cvc-deep-sea",
+      "number": 3,
+      "title": "CVC DEEP SEA",
+      "focus": "CVC blending: short e / o / u",
+      "mode": "word",
+      "biome": "deep_ocean",
+      "roundSeconds": 75,
+      "correctToClear": 12,
+      "minAccuracy": 0.8,
+      "startChoices": 3,
+      "maxChoices": 5,
+      "predatorEverySec": 14,
+      "speed": 1.03,
+      "predators": [
+        "shark"
+      ],
+      "targets": [],
+      "words": [
+        "pet",
+        "net",
+        "jet",
+        "hen",
+        "pen",
+        "ten",
+        "red",
+        "bed",
+        "dog",
+        "log",
+        "fog",
+        "hot",
+        "pot",
+        "dot",
+        "hop",
+        "mop",
+        "top",
+        "sun",
+        "fun",
+        "run",
+        "bug",
+        "mug",
+        "hug",
+        "hut",
+        "cut",
+        "nut",
+        "gum",
+        "sum",
+        "hum",
+        "cub",
+        "tub",
+        "rub",
+        "cup",
+        "pup"
+      ],
+      "extraDistractors": []
+    },
+    {
+      "id": "rhyme-current",
+      "number": 4,
+      "title": "RHYME CURRENT",
+      "focus": "Word families + rhyming",
+      "mode": "rime",
+      "biome": "ice_sea",
+      "roundSeconds": 75,
+      "correctToClear": 12,
+      "minAccuracy": 0.8,
+      "startChoices": 3,
+      "maxChoices": 5,
+      "predatorEverySec": 10,
+      "speed": 1.09,
+      "predators": [
+        "shark",
+        "puffer"
+      ],
+      "targets": [
+        {
+          "id": "-at",
+          "label": "-at",
+          "speech": [
+            "at"
+          ],
+          "words": [
+            "cat",
+            "hat",
+            "bat"
+          ]
+        },
+        {
+          "id": "-an",
+          "label": "-an",
+          "speech": [
+            "an"
+          ],
+          "words": [
+            "man",
+            "fan",
+            "van"
+          ]
+        },
+        {
+          "id": "-ap",
+          "label": "-ap",
+          "speech": [
+            "ap"
+          ],
+          "words": [
+            "cap",
+            "map",
+            "tap"
+          ]
+        },
+        {
+          "id": "-ig",
+          "label": "-ig",
+          "speech": [
+            "ig"
+          ],
+          "words": [
+            "pig",
+            "fig",
+            "dig"
+          ]
+        },
+        {
+          "id": "-in",
+          "label": "-in",
+          "speech": [
+            "in"
+          ],
+          "words": [
+            "pin",
+            "fin",
+            "win"
+          ]
+        },
+        {
+          "id": "-it",
+          "label": "-it",
+          "speech": [
+            "it"
+          ],
+          "words": [
+            "sit",
+            "hit",
+            "fit"
+          ]
+        },
+        {
+          "id": "-og",
+          "label": "-og",
+          "speech": [
+            "og"
+          ],
+          "words": [
+            "dog",
+            "log",
+            "fog"
+          ]
+        },
+        {
+          "id": "-ot",
+          "label": "-ot",
+          "speech": [
+            "ot"
+          ],
+          "words": [
+            "hot",
+            "pot",
+            "dot"
+          ]
+        },
+        {
+          "id": "-ug",
+          "label": "-ug",
+          "speech": [
+            "ug"
+          ],
+          "words": [
+            "bug",
+            "mug",
+            "hug"
+          ]
+        },
+        {
+          "id": "-un",
+          "label": "-un",
+          "speech": [
+            "un"
+          ],
+          "words": [
+            "sun",
+            "fun",
+            "run"
+          ]
+        },
+        {
+          "id": "-ut",
+          "label": "-ut",
+          "speech": [
+            "ut"
+          ],
+          "words": [
+            "hut",
+            "cut",
+            "nut"
+          ]
+        },
+        {
+          "id": "-um",
+          "label": "-um",
+          "speech": [
+            "um"
+          ],
+          "words": [
+            "gum",
+            "sum",
+            "hum"
+          ]
+        },
+        {
+          "id": "-ub",
+          "label": "-ub",
+          "speech": [
+            "ub"
+          ],
+          "words": [
+            "cub",
+            "tub",
+            "rub"
+          ]
+        }
+      ],
+      "words": [
+        "cat",
+        "hat",
+        "bat",
+        "man",
+        "fan",
+        "van",
+        "cap",
+        "map",
+        "tap",
+        "pig",
+        "fig",
+        "dig",
+        "pin",
+        "fin",
+        "win",
+        "sit",
+        "hit",
+        "fit",
+        "dog",
+        "log",
+        "fog",
+        "hot",
+        "pot",
+        "dot",
+        "bug",
+        "mug",
+        "hug",
+        "sun",
+        "fun",
+        "run",
+        "hut",
+        "cut",
+        "nut",
+        "gum",
+        "sum",
+        "hum",
+        "cub",
+        "tub",
+        "rub"
+      ],
+      "extraDistractors": []
+    },
+    {
+      "id": "blend-wreck",
+      "number": 5,
+      "title": "BLEND WRECK",
+      "focus": "CCVC / CVCC consonant blends",
+      "mode": "contains",
+      "biome": "volcano",
+      "roundSeconds": 90,
+      "correctToClear": 15,
+      "minAccuracy": 0.8,
+      "startChoices": 3,
+      "maxChoices": 6,
+      "predatorEverySec": 10,
+      "speed": 1.15,
+      "predators": [
+        "eel",
+        "shark"
+      ],
+      "targets": [
+        {
+          "id": "bl",
+          "label": "bl",
+          "speech": [
+            "bluh"
+          ],
+          "words": [
+            "black"
+          ]
+        },
+        {
+          "id": "cl",
+          "label": "cl",
+          "speech": [
+            "kluh"
+          ],
+          "words": [
+            "clap"
+          ]
+        },
+        {
+          "id": "fl",
+          "label": "fl",
+          "speech": [
+            "fluh"
+          ],
+          "words": [
+            "flag"
+          ]
+        },
+        {
+          "id": "gl",
+          "label": "gl",
+          "speech": [
+            "gluh"
+          ],
+          "words": [
+            "glad"
+          ]
+        },
+        {
+          "id": "pl",
+          "label": "pl",
+          "speech": [
+            "pluh"
+          ],
+          "words": [
+            "plan"
+          ]
+        },
+        {
+          "id": "sl",
+          "label": "sl",
+          "speech": [
+            "sluh"
+          ],
+          "words": [
+            "slip"
+          ]
+        },
+        {
+          "id": "fr",
+          "label": "fr",
+          "speech": [
+            "fruh"
+          ],
+          "words": [
+            "frog"
+          ]
+        },
+        {
+          "id": "cr",
+          "label": "cr",
+          "speech": [
+            "kruh"
+          ],
+          "words": [
+            "crab"
+          ]
+        },
+        {
+          "id": "dr",
+          "label": "dr",
+          "speech": [
+            "druh"
+          ],
+          "words": [
+            "drum"
+          ]
+        },
+        {
+          "id": "gr",
+          "label": "gr",
+          "speech": [
+            "gruh"
+          ],
+          "words": [
+            "grin"
+          ]
+        },
+        {
+          "id": "tr",
+          "label": "tr",
+          "speech": [
+            "truh"
+          ],
+          "words": [
+            "tree"
+          ]
+        },
+        {
+          "id": "st",
+          "label": "st",
+          "speech": [
+            "stuh"
+          ],
+          "words": [
+            "stop",
+            "step",
+            "nest"
+          ]
+        },
+        {
+          "id": "nd",
+          "label": "nd",
+          "speech": [
+            "and"
+          ],
+          "words": [
+            "hand",
+            "sand"
+          ]
+        },
+        {
+          "id": "mp",
+          "label": "mp",
+          "speech": [
+            "amp"
+          ],
+          "words": [
+            "lamp",
+            "jump"
+          ]
+        },
+        {
+          "id": "nt",
+          "label": "nt",
+          "speech": [
+            "ant"
+          ],
+          "words": [
+            "tent"
+          ]
+        },
+        {
+          "id": "sk",
+          "label": "sk",
+          "speech": [
+            "ask"
+          ],
+          "words": [
+            "desk",
+            "mask"
+          ]
+        }
+      ],
+      "words": [
+        "black",
+        "clap",
+        "flag",
+        "glad",
+        "plan",
+        "slip",
+        "frog",
+        "crab",
+        "drum",
+        "grin",
+        "tree",
+        "stop",
+        "step",
+        "hand",
+        "sand",
+        "lamp",
+        "jump",
+        "tent",
+        "nest",
+        "desk",
+        "mask",
+        "milk",
+        "help"
+      ],
+      "extraDistractors": []
+    },
+    {
+      "id": "digraph-trench",
+      "number": 6,
+      "title": "DIGRAPH TRENCH",
+      "focus": "Common digraphs",
+      "mode": "contains",
+      "biome": "treasure_zone",
+      "roundSeconds": 90,
+      "correctToClear": 15,
+      "minAccuracy": 0.8,
+      "startChoices": 3,
+      "maxChoices": 6,
+      "predatorEverySec": 10,
+      "speed": 1.21,
+      "predators": [
+        "angler"
+      ],
+      "targets": [
+        {
+          "id": "sh",
+          "label": "sh",
+          "speech": [
+            "shh"
+          ],
+          "words": [
+            "ship",
+            "shop",
+            "fish",
+            "dish"
+          ]
+        },
+        {
+          "id": "ch",
+          "label": "ch",
+          "speech": [
+            "chuh"
+          ],
+          "words": [
+            "chat",
+            "chin",
+            "chop",
+            "much"
+          ]
+        },
+        {
+          "id": "th",
+          "label": "th",
+          "speech": [
+            "thuh"
+          ],
+          "words": [
+            "thin",
+            "bath",
+            "moth",
+            "this",
+            "that"
+          ]
+        },
+        {
+          "id": "ph",
+          "label": "ph",
+          "speech": [
+            "fff"
+          ],
+          "words": [
+            "phone",
+            "photo"
+          ]
+        },
+        {
+          "id": "wh",
+          "label": "wh",
+          "speech": [
+            "wuh"
+          ],
+          "words": [
+            "whip",
+            "when"
+          ]
+        },
+        {
+          "id": "ck",
+          "label": "ck",
+          "speech": [
+            "kuh"
+          ],
+          "words": [
+            "duck",
+            "sock"
+          ]
+        },
+        {
+          "id": "ng",
+          "label": "ng",
+          "speech": [
+            "ing"
+          ],
+          "words": [
+            "ring",
+            "king",
+            "song"
+          ]
+        }
+      ],
+      "words": [
+        "ship",
+        "shop",
+        "fish",
+        "dish",
+        "chat",
+        "chin",
+        "chop",
+        "much",
+        "thin",
+        "bath",
+        "moth",
+        "this",
+        "that",
+        "phone",
+        "photo",
+        "whip",
+        "when",
+        "duck",
+        "sock",
+        "ring",
+        "king",
+        "song"
+      ],
+      "extraDistractors": []
+    },
+    {
+      "id": "magic-e-bay",
+      "number": 7,
+      "title": "MAGIC-E BAY",
+      "focus": "CVCe / silent e",
+      "mode": "word",
+      "biome": "ice_sea",
+      "roundSeconds": 90,
+      "correctToClear": 15,
+      "minAccuracy": 0.8,
+      "startChoices": 3,
+      "maxChoices": 6,
+      "predatorEverySec": 10,
+      "speed": 1.27,
+      "predators": [
+        "shark",
+        "puffer"
+      ],
+      "targets": [],
+      "words": [
+        "cake",
+        "game",
+        "gate",
+        "lake",
+        "name",
+        "bike",
+        "five",
+        "kite",
+        "ride",
+        "time",
+        "home",
+        "nose",
+        "rope",
+        "rose",
+        "cube",
+        "cute",
+        "mule",
+        "tube"
+      ],
+      "extraDistractors": [
+        "kit",
+        "cut",
+        "rid",
+        "cub",
+        "tub",
+        "cap",
+        "hop",
+        "not",
+        "pin",
+        "can",
+        "tap",
+        "rob"
+      ]
+    },
+    {
+      "id": "treasure-review",
+      "number": 8,
+      "title": "TREASURE REVIEW",
+      "focus": "Mixed decoding + simple sentence transfer",
+      "mode": "sentence",
+      "biome": "treasure_zone",
+      "roundSeconds": 90,
+      "correctToClear": 15,
+      "minAccuracy": 0.8,
+      "startChoices": 3,
+      "maxChoices": 6,
+      "predatorEverySec": 10,
+      "speed": 1.33,
+      "predators": [
+        "angler",
+        "shark"
+      ],
+      "targets": [],
+      "words": [
+        "cat",
+        "ship",
+        "frog",
+        "black",
+        "time",
+        "rose",
+        "cube",
+        "sun",
+        "fish",
+        "tree",
+        "shop",
+        "kite",
+        "dog",
+        "jump",
+        "hat",
+        "mug"
+      ],
+      "extraDistractors": []
+    }
+  ]
+}

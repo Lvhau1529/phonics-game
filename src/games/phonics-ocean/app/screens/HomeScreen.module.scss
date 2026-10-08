@@ -1,0 +1,100 @@
+@use '@/platform/styles/abstracts' as *;
+
+@layer components {
+  @include keyframes-bob($distance: -6px);
+
+  .home {
+    @include screen;
+    position: relative;
+    // Chừa khoảng dưới cho cá của bé bơi lượn ở đại dương phía sau (LobbyScene)
+    justify-content: flex-start;
+    gap: 16px;
+    padding-top: max(72px, env(safe-area-inset-top));
+    text-align: center;
+
+    // Máy chiếu / máy tính: logo bên trái, nút bên phải
+    @include app-landscape {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-areas:
+        'logo play'
+        'logo toggles'
+        'logo guide';
+      align-content: center;
+      gap: 18px 48px;
+    }
+  }
+
+  // Về màn chọn game
+  .exit {
+    position: absolute;
+    top: max(16px, env(safe-area-inset-top));
+    left: 16px;
+  }
+
+  .logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+    font-weight: 800;
+    line-height: 0.95;
+    text-shadow: var(--outline-thick);
+
+    @include app-landscape {
+      grid-area: logo;
+    }
+  }
+
+  .logoTop {
+    color: var(--color-gold);
+    font-size: clamp(40px, 12vw, 56px);
+    letter-spacing: 1px;
+  }
+
+  .logoBottom {
+    margin-top: 2px;
+    color: #7fe3ff;
+    font-size: clamp(54px, 17vw, 78px);
+    letter-spacing: 2px;
+    animation: bob 1.6s ease-in-out infinite;
+  }
+
+  // "EAT · GROW · LEARN" trên tấm gỗ như logo của pack
+  .tagline {
+    margin-top: 8px;
+    padding: 4px 16px;
+    border: 3px solid var(--color-ink);
+    border-radius: 12px;
+    background: var(--color-wood);
+    color: var(--color-honey-light);
+    font-size: 17px;
+    letter-spacing: 1.5px;
+    text-shadow: none;
+  }
+
+  // Nút chính duy nhất của màn Home — to, dễ bấm cho bé
+  .play {
+    min-height: 80px;
+    font-size: 34px;
+    letter-spacing: 2px;
+
+    @include app-landscape {
+      grid-area: play;
+      align-self: end;
+    }
+  }
+
+  .toggles {
+    @include app-landscape {
+      grid-area: toggles;
+    }
+  }
+
+  .guide {
+    @include app-landscape {
+      grid-area: guide;
+      align-self: start;
+    }
+  }
+}

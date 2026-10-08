@@ -1,0 +1,332 @@
+{
+  "player.1.0": {
+    "path": "assets/phonics-ocean/player/tier1_0.png",
+    "width": 153,
+    "height": 132
+  },
+  "player.1.1": {
+    "path": "assets/phonics-ocean/player/tier1_1.png",
+    "width": 149,
+    "height": 132
+  },
+  "player.1.2": {
+    "path": "assets/phonics-ocean/player/tier1_2.png",
+    "width": 142,
+    "height": 132
+  },
+  "player.1.3": {
+    "path": "assets/phonics-ocean/player/tier1_3.png",
+    "width": 153,
+    "height": 132
+  },
+  "player.1.4": {
+    "path": "assets/phonics-ocean/player/tier1_4.png",
+    "width": 142,
+    "height": 132
+  },
+  "player.1.5": {
+    "path": "assets/phonics-ocean/player/tier1_5.png",
+    "width": 139,
+    "height": 132
+  },
+  "player.2.0": {
+    "path": "assets/phonics-ocean/player/tier2_0.png",
+    "width": 141,
+    "height": 141
+  },
+  "player.2.1": {
+    "path": "assets/phonics-ocean/player/tier2_1.png",
+    "width": 144,
+    "height": 141
+  },
+  "player.2.2": {
+    "path": "assets/phonics-ocean/player/tier2_2.png",
+    "width": 132,
+    "height": 141
+  },
+  "player.2.3": {
+    "path": "assets/phonics-ocean/player/tier2_3.png",
+    "width": 138,
+    "height": 141
+  },
+  "player.2.4": {
+    "path": "assets/phonics-ocean/player/tier2_4.png",
+    "width": 132,
+    "height": 141
+  },
+  "player.2.5": {
+    "path": "assets/phonics-ocean/player/tier2_5.png",
+    "width": 135,
+    "height": 141
+  },
+  "player.3.0": {
+    "path": "assets/phonics-ocean/player/tier3_0.png",
+    "width": 131,
+    "height": 150
+  },
+  "player.3.1": {
+    "path": "assets/phonics-ocean/player/tier3_1.png",
+    "width": 148,
+    "height": 150
+  },
+  "player.3.2": {
+    "path": "assets/phonics-ocean/player/tier3_2.png",
+    "width": 145,
+    "height": 150
+  },
+  "player.3.3": {
+    "path": "assets/phonics-ocean/player/tier3_3.png",
+    "width": 140,
+    "height": 150
+  },
+  "player.3.4": {
+    "path": "assets/phonics-ocean/player/tier3_4.png",
+    "width": 140,
+    "height": 150
+  },
+  "player.bite": {
+    "path": "assets/phonics-ocean/player/bite.png",
+    "width": 145,
+    "height": 150
+  },
+  "prey.0": {
+    "path": "assets/phonics-ocean/prey/fish_00.png",
+    "width": 132,
+    "height": 90
+  },
+  "prey.1": {
+    "path": "assets/phonics-ocean/prey/fish_01.png",
+    "width": 132,
+    "height": 91
+  },
+  "prey.2": {
+    "path": "assets/phonics-ocean/prey/fish_02.png",
+    "width": 132,
+    "height": 90
+  },
+  "prey.3": {
+    "path": "assets/phonics-ocean/prey/fish_03.png",
+    "width": 132,
+    "height": 89
+  },
+  "prey.4": {
+    "path": "assets/phonics-ocean/prey/fish_04.png",
+    "width": 132,
+    "height": 88
+  },
+  "prey.5": {
+    "path": "assets/phonics-ocean/prey/fish_05.png",
+    "width": 132,
+    "height": 87
+  },
+  "prey.6": {
+    "path": "assets/phonics-ocean/prey/fish_06.png",
+    "width": 132,
+    "height": 88
+  },
+  "prey.7": {
+    "path": "assets/phonics-ocean/prey/fish_07.png",
+    "width": 132,
+    "height": 105
+  },
+  "prey.8": {
+    "path": "assets/phonics-ocean/prey/fish_08.png",
+    "width": 132,
+    "height": 104
+  },
+  "prey.9": {
+    "path": "assets/phonics-ocean/prey/fish_09.png",
+    "width": 132,
+    "height": 105
+  },
+  "prey.10": {
+    "path": "assets/phonics-ocean/prey/fish_10.png",
+    "width": 132,
+    "height": 99
+  },
+  "prey.11": {
+    "path": "assets/phonics-ocean/prey/fish_11.png",
+    "width": 132,
+    "height": 97
+  },
+  "prey.12": {
+    "path": "assets/phonics-ocean/prey/fish_12.png",
+    "width": 132,
+    "height": 106
+  },
+  "prey.13": {
+    "path": "assets/phonics-ocean/prey/fish_13.png",
+    "width": 132,
+    "height": 104
+  },
+  "prey.14": {
+    "path": "assets/phonics-ocean/prey/fish_14.png",
+    "width": 132,
+    "height": 102
+  },
+  "prey.15": {
+    "path": "assets/phonics-ocean/prey/fish_15.png",
+    "width": 132,
+    "height": 94
+  },
+  "prey.16": {
+    "path": "assets/phonics-ocean/prey/fish_16.png",
+    "width": 132,
+    "height": 101
+  },
+  "prey.17": {
+    "path": "assets/phonics-ocean/prey/fish_17.png",
+    "width": 132,
+    "height": 101
+  },
+  "prey.18": {
+    "path": "assets/phonics-ocean/prey/fish_18.png",
+    "width": 132,
+    "height": 104
+  },
+  "prey.19": {
+    "path": "assets/phonics-ocean/prey/fish_19.png",
+    "width": 132,
+    "height": 100
+  },
+  "prey.20": {
+    "path": "assets/phonics-ocean/prey/fish_20.png",
+    "width": 132,
+    "height": 98
+  },
+  "prey.21": {
+    "path": "assets/phonics-ocean/prey/fish_21.png",
+    "width": 132,
+    "height": 99
+  },
+  "prey.22": {
+    "path": "assets/phonics-ocean/prey/fish_22.png",
+    "width": 132,
+    "height": 101
+  },
+  "prey.23": {
+    "path": "assets/phonics-ocean/prey/fish_23.png",
+    "width": 132,
+    "height": 106
+  },
+  "prey.24": {
+    "path": "assets/phonics-ocean/prey/fish_24.png",
+    "width": 132,
+    "height": 102
+  },
+  "predator.shark.0": {
+    "path": "assets/phonics-ocean/predators/shark_0.png",
+    "width": 246,
+    "height": 132
+  },
+  "predator.shark.1": {
+    "path": "assets/phonics-ocean/predators/shark_1.png",
+    "width": 278,
+    "height": 132
+  },
+  "predator.shark.2": {
+    "path": "assets/phonics-ocean/predators/shark_2.png",
+    "width": 267,
+    "height": 132
+  },
+  "predator.puffer.0": {
+    "path": "assets/phonics-ocean/predators/puffer_0.png",
+    "width": 141,
+    "height": 120
+  },
+  "predator.puffer.1": {
+    "path": "assets/phonics-ocean/predators/puffer_1.png",
+    "width": 134,
+    "height": 120
+  },
+  "predator.puffer.2": {
+    "path": "assets/phonics-ocean/predators/puffer_2.png",
+    "width": 130,
+    "height": 120
+  },
+  "predator.puffer.3": {
+    "path": "assets/phonics-ocean/predators/puffer_3.png",
+    "width": 128,
+    "height": 120
+  },
+  "predator.puffer.4": {
+    "path": "assets/phonics-ocean/predators/puffer_4.png",
+    "width": 128,
+    "height": 120
+  },
+  "predator.eel.0": {
+    "path": "assets/phonics-ocean/predators/eel_0.png",
+    "width": 252,
+    "height": 120
+  },
+  "predator.angler.0": {
+    "path": "assets/phonics-ocean/predators/angler_0.png",
+    "width": 261,
+    "height": 140
+  },
+  "predator.angler.1": {
+    "path": "assets/phonics-ocean/predators/angler_1.png",
+    "width": 208,
+    "height": 140
+  },
+  "item.star": {
+    "path": "assets/phonics-ocean/items/star.png",
+    "width": 96,
+    "height": 93
+  },
+  "item.bolt": {
+    "path": "assets/phonics-ocean/items/bolt.png",
+    "width": 74,
+    "height": 96
+  },
+  "item.bubble": {
+    "path": "assets/phonics-ocean/items/bubble.png",
+    "width": 94,
+    "height": 96
+  },
+  "item.clock": {
+    "path": "assets/phonics-ocean/items/clock.png",
+    "width": 96,
+    "height": 86
+  },
+  "item.heart": {
+    "path": "assets/phonics-ocean/items/heart.png",
+    "width": 96,
+    "height": 88
+  },
+  "item.chest": {
+    "path": "assets/phonics-ocean/items/chest.png",
+    "width": 96,
+    "height": 84
+  },
+  "bg.coral_reef": {
+    "path": "assets/phonics-ocean/backgrounds/coral_reef.png",
+    "width": 423,
+    "height": 474
+  },
+  "bg.shipwreck": {
+    "path": "assets/phonics-ocean/backgrounds/shipwreck.png",
+    "width": 471,
+    "height": 474
+  },
+  "bg.deep_ocean": {
+    "path": "assets/phonics-ocean/backgrounds/deep_ocean.png",
+    "width": 462,
+    "height": 474
+  },
+  "bg.ice_sea": {
+    "path": "assets/phonics-ocean/backgrounds/ice_sea.png",
+    "width": 474,
+    "height": 474
+  },
+  "bg.volcano": {
+    "path": "assets/phonics-ocean/backgrounds/volcano.png",
+    "width": 498,
+    "height": 474
+  },
+  "bg.treasure_zone": {
+    "path": "assets/phonics-ocean/backgrounds/treasure_zone.png",
+    "width": 498,
+    "height": 474
+  }
+}

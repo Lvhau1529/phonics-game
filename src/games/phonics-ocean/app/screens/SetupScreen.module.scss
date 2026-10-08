@@ -1,0 +1,33 @@
+@use '@/platform/styles/abstracts' as *;
+
+@layer components {
+  .setup {
+    @include screen;
+  }
+
+  .form {
+    @include card;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    // Máy chiếu: danh sách cấp bên trái, cá săn mồi bên phải
+    @include app-landscape {
+      display: grid;
+      grid-template-columns: 3fr 2fr;
+      align-items: start;
+      gap: 28px;
+    }
+  }
+
+  .start {
+    position: sticky;
+    bottom: max(12px, env(safe-area-inset-bottom));
+    font-size: 26px;
+
+    @include app-landscape {
+      align-self: center;
+      width: min(100%, 420px);
+    }
+  }
+}

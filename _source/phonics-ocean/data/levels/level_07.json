@@ -1,0 +1,50 @@
+{
+  "id": 7,
+  "name": "Magic-E Bay",
+  "focus": "CVCe / silent e",
+  "biome": "ice_sea",
+  "target_pool": [
+    "a_e",
+    "i_e",
+    "o_e",
+    "u_e"
+  ],
+  "word_pool": [
+    "cake",
+    "game",
+    "gate",
+    "lake",
+    "name",
+    "bike",
+    "five",
+    "kite",
+    "ride",
+    "time",
+    "home",
+    "nose",
+    "rope",
+    "rose",
+    "cube",
+    "cute",
+    "mule",
+    "tube"
+  ],
+  "gameplay_mode": "Compare short-vowel vs magic-e pairs; correct words give a growth boost.",
+  "round_seconds": 90,
+  "correct_to_clear": 15,
+  "mastery_gate": {
+    "min_accuracy": 0.8,
+    "min_correct_streak": 5
+  },
+  "difficulty": {
+    "start_choices": 3,
+    "max_choices": 6,
+    "predator_spawn_sec": 10,
+    "speed_multiplier": 1.27
+  },
+  "feedback": {
+    "wrong_answer_beginner": "stun_and_replay_audio",
+    "wrong_answer_advanced": "break_combo",
+    "do_not_remove_life_for_literacy_error": true
+  }
+}

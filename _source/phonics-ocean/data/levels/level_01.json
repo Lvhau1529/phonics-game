@@ -1,0 +1,63 @@
+{
+  "id": 1,
+  "name": "Sound Reef",
+  "focus": "Letter-sound + short vowel listening",
+  "biome": "coral_reef",
+  "target_pool": [
+    "a",
+    "e",
+    "i",
+    "o",
+    "u",
+    "m",
+    "s",
+    "f",
+    "n",
+    "t",
+    "p",
+    "b",
+    "c",
+    "d",
+    "h"
+  ],
+  "word_pool": [
+    "ant",
+    "apple",
+    "egg",
+    "elf",
+    "ink",
+    "igloo",
+    "octopus",
+    "ox",
+    "up",
+    "umbrella",
+    "map",
+    "sun",
+    "fish",
+    "net",
+    "top",
+    "pig",
+    "bat",
+    "cat",
+    "dog",
+    "hat"
+  ],
+  "gameplay_mode": "Hear a sound, then eat the fish/object whose beginning sound matches.",
+  "round_seconds": 75,
+  "correct_to_clear": 12,
+  "mastery_gate": {
+    "min_accuracy": 0.8,
+    "min_correct_streak": 5
+  },
+  "difficulty": {
+    "start_choices": 3,
+    "max_choices": 5,
+    "predator_spawn_sec": 14,
+    "speed_multiplier": 0.91
+  },
+  "feedback": {
+    "wrong_answer_beginner": "stun_and_replay_audio",
+    "wrong_answer_advanced": "break_combo",
+    "do_not_remove_life_for_literacy_error": true
+  }
+}

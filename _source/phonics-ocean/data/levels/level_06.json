@@ -1,0 +1,57 @@
+{
+  "id": 6,
+  "name": "Digraph Trench",
+  "focus": "Common digraphs",
+  "biome": "treasure_zone",
+  "target_pool": [
+    "sh",
+    "ch",
+    "th",
+    "ph",
+    "wh",
+    "ck",
+    "ng"
+  ],
+  "word_pool": [
+    "ship",
+    "shop",
+    "fish",
+    "dish",
+    "chat",
+    "chin",
+    "chop",
+    "much",
+    "thin",
+    "bath",
+    "moth",
+    "this",
+    "that",
+    "phone",
+    "photo",
+    "whip",
+    "when",
+    "duck",
+    "sock",
+    "ring",
+    "king",
+    "song"
+  ],
+  "gameplay_mode": "Hear the target digraph, then decode words before eating.",
+  "round_seconds": 90,
+  "correct_to_clear": 15,
+  "mastery_gate": {
+    "min_accuracy": 0.8,
+    "min_correct_streak": 5
+  },
+  "difficulty": {
+    "start_choices": 3,
+    "max_choices": 6,
+    "predator_spawn_sec": 10,
+    "speed_multiplier": 1.21
+  },
+  "feedback": {
+    "wrong_answer_beginner": "stun_and_replay_audio",
+    "wrong_answer_advanced": "break_combo",
+    "do_not_remove_life_for_literacy_error": true
+  }
+}

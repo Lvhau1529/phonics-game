@@ -28,6 +28,8 @@ JOBS = [
     ("platform/audio/sfx", "shared/sfx"),
     ("bread-catcher/audio/bgm", "bread-catcher/music"),
     ("food-stream/audio/bgm", "food-stream/music"),
+    # SFX riêng của Phonics Ocean (resource pack v2: correct, wrong_soft, level_up, collect, danger)
+    ("phonics-ocean/audio/sfx", "phonics-ocean/sfx"),
 ]
 
 

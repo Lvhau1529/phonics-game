@@ -6,4 +6,6 @@ pnpm-lock.yaml
 *.md
 public/assets
 src/games/food-stream/game/config/sprites.json
+src/games/phonics-ocean/game/config/sprites.json
+src/games/phonics-ocean/content/levels.json
 _source
