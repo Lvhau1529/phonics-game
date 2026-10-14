@@ -7,7 +7,7 @@ import { JINGLE, MUSIC, musicUrls, OCEAN_SFX, oceanSfxUrls } from '@/games/phoni
 import { SPRITES } from '@/games/phonics-ocean/game/config/sprites';
 import { ASSETS_READY, SCENES } from '@/games/phonics-ocean/game/core/keys';
 import { createFxTextures } from '@/games/phonics-ocean/game/systems/textures';
-import { SFX, sfxUrls } from '@/platform/audio/sfx';
+import { SFX, sfxUrls } from '@/core/audio/sfx';
 
 export default class PreloadScene extends Phaser.Scene {
   constructor() {

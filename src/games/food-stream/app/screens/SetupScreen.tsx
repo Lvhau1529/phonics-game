@@ -16,13 +16,13 @@ import {
 import { DEFAULT_TEAM_NAMES, MAX_NAME_LENGTH, TEAM_STREAMERS } from '@/games/food-stream/session/teams';
 import type { GameMode, SetupDraft, StreamerId } from '@/games/food-stream/session/types';
 import { TEXT } from '@/games/food-stream/session/text';
-import { SFX } from '@/platform/audio/sfx';
-import Button from '@/platform/ui/Button';
-import Field, { FieldHint } from '@/platform/ui/Field';
-import NameInput from '@/platform/ui/NameInput';
-import OptionGroup, { type Option } from '@/platform/ui/OptionGroup';
-import ScreenHeader from '@/platform/ui/ScreenHeader';
-import { speech } from '@/shared/speech';
+import { SFX } from '@/core/audio/sfx';
+import Button from '@/ui/Button/Button';
+import Field, { FieldHint } from '@/ui/Field/Field';
+import NameInput from '@/ui/NameInput/NameInput';
+import OptionGroup, { type Option } from '@/ui/OptionGroup/OptionGroup';
+import ScreenHeader from '@/ui/ScreenHeader/ScreenHeader';
+import { speech } from '@/core/utils/speech';
 import styles from '@/games/food-stream/app/screens/SetupScreen.module.scss';
 
 const MODE_OPTIONS: Option<GameMode>[] = [

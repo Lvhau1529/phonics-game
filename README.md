@@ -87,7 +87,7 @@ Mỗi game tự chứa (`src/games/<id>/`): `manifest.ts` (thẻ game + `load: (
 
 **Độ phân giải:** toạ độ game là 360 × (640–800) khi dọc, (720–960) × 540 khi ngang, canvas render gấp đôi
 (`RENDER_SCALE`) qua camera zoom → chữ học sắc nét. Code layout luôn dùng `view(scene)` / `isLandscape(scene)`
-(`src/platform/phaser/view.ts`). Đổi hướng màn hình ở màn React thì game tự dựng lại theo bố cục mới;
+(`src/core/phaser/view.ts`). Đổi hướng màn hình ở màn React thì game tự dựng lại theo bố cục mới;
 đang chơi dở thì chờ hết phiên.
 
 **Import:** alias `@/` trỏ tới `src/` (khai báo ở `tsconfig.json` và `vite.config.ts`).
@@ -225,14 +225,14 @@ Bee pack bằng `pnpm assets:ui` (bảng `EXPORTS` / `MASCOTS` trong `tools/arca
 
 | Ở đâu                                        | Dùng cho                                                                                                                                                                                                                                                               |
 | -------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `src/platform/styles/tailwind.css`           | **Token** màu / font / bo góc (`@theme`) — nguồn duy nhất: `bg-orange`, `text-ink`, `font-learning` trong JSX hoặc `var(--color-orange)`, `var(--font-ui)`, `var(--radius-card)` trong SCSS. Biến thể `app-landscape:`, `projector:`, `wide:`; utility `text-outline`. |
-| `src/platform/styles/global.scss`            | Reset, `html / body / #root`, `.app`, biến `--outline`. Không thêm style component vào đây.                                                                                                                                                                            |
+| `src/ui/styles/tailwind.css`           | **Token** màu / font / bo góc (`@theme`) — nguồn duy nhất: `bg-orange`, `text-ink`, `font-learning` trong JSX hoặc `var(--color-orange)`, `var(--font-ui)`, `var(--radius-card)` trong SCSS. Biến thể `app-landscape:`, `projector:`, `wide:`; utility `text-outline`. |
+| `src/ui/styles/global.scss`            | Reset, `html / body / #root`, `.app`, biến `--outline`. Không thêm style component vào đây.                                                                                                                                                                            |
 | `src/platform/styles/abstracts/`             | Mixin / biến SCSS (không sinh CSS khi chỉ `@use`): `screen`, `card`, `text-button`, `focus-ring`, `ellipsis`, `candy-scrollbar`, `app-landscape`, `projector`, `wide`, `phone-landscape`, keyframes (`keyframes-bob`, `keyframes-screen-in`, `keyframes-pop`).         |
 | `Component.module.scss` cạnh `Component.tsx` | Style của component: tên class tự đổi thành duy nhất (`Button_btn_x7Gk` khi dev, `_x7GkQ2` khi build) nên không đụng nhau giữa các game.                                                                                                                               |
 
 Quy ước:
 
-- File module bắt đầu bằng `@use '@/platform/styles/abstracts' as *;` và bọc toàn bộ trong
+- File module bắt đầu bằng `@use '@/ui/styles/abstracts' as *;` và bọc toàn bộ trong
   `@layer components { … }`. Tên class camelCase (`styles.logoTop`), ghép nhiều class bằng `clsx`.
 - Thứ tự layer: `theme < base < components < utilities` → class Tailwind gắn thêm vào phần tử **luôn thắng**
   style của module (vd `<Button className="mt-4">`). Không dùng Preflight của Tailwind (reset riêng ở
@@ -283,7 +283,7 @@ pnpm assets               # chạy tất cả
   cắt góc nền trắng của `master-1024.png`, sinh bản maskable / apple-touch; favicon chép nguyên bản crop của pack.
 - `tools/build_avatars.py`: 8 avatar con vật (preset `AVATARS` của contracts) từ Animal Avatar sheet
   (`_source/platform/avatars/`, nền magenta 2×4, khung gỗ tròn) -> WebP vuông 224px. Avatar cũ `pip` / `girl` / `boy`
-  (không còn trong picker) vẫn dùng ảnh ong / streamer — map ở `src/platform/account/avatars.ts`.
+  (không còn trong picker) vẫn dùng ảnh ong / streamer — map ở `src/modules/auth/utils/avatars.ts`.
 - Chỉ dùng khung / icon **không có chữ in sẵn** (hoặc che chữ in sẵn) — chữ cái, tên đội, nhãn nút vẽ live.
 
 ## Gói `@phonics/contracts` (GitHub Packages)

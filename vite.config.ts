@@ -72,7 +72,7 @@ export default defineConfig(({ command }) => ({
     modules: { generateScopedName: scopedClassName(command === 'build') },
   },
   plugins: [
-    // Tailwind v4: xử lý file CSS có @import 'tailwindcss/…' (src/platform/styles/tailwind.css);
+    // Tailwind v4: xử lý file CSS có @import 'tailwindcss/…' (src/ui/styles/tailwind.css);
     // *.scss vẫn đi qua Sass như thường
 
     tailwindcss(),

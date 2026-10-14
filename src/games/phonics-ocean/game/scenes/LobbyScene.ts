@@ -13,7 +13,7 @@ import { getAudio } from '@/games/phonics-ocean/game/core/services';
 import OceanBackground from '@/games/phonics-ocean/game/objects/OceanBackground';
 import SchoolDirector from '@/games/phonics-ocean/game/systems/SchoolDirector';
 import { phonicsOceanStore, type Screen } from '@/games/phonics-ocean/session/store';
-import { setupView, view } from '@/platform/phaser/view';
+import { setupView, view } from '@/core/phaser/view';
 
 export type LobbyScreen = Exclude<Screen, 'play'>;
 

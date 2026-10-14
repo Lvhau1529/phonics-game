@@ -10,7 +10,7 @@ import OceanScene from '@/games/phonics-ocean/game/scenes/OceanScene';
 import PauseScene from '@/games/phonics-ocean/game/scenes/PauseScene';
 import PreloadScene from '@/games/phonics-ocean/game/scenes/PreloadScene';
 import { phonicsOceanActions, phonicsOceanStore } from '@/games/phonics-ocean/session/store';
-import { createPhaserGame } from '@/platform/phaser/createPhaserGame';
+import { createPhaserGame } from '@/core/phaser/createPhaserGame';
 
 export function createGame(parent: HTMLElement): Phaser.Game {
   const game = createPhaserGame(parent, {

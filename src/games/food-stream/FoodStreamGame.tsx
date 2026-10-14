@@ -15,10 +15,10 @@ import ResultsScreen from '@/games/food-stream/app/screens/ResultsScreen';
 import SetupScreen from '@/games/food-stream/app/screens/SetupScreen';
 import { createGame } from '@/games/food-stream/game/createGame';
 import { foodStreamActions, type Screen } from '@/games/food-stream/session/store';
-import PhaserHost from '@/platform/phaser/PhaserHost';
-import { useGameOrientation } from '@/platform/phaser/useGameOrientation';
-import GuideDialog from '@/platform/ui/guide/GuideDialog';
-import ScreenLayer from '@/platform/ui/ScreenLayer';
+import PhaserHost from '@/core/phaser/PhaserHost';
+import { useGameOrientation } from '@/core/phaser/useGameOrientation';
+import GuideDialog from '@/ui/guide/GuideDialog/GuideDialog';
+import ScreenLayer from '@/ui/ScreenLayer/ScreenLayer';
 import styles from '@/games/food-stream/FoodStreamGame.module.scss';
 
 const REACT_SCREENS: Partial<Record<Screen, ComponentType>> = {

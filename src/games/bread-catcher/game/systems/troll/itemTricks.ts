@@ -5,7 +5,7 @@
 import Phaser from 'phaser';
 import { THEME } from '@/games/bread-catcher/game/config/gameConfig';
 import { TROLL_ITEMS, type ItemTrickId } from '@/games/bread-catcher/game/config/troll';
-import { view } from '@/platform/phaser/view';
+import { view } from '@/core/phaser/view';
 import type FallingItem from '@/games/bread-catcher/game/objects/FallingItem';
 import type { ItemTrick, ItemTrickState, TrollContext } from '@/games/bread-catcher/game/systems/troll/types';
 

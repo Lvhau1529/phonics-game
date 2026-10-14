@@ -1,6 +1,6 @@
 // Theme biển xanh của Phonics Ocean: ghi đè token màu (styles/tailwind.css) trên phần tử gốc của game —
 // mọi component chung (nút, form, hướng dẫn...) và class Tailwind bên trong tự đổi màu theo.
-@use '@/platform/styles/abstracts' as *;
+@use '@/ui/styles/abstracts' as *;
 
 @layer components {
   .theme {

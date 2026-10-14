@@ -5,7 +5,7 @@ import type Phaser from 'phaser';
 import { DEPTH, THEME } from '@/games/food-stream/game/config/theme';
 import { addText } from '@/games/food-stream/game/ui/text';
 import type { Team, TeamId } from '@/games/food-stream/session/types';
-import { fitText } from '@/platform/phaser/text';
+import { fitText } from '@/core/phaser/text';
 
 const BANNER_KEYS: Record<TeamId, string> = { 0: 'ui.banner.a', 1: 'ui.banner.b' };
 

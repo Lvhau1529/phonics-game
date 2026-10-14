@@ -4,13 +4,13 @@
  */
 import { phonicsOceanActions } from '@/games/phonics-ocean/session/store';
 import { TEXT } from '@/games/phonics-ocean/session/text';
-import { SFX } from '@/platform/audio/sfx';
-import { platformActions } from '@/platform/platformStore';
-import AudioToggles from '@/platform/ui/AudioToggles';
-import BackButton from '@/platform/ui/BackButton';
-import Button from '@/platform/ui/Button';
-import Icon from '@/platform/ui/Icon';
-import GuideButton from '@/platform/ui/guide/GuideButton';
+import { SFX } from '@/core/audio/sfx';
+import { platformActions } from '@/app/stores/platformStore';
+import AudioToggles from '@/ui/AudioToggles/AudioToggles';
+import BackButton from '@/ui/BackButton/BackButton';
+import Button from '@/ui/Button/Button';
+import Icon from '@/ui/Icon/Icon';
+import GuideButton from '@/ui/guide/GuideButton/GuideButton';
 import styles from '@/games/phonics-ocean/app/screens/HomeScreen.module.scss';
 
 export default function HomeScreen() {

@@ -6,9 +6,9 @@ import { streamerUrl } from '@/games/food-stream/app/assets';
 import { LEVELS } from '@/games/food-stream/content/levels';
 import { PACKS, packPreview } from '@/games/food-stream/content/packs';
 import { SCORING } from '@/games/food-stream/session/scoring';
-import GuideCard from '@/platform/ui/guide/GuideCard';
-import type { GuideSection } from '@/platform/ui/guide/GuideDialog';
-import guide from '@/platform/ui/guide/guideContent.module.scss';
+import GuideCard from '@/ui/guide/GuideCard/GuideCard';
+import type { GuideSection } from '@/ui/guide/GuideDialog/GuideDialog';
+import guide from '@/ui/guide/guideContent.module.scss';
 
 export const GUIDE_TITLE = 'Hướng dẫn Food Stream cho giáo viên & phụ huynh';
 

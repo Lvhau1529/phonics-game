@@ -5,7 +5,7 @@ import Phaser from 'phaser';
 import { THEME } from '@/games/phonics-ocean/game/config/theme';
 import { getAudio } from '@/games/phonics-ocean/game/core/services';
 import { addText } from '@/games/phonics-ocean/game/ui/text';
-import { SFX } from '@/platform/audio/sfx';
+import { SFX } from '@/core/audio/sfx';
 
 export type PillColor = 'green' | 'teal' | 'orange' | 'white';
 

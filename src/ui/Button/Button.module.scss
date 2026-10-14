@@ -1,0 +1,87 @@
+@use '@/ui/styles/abstracts' as *;
+
+@layer components {
+  // Nút "kẹo": màu lấy từ --btn / --btn-edge (mỗi màu một class bên dưới)
+  .btn {
+    --btn: var(--color-orange);
+    --btn-edge: var(--color-orange-edge);
+    --btn-text: #fff;
+    position: relative;
+    min-height: 52px;
+    padding: 8px 18px 10px;
+    border: 3px solid var(--color-ink);
+    border-radius: 16px;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.28) 0 22%, transparent 22%), var(--btn);
+    box-shadow:
+      0 5px 0 var(--btn-edge),
+      0 7px 0 var(--color-ink);
+    color: var(--btn-text);
+    font-size: 19px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    text-shadow: 0 2px 0 rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+    transition:
+      transform 0.06s,
+      box-shadow 0.06s;
+
+    &:active:not(:disabled) {
+      transform: translateY(5px);
+      box-shadow:
+        0 0 0 var(--btn-edge),
+        0 2px 0 var(--color-ink);
+    }
+
+    // Nền vẫn đặc (nút sticky không bị nhìn xuyên), chỉ chuyển xám
+    &:disabled {
+      --btn: #b8ab98;
+      --btn-edge: #8c7f6c;
+      cursor: not-allowed;
+    }
+
+    @include focus-ring;
+
+    // Icon (platform/ui/Icon) trong nút
+    img {
+      margin-top: -3px;
+      filter: drop-shadow(0 2px 0 rgba(0, 0, 0, 0.25));
+    }
+  }
+
+  .lg {
+    min-height: 60px;
+    font-size: 22px;
+  }
+
+  .green {
+    --btn: var(--color-green);
+    --btn-edge: var(--color-green-edge);
+  }
+
+  .blue {
+    --btn: var(--color-blue);
+    --btn-edge: var(--color-blue-edge);
+  }
+
+  .red {
+    --btn: var(--color-red);
+    --btn-edge: var(--color-red-edge);
+  }
+
+  .pink {
+    --btn: var(--color-pink);
+    --btn-edge: var(--color-pink-edge);
+  }
+
+  .purple {
+    --btn: var(--color-purple);
+    --btn-edge: var(--color-purple-edge);
+  }
+
+  .cream {
+    --btn: var(--color-cream);
+    --btn-edge: var(--color-tan);
+    --btn-text: var(--color-brown);
+    text-shadow: none;
+  }
+}

@@ -3,7 +3,7 @@
  */
 import { foodStreamStore, type FoodStreamState } from '@/games/food-stream/session/store';
 import { progressStore, type LevelProgress } from '@/games/food-stream/session/storage';
-import { useStore } from '@/platform/hooks/useStore';
+import { useStore } from '@/core/store/useStore';
 
 export const useFoodStream = <S>(selector: (state: FoodStreamState) => S): S =>
   useStore(foodStreamStore, selector);

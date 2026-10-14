@@ -24,13 +24,13 @@ xem `vite.config.ts` của game / admin) — sửa contracts thấy ngay, không
 - **UI trong game chỉ tiếng Anh**, ngắn, nhãn nút VIẾT HOA (bé ~5 tuổi). Phần Hướng dẫn (GUIDE) tiếng Việt cho
   giáo viên. Comment / JSDoc tiếng Việt.
 - **Offline mode mặc định** (BE chưa lên): `VITE_OFFLINE_MODE` thiếu / khác `false` hoặc không có `VITE_API_URL` →
-  app chạy như bản offline: mọi code tài khoản nằm sau `ACCOUNT_ENABLED` (`src/platform/account/config.ts`), không
+  app chạy như bản offline: mọi code tài khoản nằm sau `ACCOUNT_ENABLED` (`src/core/config/account.ts`), không
   gọi mạng. Bật tài khoản: `VITE_OFFLINE_MODE=false` + `VITE_API_URL`. Lối vào tính năng cần API vẫn hiện nhưng bấm thì báo
   **COMING SOON** thay vì gọi API (vd `AccountButton` → `onUnavailable` → hộp `accountSoon` trong `HubDialogs`);
   tính năng API mới có nút cho bé bấm cũng làm như vậy.
-- Import bằng alias `@/` (ESLint cấm `../`). Mỗi component một `*.module.scss` (`@use '@/platform/styles/abstracts' as *;`,
+- Import bằng alias `@/` (ESLint cấm `../`). Mỗi component một `*.module.scss` (`@use '@/ui/styles/abstracts' as *;`,
   bọc `@layer components`). Tailwind chỉ cho utility nhỏ trong JSX. Token màu / font ở `styles/tailwind.css`.
-- State: `createStore` (`src/shared/createStore.ts`) + `useStore(store, selector)`; selector trả slice ổn định.
+- State: `createStore` (`src/core/store/createStore.ts`) + `useStore(store, selector)`; selector trả slice ổn định.
   React và Phaser của một game chỉ nói chuyện qua store của game đó.
 - Dữ liệu ngoài (API, localStorage, env) phải parse bằng zod (schema từ `@phonics/contracts`) trước khi dùng.
   localStorage key dạng `phonics-arcade:<ten>` (xem README > Storage keys).
@@ -63,7 +63,7 @@ xem `vite.config.ts` của game / admin) — sửa contracts thấy ngay, không
   (`{ ...model }` mất getter) — tạo instance mới (vd `item.markedRead(now)`). Lỗi hiển thị cho bé qua
   `account/errorText.ts` (map `ErrorCode` → câu tiếng Anh).
 - **Thêm icon:** thêm vào `EXPORTS` trong `tools/arcade_ui/build_ui.py` → `pnpm assets:ui` (root) → commit PNG →
-  khai báo trong `src/platform/ui/icons.ts`. Không chỉnh tay `public/assets`.
+  khai báo trong `src/ui/icons.ts`. Không chỉnh tay `public/assets`.
 - **Test:** Vitest + jsdom, file `*.test.ts(x)` cạnh code (`pnpm test`). Store / queue / parse hash phải có test.
 
 ## Kiểm tra trước khi commit

@@ -4,7 +4,7 @@
  */
 import type Phaser from 'phaser';
 import { DEPTH } from '@/games/bread-catcher/game/config/gameConfig';
-import { isLandscape, view } from '@/platform/phaser/view';
+import { isLandscape, view } from '@/core/phaser/view';
 
 /** Key texture phù hợp hướng màn hình, vd "bg_bakery_01" -> "bg_bakery_01_wide" */
 function backgroundKey(scene: Phaser.Scene, key: string): string {

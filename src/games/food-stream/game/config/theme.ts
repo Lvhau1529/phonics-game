@@ -1,7 +1,7 @@
 /**
  * Theme + thông số cảm giác chơi của Food Stream (màu kẹo hồng / xanh như art board).
  */
-import { FONTS } from '@/platform/phaser/fonts';
+import { FONTS } from '@/core/phaser/fonts';
 
 export const THEME = {
   fonts: FONTS,

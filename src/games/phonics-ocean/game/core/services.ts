@@ -9,8 +9,8 @@ import {
   type OceanSfxKey,
 } from '@/games/phonics-ocean/game/config/assets';
 import { REGISTRY } from '@/games/phonics-ocean/game/core/keys';
-import AudioSystem from '@/platform/phaser/AudioSystem';
-import { prefsStore } from '@/platform/prefs';
+import AudioSystem from '@/core/phaser/AudioSystem';
+import { prefsStore } from '@/core/audio/prefs';
 
 export type OceanAudio = AudioSystem<MusicKey>;
 

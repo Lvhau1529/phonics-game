@@ -5,7 +5,7 @@
 import Phaser from 'phaser';
 import { DEPTH, THEME } from '@/games/food-stream/game/config/theme';
 import { addText } from '@/games/food-stream/game/ui/text';
-import { compactNumber, formatTime } from '@/shared/format';
+import { compactNumber, formatTime } from '@/core/utils/format';
 
 const PILL_HEIGHT = 26;
 const GAP = 6;

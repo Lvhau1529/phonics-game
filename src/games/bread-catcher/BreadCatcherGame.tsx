@@ -15,10 +15,10 @@ import ResultsScreen from '@/games/bread-catcher/app/screens/ResultsScreen';
 import SetupScreen from '@/games/bread-catcher/app/screens/SetupScreen';
 import { createGame } from '@/games/bread-catcher/game/createGame';
 import { sessionActions, type Screen } from '@/games/bread-catcher/session/sessionStore';
-import PhaserHost from '@/platform/phaser/PhaserHost';
-import { useGameOrientation } from '@/platform/phaser/useGameOrientation';
-import GuideDialog from '@/platform/ui/guide/GuideDialog';
-import ScreenLayer from '@/platform/ui/ScreenLayer';
+import PhaserHost from '@/core/phaser/PhaserHost';
+import { useGameOrientation } from '@/core/phaser/useGameOrientation';
+import GuideDialog from '@/ui/guide/GuideDialog/GuideDialog';
+import ScreenLayer from '@/ui/ScreenLayer/ScreenLayer';
 
 const REACT_SCREENS: Partial<Record<Screen, ComponentType>> = {
   home: HomeScreen,

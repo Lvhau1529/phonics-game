@@ -35,9 +35,9 @@ import { RoundState, RULES } from '@/games/phonics-ocean/session/round';
 import { phonicsOceanActions, phonicsOceanStore } from '@/games/phonics-ocean/session/store';
 import type { EndReason, Question } from '@/games/phonics-ocean/session/types';
 import { PRAISE, TEXT } from '@/games/phonics-ocean/session/text';
-import { SFX } from '@/platform/audio/sfx';
-import { setupView } from '@/platform/phaser/view';
-import { pickRandom, shuffle } from '@/shared/random';
+import { SFX } from '@/core/audio/sfx';
+import { setupView } from '@/core/phaser/view';
+import { pickRandom, shuffle } from '@/core/utils/random';
 
 type Phase = 'intro' | 'playing' | 'between' | 'complete';
 

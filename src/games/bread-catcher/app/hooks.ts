@@ -4,7 +4,7 @@
 import { appStore, type AppState } from '@/games/bread-catcher/session/sessionStore';
 import type { TeamTotal } from '@/games/bread-catcher/session/leaderboard';
 import { teamTotalsStore } from '@/games/bread-catcher/session/storage';
-import { useStore } from '@/platform/hooks/useStore';
+import { useStore } from '@/core/store/useStore';
 
 export const useAppState = <S>(selector: (state: AppState) => S): S => useStore(appStore, selector);
 

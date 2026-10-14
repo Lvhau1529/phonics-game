@@ -16,11 +16,11 @@ import { SPAWN } from '@/games/bread-catcher/game/config/gameConfig';
 import { type HazardId } from '@/games/bread-catcher/game/config/hazards';
 import { LETTER_BREADS } from '@/games/bread-catcher/game/config/stages';
 import type { GameEventBus } from '@/games/bread-catcher/game/core/events';
-import { view } from '@/platform/phaser/view';
+import { view } from '@/core/phaser/view';
 import FallingItem from '@/games/bread-catcher/game/objects/FallingItem';
 import { pickSpawnX } from '@/games/bread-catcher/game/systems/spawnSpacing';
 import type { LevelDef } from '@/games/bread-catcher/session/settings';
-import { pickRandom } from '@/shared/random';
+import { pickRandom } from '@/core/utils/random';
 
 /** Thông tin về rổ để giãn cách chỗ rơi */
 export interface CatchLine {

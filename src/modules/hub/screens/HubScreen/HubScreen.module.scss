@@ -1,0 +1,160 @@
+// Màn chọn game (HubScreen.tsx)
+@use '@/ui/styles/abstracts' as *;
+
+@layer components {
+  @include keyframes-screen-in;
+  @include keyframes-bob;
+
+  .hub {
+    // Mực của Phonics Arcade (nâu đậm như viền icon Bee pack) thay cho mực của game
+    --color-ink: var(--color-arcade-ink);
+    @include text-outline-vars;
+    position: fixed;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    // Đáy chừa chỗ cho nút AUTHOR ở góc
+    padding: max(20px, env(safe-area-inset-top)) 16px max(64px, env(safe-area-inset-bottom));
+    overflow-y: auto;
+    touch-action: pan-y;
+    // Ảnh nền (bản dọc / ngang truyền qua biến CSS từ HubScreen), gradient lót khi ảnh chưa tải
+    background:
+      var(--hub-bg-portrait, none) center top / cover no-repeat,
+      $arcade-sky;
+    background-attachment: fixed, fixed;
+    animation: screen-in 0.25s ease-out;
+
+    @media (orientation: landscape) {
+      background:
+        var(--hub-bg-landscape, none) center top / cover no-repeat,
+        $arcade-sky;
+      background-attachment: fixed, fixed;
+    }
+
+    // Thanh cuộn kiểu kẹo (rãnh nâu, thanh kéo mật ong) như trong game
+    @include candy-scrollbar($size: 14px);
+  }
+
+  // Màn hình lớn: phóng to nội dung (không zoom chính .hub vì nó phủ kín màn hình).
+  // :where() -> độ ưu tiên 0, phần tử con tự quyết định được (vd lớp nền hộp thoại giữ nguyên cỡ).
+  :where(.hub) > * {
+    @include projector {
+      zoom: 1.2;
+    }
+  }
+
+  // ---- Thanh trên: kim cương (trái) + cập nhật · chuông · tài khoản (phải) ----
+  .bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    width: 100%;
+    max-width: 1100px;
+    min-height: 52px;
+
+    // Nhóm bên phải: xuống dòng khi màn hẹp mà có cả nút cập nhật
+    .barRight {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 10px;
+      min-width: 0;
+    }
+
+    // Nút cập nhật nằm trong thanh (không nổi giữa đỉnh màn hình)
+    .update {
+      position: static;
+      min-height: 42px;
+      padding: 4px 14px;
+      font-size: 15px;
+      transform: none;
+      animation: none;
+
+      &:active {
+        transform: translateY(3px);
+      }
+    }
+  }
+
+  .logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 8px 0 0;
+    font-weight: 800;
+    line-height: 0.95;
+    text-shadow: var(--outline-thick);
+  }
+
+  .logoTop {
+    font-size: clamp(46px, 15vw, 68px);
+    letter-spacing: 1px;
+  }
+
+  .letter {
+    display: inline-block;
+    animation: bob 1.6s ease-in-out infinite;
+
+    &:nth-child(2n) {
+      animation-delay: 0.2s;
+    }
+
+    // Mỗi chữ một màu như concept board
+    &:nth-child(5n + 1) {
+      color: var(--color-pink);
+    }
+    &:nth-child(5n + 2) {
+      color: var(--color-orange);
+    }
+    &:nth-child(5n + 3) {
+      color: var(--color-gold);
+    }
+    &:nth-child(5n + 4) {
+      color: var(--color-green);
+    }
+    &:nth-child(5n + 5) {
+      color: #6fb6ff;
+    }
+  }
+
+  .logoBottom {
+    margin-top: 4px;
+    color: var(--color-cream);
+    font-size: clamp(30px, 10vw, 42px);
+    letter-spacing: 6px;
+  }
+
+  .subtitle {
+    margin: 0;
+    color: var(--color-gold);
+    font-size: 20px;
+    font-weight: 800;
+    text-shadow: var(--outline);
+  }
+
+  .games {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 18px;
+    width: 100%;
+    max-width: 440px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    // Máy tính / máy chiếu: các game xếp cạnh nhau
+    @include wide-landscape {
+      grid-template-columns: repeat(auto-fit, minmax(300px, 400px));
+      justify-content: center;
+      max-width: 1100px;
+    }
+  }
+
+  .toggles {
+    margin-top: 4px;
+  }
+}

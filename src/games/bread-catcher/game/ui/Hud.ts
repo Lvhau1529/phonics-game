@@ -13,14 +13,14 @@ import type Phaser from 'phaser';
 import { mascotTexture } from '@/games/bread-catcher/game/config/assets';
 import { DEPTH, THEME } from '@/games/bread-catcher/game/config/gameConfig';
 import type { GameEventBus } from '@/games/bread-catcher/game/core/events';
-import { view } from '@/platform/phaser/view';
+import { view } from '@/core/phaser/view';
 import IconButton from '@/games/bread-catcher/game/ui/IconButton';
 import { hudLayout } from '@/games/bread-catcher/game/ui/layout';
 import { addText } from '@/games/bread-catcher/game/ui/text';
-import { fitText } from '@/platform/phaser/text';
+import { fitText } from '@/core/phaser/text';
 import { UI_TEXT } from '@/games/bread-catcher/session/text';
 import type { Team } from '@/games/bread-catcher/session/types';
-import { formatTime } from '@/shared/format';
+import { formatTime } from '@/core/utils/format';
 
 const { colors } = THEME;
 /** Dưới ngần này giây thì đồng hồ chuyển đỏ và nhịp đập */

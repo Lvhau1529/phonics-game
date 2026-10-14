@@ -10,7 +10,7 @@ import { SCHOOL_FRAMES } from '@/games/phonics-ocean/game/config/sprites';
 import { SCHOOL } from '@/games/phonics-ocean/game/config/theme';
 import SchoolFish from '@/games/phonics-ocean/game/objects/SchoolFish';
 import { canEat, type SchoolSize } from '@/games/phonics-ocean/session/frenzy';
-import { pickRandom } from '@/shared/random';
+import { pickRandom } from '@/core/utils/random';
 
 const SIZES: readonly SchoolSize[] = ['tiny', 'medium', 'big'];
 

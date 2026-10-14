@@ -5,7 +5,7 @@ import Phaser from 'phaser';
 import { THEME } from '@/games/food-stream/game/config/theme';
 import { getAudio } from '@/games/food-stream/game/core/services';
 import { addText } from '@/games/food-stream/game/ui/text';
-import { SFX } from '@/platform/audio/sfx';
+import { SFX } from '@/core/audio/sfx';
 
 export type CandyColor = 'pink' | 'blue' | 'green' | 'white';
 

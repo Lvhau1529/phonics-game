@@ -10,7 +10,7 @@ import PauseScene from '@/games/food-stream/game/scenes/PauseScene';
 import PreloadScene from '@/games/food-stream/game/scenes/PreloadScene';
 import StudioScene from '@/games/food-stream/game/scenes/StudioScene';
 import { foodStreamActions, foodStreamStore } from '@/games/food-stream/session/store';
-import { createPhaserGame } from '@/platform/phaser/createPhaserGame';
+import { createPhaserGame } from '@/core/phaser/createPhaserGame';
 
 export function createGame(parent: HTMLElement): Phaser.Game {
   const game = createPhaserGame(parent, {

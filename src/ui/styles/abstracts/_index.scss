@@ -1,0 +1,6 @@
+// Công cụ SCSS dùng chung (không sinh CSS khi chỉ @use):
+//   @use '@/ui/styles/abstracts' as *;
+@forward 'variables';
+@forward 'breakpoints';
+@forward 'keyframes';
+@forward 'mixins';

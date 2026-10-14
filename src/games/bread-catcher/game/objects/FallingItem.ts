@@ -11,7 +11,7 @@ import { DEPTH, SPAWN } from '@/games/bread-catcher/game/config/gameConfig';
 import { HAZARDS, type HazardId } from '@/games/bread-catcher/game/config/hazards';
 import { LETTER_TEXTURE_SCALE, ensureLetterTexture } from '@/games/bread-catcher/game/objects/letterTextures';
 import type { ItemTrickState } from '@/games/bread-catcher/game/systems/troll/types';
-import { isLandscape } from '@/platform/phaser/view';
+import { isLandscape } from '@/core/phaser/view';
 
 /** Hitbox nhỏ hơn sprite một chút cho cảm giác công bằng */
 const HITBOX_RATIO = 0.7;

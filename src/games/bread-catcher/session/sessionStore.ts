@@ -9,11 +9,11 @@
  * Hai bên chỉ giao tiếp qua store này.
  */
 import { breadCatcherManifest } from '@/games/bread-catcher/manifest';
-import { postSoloResult } from '@/platform/account/scoreSync';
-import { events } from '@/platform/analytics/events';
-import { awardGems } from '@/platform/gems/wallet';
-import { createStore } from '@/shared/createStore';
-import { shuffle } from '@/shared/random';
+import { postSoloResult } from '@/modules/results/stores/scoreSyncStore';
+import { events } from '@/modules/analytics/stores/eventsQueue';
+import { awardGems } from '@/modules/gems/stores/walletStore';
+import { createStore } from '@/core/store/createStore';
+import { shuffle } from '@/core/utils/random';
 import { PACKS, parseCustomWords, sessionWords } from '@/games/bread-catcher/session/content';
 import {
   DEFAULT_SETTINGS,

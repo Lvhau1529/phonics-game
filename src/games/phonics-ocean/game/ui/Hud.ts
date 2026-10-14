@@ -8,7 +8,7 @@ import { playerFrame } from '@/games/phonics-ocean/game/config/sprites';
 import { DEPTH, THEME } from '@/games/phonics-ocean/game/config/theme';
 import type { OceanLayout } from '@/games/phonics-ocean/game/ui/layout';
 import { addText } from '@/games/phonics-ocean/game/ui/text';
-import { formatTime } from '@/shared/format';
+import { formatTime } from '@/core/utils/format';
 
 const PILL_H = 28;
 const HEART = 18;

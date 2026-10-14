@@ -5,7 +5,7 @@
  */
 import Phaser from 'phaser';
 import { DEPTH, THEME, TIMING } from '@/games/bread-catcher/game/config/gameConfig';
-import { view } from '@/platform/phaser/view';
+import { view } from '@/core/phaser/view';
 import { addText } from '@/games/bread-catcher/game/ui/text';
 
 const FX_IMAGE_SCALE = 0.5;

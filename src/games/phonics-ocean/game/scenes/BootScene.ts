@@ -4,7 +4,7 @@
 import Phaser from 'phaser';
 import { SCENES } from '@/games/phonics-ocean/game/core/keys';
 import { registerServices } from '@/games/phonics-ocean/game/core/services';
-import { loadFonts } from '@/platform/phaser/fonts';
+import { loadFonts } from '@/core/phaser/fonts';
 
 export default class BootScene extends Phaser.Scene {
   constructor() {

@@ -4,7 +4,7 @@
  *   ngang: tạm dừng · tim bên trái, điểm · giờ bên phải, mục tiêu + Growth + FRENZY ở giữa / vùng bơi
  */
 import Phaser from 'phaser';
-import { isLandscape, view } from '@/platform/phaser/view';
+import { isLandscape, view } from '@/core/phaser/view';
 
 export interface OceanLayout {
   landscape: boolean;

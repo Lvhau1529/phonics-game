@@ -15,7 +15,7 @@ import {
   type WordTarget,
 } from '@/games/food-stream/content/packs';
 import type { Choice, Question, Slot } from '@/games/food-stream/session/types';
-import { pickRandom, shuffle } from '@/shared/random';
+import { pickRandom, shuffle } from '@/core/utils/random';
 
 const VOWELS = ['a', 'e', 'i', 'o', 'u'];
 /** Số ô chữ tối đa trong khay khi ghép từ (vừa màn hình điện thoại) */

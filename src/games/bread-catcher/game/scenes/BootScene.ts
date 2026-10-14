@@ -5,7 +5,7 @@ import Phaser from 'phaser';
 import { SPRITE_MANIFEST } from '@/games/bread-catcher/game/config/assets';
 import { SCENES } from '@/games/bread-catcher/game/core/keys';
 import { registerServices } from '@/games/bread-catcher/game/core/services';
-import { loadFonts } from '@/platform/phaser/fonts';
+import { loadFonts } from '@/core/phaser/fonts';
 
 export default class BootScene extends Phaser.Scene {
   constructor() {

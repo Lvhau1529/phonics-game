@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { pickSpawnX, spacingSlack, type SpawnSpacing } from '@/games/bread-catcher/game/systems/spawnSpacing';
-import { pickRandom } from '@/shared/random';
+import { pickRandom } from '@/core/utils/random';
 
 /** Màn dọc: x trong [40, 320], vùng hứng 62 (78 × 0.8), hitbox bánh ~46 -> cửa hứng 114 */
 const base = (overrides: Partial<SpawnSpacing> = {}): SpawnSpacing => ({

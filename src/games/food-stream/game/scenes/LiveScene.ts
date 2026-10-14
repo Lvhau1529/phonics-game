@@ -39,9 +39,9 @@ import {
 } from '@/games/food-stream/session/store';
 import type { Question, RoundResult, StreamerId, Team } from '@/games/food-stream/session/types';
 import { chantComment, COMMENTS, TEXT } from '@/games/food-stream/session/text';
-import { SFX } from '@/platform/audio/sfx';
-import { setupView } from '@/platform/phaser/view';
-import { pickRandom, shuffle } from '@/shared/random';
+import { SFX } from '@/core/audio/sfx';
+import { setupView } from '@/core/phaser/view';
+import { pickRandom, shuffle } from '@/core/utils/random';
 
 const PLATES = ['prop.plate.pink', 'prop.plate.blue'];
 const TEAM_COLORS = [THEME.colors.pink, THEME.colors.blue];

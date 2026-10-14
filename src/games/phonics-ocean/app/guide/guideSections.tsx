@@ -8,9 +8,9 @@ import type { QuestionMode } from '@/games/phonics-ocean/content/schema';
 import { FRENZY } from '@/games/phonics-ocean/session/frenzy';
 import { RHYME_CHAIN } from '@/games/phonics-ocean/session/questions';
 import { RULES } from '@/games/phonics-ocean/session/round';
-import GuideCard from '@/platform/ui/guide/GuideCard';
-import type { GuideSection } from '@/platform/ui/guide/GuideDialog';
-import guide from '@/platform/ui/guide/guideContent.module.scss';
+import GuideCard from '@/ui/guide/GuideCard/GuideCard';
+import type { GuideSection } from '@/ui/guide/GuideDialog/GuideDialog';
+import guide from '@/ui/guide/guideContent.module.scss';
 
 export const GUIDE_TITLE = 'Hướng dẫn Phonics Ocean cho giáo viên & phụ huynh';
 

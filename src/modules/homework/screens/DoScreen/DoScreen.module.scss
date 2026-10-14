@@ -1,0 +1,29 @@
+@use '@/ui/styles/abstracts' as *;
+@use '@/modules/homework/styles/homework' as *;
+
+@layer components {
+  .status {
+    @include hw-status;
+    color: var(--color-gold);
+    text-shadow: var(--outline);
+  }
+
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+
+    > * {
+      flex: 1;
+    }
+  }
+
+  .save {
+    margin: 0;
+    color: var(--color-cream);
+    font-size: 13px;
+    font-weight: 800;
+    text-align: center;
+    text-shadow: var(--outline);
+  }
+}

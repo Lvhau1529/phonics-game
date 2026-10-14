@@ -3,7 +3,7 @@
  */
 import type Phaser from 'phaser';
 import { THEME } from '@/games/food-stream/game/config/theme';
-import { crispText } from '@/platform/phaser/text';
+import { crispText } from '@/core/phaser/text';
 
 const { colors, fonts } = THEME;
 

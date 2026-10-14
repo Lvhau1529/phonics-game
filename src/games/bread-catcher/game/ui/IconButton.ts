@@ -3,7 +3,7 @@
  * Vùng chạm tối thiểu 48x48 dù nút nhỏ hơn.
  */
 import Phaser from 'phaser';
-import { SFX, type SfxKey } from '@/platform/audio/sfx';
+import { SFX, type SfxKey } from '@/core/audio/sfx';
 import { getAudio } from '@/games/bread-catcher/game/core/services';
 
 export type IconGlyph = 'pause' | 'back' | 'stop' | 'speaker';

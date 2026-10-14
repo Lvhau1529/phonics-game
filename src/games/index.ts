@@ -7,8 +7,8 @@
 import { breadCatcherManifest } from '@/games/bread-catcher/manifest';
 import { foodStreamManifest } from '@/games/food-stream/manifest';
 import { phonicsOceanManifest } from '@/games/phonics-ocean/manifest';
-import { ACCOUNT_SEGMENT, HOMEWORK_SEGMENT } from '@/platform/platformStore';
-import type { GameManifest, UpcomingGame } from '@/platform/types';
+import { ACCOUNT_SEGMENT, HOMEWORK_SEGMENT } from '@/app/stores/platformStore';
+import type { GameManifest, UpcomingGame } from '@/core/types/game';
 
 export const GAMES: readonly GameManifest[] = [
   breadCatcherManifest,

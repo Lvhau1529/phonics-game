@@ -1,0 +1,42 @@
+@use '@/ui/styles/abstracts' as *;
+
+@layer components {
+  @include keyframes-pop(pop);
+
+  @keyframes spin {
+    from {
+      transform: scale(0.4) rotate(-90deg);
+    }
+  }
+
+  // "+N GEMS" ở màn kết quả
+  .reward {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    margin: 4px auto;
+    padding: 4px 22px 4px 8px;
+    border: 3px solid var(--color-ink);
+    border-radius: 999px;
+    background:
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.18) 0 40%, transparent 40%), var(--color-wood);
+    box-shadow: 0 4px 0 rgba(0, 0, 0, 0.35);
+    color: var(--color-cream);
+    font-size: 20px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    text-shadow: 0 2px 0 rgba(0, 0, 0, 0.4);
+    animation: pop 0.4s cubic-bezier(0.2, 1.4, 0.4, 1) 0.3s both;
+
+    b {
+      color: var(--color-gem);
+      font-size: 26px;
+    }
+  }
+
+  .icon {
+    margin: -10px 0;
+    animation: spin 1.2s ease-in-out 0.6s both;
+  }
+}

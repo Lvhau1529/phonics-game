@@ -12,7 +12,7 @@
  *   3. từ đã thuộc, lâu nhất chưa gặp
  * `avoid` (từ của lượt này + của đội ngay trước) được tránh nếu còn lựa chọn khác.
  */
-import { pickRandom } from '@/shared/random';
+import { pickRandom } from '@/core/utils/random';
 
 /**
  * unseen   — chưa gặp

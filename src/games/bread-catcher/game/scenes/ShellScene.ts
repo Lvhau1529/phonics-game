@@ -4,11 +4,11 @@
  */
 import Phaser from 'phaser';
 import { MUSIC } from '@/games/bread-catcher/game/config/assets';
-import { SFX, SFX_VOLUME } from '@/platform/audio/sfx';
+import { SFX, SFX_VOLUME } from '@/core/audio/sfx';
 import { LETTER_BREADS, STAGE_BACKGROUNDS } from '@/games/bread-catcher/game/config/stages';
 import { SCENES } from '@/games/bread-catcher/game/core/keys';
 import { getAudio } from '@/games/bread-catcher/game/core/services';
-import { setupView, view } from '@/platform/phaser/view';
+import { setupView, view } from '@/core/phaser/view';
 import { addStageBackground, setStageBackground } from '@/games/bread-catcher/game/objects/StageBackground';
 import { ensureLetterTexture, LETTER_TEXTURE_SCALE } from '@/games/bread-catcher/game/objects/letterTextures';
 import type { Screen } from '@/games/bread-catcher/session/sessionStore';

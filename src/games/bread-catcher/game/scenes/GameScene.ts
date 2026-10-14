@@ -11,14 +11,14 @@
  * Level HARD thêm TrollSystem (prank + chữ láo) — luật chấm điểm giữ nguyên.
  */
 import Phaser from 'phaser';
-import { SFX } from '@/platform/audio/sfx';
+import { SFX } from '@/core/audio/sfx';
 import { PLAYER, THEME, TIMING } from '@/games/bread-catcher/game/config/gameConfig';
 import { HAZARDS } from '@/games/bread-catcher/game/config/hazards';
 import { LEVEL_STAGES, basketTierFor } from '@/games/bread-catcher/game/config/stages';
 import { GameEventBus } from '@/games/bread-catcher/game/core/events';
 import { SCENES } from '@/games/bread-catcher/game/core/keys';
 import { getAudio } from '@/games/bread-catcher/game/core/services';
-import { setupView } from '@/platform/phaser/view';
+import { setupView } from '@/core/phaser/view';
 import type FallingItem from '@/games/bread-catcher/game/objects/FallingItem';
 import PlayerBasket from '@/games/bread-catcher/game/objects/PlayerBasket';
 import { addStageBackground } from '@/games/bread-catcher/game/objects/StageBackground';
@@ -49,11 +49,11 @@ import {
   wordsPerTurn,
   type LevelDef,
 } from '@/games/bread-catcher/session/settings';
-import { prefsStore } from '@/platform/prefs';
+import { prefsStore } from '@/core/audio/prefs';
 import { LETTER_PRAISE, UI_TEXT, WORD_PRAISE } from '@/games/bread-catcher/session/text';
 import type { TargetSupport, Team, TurnResult, WordAttempt } from '@/games/bread-catcher/session/types';
-import { pickRandom } from '@/shared/random';
-import { speech } from '@/shared/speech';
+import { pickRandom } from '@/core/utils/random';
+import { speech } from '@/core/utils/speech';
 
 const { colors } = THEME;
 

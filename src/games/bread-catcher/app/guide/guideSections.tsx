@@ -17,9 +17,9 @@ import {
 import { CUSTOM_PACK_LABEL, PACK_ORDER, PACKS } from '@/games/bread-catcher/session/content';
 import { LEVEL_ORDER, LEVELS, RULES } from '@/games/bread-catcher/session/settings';
 import { TEAM_MASCOTS } from '@/games/bread-catcher/session/teams';
-import GuideCard from '@/platform/ui/guide/GuideCard';
-import type { GuideSection } from '@/platform/ui/guide/GuideDialog';
-import guide from '@/platform/ui/guide/guideContent.module.scss';
+import GuideCard from '@/ui/guide/GuideCard/GuideCard';
+import type { GuideSection } from '@/ui/guide/GuideDialog/GuideDialog';
+import guide from '@/ui/guide/guideContent.module.scss';
 
 export const GUIDE_TITLE = 'Hướng dẫn cho giáo viên & phụ huynh';
 

@@ -3,11 +3,11 @@
  * bảng tổng điểm các đội qua nhiều buổi. Cài đặt âm thanh dùng chung ở platform/prefs.ts.
  * An toàn khi localStorage bị chặn (private mode): chỉ giữ trong bộ nhớ.
  */
-import { createStore } from '@/shared/createStore';
+import { createStore } from '@/core/store/createStore';
 import type { TeamTotal } from '@/games/bread-catcher/session/leaderboard';
 import { TEAM_MASCOTS } from '@/games/bread-catcher/session/teams';
 import type { LevelId, SetupDraft } from '@/games/bread-catcher/session/types';
-import { gameStorageKey, readJson, removeKeys, writeJson } from '@/platform/storage';
+import { gameStorageKey, readJson, removeKeys, writeJson } from '@/core/storage/storage';
 
 const STORAGE_KEY = gameStorageKey('bread-catcher');
 /** Save của các bản cũ: v2 được chuyển sang key mới (giữ điểm các đội), v1 bỏ hẳn */

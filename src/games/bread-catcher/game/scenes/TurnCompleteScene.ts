@@ -8,15 +8,15 @@
  */
 import Phaser from 'phaser';
 import { MASCOT_IMAGE_SCALE, mascotTexture } from '@/games/bread-catcher/game/config/assets';
-import { SFX, SFX_VOLUME } from '@/platform/audio/sfx';
+import { SFX, SFX_VOLUME } from '@/core/audio/sfx';
 import { THEME } from '@/games/bread-catcher/game/config/gameConfig';
 import { SCENES } from '@/games/bread-catcher/game/core/keys';
 import { getAudio } from '@/games/bread-catcher/game/core/services';
-import { setupView } from '@/platform/phaser/view';
+import { setupView } from '@/core/phaser/view';
 import { createDim, createPanel } from '@/games/bread-catcher/game/scenes/overlay';
 import TextButton from '@/games/bread-catcher/game/ui/TextButton';
 import { addText } from '@/games/bread-catcher/game/ui/text';
-import { fitText } from '@/platform/phaser/text';
+import { fitText } from '@/core/phaser/text';
 import { appStore, isSessionComplete, sessionActions } from '@/games/bread-catcher/session/sessionStore';
 import { UI_TEXT } from '@/games/bread-catcher/session/text';
 import type { Team, TurnResult } from '@/games/bread-catcher/session/types';

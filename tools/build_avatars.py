@@ -10,7 +10,7 @@ quanh mỗi đường chia đều. Mỗi ảnh căn giữa trên canvas vuông A
 `object-fit: contain`).
 
 Avatar cũ không có trong sheet (pip: ong Bee pack, girl / boy: streamer Food Stream) vẫn dùng ảnh sẵn có —
-xem src/platform/account/avatars.ts.
+xem src/modules/auth/utils/avatars.ts.
 """
 
 from __future__ import annotations

@@ -2,7 +2,7 @@
  * Theme + thông số cảm giác chơi của Phonics Ocean (xanh biển, gỗ HUD như art board của pack).
  */
 import type { Biome, PredatorKind } from '@/games/phonics-ocean/content/schema';
-import { FONTS } from '@/platform/phaser/fonts';
+import { FONTS } from '@/core/phaser/fonts';
 
 export const THEME = {
   fonts: FONTS,

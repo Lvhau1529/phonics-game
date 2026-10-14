@@ -6,9 +6,9 @@
  */
 import Phaser from 'phaser';
 import { DEPTH, PLAYER, TIMING } from '@/games/bread-catcher/game/config/gameConfig';
-import { PORTRAIT } from '@/platform/phaser/viewport';
+import { PORTRAIT } from '@/core/phaser/viewport';
 import { BASKET_TEXTURES, type BasketTier } from '@/games/bread-catcher/game/config/stages';
-import { isLandscape, view } from '@/platform/phaser/view';
+import { isLandscape, view } from '@/core/phaser/view';
 import type InputController from '@/games/bread-catcher/game/systems/InputController';
 
 export default class PlayerBasket extends Phaser.Physics.Arcade.Image {
