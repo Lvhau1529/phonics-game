@@ -1,5 +1,5 @@
 import type { NotificationType, NotificationView } from '@phonics/contracts';
-import type { HomeworkPage } from '@/app/stores/platformStore';
+import type { HomeworkPage } from '@/core/navigation/platformStore';
 
 /**
  * Thông báo của học sinh (từ `NotificationView` của BE). Field giữ nguyên tên như contracts; getter là dữ liệu chỉ

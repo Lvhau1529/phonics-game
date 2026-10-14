@@ -3,7 +3,7 @@
  */
 import { useEffect, type ReactNode } from 'react';
 import clsx from 'clsx';
-import type { QuestionExample } from '@phonics/contracts';
+import type { QuestionExample } from '@/modules/homework/models/question';
 import AudioButton from '@/modules/homework/components/AudioButton/AudioButton';
 import { useMedia } from '@/modules/homework/renderers/mediaContext';
 import { usePrefs } from '@/core/store/useStore';

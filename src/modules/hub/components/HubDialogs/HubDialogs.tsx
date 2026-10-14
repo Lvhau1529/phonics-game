@@ -9,8 +9,8 @@
  *   homeworkSoon — bấm HOMEWORK khi chưa có API
  */
 import { SFX } from '@/core/audio/sfx';
-import { unlockWithGems } from '@/modules/catalog/stores/catalogStore';
-import { GEM_RULES, walletStore } from '@/modules/gems/stores/walletStore';
+import { unlockWithGems } from '@/modules/catalog';
+import { GEM_RULES, walletStore } from '@/modules/gems';
 import { useStore } from '@/core/store/useStore';
 import type { GameManifest } from '@/core/types/game';
 import Button from '@/ui/Button/Button';

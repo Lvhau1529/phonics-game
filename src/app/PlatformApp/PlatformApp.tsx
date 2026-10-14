@@ -14,10 +14,10 @@ import {
 } from 'react';
 import clsx from 'clsx';
 import { ACCOUNT_ENABLED } from '@/core/config/account';
-import { useCatalog } from '@/modules/catalog/stores/catalogStore';
+import { useCatalog } from '@/modules/catalog';
 import HubScreen from '@/modules/hub/screens/HubScreen/HubScreen';
 import { useStore } from '@/core/store/useStore';
-import { platformActions, platformStore } from '@/app/stores/platformStore';
+import { platformActions, platformStore } from '@/core/navigation/platformStore';
 import type { GameManifest, UpcomingGame } from '@/core/types/game';
 import Button from '@/ui/Button/Button';
 import { useDelayedLoading } from '@/core/hooks/useDelayedLoading';

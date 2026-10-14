@@ -5,11 +5,11 @@
  */
 import { useState } from 'react';
 import clsx from 'clsx';
-import type { MediaRef } from '@phonics/contracts';
+import type { MediaRef } from '@/modules/homework/models/question';
 import { errorText } from '@/core/api/errorText';
 import { SFX } from '@/core/audio/sfx';
 import { playSfx } from '@/core/audio/sfxPlayer';
-import { mediaService } from '@/modules/homework/services/mediaService';
+import { useMediaUpload } from '@/modules/homework/hooks/useMediaUpload';
 import { useMedia } from '@/modules/homework/renderers/mediaContext';
 import { useMediaRecorder } from '@/modules/homework/hooks/useMediaRecorder';
 import Button from '@/ui/Button/Button';
@@ -24,6 +24,7 @@ interface RecorderProps {
 }
 
 export default function Recorder({ mediaId, disabled, onUploaded }: RecorderProps) {
+  const upload = useMediaUpload();
   const saved = useMedia(mediaId);
   const rec = useMediaRecorder();
   const [uploading, setUploading] = useState(false);
@@ -36,7 +37,7 @@ export default function Recorder({ mediaId, disabled, onUploaded }: RecorderProp
     setUploading(true);
     setUploadError(null);
     try {
-      const ref = await mediaService.upload(rec.blob, {
+      const ref = await upload(rec.blob, {
         kind: 'AUDIO',
         fileName: `recording.${rec.blob.type.includes('mp4') ? 'm4a' : rec.blob.type.includes('ogg') ? 'ogg' : 'webm'}`,
         durationMs: rec.seconds * 1000,

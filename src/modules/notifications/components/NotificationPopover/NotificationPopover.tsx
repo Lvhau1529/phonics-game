@@ -10,7 +10,7 @@ import { timeAgo } from '@/core/utils/timeAgo';
 import { SFX } from '@/core/audio/sfx';
 import { playSfx } from '@/core/audio/sfxPlayer';
 import { useDelayedLoading } from '@/core/hooks/useDelayedLoading';
-import { platformActions } from '@/app/stores/platformStore';
+import { platformActions } from '@/core/navigation/platformStore';
 import Button from '@/ui/Button/Button';
 import { MASCOT } from '@/ui/icons';
 import LottieLoader from '@/ui/LottieLoader/LottieLoader';

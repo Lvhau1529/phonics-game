@@ -1,7 +1,7 @@
 /**
  * Chọn ảnh đại diện trong bộ preset (contracts AVATARS -> ảnh ở platform/account/avatars.ts).
  */
-import { AVATARS, type AvatarKey } from '@phonics/contracts';
+import { AVATARS, type AvatarKey } from '@/modules/auth/utils/profileForm';
 import { avatarLabel, AVATAR_IMAGES } from '@/modules/auth/utils/avatars';
 import Field from '@/ui/Field/Field';
 import OptionGroup, { type Option } from '@/ui/OptionGroup/OptionGroup';

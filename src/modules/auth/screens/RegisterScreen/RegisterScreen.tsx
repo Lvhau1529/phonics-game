@@ -3,15 +3,21 @@
  * tên hiển thị, avatar, lớp (GET /public/classes).
  */
 import { useState, type FormEvent } from 'react';
-import { DEFAULT_AVATAR, DisplayName, Email, Password, type AvatarKey } from '@phonics/contracts';
+import {
+  DEFAULT_AVATAR,
+  DisplayName,
+  Email,
+  Password,
+  type AvatarKey,
+} from '@/modules/auth/utils/profileForm';
 import { authActions, useAuth } from '@/modules/auth/stores/authStore';
 import { errorText, fieldError } from '@/core/api/errorText';
 import AvatarPicker from '@/modules/auth/components/AvatarPicker/AvatarPicker';
-import ClassPicker from '@/modules/classes/components/ClassPicker/ClassPicker';
+import { ClassPicker } from '@/modules/classes';
 import GoogleButton from '@/modules/auth/components/GoogleButton/GoogleButton';
 import { SFX } from '@/core/audio/sfx';
 import { playSfx } from '@/core/audio/sfxPlayer';
-import { platformActions } from '@/app/stores/platformStore';
+import { platformActions } from '@/core/navigation/platformStore';
 import Button from '@/ui/Button/Button';
 import ScreenHeader from '@/ui/ScreenHeader/ScreenHeader';
 import TextInput from '@/ui/TextInput/TextInput';

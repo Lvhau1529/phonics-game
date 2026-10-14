@@ -5,15 +5,12 @@
  */
 import { useState } from 'react';
 import clsx from 'clsx';
-import type { GameId, RangePreset } from '@phonics/contracts';
-import { pointsService } from '@/modules/points/services/pointsService';
-import { useAuth } from '@/modules/auth/stores/authStore';
-import { avatarUrl, isSceneAvatar } from '@/modules/auth/utils/avatars';
+import { useClassRanking, type GameId, type RangePreset } from '@/modules/points/hooks/usePoints';
+import { avatarUrl, isSceneAvatar, useAuth } from '@/modules/auth';
 import { errorText } from '@/core/api/errorText';
-import { useRequest } from '@/core/hooks/useRequest';
 import type { RankingEntryModel } from '@/modules/points/models/RankingEntryModel';
 import { useDelayedLoading } from '@/core/hooks/useDelayedLoading';
-import { platformActions } from '@/app/stores/platformStore';
+import { platformActions } from '@/core/navigation/platformStore';
 import type { GameManifest } from '@/core/types/game';
 import Button from '@/ui/Button/Button';
 import Icon from '@/ui/Icon/Icon';
@@ -38,10 +35,7 @@ export default function RankingScreen({ games }: { games: readonly GameManifest[
   const [range, setRange] = useState<Range>('week');
   const [gameId, setGameId] = useState<string>(ALL_GAMES);
   const gameFilter = gameId === ALL_GAMES ? undefined : (gameId as GameId);
-  const ranking = useRequest(
-    () => pointsService.classRanking(range, gameFilter),
-    `${range}:${gameId}:${user?.id ?? ''}`,
-  );
+  const ranking = useClassRanking(range, gameFilter, user?.id);
 
   const gameOptions: Option<string>[] = [
     { value: ALL_GAMES, label: 'ALL', tone: 'purple' },

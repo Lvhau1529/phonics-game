@@ -5,14 +5,14 @@
  *   - đang khôi phục phiên (vừa mở app) -> màn chờ ngắn
  */
 import type { ReactNode } from 'react';
-import { isSignedIn, useAuth } from '@/modules/auth/stores/authStore';
+import { isSignedIn, useAuth } from '@/modules/auth';
 import EditProfileScreen from '@/modules/auth/screens/EditProfileScreen/EditProfileScreen';
 import LoginScreen from '@/modules/auth/screens/LoginScreen/LoginScreen';
+import RegisterScreen from '@/modules/auth/screens/RegisterScreen/RegisterScreen';
 import NotificationsScreen from '@/modules/notifications/screens/NotificationsScreen/NotificationsScreen';
 import ProfileScreen from '@/modules/points/screens/ProfileScreen/ProfileScreen';
 import RankingScreen from '@/modules/points/screens/RankingScreen/RankingScreen';
-import RegisterScreen from '@/modules/auth/screens/RegisterScreen/RegisterScreen';
-import type { AccountPage } from '@/app/stores/platformStore';
+import type { AccountPage } from '@/core/navigation/platformStore';
 import type { GameManifest } from '@/core/types/game';
 import { MASCOT } from '@/ui/icons';
 import LottieLoader from '@/ui/LottieLoader/LottieLoader';

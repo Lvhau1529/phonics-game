@@ -17,15 +17,15 @@ import '@fontsource/andika/latin-700.css';
 // Reset + phần tử gốc; style của từng component nằm ở *.module.scss cạnh component
 import '@/ui/styles/global.scss';
 import { GAMES, UPCOMING } from '@/games';
-import { authActions } from '@/modules/auth/stores/authStore';
+import { authActions } from '@/modules/auth';
 import { ACCOUNT_ENABLED } from '@/core/config/account';
-import { gamesSync } from '@/modules/catalog/stores/catalogStore';
-import { homeworkActions } from '@/modules/homework/stores/homeworkStore';
-import { notificationsActions } from '@/modules/notifications/stores/notificationsStore';
-import { scoreSync } from '@/modules/results/stores/scoreSyncStore';
-import { events } from '@/modules/analytics/stores/eventsQueue';
+import { gamesSync } from '@/modules/catalog';
+import { homeworkActions } from '@/modules/homework';
+import { notificationsActions } from '@/modules/notifications';
+import { scoreSync } from '@/modules/results';
+import { events } from '@/modules/analytics';
 import PlatformApp from '@/app/PlatformApp/PlatformApp';
-import { initPwa } from '@/modules/pwa/stores/updateStore';
+import { initPwa } from '@/modules/pwa';
 
 initPwa();
 

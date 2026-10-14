@@ -112,16 +112,6 @@
     font-size: 14px;
   }
 
-  .stars {
-    display: inline-flex;
-    gap: 2px;
-  }
-
-  .off {
-    filter: grayscale(1);
-    opacity: 0.35;
-  }
-
   .actions {
     display: flex;
     flex-wrap: wrap;

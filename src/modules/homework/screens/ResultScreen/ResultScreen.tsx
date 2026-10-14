@@ -6,21 +6,22 @@
 import { useState } from 'react';
 import clsx from 'clsx';
 import { errorText } from '@/core/api/errorText';
-import { useRequest } from '@/core/hooks/useRequest';
 import { SFX } from '@/core/audio/sfx';
 import { playSfx } from '@/core/audio/sfxPlayer';
-import { assignmentsService } from '@/modules/homework/services/assignmentsService';
-import { submissionsService } from '@/modules/homework/services/submissionsService';
+import {
+  useAssignmentDetail,
+  useSubmissionComments,
+  useSubmissionDetail,
+} from '@/modules/homework/hooks/useHomeworkRequests';
 import CommentThread from '@/modules/homework/components/CommentThread/CommentThread';
 import FeedbackBadge from '@/modules/homework/components/FeedbackBadge/FeedbackBadge';
 import { MediaMapContext } from '@/modules/homework/renderers/mediaContext';
 import QuestionFrame from '@/modules/homework/components/QuestionFrame/QuestionFrame';
-import type { CommentModel } from '@/modules/homework/models/CommentModel';
 import QuestionRenderer from '@/modules/homework/renderers/QuestionRenderer';
-import { Stars } from '@/modules/homework/screens/ListScreen/ListScreen';
+import Stars from '@/modules/homework/components/Stars/Stars';
 import { homeworkActions, useHomeworkResult } from '@/modules/homework/stores/homeworkStore';
 import { useDelayedLoading } from '@/core/hooks/useDelayedLoading';
-import { platformActions } from '@/app/stores/platformStore';
+import { platformActions } from '@/core/navigation/platformStore';
 import Button from '@/ui/Button/Button';
 import Icon from '@/ui/Icon/Icon';
 import { MASCOT } from '@/ui/icons';
@@ -31,17 +32,11 @@ import styles from '@/modules/homework/screens/ResultScreen/ResultScreen.module.
 export default function ResultScreen({ assignmentId }: { assignmentId: string }) {
   const result = useHomeworkResult();
   const justSent = result?.assignmentId === assignmentId ? result.response : null;
-  const assignment = useRequest(() => assignmentsService.detail(assignmentId), `hw-detail:${assignmentId}`);
+  const assignment = useAssignmentDetail(assignmentId);
   // Bài nộp mới nhất (vừa nộp → có ngay id; mở lại → từ danh sách lần làm)
   const submissionId = justSent?.submission.id ?? assignment.data?.latestSubmission?.id ?? null;
-  const submission = useRequest(
-    () => (submissionId ? submissionsService.detail(submissionId) : Promise.resolve(null)),
-    `hw-sub:${submissionId ?? ''}`,
-  );
-  const comments = useRequest(
-    () => (submissionId ? submissionsService.comments(submissionId) : Promise.resolve([] as CommentModel[])),
-    `hw-comments:${submissionId ?? ''}`,
-  );
+  const submission = useSubmissionDetail(submissionId);
+  const comments = useSubmissionComments(submissionId);
   const [showAnswers, setShowAnswers] = useState(false);
   const showLoading = useDelayedLoading(assignment.loading || submission.loading);
 
@@ -51,9 +46,7 @@ export default function ResultScreen({ assignmentId }: { assignmentId: string })
   const rank = justSent?.rank?.rank ?? a?.best?.rank ?? null;
 
   const reply = async (parentId: string, body: string) => {
-    if (!submissionId) return;
-    await submissionsService.reply(submissionId, parentId, body);
-    comments.reload();
+    await comments.reply(parentId, body);
     void homeworkActions.loadList();
   };
 

@@ -4,7 +4,7 @@
  */
 import { useState } from 'react';
 import clsx from 'clsx';
-import { avatarUrl } from '@/modules/auth/utils/avatars';
+import { avatarUrl } from '@/modules/auth';
 import { errorText } from '@/core/api/errorText';
 import { timeAgo } from '@/core/utils/timeAgo';
 import { SFX } from '@/core/audio/sfx';

@@ -17,9 +17,9 @@ import {
   type LevelProgress,
 } from '@/games/phonics-ocean/session/storage';
 import type { RoundResult, SetupDraft } from '@/games/phonics-ocean/session/types';
-import { postSoloResult } from '@/modules/results/stores/scoreSyncStore';
-import { events } from '@/modules/analytics/stores/eventsQueue';
-import { awardGems } from '@/modules/gems/stores/walletStore';
+import { postSoloResult } from '@/modules/results';
+import { events } from '@/modules/analytics';
+import { awardGems } from '@/modules/gems';
 import { createStore } from '@/core/store/createStore';
 
 export type Screen = 'home' | 'setup' | 'play' | 'results';

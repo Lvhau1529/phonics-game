@@ -6,7 +6,7 @@ const openAccount = vi.hoisted(() => vi.fn());
 
 vi.mock('@/core/audio/sfxPlayer', () => ({ playSfx: vi.fn(), preloadSfx: vi.fn() }));
 vi.mock('@/core/config/account', () => config);
-vi.mock('@/app/stores/platformStore', () => ({ platformActions: { openAccount } }));
+vi.mock('@/core/navigation/platformStore', () => ({ platformActions: { openAccount } }));
 vi.mock('@/modules/auth/stores/authStore', () => ({ useAuth: () => ({ status: 'guest', user: null }) }));
 
 const { default: AccountButton } = await import('@/modules/auth/components/AccountButton/AccountButton');

@@ -5,7 +5,7 @@
 import { foodStreamActions } from '@/games/food-stream/session/store';
 import { TEXT } from '@/games/food-stream/session/text';
 import { SFX } from '@/core/audio/sfx';
-import { platformActions } from '@/app/stores/platformStore';
+import { platformActions } from '@/core/navigation/platformStore';
 import AudioToggles from '@/ui/AudioToggles/AudioToggles';
 import BackButton from '@/ui/BackButton/BackButton';
 import Button from '@/ui/Button/Button';

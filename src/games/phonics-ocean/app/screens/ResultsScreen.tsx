@@ -13,9 +13,9 @@ import {
 } from '@/games/phonics-ocean/session/store';
 import type { RoundResult, WordRecord } from '@/games/phonics-ocean/session/types';
 import { TEXT } from '@/games/phonics-ocean/session/text';
-import PointsSynced from '@/modules/results/components/PointsSynced/PointsSynced';
+import { PointsSynced } from '@/modules/results';
 import Button from '@/ui/Button/Button';
-import GemReward from '@/modules/gems/components/GemReward/GemReward';
+import { GemReward } from '@/modules/gems';
 import Icon from '@/ui/Icon/Icon';
 import { ICONS } from '@/ui/icons';
 import { formatPercent } from '@/core/utils/format';

@@ -9,7 +9,7 @@ import { avatarUrl, isSceneAvatar } from '@/modules/auth/utils/avatars';
 import { ACCOUNT_ENABLED } from '@/core/config/account';
 import { SFX } from '@/core/audio/sfx';
 import { playSfx } from '@/core/audio/sfxPlayer';
-import { platformActions } from '@/app/stores/platformStore';
+import { platformActions } from '@/core/navigation/platformStore';
 import Button from '@/ui/Button/Button';
 import UserIcon from '@/ui/svg/UserIcon';
 import styles from '@/modules/auth/components/AccountButton/AccountButton.module.scss';

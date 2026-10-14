@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { hashOf, parseHash } from '@/app/stores/platformStore';
+import { hashOf, parseHash } from '@/core/navigation/platformStore';
 
 describe('parseHash', () => {
   it('không có hash -> màn chọn game', () => {

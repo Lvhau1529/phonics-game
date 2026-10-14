@@ -9,7 +9,7 @@
  */
 import { GameResultBody, POINT_RULES, type GameResultResponse } from '@phonics/contracts';
 import { resultsService } from '@/modules/results/services/resultsService';
-import { authStore, isSignedIn } from '@/modules/auth/stores/authStore';
+import { authStore, isSignedIn } from '@/modules/auth';
 import { ACCOUNT_ENABLED } from '@/core/config/account';
 import { createSyncQueue } from '@/core/sync/syncQueue';
 import { createStore } from '@/core/store/createStore';

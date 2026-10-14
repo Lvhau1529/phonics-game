@@ -2,7 +2,13 @@
  * Props chung của renderer từng dạng câu hỏi (màn làm bài `do` và màn xem lại `review`).
  * Mọi payload trả lời có `type` literal như contracts `QuestionAnswer`.
  */
-import type { AnswerKeyOf, AnswerOf, ConfigOf, MediaRef, QuestionType } from '@phonics/contracts';
+import type {
+  AnswerKeyOf,
+  AnswerOf,
+  ConfigOf,
+  MediaRef,
+  QuestionType,
+} from '@/modules/homework/models/question';
 
 export type RendererMode = 'do' | 'review';
 

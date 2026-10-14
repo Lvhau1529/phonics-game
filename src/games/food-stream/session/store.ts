@@ -20,9 +20,9 @@ import {
 } from '@/games/food-stream/session/storage';
 import { buildTeams } from '@/games/food-stream/session/teams';
 import type { RoundResult, SetupDraft, Team, TeamId } from '@/games/food-stream/session/types';
-import { postSoloResult } from '@/modules/results/stores/scoreSyncStore';
-import { events } from '@/modules/analytics/stores/eventsQueue';
-import { awardGems } from '@/modules/gems/stores/walletStore';
+import { postSoloResult } from '@/modules/results';
+import { events } from '@/modules/analytics';
+import { awardGems } from '@/modules/gems';
 import { createStore } from '@/core/store/createStore';
 
 export type Screen = 'home' | 'setup' | 'play' | 'results';

@@ -4,9 +4,9 @@
  */
 import clsx from 'clsx';
 import { ICONS, mascotUrl } from '@/games/bread-catcher/app/assets';
-import PointsSynced from '@/modules/results/components/PointsSynced/PointsSynced';
+import { PointsSynced } from '@/modules/results';
 import Button from '@/ui/Button/Button';
-import GemReward from '@/modules/gems/components/GemReward/GemReward';
+import { GemReward } from '@/modules/gems';
 import Leaderboard, { TeamTotalsCard } from '@/games/bread-catcher/app/components/Leaderboard';
 import { useAppState, useTeamTotals } from '@/games/bread-catcher/app/hooks';
 import { SFX } from '@/core/audio/sfx';

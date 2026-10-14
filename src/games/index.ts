@@ -7,7 +7,7 @@
 import { breadCatcherManifest } from '@/games/bread-catcher/manifest';
 import { foodStreamManifest } from '@/games/food-stream/manifest';
 import { phonicsOceanManifest } from '@/games/phonics-ocean/manifest';
-import { ACCOUNT_SEGMENT, HOMEWORK_SEGMENT } from '@/app/stores/platformStore';
+import { ACCOUNT_SEGMENT, HOMEWORK_SEGMENT } from '@/core/navigation/platformStore';
 import type { GameManifest, UpcomingGame } from '@/core/types/game';
 
 export const GAMES: readonly GameManifest[] = [

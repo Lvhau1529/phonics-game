@@ -5,7 +5,7 @@
  */
 import { useState } from 'react';
 import clsx from 'clsx';
-import { blankCount } from '@phonics/contracts';
+import { blankCount } from '@/modules/homework/models/question';
 import AudioButton from '@/modules/homework/components/AudioButton/AudioButton';
 import { useMedia } from '@/modules/homework/renderers/mediaContext';
 import OnScreenKeyboard from '@/modules/homework/components/OnScreenKeyboard/OnScreenKeyboard';

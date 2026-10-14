@@ -4,11 +4,11 @@
  * thì hiện ảnh + TRACE AGAIN.
  */
 import { useEffect, useRef, useState, type PointerEvent as ReactPointerEvent } from 'react';
-import type { MediaRef } from '@phonics/contracts';
+import type { MediaRef } from '@/modules/homework/models/question';
 import { errorText } from '@/core/api/errorText';
 import { SFX } from '@/core/audio/sfx';
 import { playSfx } from '@/core/audio/sfxPlayer';
-import { mediaService } from '@/modules/homework/services/mediaService';
+import { useMediaUpload } from '@/modules/homework/hooks/useMediaUpload';
 import { useMedia } from '@/modules/homework/renderers/mediaContext';
 import Button from '@/ui/Button/Button';
 import LottieLoader from '@/ui/LottieLoader/LottieLoader';
@@ -78,6 +78,7 @@ function drawStrokes(
 }
 
 export default function TracePad({ text, mediaId, disabled, onUploaded }: TracePadProps) {
+  const upload = useMediaUpload();
   const saved = useMedia(mediaId);
   const canvas = useRef<HTMLCanvasElement>(null);
   const [strokes, setStrokes] = useState<Stroke[]>([]);
@@ -157,7 +158,7 @@ export default function TracePad({ text, mediaId, disabled, onUploaded }: TraceP
       const blob = await new Promise<Blob>((resolve, reject) =>
         el.toBlob((b) => (b ? resolve(b) : reject(new Error('toBlob failed'))), 'image/png'),
       );
-      const ref = await mediaService.upload(blob, {
+      const ref = await upload(blob, {
         kind: 'IMAGE',
         fileName: 'trace.png',
         width: el.width,

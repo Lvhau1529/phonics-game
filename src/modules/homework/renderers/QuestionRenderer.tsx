@@ -2,7 +2,12 @@
  * Chọn renderer theo `config.type`. `answer` / `answerKey` lệch type (dữ liệu cũ) thì coi như null để không crash.
  * Màn xem lại (`review`) kèm đáp án đúng dạng chữ khi GV cho xem.
  */
-import type { MediaRef, QuestionAnswer, QuestionAnswerKey, QuestionConfig } from '@phonics/contracts';
+import type {
+  MediaRef,
+  QuestionAnswer,
+  QuestionAnswerKey,
+  QuestionConfig,
+} from '@/modules/homework/models/question';
 import {
   InlineChoiceRenderer,
   MultipleChoiceRenderer,

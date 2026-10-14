@@ -1,9 +1,8 @@
 /**
  * Chọn lớp khi đăng ký (GET /public/classes — lớp giáo viên đang cho học sinh tự vào).
  */
-import { classesService } from '@/modules/classes/services/classesService';
+import { usePublicClasses } from '@/modules/classes/hooks/usePublicClasses';
 import { errorText } from '@/core/api/errorText';
-import { useRequest } from '@/core/hooks/useRequest';
 import Button from '@/ui/Button/Button';
 import { useDelayedLoading } from '@/core/hooks/useDelayedLoading';
 import Field, { FieldHint } from '@/ui/Field/Field';
@@ -18,7 +17,7 @@ interface ClassPickerProps {
 }
 
 export default function ClassPicker({ value, onChange, error }: ClassPickerProps) {
-  const classes = useRequest(() => classesService.publicList(), 'classes');
+  const classes = usePublicClasses();
   const showLoading = useDelayedLoading(classes.loading);
 
   const options: Option<string>[] = (classes.data ?? []).map((item) => ({

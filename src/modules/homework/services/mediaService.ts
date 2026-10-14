@@ -4,7 +4,7 @@
  */
 import type { MediaKind, MediaRef } from '@phonics/contracts';
 import { mediaRepository } from '@/modules/homework/repositories/mediaRepository';
-import { putBlob } from '@/modules/homework/repositories/mediaUpload';
+import { putBlob } from '@/modules/homework/repositories/storageRepository';
 
 export interface UploadOptions {
   kind: MediaKind;

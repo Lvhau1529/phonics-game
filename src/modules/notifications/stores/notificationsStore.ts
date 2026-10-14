@@ -4,7 +4,7 @@
  * chuông ở màn chọn game hiện số chưa đọc; mở màn MESSAGES thì tải cả đã đọc và đánh dấu đã đọc.
  */
 import { notificationsService } from '@/modules/notifications/services/notificationsService';
-import { authStore, isSignedIn } from '@/modules/auth/stores/authStore';
+import { authStore, isSignedIn } from '@/modules/auth';
 import { ACCOUNT_ENABLED } from '@/core/config/account';
 import type { NotificationModel } from '@/modules/notifications/models/NotificationModel';
 import { useStore } from '@/core/store/useStore';

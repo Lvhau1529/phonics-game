@@ -7,7 +7,13 @@
  * Lưu localStorage `phonics-arcade:auth` = { user: user.toJSON(), refreshToken }. Mất mạng lúc mở app thì vẫn
  * coi như đang đăng nhập với user đã lưu (điểm xếp hàng chờ), có mạng lại là refresh tự chạy.
  */
-import { User, type GoogleProfile, type LoginBody, type RegisterBody } from '@phonics/contracts';
+import {
+  User,
+  type GoogleProfile,
+  type LoginBody,
+  type RegisterBody,
+  type UpdateProfileBody,
+} from '@phonics/contracts';
 import { authService, type AuthSession } from '@/modules/auth/services/authService';
 import { ACCOUNT_ENABLED } from '@/core/config/account';
 import { clearRequestCache } from '@/core/hooks/useRequest';
@@ -148,6 +154,11 @@ export const authActions = {
     removeKeys([AUTH_KEY]);
     // Bỏ xếp hạng / điểm đã cache của người vừa đăng xuất (máy lớp dùng chung)
     clearRequestCache();
+  },
+
+  /** Sửa hồ sơ (PATCH /me/profile) rồi cập nhật phiên */
+  async updateProfile(body: UpdateProfileBody): Promise<void> {
+    authActions.setUser(await authService.updateProfile(body));
   },
 
   /** Sau khi sửa hồ sơ */

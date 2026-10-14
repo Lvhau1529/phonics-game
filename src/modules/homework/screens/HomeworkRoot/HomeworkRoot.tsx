@@ -6,14 +6,14 @@
  * Kèm hộp HƯỚNG DẪN (tiếng Việt) cho giáo viên / phụ huynh.
  */
 import type { ReactNode } from 'react';
-import { isSignedIn, useAuth } from '@/modules/auth/stores/authStore';
+import { isSignedIn, useAuth } from '@/modules/auth';
 import LoginScreen from '@/modules/auth/screens/LoginScreen/LoginScreen';
 import { HOMEWORK_GUIDE_SECTIONS, HOMEWORK_GUIDE_TITLE } from '@/modules/homework/guide/homeworkGuide';
 import DoScreen from '@/modules/homework/screens/DoScreen/DoScreen';
 import ListScreen from '@/modules/homework/screens/ListScreen/ListScreen';
 import RankingScreen from '@/modules/homework/screens/RankingScreen/RankingScreen';
 import ResultScreen from '@/modules/homework/screens/ResultScreen/ResultScreen';
-import type { HomeworkPage } from '@/app/stores/platformStore';
+import type { HomeworkPage } from '@/core/navigation/platformStore';
 import GuideDialog from '@/ui/guide/GuideDialog/GuideDialog';
 import { MASCOT } from '@/ui/icons';
 import LottieLoader from '@/ui/LottieLoader/LottieLoader';

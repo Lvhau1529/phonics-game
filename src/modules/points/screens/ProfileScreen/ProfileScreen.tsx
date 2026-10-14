@@ -4,17 +4,15 @@
  */
 import { useState } from 'react';
 import clsx from 'clsx';
-import { pointsService } from '@/modules/points/services/pointsService';
-import { authActions, useAuth } from '@/modules/auth/stores/authStore';
-import { avatarUrl, isSceneAvatar } from '@/modules/auth/utils/avatars';
+import { useMyPoints } from '@/modules/points/hooks/usePoints';
+import { authActions, avatarUrl, isSceneAvatar, useAuth } from '@/modules/auth';
 import { errorText } from '@/core/api/errorText';
-import { catalogStore, isUnlocked } from '@/modules/catalog/stores/catalogStore';
-import { useRequest } from '@/core/hooks/useRequest';
-import { useUnreadCount } from '@/modules/notifications/stores/notificationsStore';
+import { catalogStore, isUnlocked } from '@/modules/catalog';
+import { useUnreadCount } from '@/modules/notifications';
 import { useDelayedLoading } from '@/core/hooks/useDelayedLoading';
-import { walletStore } from '@/modules/gems/stores/walletStore';
+import { walletStore } from '@/modules/gems';
 import { useStore } from '@/core/store/useStore';
-import { platformActions } from '@/app/stores/platformStore';
+import { platformActions } from '@/core/navigation/platformStore';
 import type { GameManifest } from '@/core/types/game';
 import Button from '@/ui/Button/Button';
 import Dialog from '@/ui/Dialog/Dialog';
@@ -29,7 +27,7 @@ import styles from '@/modules/points/screens/ProfileScreen/ProfileScreen.module.
 export default function ProfileScreen({ games }: { games: readonly GameManifest[] }) {
   const { user } = useAuth();
   const unread = useUnreadCount();
-  const points = useRequest(() => pointsService.mine('all'), `points:${user?.id ?? ''}`);
+  const points = useMyPoints(user?.id);
   const mine = useStore(catalogStore, (state) => state.mine);
   const wallet = useStore(walletStore, (state) => state);
   const [confirmSignOut, setConfirmSignOut] = useState(false);
@@ -37,8 +35,7 @@ export default function ProfileScreen({ games }: { games: readonly GameManifest[
   const showLoading = useDelayedLoading(points.loading);
   if (!user) return null;
 
-  const pointsByGame = new Map(points.data?.byGame.map((item) => [item.gameId as string, item.points]) ?? []);
-  const rank = points.data?.class?.rank ?? null;
+  const rank = points.data?.rank ?? null;
 
   return (
     <>
@@ -92,7 +89,7 @@ export default function ProfileScreen({ games }: { games: readonly GameManifest[
           {games.map((game) => {
             const unlocked = isUnlocked(game, wallet, { items: null, mine });
             const gamePoints =
-              pointsByGame.get(game.id) ?? mine?.find((item) => item.gameId === game.id)?.points ?? 0;
+              points.data?.pointsOf(game.id) ?? mine?.find((item) => item.gameId === game.id)?.points ?? 0;
             return (
               <li key={game.id} className={clsx(styles.game, !unlocked && styles.locked)}>
                 <img className={styles.cover} src={game.cover} alt="" />

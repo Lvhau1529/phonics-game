@@ -11,7 +11,7 @@ import { timeAgo } from '@/core/utils/timeAgo';
 import { useDelayedLoading } from '@/core/hooks/useDelayedLoading';
 import { SFX } from '@/core/audio/sfx';
 import { playSfx } from '@/core/audio/sfxPlayer';
-import { platformActions } from '@/app/stores/platformStore';
+import { platformActions } from '@/core/navigation/platformStore';
 import { MASCOT } from '@/ui/icons';
 import LottieLoader from '@/ui/LottieLoader/LottieLoader';
 import ScreenHeader from '@/ui/ScreenHeader/ScreenHeader';

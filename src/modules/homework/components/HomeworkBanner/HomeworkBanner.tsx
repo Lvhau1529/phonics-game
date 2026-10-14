@@ -4,10 +4,10 @@
  */
 import { useEffect } from 'react';
 import clsx from 'clsx';
-import { isSignedIn, useAuth } from '@/modules/auth/stores/authStore';
+import { isSignedIn, useAuth } from '@/modules/auth';
 import { ACCOUNT_ENABLED } from '@/core/config/account';
 import { homeworkActions, useHomeworkList, useTodoCount } from '@/modules/homework/stores/homeworkStore';
-import { platformActions } from '@/app/stores/platformStore';
+import { platformActions } from '@/core/navigation/platformStore';
 import Button from '@/ui/Button/Button';
 import BookIcon from '@/ui/svg/BookIcon';
 import styles from '@/modules/homework/components/HomeworkBanner/HomeworkBanner.module.scss';

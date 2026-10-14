@@ -9,9 +9,9 @@
  * Hai bên chỉ giao tiếp qua store này.
  */
 import { breadCatcherManifest } from '@/games/bread-catcher/manifest';
-import { postSoloResult } from '@/modules/results/stores/scoreSyncStore';
-import { events } from '@/modules/analytics/stores/eventsQueue';
-import { awardGems } from '@/modules/gems/stores/walletStore';
+import { postSoloResult } from '@/modules/results';
+import { events } from '@/modules/analytics';
+import { awardGems } from '@/modules/gems';
 import { createStore } from '@/core/store/createStore';
 import { shuffle } from '@/core/utils/random';
 import { PACKS, parseCustomWords, sessionWords } from '@/games/bread-catcher/session/content';

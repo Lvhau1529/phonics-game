@@ -1,7 +1,7 @@
 /**
  * Đáp án đúng dạng chữ ngắn cho màn xem lại ("ANSWER: map") — chỉ khi GV cho xem đáp án.
  */
-import type { QuestionAnswerKey, QuestionConfig } from '@phonics/contracts';
+import type { QuestionAnswerKey, QuestionConfig } from '@/modules/homework/models/question';
 
 export function expectedText(
   config: QuestionConfig,

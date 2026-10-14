@@ -7,20 +7,19 @@
  * Danh sách game truyền vào từ PlatformApp (manifest ở src/games/index.ts đã phủ catalog server).
  */
 import { useState, type CSSProperties } from 'react';
-import AccountButton from '@/modules/auth/components/AccountButton/AccountButton';
-import NotificationBell from '@/modules/notifications/components/NotificationBell/NotificationBell';
-import { events } from '@/modules/analytics/stores/eventsQueue';
+import { AccountButton } from '@/modules/auth';
+import { NotificationBell } from '@/modules/notifications';
+import { events } from '@/modules/analytics';
 import { SFX } from '@/core/audio/sfx';
 import { playSfx, preloadSfx } from '@/core/audio/sfxPlayer';
-import { walletStore } from '@/modules/gems/stores/walletStore';
+import { GemCounter, walletStore } from '@/modules/gems';
 import { useStore } from '@/core/store/useStore';
 import AuthorBadge from '@/modules/hub/components/AuthorBadge/AuthorBadge';
 import { GameCard, UpcomingCard } from '@/modules/hub/components/GameCard/GameCard';
-import HomeworkBanner from '@/modules/homework/components/HomeworkBanner/HomeworkBanner';
-import GemCounter from '@/modules/gems/components/GemCounter/GemCounter';
+import { HomeworkBanner } from '@/modules/homework';
 import HubDialogs, { type HubDialogState } from '@/modules/hub/components/HubDialogs/HubDialogs';
-import { platformActions } from '@/app/stores/platformStore';
-import UpdateBanner from '@/modules/pwa/components/UpdateBanner/UpdateBanner';
+import { platformActions } from '@/core/navigation/platformStore';
+import { UpdateBanner } from '@/modules/pwa';
 import type { GameManifest, UpcomingGame } from '@/core/types/game';
 import AudioToggles from '@/ui/AudioToggles/AudioToggles';
 import { HUB_BACKGROUND } from '@/ui/icons';

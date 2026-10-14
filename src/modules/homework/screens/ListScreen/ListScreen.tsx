@@ -10,10 +10,10 @@ import { errorText } from '@/core/api/errorText';
 import type { AssignmentModel } from '@/modules/homework/models/AssignmentModel';
 import { homeworkActions, useHomeworkList } from '@/modules/homework/stores/homeworkStore';
 import { useDelayedLoading } from '@/core/hooks/useDelayedLoading';
-import { platformActions } from '@/app/stores/platformStore';
+import { platformActions } from '@/core/navigation/platformStore';
 import Button from '@/ui/Button/Button';
 import GuideButton from '@/ui/guide/GuideButton/GuideButton';
-import Icon from '@/ui/Icon/Icon';
+import Stars from '@/modules/homework/components/Stars/Stars';
 import { MASCOT } from '@/ui/icons';
 import LottieLoader from '@/ui/LottieLoader/LottieLoader';
 import OptionGroup, { type Option } from '@/ui/OptionGroup/OptionGroup';
@@ -124,15 +124,5 @@ function Card({ item }: { item: AssignmentModel }) {
         )}
       </div>
     </li>
-  );
-}
-
-export function Stars({ count }: { count: number }) {
-  return (
-    <span className={styles.stars} aria-label={`${count} of 3 stars`}>
-      {[0, 1, 2].map((i) => (
-        <Icon key={i} name="star" size={22} className={clsx(styles.star, i >= count && styles.off)} />
-      ))}
-    </span>
   );
 }

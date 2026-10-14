@@ -2,14 +2,13 @@
  * Sửa hồ sơ: tên hiển thị + avatar (PATCH /me/profile). Đổi lớp phải nhờ giáo viên.
  */
 import { useState, type FormEvent } from 'react';
-import { DisplayName, type AvatarKey } from '@phonics/contracts';
-import { authService } from '@/modules/auth/services/authService';
+import { DisplayName, type AvatarKey } from '@/modules/auth/utils/profileForm';
 import { authActions, useAuth } from '@/modules/auth/stores/authStore';
 import { errorText, fieldError } from '@/core/api/errorText';
 import AvatarPicker from '@/modules/auth/components/AvatarPicker/AvatarPicker';
 import { SFX } from '@/core/audio/sfx';
 import { playSfx } from '@/core/audio/sfxPlayer';
-import { platformActions } from '@/app/stores/platformStore';
+import { platformActions } from '@/core/navigation/platformStore';
 import Button from '@/ui/Button/Button';
 import ScreenHeader from '@/ui/ScreenHeader/ScreenHeader';
 import TextInput from '@/ui/TextInput/TextInput';
@@ -42,11 +41,10 @@ export default function EditProfileScreen() {
     setError(null);
     setNameError(undefined);
     try {
-      const updated = await authService.updateProfile({
+      await authActions.updateProfile({
         ...(displayName.trim() !== user.displayName ? { displayName: displayName.trim() } : {}),
         ...(avatarKey !== user.avatarKey ? { avatarKey } : {}),
       });
-      authActions.setUser(updated);
       playSfx(SFX.UI_START);
       back();
     } catch (caught) {

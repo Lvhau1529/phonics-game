@@ -4,7 +4,7 @@
  */
 import { useRef, useState, type PointerEvent as ReactPointerEvent } from 'react';
 import clsx from 'clsx';
-import type { Cell, Direction } from '@phonics/contracts';
+import type { Cell, Direction } from '@/modules/homework/models/question';
 import { useMedia } from '@/modules/homework/renderers/mediaContext';
 import OnScreenKeyboard from '@/modules/homework/components/OnScreenKeyboard/OnScreenKeyboard';
 import { norm, type RendererProps } from '@/modules/homework/renderers/types';

@@ -4,7 +4,7 @@ import { render, click, type Rendered } from '@/test/render';
 
 vi.mock('@/core/audio/sfxPlayer', () => ({ playSfx: vi.fn(), preloadSfx: vi.fn() }));
 vi.mock('@/ui/LottieLoader/LottieLoader', () => ({ default: () => null }));
-vi.mock('@/app/stores/platformStore', () => ({
+vi.mock('@/core/navigation/platformStore', () => ({
   platformActions: { openAccount: vi.fn() },
   hashOf: () => '#/account/notifications',
 }));

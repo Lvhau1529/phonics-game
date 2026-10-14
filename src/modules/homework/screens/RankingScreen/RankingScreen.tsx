@@ -3,13 +3,12 @@
  * Dòng của mình được tô màu; chưa có trong bảng thì ghim ở cuối.
  */
 import clsx from 'clsx';
-import { avatarUrl, isSceneAvatar } from '@/modules/auth/utils/avatars';
+import { avatarUrl, isSceneAvatar } from '@/modules/auth';
 import { errorText } from '@/core/api/errorText';
-import { useRequest } from '@/core/hooks/useRequest';
-import { assignmentsService } from '@/modules/homework/services/assignmentsService';
+import { useAssignmentRanking } from '@/modules/homework/hooks/useHomeworkRequests';
 import type { AssignmentRankingEntryModel } from '@/modules/homework/models/AssignmentRankingEntryModel';
 import { useDelayedLoading } from '@/core/hooks/useDelayedLoading';
-import { platformActions } from '@/app/stores/platformStore';
+import { platformActions } from '@/core/navigation/platformStore';
 import Button from '@/ui/Button/Button';
 import Icon from '@/ui/Icon/Icon';
 import { MASCOT } from '@/ui/icons';
@@ -18,7 +17,7 @@ import ScreenHeader from '@/ui/ScreenHeader/ScreenHeader';
 import styles from '@/modules/homework/screens/RankingScreen/RankingScreen.module.scss';
 
 export default function RankingScreen({ assignmentId }: { assignmentId: string }) {
-  const ranking = useRequest(() => assignmentsService.ranking(assignmentId), `hw-ranking:${assignmentId}`);
+  const ranking = useAssignmentRanking(assignmentId);
   const showLoading = useDelayedLoading(ranking.loading);
   const items = ranking.data?.items ?? [];
   const me = ranking.data?.me ?? null;

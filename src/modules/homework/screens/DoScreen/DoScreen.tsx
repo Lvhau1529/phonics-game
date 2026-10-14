@@ -15,7 +15,7 @@ import QuestionFrame from '@/modules/homework/components/QuestionFrame/QuestionF
 import QuestionRenderer from '@/modules/homework/renderers/QuestionRenderer';
 import { homeworkActions, useAttempt } from '@/modules/homework/stores/homeworkStore';
 import { useDelayedLoading } from '@/core/hooks/useDelayedLoading';
-import { platformActions } from '@/app/stores/platformStore';
+import { platformActions } from '@/core/navigation/platformStore';
 import Button from '@/ui/Button/Button';
 import Dialog from '@/ui/Dialog/Dialog';
 import { MASCOT } from '@/ui/icons';

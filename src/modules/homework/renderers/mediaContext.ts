@@ -3,7 +3,7 @@
  * `media` của response (+ file bé vừa tải lên). Màn làm bài / kết quả bọc Provider, renderer tra bằng hook.
  */
 import { createContext, useContext } from 'react';
-import type { MediaMap, MediaRef } from '@phonics/contracts';
+import type { MediaMap, MediaRef } from '@/modules/homework/models/question';
 
 export const MediaMapContext = createContext<MediaMap>({});
 

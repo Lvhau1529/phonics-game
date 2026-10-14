@@ -7,7 +7,7 @@ import { errorText } from '@/core/api/errorText';
 import GoogleButton from '@/modules/auth/components/GoogleButton/GoogleButton';
 import { SFX } from '@/core/audio/sfx';
 import { playSfx } from '@/core/audio/sfxPlayer';
-import { platformActions } from '@/app/stores/platformStore';
+import { platformActions } from '@/core/navigation/platformStore';
 import Button from '@/ui/Button/Button';
 import { MASCOT } from '@/ui/icons';
 import ScreenHeader from '@/ui/ScreenHeader/ScreenHeader';

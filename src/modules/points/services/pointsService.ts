@@ -4,6 +4,7 @@
  */
 import type { GameId, RangePreset, RankingEntry, RankingResponse } from '@phonics/contracts';
 import { pointsRepository } from '@/modules/points/repositories/pointsRepository';
+import { MyPointsModel } from '@/modules/points/models/MyPointsModel';
 import { RankingEntryModel } from '@/modules/points/models/RankingEntryModel';
 
 /** Bảng xếp hạng lớp: thông tin lớp / bộ lọc như BE, các dòng là model */
@@ -15,8 +16,8 @@ export type ClassRanking = Omit<RankingResponse, 'items' | 'me'> & {
 const toEntry = (data: RankingEntry) => new RankingEntryModel(data);
 
 export const pointsService = {
-  /** Tổng điểm của tôi là số liệu thống kê → giữ DTO */
-  mine: (range: RangePreset = 'all', gameId?: GameId) => pointsRepository.mine({ range, gameId }),
+  mine: async (range: RangePreset = 'all', gameId?: GameId): Promise<MyPointsModel> =>
+    new MyPointsModel(await pointsRepository.mine({ range, gameId })),
   classRanking: async (range: RangePreset = 'all', gameId?: GameId): Promise<ClassRanking> => {
     const data = await pointsRepository.classRanking({ range, gameId });
     return { ...data, items: data.items.map(toEntry), me: data.me ? toEntry(data.me) : null };

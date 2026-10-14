@@ -5,12 +5,12 @@
  */
 import { useCallback, useEffect, useId, useRef, useState, type CSSProperties } from 'react';
 import clsx from 'clsx';
-import { isSignedIn, useAuth } from '@/modules/auth/stores/authStore';
+import { isSignedIn, useAuth } from '@/modules/auth';
 import NotificationPopover from '@/modules/notifications/components/NotificationPopover/NotificationPopover';
 import { notificationsActions, useUnreadCount } from '@/modules/notifications/stores/notificationsStore';
 import { SFX } from '@/core/audio/sfx';
 import { playSfx } from '@/core/audio/sfxPlayer';
-import { hashOf, platformActions } from '@/app/stores/platformStore';
+import { hashOf, platformActions } from '@/core/navigation/platformStore';
 import BellIcon from '@/ui/svg/BellIcon';
 import styles from '@/modules/notifications/components/NotificationBell/NotificationBell.module.scss';
 

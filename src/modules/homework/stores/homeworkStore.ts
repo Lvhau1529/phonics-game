@@ -7,9 +7,9 @@
  * Mất mạng: giữ bản nháp, có mạng lại (`online`) thì lưu tiếp; đóng tab thì gửi `keepalive`.
  */
 import type { MediaMap, MediaRef, QuestionAnswer, SubmitResponse } from '@phonics/contracts';
-import { authStore, isSignedIn } from '@/modules/auth/stores/authStore';
+import { authStore, isSignedIn } from '@/modules/auth';
 import { ACCOUNT_ENABLED } from '@/core/config/account';
-import { notificationsStore } from '@/modules/notifications/stores/notificationsStore';
+import { notificationsStore } from '@/modules/notifications';
 import { isApiError } from '@/core/api/client';
 import { assignmentsService } from '@/modules/homework/services/assignmentsService';
 import { submissionsService } from '@/modules/homework/services/submissionsService';

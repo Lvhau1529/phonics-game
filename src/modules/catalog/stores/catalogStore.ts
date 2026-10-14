@@ -11,17 +11,12 @@
 import { GameCatalogItem } from '@phonics/contracts';
 import { useMemo } from 'react';
 import { gamesService } from '@/modules/catalog/services/gamesService';
-import { authStore, isSignedIn } from '@/modules/auth/stores/authStore';
+import { authStore, isSignedIn } from '@/modules/auth';
 import { ACCOUNT_ENABLED } from '@/core/config/account';
 import { CatalogGameModel } from '@/modules/catalog/models/CatalogGameModel';
 import type { StudentGameModel } from '@/modules/catalog/models/StudentGameModel';
 import { createSyncQueue } from '@/core/sync/syncQueue';
-import {
-  isUnlocked as walletUnlocked,
-  unlockGame,
-  walletStore,
-  type WalletState,
-} from '@/modules/gems/stores/walletStore';
+import { isUnlocked as walletUnlocked, unlockGame, type WalletState, walletStore } from '@/modules/gems';
 import { useStore } from '@/core/store/useStore';
 import { readJson, writeJson } from '@/core/storage/storage';
 import type { GameManifest, UpcomingGame } from '@/core/types/game';

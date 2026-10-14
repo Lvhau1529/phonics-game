@@ -16,9 +16,9 @@ import {
 } from '@/games/food-stream/session/store';
 import type { QuestionRecord, TeamScore } from '@/games/food-stream/session/types';
 import { TEXT } from '@/games/food-stream/session/text';
-import PointsSynced from '@/modules/results/components/PointsSynced/PointsSynced';
+import { PointsSynced } from '@/modules/results';
 import Button from '@/ui/Button/Button';
-import GemReward from '@/modules/gems/components/GemReward/GemReward';
+import { GemReward } from '@/modules/gems';
 import Icon from '@/ui/Icon/Icon';
 import { compactNumber } from '@/core/utils/format';
 import styles from '@/games/food-stream/app/screens/ResultsScreen.module.scss';
