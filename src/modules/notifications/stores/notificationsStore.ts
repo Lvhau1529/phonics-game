@@ -1,6 +1,6 @@
 /**
  * Thông báo của học sinh (điểm thưởng, đổi hạng, mở khoá game, lời nhắn của GV):
- * GET /me/notifications?unread=true khi mở app, quay lại tab và mỗi 5 phút lúc đang đăng nhập;
+ * GET /me/notifications?unread=true khi mở app, quay lại tab và mỗi 5 phút lúc đang đăng nhập (chỉ khi tab hiển thị);
  * chuông ở màn chọn game hiện số chưa đọc; mở màn MESSAGES thì tải cả đã đọc và đánh dấu đã đọc.
  */
 import { notificationsService } from '@/modules/notifications/services/notificationsService';
@@ -68,7 +68,10 @@ export const notificationsActions = {
     if (!ACCOUNT_ENABLED) return;
     const start = () => {
       window.clearInterval(timer);
-      timer = window.setInterval(() => void notificationsActions.refresh(), POLL_INTERVAL_MS);
+      // Tab ẩn (bỏ quên / PWA chạy nền) thì không poll — tránh tải vô ích lên API / DB; quay lại tab đã refresh ở dưới
+      timer = window.setInterval(() => {
+        if (document.visibilityState === 'visible') void notificationsActions.refresh();
+      }, POLL_INTERVAL_MS);
       void notificationsActions.refresh();
     };
     const stop = () => {

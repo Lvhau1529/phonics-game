@@ -233,7 +233,7 @@ Khách (máy lớp dùng chung) **không** xếp hàng điểm. Màn kết quả
 `GET /public/games` (cache localStorage) phủ lên manifest qua `useCatalog()`: `enabled=false` ẩn thẻ,
 `comingSoon=true` thành thẻ COMING SOON, `price` ghi đè giá trong manifest (`null` = miễn phí). Đã đăng nhập:
 `GET /me/games` → game server đã mở; `isUnlocked(game)` = server mở ∪ ví kim cương trên máy.
-Thông báo: `GET /me/notifications?unread=true` khi mở app, quay lại tab, mỗi 5 phút (`notificationsStore.ts`).
+Thông báo: `GET /me/notifications?unread=true` khi mở app, quay lại tab, mỗi 5 phút khi tab đang hiển thị (`notificationsStore.ts`; tab ẩn không poll).
 
 ### Key localStorage
 
