@@ -10,7 +10,7 @@ import StreamRoom from '@/games/food-stream/game/objects/StreamRoom';
 import Streamer from '@/games/food-stream/game/objects/Streamer';
 import Effects from '@/games/food-stream/game/systems/Effects';
 import type { Screen } from '@/games/food-stream/session/store';
-import { setupView } from '@/platform/phaser/view';
+import { setupView } from '@/core/phaser/view';
 
 export type StudioScreen = Exclude<Screen, 'play'>;
 

@@ -1,0 +1,81 @@
+@use '@/ui/styles/abstracts' as *;
+
+@layer components {
+  @include keyframes-screen-in;
+
+  .frame {
+    @include card;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    animation: screen-in 0.25s ease-out;
+  }
+
+  // Màn xem lại: mép trái theo kết quả
+  .right {
+    border-left-color: var(--color-green);
+  }
+  .almost {
+    border-left-color: var(--color-orange);
+  }
+  .wrong {
+    border-left-color: var(--color-red);
+  }
+  .checking {
+    border-left-color: var(--color-blue);
+  }
+
+  .head {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .number {
+    display: grid;
+    flex: none;
+    place-items: center;
+    width: 40px;
+    height: 40px;
+    border: 3px solid var(--color-ink);
+    border-radius: 50%;
+    background: var(--color-gold);
+    color: var(--color-ink);
+    font-size: 19px;
+    font-weight: 800;
+  }
+
+  .instruction {
+    flex: 1;
+    min-width: 0;
+    margin: 0;
+    color: var(--color-ink);
+    font-size: 20px;
+    font-weight: 800;
+    line-height: 1.2;
+  }
+
+  .example {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0;
+    padding: 6px 10px;
+    border: 2px dashed var(--color-tan);
+    border-radius: 12px;
+    font-family: var(--font-learning);
+    font-size: 18px;
+
+    img {
+      width: 44px;
+      height: 44px;
+      object-fit: contain;
+    }
+  }
+
+  .body {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+}

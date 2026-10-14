@@ -5,11 +5,12 @@
 import { imageUrl, playerUrl } from '@/games/phonics-ocean/app/assets';
 import { LEVELS } from '@/games/phonics-ocean/content/levels';
 import type { QuestionMode } from '@/games/phonics-ocean/content/schema';
+import { FRENZY } from '@/games/phonics-ocean/session/frenzy';
 import { RHYME_CHAIN } from '@/games/phonics-ocean/session/questions';
 import { RULES } from '@/games/phonics-ocean/session/round';
-import GuideCard from '@/platform/ui/guide/GuideCard';
-import type { GuideSection } from '@/platform/ui/guide/GuideDialog';
-import guide from '@/platform/ui/guide/guideContent.module.scss';
+import GuideCard from '@/ui/guide/GuideCard/GuideCard';
+import type { GuideSection } from '@/ui/guide/GuideDialog/GuideDialog';
+import guide from '@/ui/guide/guideContent.module.scss';
 
 export const GUIDE_TITLE = 'Hướng dẫn Phonics Ocean cho giáo viên & phụ huynh';
 
@@ -78,6 +79,25 @@ export const PHONICS_OCEAN_GUIDE_SECTIONS: GuideSection[] = [
           </li>
         </ol>
         <div className={guide.cards}>
+          <GuideCard>
+            <h3>
+              <span className={guide.mascots}>
+                <img src={imageUrl('school.tiny.pink.0')} alt="" width={28} height={20} />
+                <img src={imageUrl('school.medium.butterfly.0')} alt="" width={32} height={28} />
+                <img src={imageUrl('item.bolt')} alt="" width={24} height={28} />
+              </span>
+              Đàn cá &amp; FRENZY
+            </h3>
+            <p>
+              Như Feeding Frenzy, biển luôn đông cá. Cá của bé ăn được cá <b>nhỏ hơn mình</b> (cỡ 1: cá nhỏ;
+              cỡ 2: thêm cá vừa; cỡ 3: cả cá mú lớn) — +{FRENZY.points.tiny} / +{FRENZY.points.medium} / +
+              {FRENZY.points.big} điểm. Va vào cá to hơn chỉ bị bật ra, không mất tim.
+            </p>
+            <p>
+              Ăn liên tục làm đầy thanh tia sét → <b>FRENZY!</b> {FRENZY.durationMs / 1000} giây: điểm ×
+              {FRENZY.multiplier}, bơi nhanh hơn. Lớn lên và qua màn vẫn chỉ nhờ ăn <b>đúng cá mang chữ</b>.
+            </p>
+          </GuideCard>
           <GuideCard>
             <h3>
               <span className={guide.mascots}>

@@ -30,6 +30,8 @@ JOBS = [
     ("food-stream/audio/bgm", "food-stream/music"),
     # SFX riêng của Phonics Ocean (resource pack v2: correct, wrong_soft, level_up, collect, danger)
     ("phonics-ocean/audio/sfx", "phonics-ocean/sfx"),
+    # Nhạc riêng của Phonics Ocean (chưa có trong pack — xem docs/phonics-ocean/ASSET_PROMPTS.md; thư mục trống thì bỏ qua)
+    ("phonics-ocean/audio/bgm", "phonics-ocean/music"),
 ]
 
 

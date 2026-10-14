@@ -2,7 +2,7 @@
  * Âm thanh của Food Stream (thư mục `public/assets/food-stream/music/`, sinh bởi tools/build_audio.py).
  * Ảnh: xem sprites.ts (cùng thư mục). SFX: thư viện chung platform/audio/sfx.ts.
  */
-import { audioUrls } from '@/platform/audio/sfx';
+import { audioUrls } from '@/core/audio/sfx';
 
 const ASSET_ROOT = 'assets/food-stream';
 

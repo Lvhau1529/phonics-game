@@ -4,7 +4,7 @@
 import Phaser from 'phaser';
 import { MUSIC_VOLUME, type MusicKey } from '@/games/food-stream/game/config/assets';
 import { REGISTRY } from '@/games/food-stream/game/core/keys';
-import AudioSystem from '@/platform/phaser/AudioSystem';
+import AudioSystem from '@/core/phaser/AudioSystem';
 
 export type FoodStreamAudio = AudioSystem<MusicKey>;
 

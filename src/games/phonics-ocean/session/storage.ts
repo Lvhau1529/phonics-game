@@ -4,8 +4,8 @@
  */
 import { z } from 'zod';
 import type { SetupDraft } from '@/games/phonics-ocean/session/types';
-import { gameStorageKey, readJson, writeJson } from '@/platform/storage';
-import { createStore } from '@/shared/createStore';
+import { gameStorageKey, readJson, writeJson } from '@/core/storage/storage';
+import { createStore } from '@/core/store/createStore';
 
 const STORAGE_KEY = gameStorageKey('phonics-ocean');
 const SAVE_VERSION = 1;

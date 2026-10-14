@@ -4,7 +4,7 @@
  * (tools/build_audio.py) — volume theo audio_manifest.json. SFX dùng thư viện chung (platform/audio/sfx.ts).
  */
 import type { MascotId } from '@/games/bread-catcher/session/types';
-import { audioUrls } from '@/platform/audio/sfx';
+import { audioUrls } from '@/core/audio/sfx';
 
 /** Thư mục asset của game (tương đối với trang) */
 export const ASSET_ROOT = 'assets/bread-catcher';

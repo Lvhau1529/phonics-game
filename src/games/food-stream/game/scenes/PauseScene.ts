@@ -9,8 +9,8 @@ import CandyButton from '@/games/food-stream/game/ui/CandyButton';
 import { addText } from '@/games/food-stream/game/ui/text';
 import { foodStreamActions } from '@/games/food-stream/session/store';
 import { TEXT } from '@/games/food-stream/session/text';
-import { SFX } from '@/platform/audio/sfx';
-import { setupView } from '@/platform/phaser/view';
+import { SFX } from '@/core/audio/sfx';
+import { setupView } from '@/core/phaser/view';
 
 export default class PauseScene extends Phaser.Scene {
   private panel!: Phaser.GameObjects.Container;

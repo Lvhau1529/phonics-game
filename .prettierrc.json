@@ -6,6 +6,6 @@
   "arrowParens": "always",
   "endOfLine": "lf",
   "plugins": ["prettier-plugin-tailwindcss"],
-  "tailwindStylesheet": "./src/platform/styles/tailwind.css",
+  "tailwindStylesheet": "./src/ui/styles/tailwind.css",
   "tailwindFunctions": ["clsx"]
 }

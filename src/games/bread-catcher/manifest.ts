@@ -1,4 +1,4 @@
-import type { GameManifest } from '@/platform/types';
+import type { GameManifest } from '@/core/types/game';
 
 export const breadCatcherManifest: GameManifest = {
   id: 'bread-catcher',

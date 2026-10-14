@@ -4,12 +4,12 @@
  */
 import { useEffect, useState } from 'react';
 import clsx from 'clsx';
-import { SFX } from '@/platform/audio/sfx';
-import { playSfx } from '@/platform/audio/sfxPlayer';
+import { SFX } from '@/core/audio/sfx';
+import { playSfx } from '@/core/audio/sfxPlayer';
 import { CUSTOM_TIME } from '@/games/bread-catcher/session/settings';
 import { UI_TEXT } from '@/games/bread-catcher/session/text';
 import type { TimeOption } from '@/games/bread-catcher/session/types';
-import { formatTime } from '@/shared/format';
+import { formatTime } from '@/core/utils/format';
 import styles from '@/games/bread-catcher/app/components/TimeInput.module.scss';
 
 const STEP = 5;

@@ -1,13 +1,14 @@
 /**
  * HUD (GAMEPLAY_PHONICS_V2 §8): nút tạm dừng, tim (chỉ mất khi bị cá săn mồi cắn), điểm, đồng hồ,
- * thanh Growth (tiến độ lớn lên) kèm hình cá theo cỡ hiện tại. Mục tiêu + loa ở TargetPanel.
+ * thanh Growth (tiến độ lớn lên) kèm hình cá theo cỡ hiện tại, thanh FRENZY (ăn cá liên tục).
+ * Mục tiêu + loa ở TargetPanel.
  */
 import Phaser from 'phaser';
 import { playerFrame } from '@/games/phonics-ocean/game/config/sprites';
 import { DEPTH, THEME } from '@/games/phonics-ocean/game/config/theme';
 import type { OceanLayout } from '@/games/phonics-ocean/game/ui/layout';
 import { addText } from '@/games/phonics-ocean/game/ui/text';
-import { formatTime } from '@/shared/format';
+import { formatTime } from '@/core/utils/format';
 
 const PILL_H = 28;
 const HEART = 18;
@@ -22,6 +23,10 @@ export default class Hud {
   private shownScore = 0;
   private scoreTween: Phaser.Tweens.Tween | null = null;
   private growth = 0;
+  private readonly frenzyFill: Phaser.GameObjects.Graphics;
+  private readonly frenzyIcon: Phaser.GameObjects.Image;
+  private readonly frenzyWidth: number;
+  private frenzyActive = false;
 
   constructor(
     private readonly scene: Phaser.Scene,
@@ -71,6 +76,39 @@ export default class Hud {
     this.growthFill = scene.add.graphics({ x: left, y: growth.y }).setDepth(DEPTH.HUD);
     this.growthFish = scene.add.image(left - 6, growth.y, playerFrame(1, 0)).setDepth(DEPTH.HUD + 1);
     this.setGrowth(0, 1, false);
+
+    // Thanh FRENZY (tia sét)
+    const { frenzy } = layout;
+    this.frenzyWidth = frenzy.width;
+    const frenzyBar = scene.add.graphics().setDepth(DEPTH.HUD);
+    frenzyBar.fillStyle(THEME.hex.ink).fillRoundedRect(frenzy.x - 3, frenzy.y - 8, frenzy.width + 6, 16, 8);
+    frenzyBar.fillStyle(THEME.hex.woodDark).fillRoundedRect(frenzy.x, frenzy.y - 5, frenzy.width, 10, 5);
+    this.frenzyFill = scene.add.graphics({ x: frenzy.x, y: frenzy.y }).setDepth(DEPTH.HUD);
+    this.frenzyIcon = scene.add.image(frenzy.x - 4, frenzy.y, 'item.bolt').setDepth(DEPTH.HUD + 1);
+    this.frenzyIcon.setScale(20 / this.frenzyIcon.height);
+  }
+
+  /** `value` 0–1; `active` = đang FRENZY! (thanh vàng nhấp nháy, vơi theo thời gian còn lại) */
+  setFrenzy(value: number, active: boolean): void {
+    this.frenzyFill.clear();
+    if (value > 0) {
+      const width = Math.max(8, this.frenzyWidth * value);
+      this.frenzyFill.fillStyle(active ? THEME.hex.gold : 0xffa62b).fillRoundedRect(0, -5, width, 10, 5);
+    }
+    if (active === this.frenzyActive) return;
+    this.frenzyActive = active;
+    this.scene.tweens.killTweensOf(this.frenzyIcon);
+    const scale = 20 / this.frenzyIcon.height;
+    this.frenzyIcon.setScale(scale);
+    if (active) {
+      this.scene.tweens.add({
+        targets: this.frenzyIcon,
+        scale: scale * 1.35,
+        duration: 200,
+        yoyo: true,
+        repeat: -1,
+      });
+    }
   }
 
   setHearts(count: number): void {

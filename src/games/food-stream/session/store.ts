@@ -20,10 +20,10 @@ import {
 } from '@/games/food-stream/session/storage';
 import { buildTeams } from '@/games/food-stream/session/teams';
 import type { RoundResult, SetupDraft, Team, TeamId } from '@/games/food-stream/session/types';
-import { postSoloResult } from '@/platform/account/scoreSync';
-import { events } from '@/platform/analytics/events';
-import { awardGems } from '@/platform/gems/wallet';
-import { createStore } from '@/shared/createStore';
+import { postSoloResult } from '@/modules/results';
+import { events } from '@/modules/analytics';
+import { awardGems } from '@/modules/gems';
+import { createStore } from '@/core/store/createStore';
 
 export type Screen = 'home' | 'setup' | 'play' | 'results';
 

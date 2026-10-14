@@ -13,12 +13,12 @@ import {
 } from '@/games/phonics-ocean/session/store';
 import type { RoundResult, WordRecord } from '@/games/phonics-ocean/session/types';
 import { TEXT } from '@/games/phonics-ocean/session/text';
-import PointsSynced from '@/platform/account/PointsSynced';
-import Button from '@/platform/ui/Button';
-import GemReward from '@/platform/ui/GemReward';
-import Icon from '@/platform/ui/Icon';
-import { ICONS } from '@/platform/ui/icons';
-import { formatPercent } from '@/shared/format';
+import { PointsSynced } from '@/modules/results';
+import Button from '@/ui/Button/Button';
+import { GemReward } from '@/modules/gems';
+import Icon from '@/ui/Icon/Icon';
+import { ICONS } from '@/ui/icons';
+import { formatPercent } from '@/core/utils/format';
 import styles from '@/games/phonics-ocean/app/screens/ResultsScreen.module.scss';
 
 function titleOf(result: RoundResult): string {

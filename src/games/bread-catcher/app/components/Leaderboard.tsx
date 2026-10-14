@@ -8,9 +8,9 @@
 import { useEffect, useState } from 'react';
 import clsx from 'clsx';
 import { mascotUrl } from '@/games/bread-catcher/app/assets';
-import Button from '@/platform/ui/Button';
-import { SFX } from '@/platform/audio/sfx';
-import { playSfx } from '@/platform/audio/sfxPlayer';
+import Button from '@/ui/Button/Button';
+import { SFX } from '@/core/audio/sfx';
+import { playSfx } from '@/core/audio/sfxPlayer';
 import { useTeamTotals } from '@/games/bread-catcher/app/hooks';
 import {
   rankTotals,

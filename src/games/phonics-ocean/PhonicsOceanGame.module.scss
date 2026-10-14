@@ -1,6 +1,6 @@
 // Theme biển xanh của Phonics Ocean: ghi đè token màu (styles/tailwind.css) trên phần tử gốc của game —
 // mọi component chung (nút, form, hướng dẫn...) và class Tailwind bên trong tự đổi màu theo.
-@use '@/platform/styles/abstracts' as *;
+@use '@/ui/styles/abstracts' as *;
 
 @layer components {
   .theme {
@@ -15,7 +15,7 @@
     // Viền chữ tính theo --color-ink nên khai báo lại sau khi đổi mực
     @include text-outline-vars;
     // Nền nước cho lớp màn React và lớp nền Hướng dẫn
-    --screen-layer-bg: radial-gradient(ellipse at center, rgba(6, 50, 79, 0.15), rgba(6, 50, 79, 0.6));
+    --screen-layer-bg: radial-gradient(ellipse at center, rgba(6, 50, 79, 0.05), rgba(6, 50, 79, 0.4));
     --guide-backdrop-bg: rgba(6, 38, 63, 0.78);
     background: var(--color-bg);
   }

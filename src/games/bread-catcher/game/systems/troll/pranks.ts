@@ -4,10 +4,10 @@
  * Thông số ở config/troll.ts > TROLL_PRANKS.
  */
 import Phaser from 'phaser';
-import { SFX } from '@/platform/audio/sfx';
+import { SFX } from '@/core/audio/sfx';
 import { DEPTH, SPAWN, THEME } from '@/games/bread-catcher/game/config/gameConfig';
 import { TROLL_PRANKS, type PrankId } from '@/games/bread-catcher/game/config/troll';
-import { view } from '@/platform/phaser/view';
+import { view } from '@/core/phaser/view';
 import { BRAINROT_PRANKS } from '@/games/bread-catcher/game/systems/troll/brainrotPranks';
 import type { Prank } from '@/games/bread-catcher/game/systems/troll/types';
 import { addText } from '@/games/bread-catcher/game/ui/text';

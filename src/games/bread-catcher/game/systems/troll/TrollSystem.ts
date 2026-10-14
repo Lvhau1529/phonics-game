@@ -16,12 +16,12 @@ import {
   type ItemTrickId,
   type PrankId,
 } from '@/games/bread-catcher/game/config/troll';
-import { view } from '@/platform/phaser/view';
+import { view } from '@/core/phaser/view';
 import type FallingItem from '@/games/bread-catcher/game/objects/FallingItem';
 import { EDGE, ITEM_TRICKS } from '@/games/bread-catcher/game/systems/troll/itemTricks';
 import { PRANKS } from '@/games/bread-catcher/game/systems/troll/pranks';
 import type { TrollContext } from '@/games/bread-catcher/game/systems/troll/types';
-import { pickWeighted } from '@/shared/random';
+import { pickWeighted } from '@/core/utils/random';
 
 const PRANK_WEIGHTS = Object.fromEntries(
   Object.entries(TROLL_PRANKS.list).map(([id, prank]) => [id, prank.weight]),

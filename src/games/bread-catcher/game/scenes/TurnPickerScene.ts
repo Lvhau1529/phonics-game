@@ -7,18 +7,18 @@
  */
 import Phaser from 'phaser';
 import { MUSIC, mascotTexture } from '@/games/bread-catcher/game/config/assets';
-import { SFX } from '@/platform/audio/sfx';
+import { SFX } from '@/core/audio/sfx';
 import { DEPTH, THEME } from '@/games/bread-catcher/game/config/gameConfig';
 import { STAGE_BACKGROUNDS } from '@/games/bread-catcher/game/config/stages';
 import { SCENES } from '@/games/bread-catcher/game/core/keys';
 import { getAudio } from '@/games/bread-catcher/game/core/services';
-import { isLandscape, setupView, view } from '@/platform/phaser/view';
+import { isLandscape, setupView, view } from '@/core/phaser/view';
 import { addStageBackground } from '@/games/bread-catcher/game/objects/StageBackground';
 import { showConfirm } from '@/games/bread-catcher/game/scenes/overlay';
 import IconButton from '@/games/bread-catcher/game/ui/IconButton';
 import TextButton from '@/games/bread-catcher/game/ui/TextButton';
 import { addText } from '@/games/bread-catcher/game/ui/text';
-import { fitText } from '@/platform/phaser/text';
+import { fitText } from '@/core/phaser/text';
 import {
   appStore,
   currentTeam,

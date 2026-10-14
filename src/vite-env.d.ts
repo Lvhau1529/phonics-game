@@ -4,7 +4,7 @@
 /** Phiên bản + mã commit của bản build (vite.config.ts > define), ví dụ "2.0.0 · 16596c5" */
 declare const __BUILD_ID__: string;
 
-/** Biến môi trường của app (apps/game/.env — xem .env.example); đọc qua src/platform/account/config.ts */
+/** Biến môi trường của app (apps/game/.env — xem .env.example); đọc qua src/core/config/account.ts */
 interface ImportMetaEnv {
   /** Chế độ offline (mặc định bật): `false` / `0` / `off` mới bật tài khoản qua API */
   readonly VITE_OFFLINE_MODE?: string;

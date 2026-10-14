@@ -8,7 +8,7 @@
  */
 import type { LevelDef, QuestionMode, TargetDef } from '@/games/phonics-ocean/content/schema';
 import type { Question } from '@/games/phonics-ocean/session/types';
-import { shuffle } from '@/shared/random';
+import { shuffle } from '@/core/utils/random';
 
 /** Số đề liền nhau cùng một vần (cấp Rhyme Current) */
 export const RHYME_CHAIN = 3;

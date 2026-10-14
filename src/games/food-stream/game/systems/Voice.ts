@@ -4,8 +4,8 @@
  * Sau này có file ghi âm thì chỉ cần thay phần phát ở đây.
  */
 import type { FoodStreamAudio } from '@/games/food-stream/game/core/services';
-import { prefsStore } from '@/platform/prefs';
-import { speech } from '@/shared/speech';
+import { prefsStore } from '@/core/audio/prefs';
+import { speech } from '@/core/utils/speech';
 
 /** Nghỉ giữa các đoạn (vd "duh ... duh") */
 const PART_GAP_MS = 350;

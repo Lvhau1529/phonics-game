@@ -3,8 +3,8 @@
  * gói + cấp (Solo), tổng người xem tích luỹ. Cài đặt âm thanh dùng chung ở platform/prefs.ts.
  */
 import type { SetupDraft } from '@/games/food-stream/session/types';
-import { createStore } from '@/shared/createStore';
-import { gameStorageKey, readJson, writeJson } from '@/platform/storage';
+import { createStore } from '@/core/store/createStore';
+import { gameStorageKey, readJson, writeJson } from '@/core/storage/storage';
 
 const STORAGE_KEY = gameStorageKey('food-stream');
 const SAVE_VERSION = 1;

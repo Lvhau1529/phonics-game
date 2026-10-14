@@ -4,8 +4,8 @@
  * thì chỉ cần thay phần phát ở đây.
  */
 import type { OceanAudio } from '@/games/phonics-ocean/game/core/services';
-import { prefsStore } from '@/platform/prefs';
-import { speech } from '@/shared/speech';
+import { prefsStore } from '@/core/audio/prefs';
+import { speech } from '@/core/utils/speech';
 
 /** Nghỉ giữa các đoạn (vd "Find" ... "at") */
 const PART_GAP_MS = 250;

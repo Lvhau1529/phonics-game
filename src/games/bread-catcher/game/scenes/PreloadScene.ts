@@ -11,9 +11,9 @@ import {
   type SpriteManifest,
 } from '@/games/bread-catcher/game/config/assets';
 import { SCENES } from '@/games/bread-catcher/game/core/keys';
-import { isLandscape } from '@/platform/phaser/view';
+import { isLandscape } from '@/core/phaser/view';
 import { registerBrainrotAnims } from '@/games/bread-catcher/game/objects/brainrot';
-import { SFX, sfxUrls } from '@/platform/audio/sfx';
+import { SFX, sfxUrls } from '@/core/audio/sfx';
 
 /** Game phát event này khi asset đã sẵn sàng (SceneDirector bắt đầu điều phối) */
 export const ASSETS_READY = 'assets-ready';

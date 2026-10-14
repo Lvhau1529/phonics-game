@@ -6,7 +6,7 @@
  * Texture xuất ở độ phân giải canvas (gấp 2 toạ độ logic) -> hiển thị ở TEXTURE_SCALE.
  */
 import manifest from '@/games/food-stream/game/config/sprites.json';
-import { RENDER_SCALE } from '@/platform/phaser/viewport';
+import { RENDER_SCALE } from '@/core/phaser/viewport';
 
 export interface SpriteInfo {
   path: string;

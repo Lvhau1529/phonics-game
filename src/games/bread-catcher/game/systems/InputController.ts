@@ -12,7 +12,7 @@
  */
 import Phaser from 'phaser';
 import { PLAYER } from '@/games/bread-catcher/game/config/gameConfig';
-import { view } from '@/platform/phaser/view';
+import { view } from '@/core/phaser/view';
 
 type Pointer = Phaser.Input.Pointer;
 

@@ -3,7 +3,7 @@
  * Vẽ ở độ phân giải canvas (gấp RENDER_SCALE) để sắc nét khi camera zoom.
  */
 import type Phaser from 'phaser';
-import { RENDER_SCALE } from '@/platform/phaser/viewport';
+import { RENDER_SCALE } from '@/core/phaser/viewport';
 
 export const FX = {
   BUBBLE: 'fx.bubble',

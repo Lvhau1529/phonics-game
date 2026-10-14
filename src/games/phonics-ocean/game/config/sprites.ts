@@ -30,3 +30,12 @@ export const PREDATOR_FRAMES: Record<string, readonly string[]> = Object.keys(SP
     (frames[kind] ??= []).push(key);
     return frames;
   }, {});
+
+/** Đàn cá kiểu Feeding Frenzy: "tiny.pink" -> các khung bơi (key sprites.json "school.tiny.pink.<i>") */
+export const SCHOOL_FRAMES: Record<string, readonly string[]> = Object.keys(SPRITES)
+  .filter((key) => key.startsWith('school.'))
+  .reduce<Record<string, string[]>>((frames, key) => {
+    const [, size, kind] = key.split('.');
+    (frames[`${size}.${kind}`] ??= []).push(key);
+    return frames;
+  }, {});

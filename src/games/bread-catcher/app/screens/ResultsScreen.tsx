@@ -4,18 +4,18 @@
  */
 import clsx from 'clsx';
 import { ICONS, mascotUrl } from '@/games/bread-catcher/app/assets';
-import PointsSynced from '@/platform/account/PointsSynced';
-import Button from '@/platform/ui/Button';
-import GemReward from '@/platform/ui/GemReward';
+import { PointsSynced } from '@/modules/results';
+import Button from '@/ui/Button/Button';
+import { GemReward } from '@/modules/gems';
 import Leaderboard, { TeamTotalsCard } from '@/games/bread-catcher/app/components/Leaderboard';
 import { useAppState, useTeamTotals } from '@/games/bread-catcher/app/hooks';
-import { SFX } from '@/platform/audio/sfx';
+import { SFX } from '@/core/audio/sfx';
 import { accuracyOf, rankTeams, winnersOf, type Standing } from '@/games/bread-catcher/session/ranking';
 import { sessionActions, type ActiveSession } from '@/games/bread-catcher/session/sessionStore';
 import { LEVELS } from '@/games/bread-catcher/session/settings';
 import { UI_TEXT } from '@/games/bread-catcher/session/text';
 import type { TurnResult } from '@/games/bread-catcher/session/types';
-import { formatPercent, formatTime } from '@/shared/format';
+import { formatPercent, formatTime } from '@/core/utils/format';
 import styles from '@/games/bread-catcher/app/screens/ResultsScreen.module.scss';
 
 /** Màu theo hạng 1–3 (Class Mode có 3 đội) */

@@ -72,7 +72,7 @@ export default defineConfig(({ command }) => ({
     modules: { generateScopedName: scopedClassName(command === 'build') },
   },
   plugins: [
-    // Tailwind v4: xử lý file CSS có @import 'tailwindcss/…' (src/platform/styles/tailwind.css);
+    // Tailwind v4: xử lý file CSS có @import 'tailwindcss/…' (src/ui/styles/tailwind.css);
     // *.scss vẫn đi qua Sass như thường
 
     tailwindcss(),
@@ -107,7 +107,21 @@ export default defineConfig(({ command }) => ({
         // Ảnh nền bản ngang (máy chiếu) chỉ cache khi thực sự dùng — điện thoại không phải tải
         globIgnores: ['**/*_wide.png'],
         maximumFileSizeToCacheInBytes: 4 * 1024 * 1024,
+        // Gọi API không bao giờ được trả về index.html (khi API cùng origin qua proxy)
+        navigateFallbackDenylist: [/^\/api\//],
         runtimeCaching: [
+          {
+            // Ảnh / audio của phiếu bài tập (object storage, URL bất biến theo id) — xem lại bài không cần mạng
+            urlPattern: ({ request, url }) =>
+              url.origin !== self.location.origin &&
+              (request.destination === 'image' || request.destination === 'audio'),
+            handler: 'CacheFirst',
+            options: {
+              cacheName: 'phonics-homework-media',
+              expiration: { maxEntries: 300, maxAgeSeconds: 7 * 24 * 60 * 60 },
+              cacheableResponse: { statuses: [0, 200] },
+            },
+          },
           {
             urlPattern: ({ url }) => url.pathname.endsWith('_wide.png'),
             // Dùng ngay bản đã cache, đồng thời tải ngầm bản mới — thay ảnh (giữ tên) vẫn được cập nhật

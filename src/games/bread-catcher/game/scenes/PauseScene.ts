@@ -7,11 +7,11 @@
  *     thì quay về Setup và KHÔNG hiện thống kê so sánh.
  */
 import Phaser from 'phaser';
-import { SFX } from '@/platform/audio/sfx';
+import { SFX } from '@/core/audio/sfx';
 import { DEPTH } from '@/games/bread-catcher/game/config/gameConfig';
 import { SCENES } from '@/games/bread-catcher/game/core/keys';
 import { getAudio } from '@/games/bread-catcher/game/core/services';
-import { setupView } from '@/platform/phaser/view';
+import { setupView } from '@/core/phaser/view';
 import { createDim, createPanel, showConfirm } from '@/games/bread-catcher/game/scenes/overlay';
 import { playCountdown } from '@/games/bread-catcher/game/ui/Countdown';
 import type Panel from '@/games/bread-catcher/game/ui/Panel';

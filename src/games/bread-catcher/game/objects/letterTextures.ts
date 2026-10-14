@@ -10,7 +10,7 @@
 import type Phaser from 'phaser';
 import { SPRITE_MANIFEST, type SpriteManifest } from '@/games/bread-catcher/game/config/assets';
 import { THEME } from '@/games/bread-catcher/game/config/gameConfig';
-import { RENDER_SCALE } from '@/platform/phaser/viewport';
+import { RENDER_SCALE } from '@/core/phaser/viewport';
 
 /** Cỡ chữ so với cạnh ngắn của bánh */
 const LETTER_SIZE_RATIO = 0.6;

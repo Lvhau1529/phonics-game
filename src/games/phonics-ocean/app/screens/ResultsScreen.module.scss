@@ -1,4 +1,4 @@
-@use '@/platform/styles/abstracts' as *;
+@use '@/ui/styles/abstracts' as *;
 
 @layer components {
   @include keyframes-bob($distance: -6px);

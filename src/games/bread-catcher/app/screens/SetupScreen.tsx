@@ -5,17 +5,17 @@
  */
 import { mascotUrl } from '@/games/bread-catcher/app/assets';
 import { LEVEL_TONE } from '@/games/bread-catcher/app/levelTone';
-import Button from '@/platform/ui/Button';
-import Field, { FieldHint } from '@/platform/ui/Field';
-import NameInput from '@/platform/ui/NameInput';
-import OptionGroup, { type Option } from '@/platform/ui/OptionGroup';
-import ScreenHeader from '@/platform/ui/ScreenHeader';
+import Button from '@/ui/Button/Button';
+import Field, { FieldHint } from '@/ui/Field/Field';
+import NameInput from '@/ui/NameInput/NameInput';
+import OptionGroup, { type Option } from '@/ui/OptionGroup/OptionGroup';
+import ScreenHeader from '@/ui/ScreenHeader/ScreenHeader';
 import CustomWordsInput from '@/games/bread-catcher/app/components/CustomWordsInput';
 import TimeInput from '@/games/bread-catcher/app/components/TimeInput';
 import { TeamTotalsCard } from '@/games/bread-catcher/app/components/Leaderboard';
 import { useAppState, useTeamTotals } from '@/games/bread-catcher/app/hooks';
-import { SFX } from '@/platform/audio/sfx';
-import { playSfx } from '@/platform/audio/sfxPlayer';
+import { SFX } from '@/core/audio/sfx';
+import { playSfx } from '@/core/audio/sfxPlayer';
 import {
   CUSTOM_PACK_LABEL,
   PACK_ORDER,
@@ -35,7 +35,7 @@ import {
 } from '@/games/bread-catcher/session/teams';
 import { UI_TEXT } from '@/games/bread-catcher/session/text';
 import type { GameMode, LevelId, PackId, SetupDraft, TimeOption } from '@/games/bread-catcher/session/types';
-import { speech } from '@/shared/speech';
+import { speech } from '@/core/utils/speech';
 import styles from '@/games/bread-catcher/app/screens/SetupScreen.module.scss';
 
 const MODE_OPTIONS: Option<GameMode>[] = [

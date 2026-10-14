@@ -5,7 +5,7 @@
  *   - Nhạc nền: pack chưa có nhạc -> dùng chung bộ nhạc vui của Food Stream (`assets/food-stream/music/`)
  * Ảnh: xem sprites.ts (cùng thư mục).
  */
-import { audioUrls } from '@/platform/audio/sfx';
+import { audioUrls } from '@/core/audio/sfx';
 
 export const OCEAN_SFX = {
   CORRECT: 'ocean_correct',

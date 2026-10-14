@@ -26,6 +26,7 @@ export const TEXT = {
   bigger: 'BIGGER!',
   combo: 'COMBO',
   rhymeCombo: 'RHYME COMBO!',
+  frenzy: 'FRENZY!',
   moreFish: 'MORE FISH!',
   danger: '!',
   ouch: 'OUCH!',

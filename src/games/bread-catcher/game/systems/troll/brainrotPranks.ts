@@ -4,10 +4,10 @@
  * Mỗi nhân vật tự cập nhật theo event UPDATE của scene; hoàn tác = dọn nhân vật.
  */
 import Phaser from 'phaser';
-import { SFX } from '@/platform/audio/sfx';
+import { SFX } from '@/core/audio/sfx';
 import { DEPTH, THEME } from '@/games/bread-catcher/game/config/gameConfig';
 import { TROLL_PRANKS } from '@/games/bread-catcher/game/config/troll';
-import { view } from '@/platform/phaser/view';
+import { view } from '@/core/phaser/view';
 import { hudLayout } from '@/games/bread-catcher/game/ui/layout';
 import { BRAINROT } from '@/games/bread-catcher/game/objects/brainrot';
 import type FallingItem from '@/games/bread-catcher/game/objects/FallingItem';

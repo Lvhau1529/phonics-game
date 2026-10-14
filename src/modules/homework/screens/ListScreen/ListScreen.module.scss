@@ -1,0 +1,130 @@
+@use '@/ui/styles/abstracts' as *;
+@use '@/modules/homework/styles/homework' as *;
+
+@layer components {
+  @include keyframes-screen-in;
+
+  .tabs {
+    @include hw-card;
+  }
+
+  .status {
+    @include hw-status;
+  }
+
+  .empty {
+    @include hw-empty;
+  }
+
+  .mascot {
+    @include mascot-frame(130px);
+  }
+
+  .list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    animation: screen-in 0.25s ease-out;
+  }
+
+  .card {
+    @include hw-card;
+    gap: 6px;
+  }
+
+  .todo {
+    border-color: var(--color-green);
+  }
+
+  .graded {
+    border-color: var(--color-honey);
+  }
+
+  .head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 8px;
+  }
+
+  .title {
+    margin: 0;
+    color: var(--color-ink);
+    font-size: 20px;
+    font-weight: 800;
+    line-height: 1.15;
+  }
+
+  .badge {
+    flex: none;
+    padding: 3px 10px;
+    border: 2px solid var(--color-ink);
+    border-radius: 999px;
+    background: var(--color-tan);
+    color: #fff;
+    font-size: 12px;
+    font-weight: 800;
+    white-space: nowrap;
+  }
+
+  // Màu nhãn theo trạng thái (tên class = statusLabel, khoảng trắng → _)
+  .s_NEW {
+    background: var(--color-green);
+  }
+  .s_CONTINUE {
+    background: var(--color-orange);
+  }
+  .s_DONE {
+    background: var(--color-blue);
+  }
+  .s_TEACHER_IS_CHECKING {
+    background: var(--color-purple);
+  }
+
+  .sub {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 700;
+    opacity: 0.85;
+  }
+
+  .unread {
+    color: var(--color-red-edge);
+  }
+
+  .score {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0;
+    color: var(--color-ink);
+    font-size: 18px;
+    font-weight: 800;
+  }
+
+  .rank {
+    padding: 1px 8px;
+    border-radius: 999px;
+    background: var(--color-gold);
+    font-size: 14px;
+  }
+
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 4px;
+
+    > * {
+      flex: 1;
+    }
+  }
+
+  .guide {
+    align-self: center;
+    margin-top: 8px;
+  }
+}

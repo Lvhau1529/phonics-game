@@ -3,7 +3,7 @@
  * Có gờ tối phía dưới, nhấn thì lún xuống; vùng chạm tối thiểu 48px (plan §34).
  */
 import Phaser from 'phaser';
-import { SFX, type SfxKey } from '@/platform/audio/sfx';
+import { SFX, type SfxKey } from '@/core/audio/sfx';
 import { THEME } from '@/games/bread-catcher/game/config/gameConfig';
 import { getAudio } from '@/games/bread-catcher/game/core/services';
 import { addText } from '@/games/bread-catcher/game/ui/text';

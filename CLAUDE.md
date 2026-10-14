@@ -24,46 +24,50 @@ xem `vite.config.ts` của game / admin) — sửa contracts thấy ngay, không
 - **UI trong game chỉ tiếng Anh**, ngắn, nhãn nút VIẾT HOA (bé ~5 tuổi). Phần Hướng dẫn (GUIDE) tiếng Việt cho
   giáo viên. Comment / JSDoc tiếng Việt.
 - **Offline mode mặc định** (BE chưa lên): `VITE_OFFLINE_MODE` thiếu / khác `false` hoặc không có `VITE_API_URL` →
-  app chạy như bản offline: mọi code tài khoản nằm sau `ACCOUNT_ENABLED` (`src/platform/account/config.ts`), không
+  app chạy như bản offline: mọi code tài khoản nằm sau `ACCOUNT_ENABLED` (`src/core/config/account.ts`), không
   gọi mạng. Bật tài khoản: `VITE_OFFLINE_MODE=false` + `VITE_API_URL`. Lối vào tính năng cần API vẫn hiện nhưng bấm thì báo
   **COMING SOON** thay vì gọi API (vd `AccountButton` → `onUnavailable` → hộp `accountSoon` trong `HubDialogs`);
   tính năng API mới có nút cho bé bấm cũng làm như vậy.
-- Import bằng alias `@/` (ESLint cấm `../`). Mỗi component một `*.module.scss` (`@use '@/platform/styles/abstracts' as *;`,
+- Import bằng alias `@/` (ESLint cấm `../`). Mỗi component một `*.module.scss` (`@use '@/ui/styles/abstracts' as *;`,
   bọc `@layer components`). Tailwind chỉ cho utility nhỏ trong JSX. Token màu / font ở `styles/tailwind.css`.
-- State: `createStore` (`src/shared/createStore.ts`) + `useStore(store, selector)`; selector trả slice ổn định.
+- State: `createStore` (`src/core/store/createStore.ts`) + `useStore(store, selector)`; selector trả slice ổn định.
   React và Phaser của một game chỉ nói chuyện qua store của game đó.
 - Dữ liệu ngoài (API, localStorage, env) phải parse bằng zod (schema từ `@phonics/contracts`) trước khi dùng.
   localStorage key dạng `phonics-arcade:<ten>` (xem README > Storage keys).
 
-## Cấu trúc nhanh
+## Cấu trúc nhanh (ADR 0023 — chi tiết: README > Kiến trúc)
 
 | Thư mục | Vai trò |
 | --- | --- |
-| `src/platform/` | Khung chung: hub, `platformStore` (hash route), gems/wallet, ui kit, pwa, audio, phaser |
-| `src/platform/api/` | HTTP client dùng chung (`client.ts`: `request`, token, refresh single flight, `ApiError`) |
-| `src/platform/account/` | Tài khoản: `authStore`, `scoreSync`, `gamesSync`, `notificationsStore`, màn hình `screens/` |
-| `src/platform/account/api/` | `<x>Repository.ts` (chỉ khai báo endpoint, trả DTO) + `<x>Service.ts` (DTO → model): `auth`, `classes`, `games`, `points`, `notifications`, `results` |
-| `src/platform/account/models/` | `<Name>Model.ts`: class bọc DTO contracts (field `readonly` cùng tên + getter FE), vd `UserModel`, `NotificationModel` |
-| `src/platform/analytics/` | Sự kiện lượt xem / lượt chơi (ẩn danh); `api/events{Repository,Service}.ts` |
+| `src/app/` | Khung: `PlatformApp` (hub ↔ game ↔ tài khoản, lazy), `AccountRoot` (route `#/account/...`) |
+| `src/core/` | Hạ tầng không nghiệp vụ: `api/` (client, `errorText`), `navigation/platformStore` (hash route), `config/`, `store/`, `storage/`, `sync/`, `hooks/`, `audio/`, `phaser/`, `types/`, `utils/` |
+| `src/ui/` | Design system: mỗi component một thư mục (`Button/Button.tsx` + `.module.scss`), `guide/`, `svg/`, `styles/` |
+| `src/modules/<x>/` | Nghiệp vụ tự đóng gói: `repositories/` → `services/` → `models/`, `stores/`, `hooks/`, `components/<C>/`, `screens/<S>/`, `utils/`, `index.ts` (public API). Module: `auth`, `classes`, `catalog`, `points`, `results`, `notifications`, `analytics`, `gems`, `homework`, `hub`, `pwa` |
 | `src/games/<id>/` | Từng game: `manifest.ts`, `<Name>Game.tsx`, `content/` (dữ liệu / nội dung JSON + schema), `session/` (store + luật + text), `app/` (màn React, `guide/`, `assets.ts`), `game/` (Phaser) |
+
+Ranh giới (ESLint `no-restricted-imports` + `src/test/architecture.test.ts`): `main → app → games → modules → ui / core`;
+module khác chỉ qua `@/modules/<x>` (riêng screen import theo đường `screens/`); repository chỉ `services/` gọi;
+`request()` chỉ trong `repositories/`; `components/` / `screens/` / `renderers/` không gọi service, không import
+`@phonics/contracts`.
 
 ## Cách làm việc thường gặp
 
 - **Thêm game:** tạo `src/games/<id>/` + `manifest.ts`, thêm vào `src/games/index.ts`; ở phonics-api thêm `GameId`
   trong contracts (phát hành bản mới) + `GAME_REGISTRY` + seed catalog, rồi `pnpm up @phonics/contracts` ở đây; cuối ván solo gọi `postSoloResult(...)` và `trackPlay`
-  (xem `bread-catcher/session/sessionStore.ts > finishSession`), màn kết quả thêm `<PointsSynced>`.
-- **Thêm route platform:** `ACCOUNT_PAGES` + `parseHash` trong `platformStore.ts`, màn trong `account/screens/`,
-  switch trong `AccountRoot.tsx`. Id game không được trùng `account`.
-- **Gọi API mới:** schema trong contracts (phonics-api) → `account/api/<x>Repository.ts` (chỉ
-  `request(ENDPOINTS.x, { method, body, query, schema, auth })`, trả DTO như BE, không map) → `<x>Service.ts` (gọi
-  repository, đổi DTO → model) + `account/models/<Name>Model.ts` (constructor nhận DTO contracts, gán từng field
-  `readonly` cùng tên; getter cho dữ liệu FE; lưu localStorage thì có `toJSON()` và đọc lại bằng `Schema.safeParse` →
-  `new XModel(...)`) → store / màn hình. Store / hook / màn hình **chỉ gọi service** (không gọi repository /
-  `request`). Số liệu thống kê / ack của mutation thì service trả thẳng DTO (ghi chú ngắn). **Không spread model**
-  (`{ ...model }` mất getter) — tạo instance mới (vd `item.markedRead(now)`). Lỗi hiển thị cho bé qua
-  `account/errorText.ts` (map `ErrorCode` → câu tiếng Anh).
+  (`@/modules/results`, `@/modules/analytics`; xem `bread-catcher/session/sessionStore.ts > finishSession`), màn kết quả thêm `<PointsSynced>`.
+- **Thêm route platform:** `ACCOUNT_PAGES` + `parseHash` trong `core/navigation/platformStore.ts`, màn trong
+  `modules/<x>/screens/<S>/`, switch trong `app/AccountRoot/AccountRoot.tsx`. Id game không được trùng `account`.
+- **Gọi API mới:** schema trong contracts (phonics-api) → `modules/<x>/repositories/<x>Repository.ts` (chỉ
+  `request(ENDPOINTS.x, { method, body, query, schema, auth })`, trả DTO như BE, không map) →
+  `services/<x>Service.ts` (gọi repository, đổi DTO → Model) + `models/<Name>Model.ts` (constructor nhận DTO
+  contracts, gán từng field `readonly` cùng tên; getter cho dữ liệu FE; lưu localStorage thì có `toJSON()` và đọc lại
+  bằng `Schema.safeParse` → `new XModel(...)`) → `stores/` hoặc `hooks/use<X>.ts` → màn. Store / hook **chỉ gọi
+  service**; màn / component **chỉ dùng hook / store** (không gọi service / repository / `request`), không import
+  `@phonics/contracts` — kiểu / validator cần cho UI thì module export lại ở `models/` / `utils/`. Thứ module khác cần
+  thì thêm vào `index.ts`. **Không spread model** (`{ ...model }` mất getter) — tạo instance mới (vd
+  `item.markedRead(now)`). Lỗi hiển thị cho bé qua `core/api/errorText.ts` (map `ErrorCode` → câu tiếng Anh).
 - **Thêm icon:** thêm vào `EXPORTS` trong `tools/arcade_ui/build_ui.py` → `pnpm assets:ui` (root) → commit PNG →
-  khai báo trong `src/platform/ui/icons.ts`. Không chỉnh tay `public/assets`.
+  khai báo trong `src/ui/icons.ts`. Không chỉnh tay `public/assets`.
 - **Test:** Vitest + jsdom, file `*.test.ts(x)` cạnh code (`pnpm test`). Store / queue / parse hash phải có test.
 
 ## Kiểm tra trước khi commit

@@ -1,0 +1,13 @@
+@use '@/ui/styles/abstracts' as *;
+
+@layer components {
+  .stars {
+    display: inline-flex;
+    gap: 2px;
+  }
+
+  .off {
+    filter: grayscale(1);
+    opacity: 0.35;
+  }
+}

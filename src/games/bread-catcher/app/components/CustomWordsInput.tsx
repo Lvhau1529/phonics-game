@@ -7,12 +7,12 @@ import clsx from 'clsx';
 import { CUSTOM_WORD_LETTERS, type ParsedWords } from '@/games/bread-catcher/session/content';
 import { RULES } from '@/games/bread-catcher/session/settings';
 import { UI_TEXT } from '@/games/bread-catcher/session/text';
-import { SFX } from '@/platform/audio/sfx';
-import { playSfx } from '@/platform/audio/sfxPlayer';
-import { useStore } from '@/platform/hooks/useStore';
-import { prefsStore } from '@/platform/prefs';
-import { FieldHint } from '@/platform/ui/Field';
-import { speech } from '@/shared/speech';
+import { SFX } from '@/core/audio/sfx';
+import { playSfx } from '@/core/audio/sfxPlayer';
+import { useStore } from '@/core/store/useStore';
+import { prefsStore } from '@/core/audio/prefs';
+import { FieldHint } from '@/ui/Field/Field';
+import { speech } from '@/core/utils/speech';
 import styles from '@/games/bread-catcher/app/components/CustomWordsInput.module.scss';
 
 const MAX_TEXT_LENGTH = 2000;

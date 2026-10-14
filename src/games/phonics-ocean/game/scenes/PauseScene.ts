@@ -9,8 +9,8 @@ import PillButton from '@/games/phonics-ocean/game/ui/PillButton';
 import { addText } from '@/games/phonics-ocean/game/ui/text';
 import { phonicsOceanActions } from '@/games/phonics-ocean/session/store';
 import { TEXT } from '@/games/phonics-ocean/session/text';
-import { SFX } from '@/platform/audio/sfx';
-import { setupView } from '@/platform/phaser/view';
+import { SFX } from '@/core/audio/sfx';
+import { setupView } from '@/core/phaser/view';
 
 export default class PauseScene extends Phaser.Scene {
   private panel!: Phaser.GameObjects.Container;

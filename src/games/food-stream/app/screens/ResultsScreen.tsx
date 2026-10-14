@@ -16,11 +16,11 @@ import {
 } from '@/games/food-stream/session/store';
 import type { QuestionRecord, TeamScore } from '@/games/food-stream/session/types';
 import { TEXT } from '@/games/food-stream/session/text';
-import PointsSynced from '@/platform/account/PointsSynced';
-import Button from '@/platform/ui/Button';
-import GemReward from '@/platform/ui/GemReward';
-import Icon from '@/platform/ui/Icon';
-import { compactNumber } from '@/shared/format';
+import { PointsSynced } from '@/modules/results';
+import Button from '@/ui/Button/Button';
+import { GemReward } from '@/modules/gems';
+import Icon from '@/ui/Icon/Icon';
+import { compactNumber } from '@/core/utils/format';
 import styles from '@/games/food-stream/app/screens/ResultsScreen.module.scss';
 
 export default function ResultsScreen() {

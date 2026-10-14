@@ -5,6 +5,8 @@
  *     đúng: cắn + đọc lại từ + điểm + Growth (đủ mốc thì lớn thêm một cỡ) -> đề mới
  *     nhầm: choáng nhẹ, cá bị đẩy ra, mất chuỗi, đọc lại đề — KHÔNG mất tim; nhầm 2 lần -> gợi ý
  *   cá săn mồi (có cảnh báo "!") cắn thì mất tim; hết tim / hết giờ / đủ số từ -> kết thúc
+ *   đàn cá thường kiểu Feeding Frenzy luôn bơi kín màn: ăn cá nhỏ hơn mình lấy điểm + đầy thanh FRENZY
+ *     (FRENZY!: điểm ×2, bơi nhanh), va cá to hơn thì bật ra (session/frenzy.ts)
  *
  * Scene chỉ DIỄN: luật nằm ở session/round.ts + session/questions.ts, hình ở objects/ + ui/.
  */
@@ -19,20 +21,23 @@ import OceanBackground from '@/games/phonics-ocean/game/objects/OceanBackground'
 import PlayerFish, { type SteerInput } from '@/games/phonics-ocean/game/objects/PlayerFish';
 import PowerUp, { type PowerUpKind } from '@/games/phonics-ocean/game/objects/PowerUp';
 import Predator, { showWarning } from '@/games/phonics-ocean/game/objects/Predator';
+import type SchoolFish from '@/games/phonics-ocean/game/objects/SchoolFish';
 import WordFish from '@/games/phonics-ocean/game/objects/WordFish';
 import Effects from '@/games/phonics-ocean/game/systems/Effects';
+import SchoolDirector from '@/games/phonics-ocean/game/systems/SchoolDirector';
 import Voice from '@/games/phonics-ocean/game/systems/Voice';
 import Hud from '@/games/phonics-ocean/game/ui/Hud';
 import { oceanLayout, type OceanLayout } from '@/games/phonics-ocean/game/ui/layout';
 import TargetPanel from '@/games/phonics-ocean/game/ui/TargetPanel';
+import { canEat, FRENZY, FrenzyMeter } from '@/games/phonics-ocean/session/frenzy';
 import { QuestionDeck } from '@/games/phonics-ocean/session/questions';
 import { RoundState, RULES } from '@/games/phonics-ocean/session/round';
 import { phonicsOceanActions, phonicsOceanStore } from '@/games/phonics-ocean/session/store';
 import type { EndReason, Question } from '@/games/phonics-ocean/session/types';
 import { PRAISE, TEXT } from '@/games/phonics-ocean/session/text';
-import { SFX } from '@/platform/audio/sfx';
-import { setupView } from '@/platform/phaser/view';
-import { pickRandom, shuffle } from '@/shared/random';
+import { SFX } from '@/core/audio/sfx';
+import { setupView } from '@/core/phaser/view';
+import { pickRandom, shuffle } from '@/core/utils/random';
 
 type Phase = 'intro' | 'playing' | 'between' | 'complete';
 
@@ -50,6 +55,9 @@ export default class OceanScene extends Phaser.Scene {
   private player!: PlayerFish;
   private round!: RoundState;
   private deck!: QuestionDeck;
+  private background!: OceanBackground;
+  private schools!: SchoolDirector;
+  private frenzy!: FrenzyMeter;
   private predatorsOn = true;
   private phase: Phase = 'intro';
   private question: Question | null = null;
@@ -97,17 +105,25 @@ export default class OceanScene extends Phaser.Scene {
     this.deck = new QuestionDeck(this.level, { canSpeak: Voice.available });
     this.remainingMs = this.level.roundSeconds * 1000;
 
-    new OceanBackground(this, this.level.biome, new Phaser.Geom.Rectangle(0, 0, width, height));
-    // Dải tối sau HUD cho chữ dễ đọc
-    this.add.rectangle(0, 0, width, this.layout.play.y, THEME.hex.ink, 0.35).setOrigin(0).setDepth(1);
+    this.background = new OceanBackground(
+      this,
+      this.level.biome,
+      new Phaser.Geom.Rectangle(0, 0, width, height),
+    );
+    // Dải tối nhẹ sau HUD cho chữ dễ đọc
+    this.add.rectangle(0, 0, width, this.layout.play.y, THEME.hex.ink, 0.28).setOrigin(0).setDepth(1);
     const { play } = this.layout;
     this.player = new PlayerFish(this, play.centerX, play.centerY, play);
+    this.frenzy = new FrenzyMeter();
+    this.schools = new SchoolDirector(this, play);
+    this.schools.populate({ x: this.player.x, y: this.player.y });
     this.hud = new Hud(this, this.layout, {
       maxHearts: RULES.hearts,
       showHearts: this.predatorsOn,
       onPause: () => this.openPause(),
     });
     this.hud.setTime(this.remainingMs);
+    this.hud.setFrenzy(0, false);
     this.panel = new TargetPanel(this, this.layout, () => this.speakPrompt());
 
     this.bindInput();
@@ -125,17 +141,24 @@ export default class OceanScene extends Phaser.Scene {
   override update(_time: number, delta: number): void {
     if (!this.round || this.phase === 'complete') return;
     this.readKeys();
-    this.player.setSpeedScale(1 + this.round.speedBoost * 0.5);
-    this.player.steer(this.steer, delta);
+    const { player, frenzy } = this;
+    player.setSpeedScale((1 + this.round.speedBoost * 0.5) * (frenzy.active ? FRENZY.speedBoost : 1));
+    player.steer(this.steer, delta);
+    this.background.follow(player.x, player.y);
 
     const speed = this.level.speed * (1 + this.round.speedBoost);
     this.fishes.forEach((fish) => fish.update(delta, this.layout.play, speed));
     this.fishes = this.fishes.filter((fish) => !fish.gone);
-    this.predators.forEach((predator) => predator.update(delta, this.player.y, this.round.predatorsCalm));
+    this.schools.update(delta, this.level.speed, { x: player.x, y: player.y, tier: player.tier });
+    this.predators.forEach((predator) => predator.update(delta, player.y, this.round.predatorsCalm));
     this.predators = this.predators.filter((predator) => !predator.finished);
+    this.predatorsFeed();
     this.powerUps = this.powerUps.filter((item) => item.available);
 
     if (this.phase === 'intro') return;
+    frenzy.tick(delta);
+    player.setFrenzy(frenzy.active);
+    this.hud.setFrenzy(frenzy.display, frenzy.active);
     this.remainingMs -= delta;
     this.hud.setTime(this.remainingMs);
     if (this.remainingMs <= 0) {
@@ -143,6 +166,7 @@ export default class OceanScene extends Phaser.Scene {
       return;
     }
     this.checkPrey();
+    this.checkSchool();
     this.checkPredators();
     this.checkPowerUps();
     this.spawnTimers(delta);
@@ -215,13 +239,17 @@ export default class OceanScene extends Phaser.Scene {
     this.phase = 'between';
     const outcome = this.round.answerCorrect(fish.word, question.targetId);
     const mouth = this.player.mouth;
+    // FRENZY!: nhân đôi cả điểm từ đúng; ăn đúng cũng làm đầy thanh FRENZY
+    const points = outcome.points * this.frenzy.multiplier;
+    this.round.addBonus(points - outcome.points);
+    if (this.frenzy.word()) this.startFrenzy();
 
     this.player.bite();
     void fish.eatenBy(mouth);
     playOceanSfx(this, OCEAN_SFX.CORRECT);
     this.effects.sparkles(mouth.x, mouth.y);
     this.effects.bubbles(mouth.x, mouth.y);
-    this.effects.popup(mouth.x, mouth.y - 28, `+${outcome.points}`);
+    this.effects.popup(mouth.x, mouth.y - 28, `+${points}`);
     this.effects.popup(mouth.x, mouth.y - 52, pickRandom(PRAISE), THEME.colors.white, 16);
     this.voice.say(question.feedbackSpeech);
     this.panel.reveal(question);
@@ -276,6 +304,62 @@ export default class OceanScene extends Phaser.Scene {
     // Nghe lại đề (không phạt — chỉ mất chuỗi)
     this.time.delayedCall(450, () => {
       if (run === this.run && this.phase === 'playing') this.speakPrompt();
+    });
+  }
+
+  /** Đàn cá thường: ăn cá nhỏ hơn mình, va cá to hơn thì bật ra */
+  private checkSchool(): void {
+    const { player } = this;
+    if (player.stunned) return;
+    const mouth = player.mouth;
+    for (const fish of this.schools.fishes) {
+      if (fish.finished) continue;
+      const edible = canEat(player.tier, fish.size);
+      const distance = edible
+        ? Phaser.Math.Distance.Between(mouth.x, mouth.y, fish.x, fish.y)
+        : Phaser.Math.Distance.Between(player.x, player.y, fish.x, fish.y);
+      const reach = edible ? mouth.r + fish.radius * 0.6 : player.hitRadius + fish.radius * 0.8;
+      if (distance >= reach) continue;
+      if (edible) this.eatSchoolFish(fish);
+      else if (player.bump(fish.x, fish.y)) {
+        this.frenzy.bump();
+        playOceanSfx(this, OCEAN_SFX.WRONG, { rate: 1.35 });
+      }
+      return;
+    }
+  }
+
+  private eatSchoolFish(fish: SchoolFish): void {
+    const mouth = this.player.mouth;
+    fish.eatenBy(mouth);
+    this.schools.remove(fish);
+    this.player.bite();
+    const { points, started } = this.frenzy.eat(fish.size);
+    this.round.addBonus(points);
+    this.hud.setScore(this.round.score);
+    playOceanSfx(this, OCEAN_SFX.COLLECT, { rate: Phaser.Math.FloatBetween(1.1, 1.45) });
+    this.effects.bubbles(mouth.x, mouth.y, 3);
+    this.effects.popup(mouth.x, mouth.y - 20, `+${points}`, THEME.colors.white, 14);
+    if (started) this.startFrenzy();
+  }
+
+  private startFrenzy(): void {
+    playOceanSfx(this, OCEAN_SFX.LEVEL_UP, { rate: 1.2 });
+    this.effects.sparkles(this.player.x, this.player.y, 8, 50);
+    void this.effects.banner(TEXT.frenzy, { size: 38, holdMs: 450, color: THEME.colors.orange });
+  }
+
+  /** Cá săn mồi đi qua thì đớp luôn cá nhỏ (đại dương sống động hơn) */
+  private predatorsFeed(): void {
+    this.predators.forEach((predator) => {
+      const center = predator.hitCenter;
+      this.schools.fishes.forEach((fish) => {
+        if (fish.size === 'big' || fish.finished) return;
+        if (Phaser.Math.Distance.Between(center.x, center.y, fish.x, fish.y) < predator.hitRadius) {
+          fish.eatenBy(center);
+          this.schools.remove(fish);
+        }
+      });
     });
   }
 

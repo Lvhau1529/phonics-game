@@ -19,7 +19,7 @@ import type {
   TeamId,
   TeamScore,
 } from '@/games/food-stream/session/types';
-import { pickRandom } from '@/shared/random';
+import { pickRandom } from '@/core/utils/random';
 
 /** Sai ngần này lần (Solo) thì gợi ý đáp án */
 const HINT_AFTER_WRONG = 2;

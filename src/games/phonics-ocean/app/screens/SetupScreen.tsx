@@ -7,12 +7,12 @@ import { usePhonicsOcean, useProgress } from '@/games/phonics-ocean/app/hooks';
 import { getLevel, LEVELS } from '@/games/phonics-ocean/content/levels';
 import { phonicsOceanActions } from '@/games/phonics-ocean/session/store';
 import { TEXT } from '@/games/phonics-ocean/session/text';
-import { SFX } from '@/platform/audio/sfx';
-import Button from '@/platform/ui/Button';
-import Field, { FieldHint } from '@/platform/ui/Field';
-import OptionGroup, { type Option } from '@/platform/ui/OptionGroup';
-import ScreenHeader from '@/platform/ui/ScreenHeader';
-import { speech } from '@/shared/speech';
+import { SFX } from '@/core/audio/sfx';
+import Button from '@/ui/Button/Button';
+import Field, { FieldHint } from '@/ui/Field/Field';
+import OptionGroup, { type Option } from '@/ui/OptionGroup/OptionGroup';
+import ScreenHeader from '@/ui/ScreenHeader/ScreenHeader';
+import { speech } from '@/core/utils/speech';
 import styles from '@/games/phonics-ocean/app/screens/SetupScreen.module.scss';
 
 const PREDATOR_OPTIONS: Option<'on' | 'off'>[] = [

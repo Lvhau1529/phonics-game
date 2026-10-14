@@ -5,7 +5,7 @@
 import Phaser from 'phaser';
 import { DEPTH, THEME, TIMING } from '@/games/food-stream/game/config/theme';
 import { addText } from '@/games/food-stream/game/ui/text';
-import { view } from '@/platform/phaser/view';
+import { view } from '@/core/phaser/view';
 
 const CRUMB_COLORS = [0xd99a5b, 0xb8733d, 0xf2c48d];
 

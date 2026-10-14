@@ -9,7 +9,7 @@
  * `playTop`: chữ bắt đầu rơi từ đây (ngay dưới ô từ).
  */
 import type Phaser from 'phaser';
-import { isLandscape, view } from '@/platform/phaser/view';
+import { isLandscape, view } from '@/core/phaser/view';
 
 export interface HudLayout {
   landscape: boolean;

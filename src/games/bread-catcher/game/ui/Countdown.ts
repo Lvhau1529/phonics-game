@@ -4,10 +4,10 @@
  * Dùng clock của scene: scene bị pause thì đếm ngược cũng dừng.
  */
 import type Phaser from 'phaser';
-import { SFX } from '@/platform/audio/sfx';
+import { SFX } from '@/core/audio/sfx';
 import { DEPTH, THEME } from '@/games/bread-catcher/game/config/gameConfig';
 import { getAudio } from '@/games/bread-catcher/game/core/services';
-import { view } from '@/platform/phaser/view';
+import { view } from '@/core/phaser/view';
 import { UI_TEXT } from '@/games/bread-catcher/session/text';
 import { addText } from '@/games/bread-catcher/game/ui/text';
 

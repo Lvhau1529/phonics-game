@@ -3,7 +3,7 @@
  * Kích thước màn hình dùng chung ở platform/phaser/viewport.ts;
  * luật lớp học (level, thời gian, điểm...) nằm ở session/settings.ts.
  */
-import { FONTS } from '@/platform/phaser/fonts';
+import { FONTS } from '@/core/phaser/fonts';
 
 // ---------------------------------------------------------------------------
 // Theme

@@ -49,7 +49,7 @@ PREDATORS = {
     2: ["puffer"],
     3: ["shark"],
     4: ["shark", "puffer"],
-    5: ["eel", "shark"],
+    5: ["eel", "barracuda"],
     6: ["angler"],
     7: ["shark", "puffer"],
     8: ["angler", "shark"],

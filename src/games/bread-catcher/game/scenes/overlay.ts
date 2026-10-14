@@ -4,7 +4,7 @@
  */
 import type Phaser from 'phaser';
 import { DEPTH } from '@/games/bread-catcher/game/config/gameConfig';
-import { view } from '@/platform/phaser/view';
+import { view } from '@/core/phaser/view';
 import Panel from '@/games/bread-catcher/game/ui/Panel';
 import TextButton from '@/games/bread-catcher/game/ui/TextButton';
 import { addText } from '@/games/bread-catcher/game/ui/text';

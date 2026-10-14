@@ -13,7 +13,7 @@ import ShellScene from '@/games/bread-catcher/game/scenes/ShellScene';
 import TurnCompleteScene from '@/games/bread-catcher/game/scenes/TurnCompleteScene';
 import TurnPickerScene from '@/games/bread-catcher/game/scenes/TurnPickerScene';
 import { appStore, sessionActions } from '@/games/bread-catcher/session/sessionStore';
-import { createPhaserGame } from '@/platform/phaser/createPhaserGame';
+import { createPhaserGame } from '@/core/phaser/createPhaserGame';
 
 export function createGame(parent: HTMLElement): Phaser.Game {
   const game = createPhaserGame(parent, {

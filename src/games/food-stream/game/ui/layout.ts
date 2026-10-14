@@ -10,7 +10,7 @@
  *   └─────────────────────┘     └──────────────┴───────────────┘
  */
 import Phaser from 'phaser';
-import { isLandscape, view } from '@/platform/phaser/view';
+import { isLandscape, view } from '@/core/phaser/view';
 
 export interface LiveLayout {
   landscape: boolean;
