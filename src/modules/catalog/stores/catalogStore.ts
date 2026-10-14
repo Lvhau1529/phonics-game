@@ -1,15 +1,14 @@
 /**
- * Catalog game từ server phủ lên manifest + trạng thái mở khoá của học sinh:
+ * Catalog game từ server + trạng thái mở khoá của học sinh (phủ lên manifest: `utils/overlayCatalog`, hook `useCatalog`):
  *   - GET /public/games (cache `phonics-arcade:catalog` = DTO, đọc lại thành `CatalogGameModel`):
  *     `enabled=false` ẩn thẻ, `comingSoon` thành thẻ COMING SOON, `price` (null = miễn phí) ghi đè
  *     `manifest.price`. Không có API / chưa tải được -> manifest.
  *   - Đã đăng nhập: GET /me/games -> game server đã mở (admin / GV mở, hoặc đã ghi nhận mở bằng kim cương).
- *     `isUnlocked(game)` = server mở ∪ ví kim cương trên máy (platform/gems/wallet.ts).
+ *     `isUnlocked(game)` = server mở ∪ ví kim cương trên máy (`@/modules/gems`).
  *   - Mở khoá bằng kim cương khi đang đăng nhập -> trừ ví như cũ + xếp hàng POST /me/games/:id/unlock
  *     (`phonics-arcade:unlock-queue`, idempotent, gửi lại như điểm).
  */
 import { GameCatalogItem } from '@phonics/contracts';
-import { useMemo } from 'react';
 import { gamesService } from '@/modules/catalog/services/gamesService';
 import { authStore, isSignedIn } from '@/modules/auth';
 import { ACCOUNT_ENABLED } from '@/core/config/account';
@@ -17,9 +16,8 @@ import { CatalogGameModel } from '@/modules/catalog/models/CatalogGameModel';
 import type { StudentGameModel } from '@/modules/catalog/models/StudentGameModel';
 import { createSyncQueue } from '@/core/sync/syncQueue';
 import { isUnlocked as walletUnlocked, unlockGame, type WalletState, walletStore } from '@/modules/gems';
-import { useStore } from '@/core/store/useStore';
 import { readJson, writeJson } from '@/core/storage/storage';
-import type { GameManifest, UpcomingGame } from '@/core/types/game';
+import type { GameManifest } from '@/core/types/game';
 import { createStore } from '@/core/store/createStore';
 
 export const CATALOG_KEY = 'phonics-arcade:catalog';
@@ -138,56 +136,4 @@ export function unlockWithGems(game: GameManifest): boolean {
     void unlockQueue.flush();
   }
   return true;
-}
-
-// ---------------------------------------------------------------------------
-// Phủ catalog lên manifest
-// ---------------------------------------------------------------------------
-export interface Catalog {
-  games: readonly GameManifest[];
-  upcoming: readonly UpcomingGame[];
-  isUnlocked: (game: GameManifest) => boolean;
-}
-
-export function overlayCatalog(
-  games: readonly GameManifest[],
-  upcoming: readonly UpcomingGame[],
-  items: readonly CatalogGameModel[] | null,
-): { games: GameManifest[]; upcoming: UpcomingGame[] } {
-  if (!items) return { games: [...games], upcoming: [...upcoming] };
-  const byId = new Map(items.map((item) => [item.id as string, item]));
-  const visible: GameManifest[] = [];
-  const soon: UpcomingGame[] = [];
-  games.forEach((game) => {
-    const item = byId.get(game.id);
-    if (!item) {
-      visible.push(game);
-      return;
-    }
-    if (item.isHidden) return;
-    if (item.comingSoon) {
-      soon.push({ id: game.id, title: game.title, tagline: game.tagline });
-      return;
-    }
-    const price = item.manifestPrice;
-    visible.push(price === game.price ? game : { ...game, price });
-  });
-  // Thứ tự server (sortOrder); game không có trong catalog giữ nguyên thứ tự manifest ở cuối
-  const order = (game: GameManifest) => byId.get(game.id)?.sortOrder ?? Number.MAX_SAFE_INTEGER;
-  visible.sort((a, b) => order(a) - order(b));
-  return { games: visible, upcoming: [...soon, ...upcoming] };
-}
-
-/** Danh sách game ở màn chọn game sau khi phủ catalog server (ổn định tham chiếu giữa các lần render) */
-export function useCatalog(games: readonly GameManifest[], upcoming: readonly UpcomingGame[]): Catalog {
-  const items = useStore(catalogStore, (state) => state.items);
-  const mine = useStore(catalogStore, (state) => state.mine);
-  const wallet = useStore(walletStore, (state) => state);
-  return useMemo(() => {
-    const overlaid = overlayCatalog(games, upcoming, items);
-    return {
-      ...overlaid,
-      isUnlocked: (game: GameManifest) => isUnlocked(game, wallet, { items, mine }),
-    };
-  }, [games, upcoming, items, mine, wallet]);
 }
