@@ -3,8 +3,8 @@
  * Không map / format ở đây — việc đó của `classesService`.
  */
 import { ENDPOINTS, PublicClassesResponse } from '@phonics/contracts';
-import { request } from '@/platform/api/client';
+import { AuthMode, request } from '@/platform/api/client';
 
 export const classesRepository = {
-  publicList: () => request(ENDPOINTS.public.classes, { schema: PublicClassesResponse, auth: 'none' }),
+  publicList: () => request(ENDPOINTS.public.classes, { schema: PublicClassesResponse, auth: AuthMode.NONE }),
 };

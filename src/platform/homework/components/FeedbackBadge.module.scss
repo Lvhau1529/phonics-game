@@ -1,0 +1,36 @@
+@use '@/platform/styles/abstracts' as *;
+
+@layer components {
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    align-self: flex-start;
+    margin: 0;
+    padding: 4px 12px;
+    border: 3px solid var(--color-ink);
+    border-radius: 999px;
+    color: #fff;
+    font-size: 15px;
+    font-weight: 800;
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.25);
+
+    small {
+      font-size: 13px;
+      opacity: 0.9;
+    }
+  }
+
+  .right {
+    background: var(--color-green);
+  }
+  .almost {
+    background: var(--color-orange);
+  }
+  .wrong {
+    background: var(--color-red);
+  }
+  .checking {
+    background: var(--color-blue);
+  }
+}

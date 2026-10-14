@@ -10,6 +10,7 @@ import { timeAgo } from '@/platform/account/timeAgo';
 import { SFX } from '@/platform/audio/sfx';
 import { playSfx } from '@/platform/audio/sfxPlayer';
 import { useDelayedLoading } from '@/platform/hooks/useDelayedLoading';
+import { platformActions } from '@/platform/platformStore';
 import Button from '@/platform/ui/Button';
 import { MASCOT } from '@/platform/ui/icons';
 import LottieLoader from '@/platform/ui/LottieLoader';
@@ -91,6 +92,7 @@ function Item({ item }: { item: NotificationModel }) {
         onClick={() => {
           playSfx(SFX.UI_CLICK);
           if (unread) void notificationsActions.markRead([item.id]);
+          if (item.target) platformActions.openHomework(item.target);
         }}
       >
         <span className={styles.dot} aria-hidden="true" />

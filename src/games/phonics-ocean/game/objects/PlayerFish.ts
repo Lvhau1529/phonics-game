@@ -19,6 +19,8 @@ export default class PlayerFish extends Phaser.GameObjects.Container {
   tier = 1;
   private readonly sprite: Phaser.GameObjects.Image;
   private readonly shieldBubble: Phaser.GameObjects.Image;
+  /** Quầng vàng khi FRENZY! */
+  private readonly aura: Phaser.GameObjects.Image;
   private readonly velocity = new Phaser.Math.Vector2();
   private facing = 1;
   private frame = 0;
@@ -28,6 +30,7 @@ export default class PlayerFish extends Phaser.GameObjects.Container {
   private invulnerableUntil = 0;
   private shieldUntil = 0;
   private speedScale = 1;
+  private bumpUntil = 0;
 
   constructor(
     scene: Phaser.Scene,
@@ -38,7 +41,8 @@ export default class PlayerFish extends Phaser.GameObjects.Container {
     super(scene, x, y);
     this.sprite = scene.add.image(0, 0, playerFrame(1, 0));
     this.shieldBubble = scene.add.image(0, 0, FX.BUBBLE).setAlpha(0).setVisible(false);
-    this.add([this.sprite, this.shieldBubble]);
+    this.aura = scene.add.image(0, 0, FX.DOT).setTint(0xffd23f).setAlpha(0).setVisible(false);
+    this.add([this.aura, this.sprite, this.shieldBubble]);
     this.setDepth(DEPTH.PLAYER);
     this.applySize();
     scene.add.existing(this);
@@ -86,6 +90,32 @@ export default class PlayerFish extends Phaser.GameObjects.Container {
 
   setSpeedScale(scale: number): void {
     this.speedScale = scale;
+  }
+
+  /** Va vào cá to hơn mình (không mất tim): bật lùi nhẹ; trả về false nếu vừa va (đang hồi) */
+  bump(fromX: number, fromY: number): boolean {
+    const now = this.scene.time.now;
+    if (now < this.bumpUntil) return false;
+    this.bumpUntil = now + FEEL.bumpCooldownMs;
+    const away = new Phaser.Math.Vector2(this.x - fromX, this.y - fromY).normalize();
+    this.velocity.set(away.x * FEEL.bumpSpeed, away.y * FEEL.bumpSpeed);
+    this.stunUntil = Math.max(this.stunUntil, now + 120);
+    this.scene.tweens.add({
+      targets: this,
+      angle: { from: -10, to: 10 },
+      duration: 90,
+      yoyo: true,
+      onComplete: () => this.setAngle(0),
+    });
+    return true;
+  }
+
+  /** FRENZY!: quầng vàng nhấp nháy quanh cá */
+  setFrenzy(on: boolean): void {
+    if (on === this.aura.visible) return;
+    this.scene.tweens.killTweensOf(this.aura);
+    this.aura.setVisible(on).setAlpha(on ? 0.45 : 0);
+    if (on) this.scene.tweens.add({ targets: this.aura, alpha: 0.15, duration: 260, yoyo: true, repeat: -1 });
   }
 
   /** Lớn thêm một cỡ: phồng lên rồi về kích thước mới */
@@ -233,5 +263,6 @@ export default class PlayerFish extends Phaser.GameObjects.Container {
     const scale = h / this.sprite.height;
     this.sprite.setScale(scale * this.facing, scale);
     this.shieldBubble.setDisplaySize(h * 1.9, h * 1.9);
+    this.aura.setDisplaySize(h * 2.1, h * 1.7);
   }
 }

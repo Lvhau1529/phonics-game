@@ -13,17 +13,33 @@ import {
   type RegisterBody,
   type UpdateProfileBody,
 } from '@phonics/contracts';
-import { request } from '@/platform/api/client';
+import { AuthMode, HttpMethod, request } from '@/platform/api/client';
 
 export const authRepository = {
   login: (body: LoginBody) =>
-    request(ENDPOINTS.auth.login, { method: 'POST', body, schema: AuthResponse, auth: 'none' }),
+    request(ENDPOINTS.auth.login, {
+      method: HttpMethod.POST,
+      body,
+      schema: AuthResponse,
+      auth: AuthMode.NONE,
+    }),
   register: (body: RegisterBody) =>
-    request(ENDPOINTS.auth.register, { method: 'POST', body, schema: AuthResponse, auth: 'none' }),
+    request(ENDPOINTS.auth.register, {
+      method: HttpMethod.POST,
+      body,
+      schema: AuthResponse,
+      auth: AuthMode.NONE,
+    }),
   googleSignIn: (body: GoogleBody) =>
-    request(ENDPOINTS.auth.google, { method: 'POST', body, schema: AuthResponse, auth: 'none' }),
-  logout: (body: LogoutBody) => request(ENDPOINTS.auth.logout, { method: 'POST', body, auth: 'optional' }),
+    request(ENDPOINTS.auth.google, {
+      method: HttpMethod.POST,
+      body,
+      schema: AuthResponse,
+      auth: AuthMode.NONE,
+    }),
+  logout: (body: LogoutBody) =>
+    request(ENDPOINTS.auth.logout, { method: HttpMethod.POST, body, auth: AuthMode.OPTIONAL }),
   me: () => request(ENDPOINTS.auth.me, { schema: MeResponse }),
   updateProfile: (body: UpdateProfileBody) =>
-    request(ENDPOINTS.me.profile, { method: 'PATCH', body, schema: User }),
+    request(ENDPOINTS.me.profile, { method: HttpMethod.PATCH, body, schema: User }),
 };

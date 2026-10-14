@@ -1,4 +1,5 @@
 import type { NotificationType, NotificationView } from '@phonics/contracts';
+import type { HomeworkPage } from '@/platform/platformStore';
 
 /**
  * Thông báo của học sinh (từ `NotificationView` của BE). Field giữ nguyên tên như contracts; getter là dữ liệu chỉ
@@ -26,6 +27,17 @@ export class NotificationModel {
 
   get isUnread(): boolean {
     return this.readAt === null;
+  }
+
+  /** Thông báo về bài tập: bấm vào thì mở màn tương ứng (bài mới → làm bài; chấm xong / nhận xét → kết quả) */
+  get target(): HomeworkPage | null {
+    const assignmentId = this.data?.assignmentId;
+    if (typeof assignmentId !== 'string' || !assignmentId) return null;
+    if (this.type === 'ASSIGNMENT_NEW') return { name: 'do', assignmentId };
+    if (this.type === 'SUBMISSION_GRADED' || this.type === 'COMMENT_REPLY') {
+      return { name: 'result', assignmentId };
+    }
+    return null;
   }
 
   /** Bản đã đọc lúc `at` (ISO); đã đọc rồi thì trả chính nó */

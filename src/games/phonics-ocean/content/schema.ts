@@ -25,7 +25,7 @@ export const BiomeSchema = z.enum([
   'treasure_zone',
 ]);
 
-export const PredatorKindSchema = z.enum(['shark', 'puffer', 'eel', 'angler']);
+export const PredatorKindSchema = z.enum(['shark', 'puffer', 'eel', 'angler', 'barracuda']);
 
 export const TargetSchema = z.object({
   /** Âm / vần / cụm chữ, vd "m", "-at", "sh" */

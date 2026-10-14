@@ -9,6 +9,8 @@ import type { NotificationModel } from '@/platform/account/models/NotificationMo
 import { notificationsActions, useNotifications } from '@/platform/account/notificationsStore';
 import { timeAgo } from '@/platform/account/timeAgo';
 import { useDelayedLoading } from '@/platform/hooks/useDelayedLoading';
+import { SFX } from '@/platform/audio/sfx';
+import { playSfx } from '@/platform/audio/sfxPlayer';
 import { platformActions } from '@/platform/platformStore';
 import { MASCOT } from '@/platform/ui/icons';
 import LottieLoader from '@/platform/ui/LottieLoader';
@@ -61,8 +63,9 @@ export default function NotificationsScreen() {
 }
 
 function Message({ item }: { item: NotificationModel }) {
-  return (
-    <li className={clsx(styles.message, item.isUnread && styles.unread)}>
+  const target = item.target;
+  const body = (
+    <>
       <span className={styles.icon}>
         <BellIcon size={20} />
       </span>
@@ -73,6 +76,25 @@ function Message({ item }: { item: NotificationModel }) {
           {timeAgo(item.createdAt)}
         </time>
       </div>
+    </>
+  );
+  // Thông báo bài tập: cả mục là nút mở màn làm bài / kết quả
+  return (
+    <li className={clsx(styles.message, item.isUnread && styles.unread, target && styles.link)}>
+      {target ? (
+        <button
+          type="button"
+          className={styles.open}
+          onClick={() => {
+            playSfx(SFX.UI_CLICK);
+            platformActions.openHomework(target);
+          }}
+        >
+          {body}
+        </button>
+      ) : (
+        body
+      )}
     </li>
   );
 }

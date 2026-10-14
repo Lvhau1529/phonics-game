@@ -1,0 +1,3049 @@
+{
+  "pack": "OceanFeast Resource Pack",
+  "version": "1.0",
+  "source_style": "original 2D underwater arcade art",
+  "sheets": {
+    "player_small_sheet": {
+      "file": "sprites/player_small_sheet.png",
+      "cols": 8,
+      "rows": 6,
+      "size": [
+        289,
+        252
+      ],
+      "frames": [
+        {
+          "file": "frames/player_small/r00_c00.png",
+          "row": 0,
+          "col": 0,
+          "cell": [
+            0,
+            0,
+            36,
+            42
+          ],
+          "content_bbox": [
+            8,
+            12,
+            35,
+            35
+          ]
+        },
+        {
+          "file": "frames/player_small/r00_c01.png",
+          "row": 0,
+          "col": 1,
+          "cell": [
+            36,
+            0,
+            36,
+            42
+          ],
+          "content_bbox": [
+            9,
+            13,
+            35,
+            35
+          ]
+        },
+        {
+          "file": "frames/player_small/r00_c02.png",
+          "row": 0,
+          "col": 2,
+          "cell": [
+            72,
+            0,
+            36,
+            42
+          ],
+          "content_bbox": [
+            9,
+            13,
+            35,
+            35
+          ]
+        },
+        {
+          "file": "frames/player_small/r00_c03.png",
+          "row": 0,
+          "col": 3,
+          "cell": [
+            108,
+            0,
+            36,
+            42
+          ],
+          "content_bbox": [
+            9,
+            13,
+            35,
+            35
+          ]
+        },
+        {
+          "file": "frames/player_small/r00_c04.png",
+          "row": 0,
+          "col": 4,
+          "cell": [
+            144,
+            0,
+            37,
+            42
+          ],
+          "content_bbox": [
+            8,
+            13,
+            33,
+            34
+          ]
+        },
+        {
+          "file": "frames/player_small/r00_c05.png",
+          "row": 0,
+          "col": 5,
+          "cell": [
+            181,
+            0,
+            36,
+            42
+          ],
+          "content_bbox": [
+            6,
+            13,
+            31,
+            35
+          ]
+        },
+        {
+          "file": "frames/player_small/r00_c06.png",
+          "row": 0,
+          "col": 6,
+          "cell": [
+            217,
+            0,
+            36,
+            42
+          ],
+          "content_bbox": [
+            5,
+            13,
+            30,
+            34
+          ]
+        },
+        {
+          "file": "frames/player_small/r00_c07.png",
+          "row": 0,
+          "col": 7,
+          "cell": [
+            253,
+            0,
+            36,
+            42
+          ],
+          "content_bbox": [
+            4,
+            13,
+            29,
+            35
+          ]
+        },
+        {
+          "file": "frames/player_small/r01_c00.png",
+          "row": 1,
+          "col": 0,
+          "cell": [
+            0,
+            42,
+            36,
+            42
+          ],
+          "content_bbox": [
+            8,
+            14,
+            35,
+            36
+          ]
+        },
+        {
+          "file": "frames/player_small/r01_c01.png",
+          "row": 1,
+          "col": 1,
+          "cell": [
+            36,
+            42,
+            36,
+            42
+          ],
+          "content_bbox": [
+            9,
+            14,
+            35,
+            37
+          ]
+        },
+        {
+          "file": "frames/player_small/r01_c02.png",
+          "row": 1,
+          "col": 2,
+          "cell": [
+            72,
+            42,
+            36,
+            42
+          ],
+          "content_bbox": [
+            9,
+            15,
+            34,
+            36
+          ]
+        },
+        {
+          "file": "frames/player_small/r01_c03.png",
+          "row": 1,
+          "col": 3,
+          "cell": [
+            108,
+            42,
+            36,
+            42
+          ],
+          "content_bbox": [
+            9,
+            14,
+            35,
+            36
+          ]
+        },
+        {
+          "file": "frames/player_small/r01_c04.png",
+          "row": 1,
+          "col": 4,
+          "cell": [
+            144,
+            42,
+            37,
+            42
+          ],
+          "content_bbox": [
+            8,
+            14,
+            33,
+            36
+          ]
+        },
+        {
+          "file": "frames/player_small/r01_c05.png",
+          "row": 1,
+          "col": 5,
+          "cell": [
+            181,
+            42,
+            36,
+            42
+          ],
+          "content_bbox": [
+            6,
+            14,
+            31,
+            35
+          ]
+        },
+        {
+          "file": "frames/player_small/r01_c06.png",
+          "row": 1,
+          "col": 6,
+          "cell": [
+            217,
+            42,
+            36,
+            42
+          ],
+          "content_bbox": [
+            5,
+            14,
+            29,
+            36
+          ]
+        },
+        {
+          "file": "frames/player_small/r01_c07.png",
+          "row": 1,
+          "col": 7,
+          "cell": [
+            253,
+            42,
+            36,
+            42
+          ],
+          "content_bbox": [
+            3,
+            14,
+            27,
+            35
+          ]
+        },
+        {
+          "file": "frames/player_small/r02_c00.png",
+          "row": 2,
+          "col": 0,
+          "cell": [
+            0,
+            84,
+            36,
+            42
+          ],
+          "content_bbox": [
+            10,
+            11,
+            31,
+            42
+          ]
+        },
+        {
+          "file": "frames/player_small/r02_c01.png",
+          "row": 2,
+          "col": 1,
+          "cell": [
+            36,
+            84,
+            36,
+            42
+          ],
+          "content_bbox": [
+            11,
+            11,
+            31,
+            42
+          ]
+        },
+        {
+          "file": "frames/player_small/r02_c02.png",
+          "row": 2,
+          "col": 2,
+          "cell": [
+            72,
+            84,
+            36,
+            42
+          ],
+          "content_bbox": [
+            12,
+            11,
+            32,
+            42
+          ]
+        },
+        {
+          "file": "frames/player_small/r02_c03.png",
+          "row": 2,
+          "col": 3,
+          "cell": [
+            108,
+            84,
+            36,
+            42
+          ],
+          "content_bbox": [
+            14,
+            11,
+            34,
+            42
+          ]
+        },
+        {
+          "file": "frames/player_small/r02_c04.png",
+          "row": 2,
+          "col": 4,
+          "cell": [
+            144,
+            84,
+            37,
+            42
+          ],
+          "content_bbox": [
+            16,
+            11,
+            37,
+            42
+          ]
+        },
+        {
+          "file": "frames/player_small/r02_c05.png",
+          "row": 2,
+          "col": 5,
+          "cell": [
+            181,
+            84,
+            36,
+            42
+          ],
+          "content_bbox": [
+            20,
+            11,
+            36,
+            41
+          ]
+        },
+        {
+          "file": "frames/player_small/r02_c06.png",
+          "row": 2,
+          "col": 6,
+          "cell": [
+            217,
+            84,
+            36,
+            42
+          ],
+          "content_bbox": [
+            0,
+            15,
+            36,
+            40
+          ]
+        },
+        {
+          "file": "frames/player_small/r02_c07.png",
+          "row": 2,
+          "col": 7,
+          "cell": [
+            253,
+            84,
+            36,
+            42
+          ],
+          "content_bbox": [
+            0,
+            12,
+            14,
+            41
+          ]
+        },
+        {
+          "file": "frames/player_small/r03_c00.png",
+          "row": 3,
+          "col": 0,
+          "cell": [
+            0,
+            126,
+            36,
+            42
+          ],
+          "content_bbox": [
+            8,
+            18,
+            30,
+            42
+          ]
+        },
+        {
+          "file": "frames/player_small/r03_c01.png",
+          "row": 3,
+          "col": 1,
+          "cell": [
+            36,
+            126,
+            36,
+            42
+          ],
+          "content_bbox": [
+            9,
+            17,
+            31,
+            42
+          ]
+        },
+        {
+          "file": "frames/player_small/r03_c02.png",
+          "row": 3,
+          "col": 2,
+          "cell": [
+            72,
+            126,
+            36,
+            42
+          ],
+          "content_bbox": [
+            10,
+            18,
+            31,
+            42
+          ]
+        },
+        {
+          "file": "frames/player_small/r03_c03.png",
+          "row": 3,
+          "col": 3,
+          "cell": [
+            108,
+            126,
+            36,
+            42
+          ],
+          "content_bbox": [
+            11,
+            18,
+            33,
+            42
+          ]
+        },
+        {
+          "file": "frames/player_small/r03_c04.png",
+          "row": 3,
+          "col": 4,
+          "cell": [
+            144,
+            126,
+            37,
+            42
+          ],
+          "content_bbox": [
+            14,
+            18,
+            36,
+            42
+          ]
+        },
+        {
+          "file": "frames/player_small/r03_c05.png",
+          "row": 3,
+          "col": 5,
+          "cell": [
+            181,
+            126,
+            36,
+            42
+          ],
+          "content_bbox": [
+            17,
+            18,
+            36,
+            42
+          ]
+        },
+        {
+          "file": "frames/player_small/r03_c06.png",
+          "row": 3,
+          "col": 6,
+          "cell": [
+            217,
+            126,
+            36,
+            42
+          ],
+          "content_bbox": [
+            0,
+            18,
+            36,
+            42
+          ]
+        },
+        {
+          "file": "frames/player_small/r03_c07.png",
+          "row": 3,
+          "col": 7,
+          "cell": [
+            253,
+            126,
+            36,
+            42
+          ],
+          "content_bbox": [
+            0,
+            18,
+            11,
+            42
+          ]
+        },
+        {
+          "file": "frames/player_small/r04_c00.png",
+          "row": 4,
+          "col": 0,
+          "cell": [
+            0,
+            168,
+            36,
+            42
+          ],
+          "content_bbox": [
+            10,
+            0,
+            36,
+            42
+          ]
+        },
+        {
+          "file": "frames/player_small/r04_c01.png",
+          "row": 4,
+          "col": 1,
+          "cell": [
+            36,
+            168,
+            36,
+            42
+          ],
+          "content_bbox": [
+            0,
+            0,
+            36,
+            42
+          ]
+        },
+        {
+          "file": "frames/player_small/r04_c02.png",
+          "row": 4,
+          "col": 2,
+          "cell": [
+            72,
+            168,
+            36,
+            42
+          ],
+          "content_bbox": [
+            0,
+            0,
+            36,
+            42
+          ]
+        },
+        {
+          "file": "frames/player_small/r04_c03.png",
+          "row": 4,
+          "col": 3,
+          "cell": [
+            108,
+            168,
+            36,
+            42
+          ],
+          "content_bbox": [
+            0,
+            0,
+            23,
+            42
+          ]
+        },
+        {
+          "file": "frames/player_small/r04_c04.png",
+          "row": 4,
+          "col": 4,
+          "cell": [
+            144,
+            168,
+            37,
+            42
+          ],
+          "content_bbox": [
+            2,
+            0,
+            29,
+            42
+          ]
+        },
+        {
+          "file": "frames/player_small/r04_c05.png",
+          "row": 4,
+          "col": 5,
+          "cell": [
+            181,
+            168,
+            36,
+            42
+          ],
+          "content_bbox": [
+            10,
+            0,
+            36,
+            42
+          ]
+        },
+        {
+          "file": "frames/player_small/r04_c06.png",
+          "row": 4,
+          "col": 6,
+          "cell": [
+            217,
+            168,
+            36,
+            42
+          ],
+          "content_bbox": [
+            0,
+            0,
+            36,
+            42
+          ]
+        },
+        {
+          "file": "frames/player_small/r04_c07.png",
+          "row": 4,
+          "col": 7,
+          "cell": [
+            253,
+            168,
+            36,
+            42
+          ],
+          "content_bbox": [
+            0,
+            24,
+            11,
+            42
+          ]
+        },
+        {
+          "file": "frames/player_small/r05_c00.png",
+          "row": 5,
+          "col": 0,
+          "cell": [
+            0,
+            210,
+            36,
+            42
+          ],
+          "content_bbox": [
+            9,
+            0,
+            36,
+            42
+          ]
+        },
+        {
+          "file": "frames/player_small/r05_c01.png",
+          "row": 5,
+          "col": 1,
+          "cell": [
+            36,
+            210,
+            36,
+            42
+          ],
+          "content_bbox": [
+            0,
+            0,
+            36,
+            42
+          ]
+        },
+        {
+          "file": "frames/player_small/r05_c02.png",
+          "row": 5,
+          "col": 2,
+          "cell": [
+            72,
+            210,
+            36,
+            42
+          ],
+          "content_bbox": [
+            0,
+            0,
+            36,
+            42
+          ]
+        },
+        {
+          "file": "frames/player_small/r05_c03.png",
+          "row": 5,
+          "col": 3,
+          "cell": [
+            108,
+            210,
+            36,
+            42
+          ],
+          "content_bbox": [
+            0,
+            0,
+            20,
+            42
+          ]
+        },
+        {
+          "file": "frames/player_small/r05_c04.png",
+          "row": 5,
+          "col": 4,
+          "cell": [
+            144,
+            210,
+            37,
+            42
+          ],
+          "content_bbox": [
+            1,
+            0,
+            28,
+            42
+          ]
+        },
+        {
+          "file": "frames/player_small/r05_c05.png",
+          "row": 5,
+          "col": 5,
+          "cell": [
+            181,
+            210,
+            36,
+            42
+          ],
+          "content_bbox": [
+            9,
+            0,
+            36,
+            42
+          ]
+        },
+        {
+          "file": "frames/player_small/r05_c06.png",
+          "row": 5,
+          "col": 6,
+          "cell": [
+            217,
+            210,
+            36,
+            42
+          ],
+          "content_bbox": [
+            0,
+            0,
+            36,
+            42
+          ]
+        },
+        {
+          "file": "frames/player_small/r05_c07.png",
+          "row": 5,
+          "col": 7,
+          "cell": [
+            253,
+            210,
+            36,
+            42
+          ],
+          "content_bbox": [
+            0,
+            0,
+            25,
+            42
+          ]
+        }
+      ]
+    },
+    "player_medium_sheet": {
+      "file": "sprites/player_medium_sheet.png",
+      "cols": 8,
+      "rows": 6,
+      "size": [
+        281,
+        252
+      ],
+      "frames": [
+        {
+          "file": "frames/player_medium/r00_c00.png",
+          "row": 0,
+          "col": 0,
+          "cell": [
+            0,
+            0,
+            35,
+            42
+          ],
+          "content_bbox": [
+            11,
+            12,
+            35,
+            36
+          ]
+        },
+        {
+          "file": "frames/player_medium/r00_c01.png",
+          "row": 0,
+          "col": 1,
+          "cell": [
+            35,
+            0,
+            35,
+            42
+          ],
+          "content_bbox": [
+            0,
+            12,
+            35,
+            36
+          ]
+        },
+        {
+          "file": "frames/player_medium/r00_c02.png",
+          "row": 0,
+          "col": 2,
+          "cell": [
+            70,
+            0,
+            35,
+            42
+          ],
+          "content_bbox": [
+            0,
+            12,
+            35,
+            36
+          ]
+        },
+        {
+          "file": "frames/player_medium/r00_c03.png",
+          "row": 0,
+          "col": 3,
+          "cell": [
+            105,
+            0,
+            35,
+            42
+          ],
+          "content_bbox": [
+            0,
+            12,
+            35,
+            36
+          ]
+        },
+        {
+          "file": "frames/player_medium/r00_c04.png",
+          "row": 0,
+          "col": 4,
+          "cell": [
+            140,
+            0,
+            36,
+            42
+          ],
+          "content_bbox": [
+            0,
+            12,
+            36,
+            35
+          ]
+        },
+        {
+          "file": "frames/player_medium/r00_c05.png",
+          "row": 0,
+          "col": 5,
+          "cell": [
+            176,
+            0,
+            35,
+            42
+          ],
+          "content_bbox": [
+            0,
+            12,
+            35,
+            36
+          ]
+        },
+        {
+          "file": "frames/player_medium/r00_c06.png",
+          "row": 0,
+          "col": 6,
+          "cell": [
+            211,
+            0,
+            35,
+            42
+          ],
+          "content_bbox": [
+            0,
+            12,
+            35,
+            35
+          ]
+        },
+        {
+          "file": "frames/player_medium/r00_c07.png",
+          "row": 0,
+          "col": 7,
+          "cell": [
+            246,
+            0,
+            35,
+            42
+          ],
+          "content_bbox": [
+            0,
+            12,
+            26,
+            36
+          ]
+        },
+        {
+          "file": "frames/player_medium/r01_c00.png",
+          "row": 1,
+          "col": 0,
+          "cell": [
+            0,
+            42,
+            35,
+            42
+          ],
+          "content_bbox": [
+            11,
+            13,
+            35,
+            37
+          ]
+        },
+        {
+          "file": "frames/player_medium/r01_c01.png",
+          "row": 1,
+          "col": 1,
+          "cell": [
+            35,
+            42,
+            35,
+            42
+          ],
+          "content_bbox": [
+            0,
+            13,
+            35,
+            37
+          ]
+        },
+        {
+          "file": "frames/player_medium/r01_c02.png",
+          "row": 1,
+          "col": 2,
+          "cell": [
+            70,
+            42,
+            35,
+            42
+          ],
+          "content_bbox": [
+            0,
+            12,
+            35,
+            37
+          ]
+        },
+        {
+          "file": "frames/player_medium/r01_c03.png",
+          "row": 1,
+          "col": 3,
+          "cell": [
+            105,
+            42,
+            35,
+            42
+          ],
+          "content_bbox": [
+            0,
+            12,
+            35,
+            36
+          ]
+        },
+        {
+          "file": "frames/player_medium/r01_c04.png",
+          "row": 1,
+          "col": 4,
+          "cell": [
+            140,
+            42,
+            36,
+            42
+          ],
+          "content_bbox": [
+            0,
+            12,
+            36,
+            36
+          ]
+        },
+        {
+          "file": "frames/player_medium/r01_c05.png",
+          "row": 1,
+          "col": 5,
+          "cell": [
+            176,
+            42,
+            35,
+            42
+          ],
+          "content_bbox": [
+            0,
+            12,
+            35,
+            37
+          ]
+        },
+        {
+          "file": "frames/player_medium/r01_c06.png",
+          "row": 1,
+          "col": 6,
+          "cell": [
+            211,
+            42,
+            35,
+            42
+          ],
+          "content_bbox": [
+            0,
+            12,
+            35,
+            37
+          ]
+        },
+        {
+          "file": "frames/player_medium/r01_c07.png",
+          "row": 1,
+          "col": 7,
+          "cell": [
+            246,
+            42,
+            35,
+            42
+          ],
+          "content_bbox": [
+            0,
+            12,
+            25,
+            36
+          ]
+        },
+        {
+          "file": "frames/player_medium/r02_c00.png",
+          "row": 2,
+          "col": 0,
+          "cell": [
+            0,
+            84,
+            35,
+            42
+          ],
+          "content_bbox": [
+            13,
+            12,
+            35,
+            42
+          ]
+        },
+        {
+          "file": "frames/player_medium/r02_c01.png",
+          "row": 2,
+          "col": 1,
+          "cell": [
+            35,
+            84,
+            35,
+            42
+          ],
+          "content_bbox": [
+            0,
+            12,
+            35,
+            42
+          ]
+        },
+        {
+          "file": "frames/player_medium/r02_c02.png",
+          "row": 2,
+          "col": 2,
+          "cell": [
+            70,
+            84,
+            35,
+            42
+          ],
+          "content_bbox": [
+            0,
+            12,
+            35,
+            42
+          ]
+        },
+        {
+          "file": "frames/player_medium/r02_c03.png",
+          "row": 2,
+          "col": 3,
+          "cell": [
+            105,
+            84,
+            35,
+            42
+          ],
+          "content_bbox": [
+            0,
+            12,
+            35,
+            41
+          ]
+        },
+        {
+          "file": "frames/player_medium/r02_c04.png",
+          "row": 2,
+          "col": 4,
+          "cell": [
+            140,
+            84,
+            36,
+            42
+          ],
+          "content_bbox": [
+            0,
+            12,
+            36,
+            42
+          ]
+        },
+        {
+          "file": "frames/player_medium/r02_c05.png",
+          "row": 2,
+          "col": 5,
+          "cell": [
+            176,
+            84,
+            35,
+            42
+          ],
+          "content_bbox": [
+            0,
+            12,
+            35,
+            42
+          ]
+        },
+        {
+          "file": "frames/player_medium/r02_c06.png",
+          "row": 2,
+          "col": 6,
+          "cell": [
+            211,
+            84,
+            35,
+            42
+          ],
+          "content_bbox": [
+            0,
+            12,
+            19,
+            42
+          ]
+        },
+        {
+          "file": "frames/player_medium/r02_c07.png",
+          "row": 2,
+          "col": 7,
+          "cell": [
+            246,
+            84,
+            35,
+            42
+          ],
+          "content_bbox": [
+            0,
+            13,
+            23,
+            42
+          ]
+        },
+        {
+          "file": "frames/player_medium/r03_c00.png",
+          "row": 3,
+          "col": 0,
+          "cell": [
+            0,
+            126,
+            35,
+            42
+          ],
+          "content_bbox": [
+            12,
+            17,
+            35,
+            42
+          ]
+        },
+        {
+          "file": "frames/player_medium/r03_c01.png",
+          "row": 3,
+          "col": 1,
+          "cell": [
+            35,
+            126,
+            35,
+            42
+          ],
+          "content_bbox": [
+            16,
+            17,
+            35,
+            42
+          ]
+        },
+        {
+          "file": "frames/player_medium/r03_c02.png",
+          "row": 3,
+          "col": 2,
+          "cell": [
+            70,
+            126,
+            35,
+            42
+          ],
+          "content_bbox": [
+            0,
+            17,
+            35,
+            42
+          ]
+        },
+        {
+          "file": "frames/player_medium/r03_c03.png",
+          "row": 3,
+          "col": 3,
+          "cell": [
+            105,
+            126,
+            35,
+            42
+          ],
+          "content_bbox": [
+            0,
+            18,
+            35,
+            42
+          ]
+        },
+        {
+          "file": "frames/player_medium/r03_c04.png",
+          "row": 3,
+          "col": 4,
+          "cell": [
+            140,
+            126,
+            36,
+            42
+          ],
+          "content_bbox": [
+            0,
+            17,
+            36,
+            42
+          ]
+        },
+        {
+          "file": "frames/player_medium/r03_c05.png",
+          "row": 3,
+          "col": 5,
+          "cell": [
+            176,
+            126,
+            35,
+            42
+          ],
+          "content_bbox": [
+            0,
+            17,
+            35,
+            42
+          ]
+        },
+        {
+          "file": "frames/player_medium/r03_c06.png",
+          "row": 3,
+          "col": 6,
+          "cell": [
+            211,
+            126,
+            35,
+            42
+          ],
+          "content_bbox": [
+            0,
+            18,
+            21,
+            42
+          ]
+        },
+        {
+          "file": "frames/player_medium/r03_c07.png",
+          "row": 3,
+          "col": 7,
+          "cell": [
+            246,
+            126,
+            35,
+            42
+          ],
+          "content_bbox": [
+            2,
+            18,
+            28,
+            42
+          ]
+        },
+        {
+          "file": "frames/player_medium/r04_c00.png",
+          "row": 4,
+          "col": 0,
+          "cell": [
+            0,
+            168,
+            35,
+            42
+          ],
+          "content_bbox": [
+            12,
+            0,
+            35,
+            42
+          ]
+        },
+        {
+          "file": "frames/player_medium/r04_c01.png",
+          "row": 4,
+          "col": 1,
+          "cell": [
+            35,
+            168,
+            35,
+            42
+          ],
+          "content_bbox": [
+            0,
+            0,
+            35,
+            42
+          ]
+        },
+        {
+          "file": "frames/player_medium/r04_c02.png",
+          "row": 4,
+          "col": 2,
+          "cell": [
+            70,
+            168,
+            35,
+            42
+          ],
+          "content_bbox": [
+            0,
+            0,
+            34,
+            42
+          ]
+        },
+        {
+          "file": "frames/player_medium/r04_c03.png",
+          "row": 4,
+          "col": 3,
+          "cell": [
+            105,
+            168,
+            35,
+            42
+          ],
+          "content_bbox": [
+            7,
+            0,
+            35,
+            42
+          ]
+        },
+        {
+          "file": "frames/player_medium/r04_c04.png",
+          "row": 4,
+          "col": 4,
+          "cell": [
+            140,
+            168,
+            36,
+            42
+          ],
+          "content_bbox": [
+            0,
+            0,
+            36,
+            42
+          ]
+        },
+        {
+          "file": "frames/player_medium/r04_c05.png",
+          "row": 4,
+          "col": 5,
+          "cell": [
+            176,
+            168,
+            35,
+            42
+          ],
+          "content_bbox": [
+            0,
+            0,
+            33,
+            42
+          ]
+        },
+        {
+          "file": "frames/player_medium/r04_c06.png",
+          "row": 4,
+          "col": 6,
+          "cell": [
+            211,
+            168,
+            35,
+            42
+          ],
+          "content_bbox": [
+            7,
+            0,
+            35,
+            42
+          ]
+        },
+        {
+          "file": "frames/player_medium/r04_c07.png",
+          "row": 4,
+          "col": 7,
+          "cell": [
+            246,
+            168,
+            35,
+            42
+          ],
+          "content_bbox": [
+            0,
+            0,
+            25,
+            42
+          ]
+        },
+        {
+          "file": "frames/player_medium/r05_c00.png",
+          "row": 5,
+          "col": 0,
+          "cell": [
+            0,
+            210,
+            35,
+            42
+          ],
+          "content_bbox": [
+            13,
+            0,
+            35,
+            42
+          ]
+        },
+        {
+          "file": "frames/player_medium/r05_c01.png",
+          "row": 5,
+          "col": 1,
+          "cell": [
+            35,
+            210,
+            35,
+            42
+          ],
+          "content_bbox": [
+            0,
+            0,
+            35,
+            42
+          ]
+        },
+        {
+          "file": "frames/player_medium/r05_c02.png",
+          "row": 5,
+          "col": 2,
+          "cell": [
+            70,
+            210,
+            35,
+            42
+          ],
+          "content_bbox": [
+            0,
+            0,
+            35,
+            42
+          ]
+        },
+        {
+          "file": "frames/player_medium/r05_c03.png",
+          "row": 5,
+          "col": 3,
+          "cell": [
+            105,
+            210,
+            35,
+            42
+          ],
+          "content_bbox": [
+            0,
+            0,
+            35,
+            42
+          ]
+        },
+        {
+          "file": "frames/player_medium/r05_c04.png",
+          "row": 5,
+          "col": 4,
+          "cell": [
+            140,
+            210,
+            36,
+            42
+          ],
+          "content_bbox": [
+            0,
+            0,
+            36,
+            42
+          ]
+        },
+        {
+          "file": "frames/player_medium/r05_c05.png",
+          "row": 5,
+          "col": 5,
+          "cell": [
+            176,
+            210,
+            35,
+            42
+          ],
+          "content_bbox": [
+            0,
+            0,
+            35,
+            42
+          ]
+        },
+        {
+          "file": "frames/player_medium/r05_c06.png",
+          "row": 5,
+          "col": 6,
+          "cell": [
+            211,
+            210,
+            35,
+            42
+          ],
+          "content_bbox": [
+            0,
+            0,
+            35,
+            42
+          ]
+        },
+        {
+          "file": "frames/player_medium/r05_c07.png",
+          "row": 5,
+          "col": 7,
+          "cell": [
+            246,
+            210,
+            35,
+            42
+          ],
+          "content_bbox": [
+            0,
+            0,
+            27,
+            42
+          ]
+        }
+      ]
+    },
+    "player_large_sheet": {
+      "file": "sprites/player_large_sheet.png",
+      "cols": 5,
+      "rows": 6,
+      "size": [
+        316,
+        252
+      ],
+      "frames": [
+        {
+          "file": "frames/player_large/r00_c00.png",
+          "row": 0,
+          "col": 0,
+          "cell": [
+            0,
+            0,
+            63,
+            42
+          ],
+          "content_bbox": [
+            6,
+            10,
+            63,
+            35
+          ]
+        },
+        {
+          "file": "frames/player_large/r00_c01.png",
+          "row": 0,
+          "col": 1,
+          "cell": [
+            63,
+            0,
+            63,
+            42
+          ],
+          "content_bbox": [
+            0,
+            10,
+            63,
+            35
+          ]
+        },
+        {
+          "file": "frames/player_large/r00_c02.png",
+          "row": 0,
+          "col": 2,
+          "cell": [
+            126,
+            0,
+            64,
+            42
+          ],
+          "content_bbox": [
+            0,
+            10,
+            64,
+            35
+          ]
+        },
+        {
+          "file": "frames/player_large/r00_c03.png",
+          "row": 0,
+          "col": 3,
+          "cell": [
+            190,
+            0,
+            63,
+            42
+          ],
+          "content_bbox": [
+            0,
+            10,
+            63,
+            34
+          ]
+        },
+        {
+          "file": "frames/player_large/r00_c04.png",
+          "row": 0,
+          "col": 4,
+          "cell": [
+            253,
+            0,
+            63,
+            42
+          ],
+          "content_bbox": [
+            0,
+            12,
+            56,
+            33
+          ]
+        },
+        {
+          "file": "frames/player_large/r01_c00.png",
+          "row": 1,
+          "col": 0,
+          "cell": [
+            0,
+            42,
+            63,
+            42
+          ],
+          "content_bbox": [
+            6,
+            11,
+            59,
+            35
+          ]
+        },
+        {
+          "file": "frames/player_large/r01_c01.png",
+          "row": 1,
+          "col": 1,
+          "cell": [
+            63,
+            42,
+            63,
+            42
+          ],
+          "content_bbox": [
+            6,
+            11,
+            57,
+            35
+          ]
+        },
+        {
+          "file": "frames/player_large/r01_c02.png",
+          "row": 1,
+          "col": 2,
+          "cell": [
+            126,
+            42,
+            64,
+            42
+          ],
+          "content_bbox": [
+            5,
+            11,
+            58,
+            35
+          ]
+        },
+        {
+          "file": "frames/player_large/r01_c03.png",
+          "row": 1,
+          "col": 3,
+          "cell": [
+            190,
+            42,
+            63,
+            42
+          ],
+          "content_bbox": [
+            7,
+            11,
+            60,
+            35
+          ]
+        },
+        {
+          "file": "frames/player_large/r01_c04.png",
+          "row": 1,
+          "col": 4,
+          "cell": [
+            253,
+            42,
+            63,
+            42
+          ],
+          "content_bbox": [
+            7,
+            12,
+            50,
+            34
+          ]
+        },
+        {
+          "file": "frames/player_large/r02_c00.png",
+          "row": 2,
+          "col": 0,
+          "cell": [
+            0,
+            84,
+            63,
+            42
+          ],
+          "content_bbox": [
+            6,
+            13,
+            48,
+            42
+          ]
+        },
+        {
+          "file": "frames/player_large/r02_c01.png",
+          "row": 2,
+          "col": 1,
+          "cell": [
+            63,
+            84,
+            63,
+            42
+          ],
+          "content_bbox": [
+            8,
+            12,
+            63,
+            42
+          ]
+        },
+        {
+          "file": "frames/player_large/r02_c02.png",
+          "row": 2,
+          "col": 2,
+          "cell": [
+            126,
+            84,
+            64,
+            42
+          ],
+          "content_bbox": [
+            0,
+            12,
+            64,
+            42
+          ]
+        },
+        {
+          "file": "frames/player_large/r02_c03.png",
+          "row": 2,
+          "col": 3,
+          "cell": [
+            190,
+            84,
+            63,
+            42
+          ],
+          "content_bbox": [
+            0,
+            14,
+            63,
+            42
+          ]
+        },
+        {
+          "file": "frames/player_large/r02_c04.png",
+          "row": 2,
+          "col": 4,
+          "cell": [
+            253,
+            84,
+            63,
+            42
+          ],
+          "content_bbox": [
+            0,
+            13,
+            33,
+            40
+          ]
+        },
+        {
+          "file": "frames/player_large/r03_c00.png",
+          "row": 3,
+          "col": 0,
+          "cell": [
+            0,
+            126,
+            63,
+            42
+          ],
+          "content_bbox": [
+            6,
+            0,
+            58,
+            41
+          ]
+        },
+        {
+          "file": "frames/player_large/r03_c01.png",
+          "row": 3,
+          "col": 1,
+          "cell": [
+            63,
+            126,
+            63,
+            42
+          ],
+          "content_bbox": [
+            10,
+            0,
+            51,
+            40
+          ]
+        },
+        {
+          "file": "frames/player_large/r03_c02.png",
+          "row": 3,
+          "col": 2,
+          "cell": [
+            126,
+            126,
+            64,
+            42
+          ],
+          "content_bbox": [
+            1,
+            0,
+            64,
+            40
+          ]
+        },
+        {
+          "file": "frames/player_large/r03_c03.png",
+          "row": 3,
+          "col": 3,
+          "cell": [
+            190,
+            126,
+            63,
+            42
+          ],
+          "content_bbox": [
+            0,
+            17,
+            63,
+            40
+          ]
+        },
+        {
+          "file": "frames/player_large/r03_c04.png",
+          "row": 3,
+          "col": 4,
+          "cell": [
+            253,
+            126,
+            63,
+            42
+          ],
+          "content_bbox": [
+            0,
+            16,
+            48,
+            40
+          ]
+        },
+        {
+          "file": "frames/player_large/r04_c00.png",
+          "row": 4,
+          "col": 0,
+          "cell": [
+            0,
+            168,
+            63,
+            42
+          ],
+          "content_bbox": [
+            7,
+            19,
+            63,
+            42
+          ]
+        },
+        {
+          "file": "frames/player_large/r04_c01.png",
+          "row": 4,
+          "col": 1,
+          "cell": [
+            63,
+            168,
+            63,
+            42
+          ],
+          "content_bbox": [
+            0,
+            19,
+            63,
+            42
+          ]
+        },
+        {
+          "file": "frames/player_large/r04_c02.png",
+          "row": 4,
+          "col": 2,
+          "cell": [
+            126,
+            168,
+            64,
+            42
+          ],
+          "content_bbox": [
+            0,
+            12,
+            64,
+            42
+          ]
+        },
+        {
+          "file": "frames/player_large/r04_c03.png",
+          "row": 4,
+          "col": 3,
+          "cell": [
+            190,
+            168,
+            63,
+            42
+          ],
+          "content_bbox": [
+            0,
+            20,
+            63,
+            42
+          ]
+        },
+        {
+          "file": "frames/player_large/r04_c04.png",
+          "row": 4,
+          "col": 4,
+          "cell": [
+            253,
+            168,
+            63,
+            42
+          ],
+          "content_bbox": [
+            0,
+            13,
+            42,
+            42
+          ]
+        },
+        {
+          "file": "frames/player_large/r05_c00.png",
+          "row": 5,
+          "col": 0,
+          "cell": [
+            0,
+            210,
+            63,
+            42
+          ],
+          "content_bbox": [
+            6,
+            0,
+            63,
+            42
+          ]
+        },
+        {
+          "file": "frames/player_large/r05_c01.png",
+          "row": 5,
+          "col": 1,
+          "cell": [
+            63,
+            210,
+            63,
+            42
+          ],
+          "content_bbox": [
+            14,
+            0,
+            63,
+            42
+          ]
+        },
+        {
+          "file": "frames/player_large/r05_c02.png",
+          "row": 5,
+          "col": 2,
+          "cell": [
+            126,
+            210,
+            64,
+            42
+          ],
+          "content_bbox": [
+            0,
+            0,
+            64,
+            42
+          ]
+        },
+        {
+          "file": "frames/player_large/r05_c03.png",
+          "row": 5,
+          "col": 3,
+          "cell": [
+            190,
+            210,
+            63,
+            42
+          ],
+          "content_bbox": [
+            0,
+            0,
+            63,
+            42
+          ]
+        },
+        {
+          "file": "frames/player_large/r05_c04.png",
+          "row": 5,
+          "col": 4,
+          "cell": [
+            253,
+            210,
+            63,
+            42
+          ],
+          "content_bbox": [
+            0,
+            0,
+            47,
+            42
+          ]
+        }
+      ]
+    },
+    "prey_small_sheet": {
+      "file": "sprites/prey_small_sheet.png",
+      "cols": 6,
+      "rows": 4,
+      "size": [
+        253,
+        175
+      ],
+      "frames": [
+        {
+          "file": "frames/prey_small/r00_c00.png",
+          "row": 0,
+          "col": 0,
+          "cell": [
+            0,
+            0,
+            42,
+            44
+          ],
+          "content_bbox": [
+            9,
+            15,
+            39,
+            35
+          ]
+        },
+        {
+          "file": "frames/prey_small/r00_c01.png",
+          "row": 0,
+          "col": 1,
+          "cell": [
+            42,
+            0,
+            42,
+            44
+          ],
+          "content_bbox": [
+            10,
+            15,
+            39,
+            35
+          ]
+        },
+        {
+          "file": "frames/prey_small/r00_c02.png",
+          "row": 0,
+          "col": 2,
+          "cell": [
+            84,
+            0,
+            42,
+            44
+          ],
+          "content_bbox": [
+            10,
+            15,
+            39,
+            35
+          ]
+        },
+        {
+          "file": "frames/prey_small/r00_c03.png",
+          "row": 0,
+          "col": 3,
+          "cell": [
+            126,
+            0,
+            43,
+            44
+          ],
+          "content_bbox": [
+            10,
+            15,
+            38,
+            35
+          ]
+        },
+        {
+          "file": "frames/prey_small/r00_c04.png",
+          "row": 0,
+          "col": 4,
+          "cell": [
+            169,
+            0,
+            42,
+            44
+          ],
+          "content_bbox": [
+            8,
+            15,
+            37,
+            35
+          ]
+        },
+        {
+          "file": "frames/prey_small/r00_c05.png",
+          "row": 0,
+          "col": 5,
+          "cell": [
+            211,
+            0,
+            42,
+            44
+          ],
+          "content_bbox": [
+            8,
+            15,
+            36,
+            35
+          ]
+        },
+        {
+          "file": "frames/prey_small/r01_c00.png",
+          "row": 1,
+          "col": 0,
+          "cell": [
+            0,
+            44,
+            42,
+            44
+          ],
+          "content_bbox": [
+            8,
+            14,
+            38,
+            36
+          ]
+        },
+        {
+          "file": "frames/prey_small/r01_c01.png",
+          "row": 1,
+          "col": 1,
+          "cell": [
+            42,
+            44,
+            42,
+            44
+          ],
+          "content_bbox": [
+            9,
+            14,
+            38,
+            36
+          ]
+        },
+        {
+          "file": "frames/prey_small/r01_c02.png",
+          "row": 1,
+          "col": 2,
+          "cell": [
+            84,
+            44,
+            42,
+            44
+          ],
+          "content_bbox": [
+            9,
+            14,
+            38,
+            36
+          ]
+        },
+        {
+          "file": "frames/prey_small/r01_c03.png",
+          "row": 1,
+          "col": 3,
+          "cell": [
+            126,
+            44,
+            43,
+            44
+          ],
+          "content_bbox": [
+            8,
+            14,
+            37,
+            35
+          ]
+        },
+        {
+          "file": "frames/prey_small/r01_c04.png",
+          "row": 1,
+          "col": 4,
+          "cell": [
+            169,
+            44,
+            42,
+            44
+          ],
+          "content_bbox": [
+            7,
+            14,
+            36,
+            36
+          ]
+        },
+        {
+          "file": "frames/prey_small/r01_c05.png",
+          "row": 1,
+          "col": 5,
+          "cell": [
+            211,
+            44,
+            42,
+            44
+          ],
+          "content_bbox": [
+            6,
+            14,
+            36,
+            36
+          ]
+        },
+        {
+          "file": "frames/prey_small/r02_c00.png",
+          "row": 2,
+          "col": 0,
+          "cell": [
+            0,
+            88,
+            42,
+            43
+          ],
+          "content_bbox": [
+            8,
+            13,
+            37,
+            35
+          ]
+        },
+        {
+          "file": "frames/prey_small/r02_c01.png",
+          "row": 2,
+          "col": 1,
+          "cell": [
+            42,
+            88,
+            42,
+            43
+          ],
+          "content_bbox": [
+            8,
+            14,
+            37,
+            35
+          ]
+        },
+        {
+          "file": "frames/prey_small/r02_c02.png",
+          "row": 2,
+          "col": 2,
+          "cell": [
+            84,
+            88,
+            42,
+            43
+          ],
+          "content_bbox": [
+            7,
+            14,
+            36,
+            35
+          ]
+        },
+        {
+          "file": "frames/prey_small/r02_c03.png",
+          "row": 2,
+          "col": 3,
+          "cell": [
+            126,
+            88,
+            43,
+            43
+          ],
+          "content_bbox": [
+            7,
+            14,
+            36,
+            35
+          ]
+        },
+        {
+          "file": "frames/prey_small/r02_c04.png",
+          "row": 2,
+          "col": 4,
+          "cell": [
+            169,
+            88,
+            42,
+            43
+          ],
+          "content_bbox": [
+            6,
+            14,
+            35,
+            35
+          ]
+        },
+        {
+          "file": "frames/prey_small/r02_c05.png",
+          "row": 2,
+          "col": 5,
+          "cell": [
+            211,
+            88,
+            42,
+            43
+          ],
+          "content_bbox": [
+            5,
+            13,
+            34,
+            35
+          ]
+        },
+        {
+          "file": "frames/prey_small/r03_c00.png",
+          "row": 3,
+          "col": 0,
+          "cell": [
+            0,
+            131,
+            42,
+            44
+          ],
+          "content_bbox": [
+            8,
+            14,
+            37,
+            35
+          ]
+        },
+        {
+          "file": "frames/prey_small/r03_c01.png",
+          "row": 3,
+          "col": 1,
+          "cell": [
+            42,
+            131,
+            42,
+            44
+          ],
+          "content_bbox": [
+            8,
+            14,
+            37,
+            35
+          ]
+        },
+        {
+          "file": "frames/prey_small/r03_c02.png",
+          "row": 3,
+          "col": 2,
+          "cell": [
+            84,
+            131,
+            42,
+            44
+          ],
+          "content_bbox": [
+            7,
+            15,
+            37,
+            35
+          ]
+        },
+        {
+          "file": "frames/prey_small/r03_c03.png",
+          "row": 3,
+          "col": 3,
+          "cell": [
+            126,
+            131,
+            43,
+            44
+          ],
+          "content_bbox": [
+            7,
+            14,
+            36,
+            35
+          ]
+        },
+        {
+          "file": "frames/prey_small/r03_c04.png",
+          "row": 3,
+          "col": 4,
+          "cell": [
+            169,
+            131,
+            42,
+            44
+          ],
+          "content_bbox": [
+            6,
+            15,
+            35,
+            35
+          ]
+        },
+        {
+          "file": "frames/prey_small/r03_c05.png",
+          "row": 3,
+          "col": 5,
+          "cell": [
+            211,
+            131,
+            42,
+            44
+          ],
+          "content_bbox": [
+            5,
+            14,
+            35,
+            35
+          ]
+        }
+      ]
+    },
+    "prey_medium_sheet": {
+      "file": "sprites/prey_medium_sheet.png",
+      "cols": 4,
+      "rows": 3,
+      "size": [
+        259,
+        175
+      ],
+      "frames": [
+        {
+          "file": "frames/prey_medium/r00_c00.png",
+          "row": 0,
+          "col": 0,
+          "cell": [
+            0,
+            0,
+            65,
+            58
+          ],
+          "content_bbox": [
+            7,
+            12,
+            52,
+            44
+          ]
+        },
+        {
+          "file": "frames/prey_medium/r00_c01.png",
+          "row": 0,
+          "col": 1,
+          "cell": [
+            65,
+            0,
+            65,
+            58
+          ],
+          "content_bbox": [
+            1,
+            12,
+            65,
+            44
+          ]
+        },
+        {
+          "file": "frames/prey_medium/r00_c02.png",
+          "row": 0,
+          "col": 2,
+          "cell": [
+            130,
+            0,
+            64,
+            58
+          ],
+          "content_bbox": [
+            0,
+            13,
+            64,
+            44
+          ]
+        },
+        {
+          "file": "frames/prey_medium/r00_c03.png",
+          "row": 0,
+          "col": 3,
+          "cell": [
+            194,
+            0,
+            65,
+            58
+          ],
+          "content_bbox": [
+            0,
+            13,
+            62,
+            43
+          ]
+        },
+        {
+          "file": "frames/prey_medium/r01_c00.png",
+          "row": 1,
+          "col": 0,
+          "cell": [
+            0,
+            58,
+            65,
+            59
+          ],
+          "content_bbox": [
+            7,
+            10,
+            65,
+            46
+          ]
+        },
+        {
+          "file": "frames/prey_medium/r01_c01.png",
+          "row": 1,
+          "col": 1,
+          "cell": [
+            65,
+            58,
+            65,
+            59
+          ],
+          "content_bbox": [
+            0,
+            10,
+            65,
+            46
+          ]
+        },
+        {
+          "file": "frames/prey_medium/r01_c02.png",
+          "row": 1,
+          "col": 2,
+          "cell": [
+            130,
+            58,
+            64,
+            59
+          ],
+          "content_bbox": [
+            0,
+            10,
+            64,
+            46
+          ]
+        },
+        {
+          "file": "frames/prey_medium/r01_c03.png",
+          "row": 1,
+          "col": 3,
+          "cell": [
+            194,
+            58,
+            65,
+            59
+          ],
+          "content_bbox": [
+            0,
+            10,
+            58,
+            46
+          ]
+        },
+        {
+          "file": "frames/prey_medium/r02_c00.png",
+          "row": 2,
+          "col": 0,
+          "cell": [
+            0,
+            117,
+            65,
+            58
+          ],
+          "content_bbox": [
+            6,
+            10,
+            56,
+            46
+          ]
+        },
+        {
+          "file": "frames/prey_medium/r02_c01.png",
+          "row": 2,
+          "col": 1,
+          "cell": [
+            65,
+            117,
+            65,
+            58
+          ],
+          "content_bbox": [
+            5,
+            10,
+            57,
+            47
+          ]
+        },
+        {
+          "file": "frames/prey_medium/r02_c02.png",
+          "row": 2,
+          "col": 2,
+          "cell": [
+            130,
+            117,
+            64,
+            58
+          ],
+          "content_bbox": [
+            8,
+            9,
+            61,
+            47
+          ]
+        },
+        {
+          "file": "frames/prey_medium/r02_c03.png",
+          "row": 2,
+          "col": 3,
+          "cell": [
+            194,
+            117,
+            65,
+            58
+          ],
+          "content_bbox": [
+            13,
+            10,
+            63,
+            46
+          ]
+        }
+      ]
+    },
+    "predators_sheet": {
+      "file": "sprites/predators_sheet.png",
+      "cols": 3,
+      "rows": 3,
+      "size": [
+        315,
+        175
+      ],
+      "frames": [
+        {
+          "file": "frames/predators/r00_c00.png",
+          "row": 0,
+          "col": 0,
+          "cell": [
+            0,
+            0,
+            105,
+            58
+          ],
+          "content_bbox": [
+            9,
+            2,
+            102,
+            56
+          ]
+        },
+        {
+          "file": "frames/predators/r00_c01.png",
+          "row": 0,
+          "col": 1,
+          "cell": [
+            105,
+            0,
+            105,
+            58
+          ],
+          "content_bbox": [
+            7,
+            2,
+            105,
+            58
+          ]
+        },
+        {
+          "file": "frames/predators/r00_c02.png",
+          "row": 0,
+          "col": 2,
+          "cell": [
+            210,
+            0,
+            105,
+            58
+          ],
+          "content_bbox": [
+            0,
+            2,
+            98,
+            58
+          ]
+        },
+        {
+          "file": "frames/predators/r01_c00.png",
+          "row": 1,
+          "col": 0,
+          "cell": [
+            0,
+            58,
+            105,
+            59
+          ],
+          "content_bbox": [
+            10,
+            17,
+            101,
+            50
+          ]
+        },
+        {
+          "file": "frames/predators/r01_c01.png",
+          "row": 1,
+          "col": 1,
+          "cell": [
+            105,
+            58,
+            105,
+            59
+          ],
+          "content_bbox": [
+            10,
+            0,
+            100,
+            50
+          ]
+        },
+        {
+          "file": "frames/predators/r01_c02.png",
+          "row": 1,
+          "col": 2,
+          "cell": [
+            210,
+            58,
+            105,
+            59
+          ],
+          "content_bbox": [
+            9,
+            0,
+            97,
+            49
+          ]
+        },
+        {
+          "file": "frames/predators/r02_c00.png",
+          "row": 2,
+          "col": 0,
+          "cell": [
+            0,
+            117,
+            105,
+            58
+          ],
+          "content_bbox": [
+            11,
+            6,
+            97,
+            55
+          ]
+        },
+        {
+          "file": "frames/predators/r02_c01.png",
+          "row": 2,
+          "col": 1,
+          "cell": [
+            105,
+            117,
+            105,
+            58
+          ],
+          "content_bbox": [
+            12,
+            7,
+            98,
+            55
+          ]
+        },
+        {
+          "file": "frames/predators/r02_c02.png",
+          "row": 2,
+          "col": 2,
+          "cell": [
+            210,
+            117,
+            105,
+            58
+          ],
+          "content_bbox": [
+            10,
+            7,
+            92,
+            55
+          ]
+        }
+      ]
+    }
+  },
+  "backgrounds": [
+    {
+      "file": "backgrounds/parallax_far.png",
+      "size": [
+        131,
+        157
+      ]
+    },
+    {
+      "file": "backgrounds/parallax_mid.png",
+      "size": [
+        129,
+        157
+      ]
+    },
+    {
+      "file": "backgrounds/parallax_near.png",
+      "size": [
+        129,
+        157
+      ]
+    },
+    {
+      "file": "backgrounds/reef_variant.png",
+      "size": [
+        129,
+        157
+      ]
+    },
+    {
+      "file": "backgrounds/shipwreck_variant.png",
+      "size": [
+        137,
+        157
+      ]
+    }
+  ],
+  "ui": [
+    {
+      "file": "ui/font_and_icons.png",
+      "size": [
+        628,
+        97
+      ]
+    },
+    {
+      "file": "ui/hud_elements.png",
+      "size": [
+        436,
+        228
+      ]
+    }
+  ],
+  "effects": [
+    {
+      "file": "effects/effects_sheet.png",
+      "size": [
+        320,
+        120
+      ]
+    },
+    {
+      "file": "effects/particles_sheet.png",
+      "size": [
+        286,
+        119
+      ]
+    }
+  ]
+}

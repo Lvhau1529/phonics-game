@@ -1,5 +1,5 @@
 /**
- * Gốc của app: màn chọn game (hub), game đang mở, hoặc màn tài khoản (#/account/...).
+ * Gốc của app: màn chọn game (hub), game đang mở, màn tài khoản (#/account/...) hoặc bài tập (#/homework/...).
  * Mỗi game được tải động (chunk riêng) khi mở lần đầu; rời game thì unmount toàn bộ (kể cả Phaser).
  * Màn tài khoản cũng là một chunk riêng, chỉ tải khi có API (ACCOUNT_ENABLED).
  */
@@ -39,6 +39,7 @@ function rootOf(game: GameManifest): LazyExoticComponent<ComponentType> {
 }
 
 const AccountRoot = lazy(() => import('@/platform/account/screens/AccountRoot'));
+const HomeworkRoot = lazy(() => import('@/platform/homework/screens/HomeworkRoot'));
 
 interface PlatformAppProps {
   games: readonly GameManifest[];
@@ -56,10 +57,12 @@ export default function PlatformApp({ games: baseGames, upcoming: baseUpcoming }
   const game = games.find((item) => item.id === activeId && isUnlocked(item));
   const GameRoot = game ? rootOf(game) : null;
   const accountPage = route.kind === 'account' && ACCOUNT_ENABLED ? route.page : null;
+  const homeworkPage = route.kind === 'homework' && ACCOUNT_ENABLED ? route.page : null;
 
-  // Game không tồn tại / đang khoá, hoặc #/account khi không có API: bỏ hash để lần bấm thẻ game sau vẫn mở được
+  // Game không tồn tại / đang khoá, hoặc #/account, #/homework khi không có API: bỏ hash để lần bấm thẻ game sau vẫn mở được
   useEffect(() => {
-    if ((activeId && !game) || (route.kind === 'account' && !ACCOUNT_ENABLED)) platformActions.exitToHub();
+    const needsApi = route.kind === 'account' || route.kind === 'homework';
+    if ((activeId && !game) || (needsApi && !ACCOUNT_ENABLED)) platformActions.exitToHub();
   }, [activeId, game, route.kind]);
 
   const loading = <LoadingScreen />;
@@ -70,6 +73,12 @@ export default function PlatformApp({ games: baseGames, upcoming: baseUpcoming }
         <LoadErrorBoundary key="account">
           <Suspense fallback={loading}>
             <AccountRoot page={accountPage} games={games} />
+          </Suspense>
+        </LoadErrorBoundary>
+      ) : homeworkPage ? (
+        <LoadErrorBoundary key="homework">
+          <Suspense fallback={loading}>
+            <HomeworkRoot page={homeworkPage} />
           </Suspense>
         </LoadErrorBoundary>
       ) : GameRoot ? (

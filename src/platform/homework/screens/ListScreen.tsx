@@ -1,0 +1,138 @@
+/**
+ * HOMEWORK: danh sách bài giao của bé — tab TO DO / DONE / ALL; mỗi thẻ: tên phiếu, trạng thái, sao / điểm,
+ * nút START · CONTINUE · SEE RESULT (· TRY AGAIN khi còn lượt). Nhận xét chưa đọc hiện chấm đỏ.
+ */
+import { useEffect, useState } from 'react';
+import clsx from 'clsx';
+import { SFX } from '@/platform/audio/sfx';
+import { playSfx } from '@/platform/audio/sfxPlayer';
+import { errorText } from '@/platform/account/errorText';
+import type { AssignmentModel } from '@/platform/homework/models/AssignmentModel';
+import { homeworkActions, useHomeworkList } from '@/platform/homework/store/homeworkStore';
+import { useDelayedLoading } from '@/platform/hooks/useDelayedLoading';
+import { platformActions } from '@/platform/platformStore';
+import Button from '@/platform/ui/Button';
+import GuideButton from '@/platform/ui/guide/GuideButton';
+import Icon from '@/platform/ui/Icon';
+import { MASCOT } from '@/platform/ui/icons';
+import LottieLoader from '@/platform/ui/LottieLoader';
+import OptionGroup, { type Option } from '@/platform/ui/OptionGroup';
+import ScreenHeader from '@/platform/ui/ScreenHeader';
+import styles from '@/platform/homework/screens/ListScreen.module.scss';
+
+type Tab = 'todo' | 'done' | 'all';
+
+const TABS: Option<Tab>[] = [
+  { value: 'todo', label: 'TO DO', tone: 'green' },
+  { value: 'done', label: 'DONE', tone: 'blue' },
+  { value: 'all', label: 'ALL', tone: 'orange' },
+];
+
+export default function ListScreen() {
+  const list = useHomeworkList();
+  const [tab, setTab] = useState<Tab>('todo');
+  const showLoading = useDelayedLoading(list.loading && !list.loaded);
+  const showRefreshing = useDelayedLoading(list.loading && list.loaded);
+
+  useEffect(() => {
+    void homeworkActions.loadList();
+  }, []);
+
+  const items = list.items.filter((item) =>
+    tab === 'todo' ? item.isTodo || item.isInProgress : tab === 'done' ? item.isDone : true,
+  );
+
+  return (
+    <>
+      <ScreenHeader
+        title="HOMEWORK"
+        backLabel="All games"
+        onBack={() => platformActions.exitToHub()}
+        trailing={showRefreshing && <LottieLoader size="sm" />}
+      />
+      <div className={styles.tabs}>
+        <OptionGroup label="Show" options={TABS} value={tab} onChange={setTab} />
+      </div>
+
+      {showLoading && <LottieLoader size="lg" label="LOADING…" className={styles.status} />}
+      {list.error != null && (
+        <div className={styles.empty}>
+          <p className={styles.status}>{errorText(list.error)}</p>
+          <Button color="cream" onClick={() => void homeworkActions.loadList()}>
+            TRY AGAIN
+          </Button>
+        </div>
+      )}
+      {list.loaded && items.length === 0 && (
+        <div className={styles.empty}>
+          <img className={styles.mascot} src={tab === 'todo' ? MASCOT.celebrate : MASCOT.sleep} alt="" />
+          <p className={styles.status}>
+            {tab === 'todo' ? 'ALL DONE! NO HOMEWORK NOW.' : 'NOTHING HERE YET.'}
+          </p>
+        </div>
+      )}
+      {items.length > 0 && (
+        <ul className={styles.list}>
+          {items.map((item) => (
+            <Card key={item.id} item={item} />
+          ))}
+        </ul>
+      )}
+      <GuideButton label="GUIDE" className={styles.guide} />
+    </>
+  );
+}
+
+function Card({ item }: { item: AssignmentModel }) {
+  const primary = () => {
+    playSfx(SFX.UI_START);
+    if (item.isDone && !item.canStart)
+      platformActions.openHomework({ name: 'result', assignmentId: item.id });
+    else platformActions.openHomework({ name: 'do', assignmentId: item.id });
+  };
+  return (
+    <li className={clsx(styles.card, item.isTodo && styles.todo, item.isGraded && styles.graded)}>
+      <div className={styles.head}>
+        <h2 className={styles.title}>{item.worksheetTitle}</h2>
+        <span className={clsx(styles.badge, styles[`s_${item.statusLabel.replace(/\s/g, '_')}`])}>
+          {item.statusLabel}
+        </span>
+      </div>
+      <p className={styles.sub}>
+        {item.subtitle} · {item.itemCount} {item.itemCount === 1 ? 'QUESTION' : 'QUESTIONS'}
+        {item.unreadComments > 0 && <span className={styles.unread}> · {item.unreadComments} NEW NOTE</span>}
+      </p>
+      {item.isGraded && (
+        <p className={styles.score}>
+          <Stars count={item.stars} /> {item.scoreText}
+          {item.best?.rank && <span className={styles.rank}>#{item.best.rank}</span>}
+        </p>
+      )}
+      <div className={styles.actions}>
+        {item.isDone && (
+          <Button
+            color="blue"
+            onClick={() => platformActions.openHomework({ name: 'result', assignmentId: item.id })}
+          >
+            SEE RESULT
+          </Button>
+        )}
+        {(item.canStart || !item.isDone) && (
+          <Button color={item.isDone ? 'cream' : 'green'} disabled={!item.canStart} onClick={primary}>
+            {item.canStart ? item.actionLabel : item.isUpcoming ? 'SOON' : 'CLOSED'}
+          </Button>
+        )}
+      </div>
+    </li>
+  );
+}
+
+export function Stars({ count }: { count: number }) {
+  return (
+    <span className={styles.stars} aria-label={`${count} of 3 stars`}>
+      {[0, 1, 2].map((i) => (
+        <Icon key={i} name="star" size={22} className={clsx(styles.star, i >= count && styles.off)} />
+      ))}
+    </span>
+  );
+}

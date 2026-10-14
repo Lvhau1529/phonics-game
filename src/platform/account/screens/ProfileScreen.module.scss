@@ -177,6 +177,11 @@
     }
   }
 
+  // Nút HOMEWORK chiếm cả hàng
+  .homework {
+    grid-column: 1 / -1;
+  }
+
   .messages {
     position: relative;
   }

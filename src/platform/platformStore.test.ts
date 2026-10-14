@@ -20,12 +20,36 @@ describe('parseHash', () => {
     expect(parseHash('#/account/unknown')).toEqual({ kind: 'account', page: 'profile' });
   });
 
+  it('#/homework[/<id>[/result|ranking]] -> màn bài tập', () => {
+    expect(parseHash('#/homework')).toEqual({ kind: 'homework', page: { name: 'list' } });
+    expect(parseHash('#/homework/a1')).toEqual({
+      kind: 'homework',
+      page: { name: 'do', assignmentId: 'a1' },
+    });
+    expect(parseHash('#/homework/a1/result')).toEqual({
+      kind: 'homework',
+      page: { name: 'result', assignmentId: 'a1' },
+    });
+    expect(parseHash('#/homework/a1/ranking')).toEqual({
+      kind: 'homework',
+      page: { name: 'ranking', assignmentId: 'a1' },
+    });
+    expect(parseHash('#/homework/a1/other')).toEqual({
+      kind: 'homework',
+      page: { name: 'do', assignmentId: 'a1' },
+    });
+  });
+
   it('hashOf là nghịch đảo của parseHash', () => {
     const routes = [
       { kind: 'hub' },
       { kind: 'game', gameId: 'bread-catcher' },
       { kind: 'account', page: 'profile' },
       { kind: 'account', page: 'notifications' },
+      { kind: 'homework', page: { name: 'list' } },
+      { kind: 'homework', page: { name: 'do', assignmentId: 'a1' } },
+      { kind: 'homework', page: { name: 'result', assignmentId: 'a1' } },
+      { kind: 'homework', page: { name: 'ranking', assignmentId: 'a1' } },
     ] as const;
     routes.forEach((route) => expect(parseHash(hashOf(route))).toEqual(route));
   });

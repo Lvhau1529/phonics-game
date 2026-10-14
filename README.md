@@ -134,6 +134,10 @@ Biến được kiểm tra bằng zod ở `platform/account/config.ts` (`OFFLINE
 | `#/account/edit`          | EDIT PROFILE | tên + avatar (`PATCH /me/profile`); đổi lớp phải nhờ giáo viên                                                                                                                                                     |
 | `#/account/ranking`       | RANKING      | tab WEEK / MONTH / ALL + chip lọc game (`GET /me/class/ranking`)                                                                                                                                                   |
 | `#/account/notifications` | MESSAGES     | thông báo; mở màn là đánh dấu đã đọc (`PATCH /me/notifications/read`)                                                                                                                                              |
+| `#/homework`              | HOMEWORK     | bài tập về nhà (phiếu GV giao): tab TO DO / DONE / ALL (`GET /me/assignments`) — `src/platform/homework/`                                                                                                           |
+| `#/homework/<id>`         | làm bài      | một câu mỗi màn, 14 dạng câu (`renderers/`), chạm để chọn, bàn phím a–z trên màn, ghi âm / tô chữ tải lên object storage; tự lưu `PUT /me/submissions/:id/answers` sau 2 s + bản nháp localStorage; SEND = `POST …/submit` |
+| `#/homework/<id>/result`  | RESULT       | sao / điểm / hạng, SEE ANSWERS (đúng / sai, đáp án nếu GV cho xem), nhận xét của GV + REPLY (`/me/submissions/:id/comments`), TRY AGAIN khi còn lượt                                                             |
+| `#/homework/<id>/ranking` | RANKING      | xếp hạng theo bài (`GET /me/assignments/:id/ranking`)                                                                                                                                                              |
 
 Khách mở màn cần đăng nhập → hiện SIGN IN tại chỗ (`AccountRoot.tsx`). Màn tài khoản là một chunk tải động
 riêng (`PlatformApp.tsx`). Thanh trên màn chọn game có nút **SIGN IN** (khách) / avatar + tên (đã đăng nhập) và
@@ -210,6 +214,7 @@ Thông báo: `GET /me/notifications?unread=true` khi mở app, quay lại tab, m
 | `phonics-arcade:event-queue`  | sự kiện VIEW / PLAY chờ gửi                   |
 | `phonics-arcade:client-id`    | UUID ẩn danh của thiết bị (sự kiện)           |
 | `phonics-arcade:catalog`      | cache `GET /public/games`                     |
+| `phonics-arcade:homework:<submissionId>` | bản nháp câu trả lời bài tập đang làm (`{ userId, assignmentId, answers, updatedAt }`) — gộp với bản server khi mở lại, xoá khi nộp |
 
 Icon dùng riêng cho phần này (trophy, medal, crown, star, chuông, check, settings, linh vật ong ngủ) xuất từ
 Bee pack bằng `pnpm assets:ui` (bảng `EXPORTS` / `MASCOTS` trong `tools/arcade_ui/build_ui.py`).

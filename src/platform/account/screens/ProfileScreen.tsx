@@ -23,6 +23,7 @@ import { MASCOT } from '@/platform/ui/icons';
 import LottieLoader from '@/platform/ui/LottieLoader';
 import ScreenHeader from '@/platform/ui/ScreenHeader';
 import BellIcon from '@/platform/ui/svg/BellIcon';
+import BookIcon from '@/platform/ui/svg/BookIcon';
 import styles from '@/platform/account/screens/ProfileScreen.module.scss';
 
 export default function ProfileScreen({ games }: { games: readonly GameManifest[] }) {
@@ -107,6 +108,9 @@ export default function ProfileScreen({ games }: { games: readonly GameManifest[
       </section>
 
       <div className={styles.actions}>
+        <Button color="green" className={styles.homework} onClick={() => platformActions.openHomework()}>
+          <BookIcon size={24} /> HOMEWORK
+        </Button>
         <Button color="orange" onClick={() => platformActions.openAccount('ranking')}>
           <Icon name="trophy" size={24} /> RANKING
         </Button>

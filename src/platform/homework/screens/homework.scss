@@ -1,0 +1,28 @@
+// Mixin dùng chung cho các màn bài tập (không sinh CSS khi chỉ @use).
+@use '@/platform/styles/abstracts' as *;
+
+/// Thẻ kem viền mực
+@mixin hw-card {
+  @include card;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/// Dòng trạng thái / lỗi giữa màn
+@mixin hw-status {
+  margin: 6px 0;
+  color: var(--color-brown);
+  font-size: 15px;
+  font-weight: 800;
+  text-align: center;
+}
+
+/// Khối rỗng (linh vật + câu)
+@mixin hw-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 24px 0;
+}

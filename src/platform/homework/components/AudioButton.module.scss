@@ -1,0 +1,36 @@
+@use '@/platform/styles/abstracts' as *;
+
+@layer components {
+  @include keyframes-bob(bob, -4px);
+
+  .audio {
+    display: inline-grid;
+    flex: none;
+    place-items: center;
+    width: 52px;
+    height: 52px;
+    border: 3px solid var(--color-ink);
+    border-radius: 50%;
+    background: var(--color-blue);
+    box-shadow: 0 4px 0 var(--color-blue-edge);
+    cursor: pointer;
+
+    &:active {
+      transform: translateY(3px);
+      box-shadow: 0 1px 0 var(--color-blue-edge);
+    }
+
+    @include focus-ring;
+  }
+
+  .lg {
+    width: 64px;
+    height: 64px;
+  }
+
+  .playing {
+    background: var(--color-green);
+    box-shadow: 0 4px 0 var(--color-green-edge);
+    animation: bob 0.6s ease-in-out infinite;
+  }
+}

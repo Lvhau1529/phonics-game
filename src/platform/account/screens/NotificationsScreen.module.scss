@@ -55,6 +55,27 @@
     color: #fff;
   }
 
+  // Mục bài tập: nút trong suốt phủ kín thẻ
+  .link {
+    padding: 0;
+  }
+
+  .open {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+    padding: 12px;
+    border: 0;
+    border-radius: inherit;
+    background: none;
+    color: inherit;
+    font: inherit;
+    text-align: left;
+    cursor: pointer;
+
+    @include focus-ring;
+  }
+
   .body {
     display: flex;
     flex: 1;

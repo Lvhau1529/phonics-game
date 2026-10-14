@@ -1,39 +1,33 @@
 /**
  * Đại dương phía sau các màn React (Home / Setup / Results): nền biome của cấp đang chọn (đổi cấp ở
- * Setup thì nền đổi theo), cá của bé bơi lượn, đàn cá nhỏ bơi qua, kèm nhạc menu
- * (màn kết quả giữ nhạc kết thúc do OceanScene phát).
+ * Setup thì nền đổi theo), cá của bé bơi lượn, đàn cá kiểu Feeding Frenzy bơi qua (chỉ trang trí),
+ * kèm nhạc menu (màn kết quả giữ nhạc kết thúc do OceanScene phát).
  */
 import Phaser from 'phaser';
 import { getLevel } from '@/games/phonics-ocean/content/levels';
 import { MUSIC } from '@/games/phonics-ocean/game/config/assets';
-import { PREY_KEYS, playerFrame, PLAYER_FRAMES } from '@/games/phonics-ocean/game/config/sprites';
+import { playerFrame, PLAYER_FRAMES } from '@/games/phonics-ocean/game/config/sprites';
 import { DEPTH, FEEL } from '@/games/phonics-ocean/game/config/theme';
 import { SCENES } from '@/games/phonics-ocean/game/core/keys';
 import { getAudio } from '@/games/phonics-ocean/game/core/services';
 import OceanBackground from '@/games/phonics-ocean/game/objects/OceanBackground';
+import SchoolDirector from '@/games/phonics-ocean/game/systems/SchoolDirector';
 import { phonicsOceanStore, type Screen } from '@/games/phonics-ocean/session/store';
 import { setupView, view } from '@/platform/phaser/view';
-import { shuffle } from '@/shared/random';
 
 export type LobbyScreen = Exclude<Screen, 'play'>;
 
-const SCHOOL_SIZE = 6;
-
-interface Swimmer {
-  image: Phaser.GameObjects.Image;
-  vx: number;
-  baseY: number;
-  phase: number;
-}
+/** Màn chờ thưa cá hơn màn chơi để không rối chữ của màn React */
+const LOBBY_DENSITY = 0.7;
 
 export default class LobbyScene extends Phaser.Scene {
   private screen: LobbyScreen | null = null;
   private biome = '';
   private background: OceanBackground | null = null;
+  private schools!: SchoolDirector;
   private hero!: Phaser.GameObjects.Image;
   private heroFrame = 0;
   private heroTimer = 0;
-  private swimmers: Swimmer[] = [];
   private elapsed = 0;
 
   constructor() {
@@ -44,29 +38,13 @@ export default class LobbyScene extends Phaser.Scene {
     this.screen = null;
     this.biome = '';
     this.background = null;
-    this.swimmers = [];
     this.elapsed = 0;
     const { width, height } = setupView(this);
     this.drawBackground();
 
     this.hero = this.add.image(width / 2, height * 0.7, playerFrame(2, 0)).setDepth(DEPTH.PLAYER);
-    shuffle(PREY_KEYS)
-      .slice(0, SCHOOL_SIZE)
-      .forEach((key, index) => {
-        const direction = index % 2 === 0 ? 1 : -1;
-        const image = this.add
-          .image(Phaser.Math.Between(0, width), height * (0.2 + 0.12 * index), key)
-          .setDepth(DEPTH.PREY)
-          .setAlpha(0.9)
-          .setFlipX(direction < 0);
-        image.setScale((FEEL.preyWidth * 0.75) / image.width);
-        this.swimmers.push({
-          image,
-          vx: Phaser.Math.Between(18, 34) * direction,
-          baseY: image.y,
-          phase: Math.random() * Math.PI * 2,
-        });
-      });
+    this.schools = new SchoolDirector(this, new Phaser.Geom.Rectangle(0, 0, width, height), LOBBY_DENSITY);
+    this.schools.populate(null);
 
     // Đổi cấp ở Setup -> đổi nền theo biome của cấp
     const unsubscribe = phonicsOceanStore.subscribe(() => this.drawBackground());
@@ -77,8 +55,7 @@ export default class LobbyScene extends Phaser.Scene {
 
   override update(_time: number, delta: number): void {
     const { width, height } = view(this);
-    const dt = delta / 1000;
-    this.elapsed += dt;
+    this.elapsed += delta / 1000;
 
     // Cá của bé bơi hình số 8 ở nửa dưới (dưới logo / nút của màn React)
     const t = this.elapsed * 0.45;
@@ -95,14 +72,8 @@ export default class LobbyScene extends Phaser.Scene {
     const scale = (FEEL.playerHeight[2] * 1.3) / this.hero.height;
     this.hero.setScale(scale * facing, scale);
 
-    this.swimmers.forEach((swimmer) => {
-      swimmer.phase += dt * 2;
-      swimmer.image.x += swimmer.vx * dt;
-      swimmer.image.y = swimmer.baseY + Math.sin(swimmer.phase) * 5;
-      const half = swimmer.image.displayWidth / 2;
-      if (swimmer.vx > 0 && swimmer.image.x > width + half) swimmer.image.x = -half;
-      if (swimmer.vx < 0 && swimmer.image.x < -half) swimmer.image.x = width + half;
-    });
+    this.schools.update(delta, 1, null);
+    this.background?.follow(x, y);
   }
 
   setScreen(screen: LobbyScreen): void {

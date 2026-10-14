@@ -6,6 +6,7 @@
  *   unlocked — vừa mở khoá xong
  *   soon        — bấm thẻ COMING SOON
  *   accountSoon — bấm SIGN IN khi chưa có API (đăng nhập, điểm, xếp hạng, thông báo đang phát triển)
+ *   homeworkSoon — bấm HOMEWORK khi chưa có API
  */
 import { SFX } from '@/platform/audio/sfx';
 import { unlockWithGems } from '@/platform/account/gamesSync';
@@ -22,7 +23,8 @@ export type HubDialogState =
   | { kind: 'gems' }
   | { kind: 'locked' | 'unlock' | 'unlocked'; game: GameManifest }
   | { kind: 'soon' }
-  | { kind: 'accountSoon' };
+  | { kind: 'accountSoon' }
+  | { kind: 'homeworkSoon' };
 
 interface HubDialogsProps {
   dialog: HubDialogState;
@@ -166,6 +168,24 @@ export default function HubDialogs({ dialog, games, isUnlocked, onChange, onPlay
           }
         >
           <p>Sign in, points and class ranking are on the way.</p>
+          <p>For now, keep playing and collect gems!</p>
+        </Dialog>
+      );
+
+    case 'homeworkSoon':
+      return (
+        <Dialog
+          title="COMING SOON!"
+          image={MASCOT.comingSoon}
+          openSfx={SFX.COMING_SOON}
+          onClose={close}
+          actions={
+            <Button color="orange" onClick={close}>
+              OK!
+            </Button>
+          }
+        >
+          <p>Homework from your teacher is on the way.</p>
           <p>For now, keep playing and collect gems!</p>
         </Dialog>
       );

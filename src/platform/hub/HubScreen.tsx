@@ -16,6 +16,7 @@ import { walletStore } from '@/platform/gems/wallet';
 import { useStore } from '@/platform/hooks/useStore';
 import AuthorBadge from '@/platform/hub/AuthorBadge';
 import { GameCard, UpcomingCard } from '@/platform/hub/GameCard';
+import HomeworkBanner from '@/platform/homework/HomeworkBanner';
 import GemCounter from '@/platform/hub/GemCounter';
 import HubDialogs, { type HubDialogState } from '@/platform/hub/HubDialogs';
 import { platformActions } from '@/platform/platformStore';
@@ -92,6 +93,7 @@ export default function HubScreen({ games, upcoming, isUnlocked }: HubScreenProp
         </span>
       </h1>
       <p className={styles.subtitle}>Choose a game!</p>
+      <HomeworkBanner onUnavailable={() => setDialog({ kind: 'homeworkSoon' })} />
 
       <ul className={styles.games}>
         {games.map((game) => {

@@ -269,6 +269,201 @@
     "width": 208,
     "height": 140
   },
+  "predator.barracuda.0": {
+    "path": "assets/phonics-ocean/predators/barracuda_0.png",
+    "width": 364,
+    "height": 132
+  },
+  "predator.barracuda.1": {
+    "path": "assets/phonics-ocean/predators/barracuda_1.png",
+    "width": 594,
+    "height": 132
+  },
+  "predator.barracuda.2": {
+    "path": "assets/phonics-ocean/predators/barracuda_2.png",
+    "width": 505,
+    "height": 132
+  },
+  "school.tiny.gray.0": {
+    "path": "assets/phonics-ocean/school/tiny_gray_0.png",
+    "width": 72,
+    "height": 48
+  },
+  "school.tiny.gray.1": {
+    "path": "assets/phonics-ocean/school/tiny_gray_1.png",
+    "width": 72,
+    "height": 50
+  },
+  "school.tiny.gray.2": {
+    "path": "assets/phonics-ocean/school/tiny_gray_2.png",
+    "width": 72,
+    "height": 50
+  },
+  "school.tiny.gray.3": {
+    "path": "assets/phonics-ocean/school/tiny_gray_3.png",
+    "width": 72,
+    "height": 51
+  },
+  "school.tiny.gray.4": {
+    "path": "assets/phonics-ocean/school/tiny_gray_4.png",
+    "width": 72,
+    "height": 50
+  },
+  "school.tiny.gray.5": {
+    "path": "assets/phonics-ocean/school/tiny_gray_5.png",
+    "width": 72,
+    "height": 51
+  },
+  "school.tiny.pink.0": {
+    "path": "assets/phonics-ocean/school/tiny_pink_0.png",
+    "width": 72,
+    "height": 53
+  },
+  "school.tiny.pink.1": {
+    "path": "assets/phonics-ocean/school/tiny_pink_1.png",
+    "width": 72,
+    "height": 55
+  },
+  "school.tiny.pink.2": {
+    "path": "assets/phonics-ocean/school/tiny_pink_2.png",
+    "width": 72,
+    "height": 55
+  },
+  "school.tiny.pink.3": {
+    "path": "assets/phonics-ocean/school/tiny_pink_3.png",
+    "width": 72,
+    "height": 52
+  },
+  "school.tiny.pink.4": {
+    "path": "assets/phonics-ocean/school/tiny_pink_4.png",
+    "width": 72,
+    "height": 55
+  },
+  "school.tiny.pink.5": {
+    "path": "assets/phonics-ocean/school/tiny_pink_5.png",
+    "width": 72,
+    "height": 53
+  },
+  "school.tiny.yellow.0": {
+    "path": "assets/phonics-ocean/school/tiny_yellow_0.png",
+    "width": 72,
+    "height": 55
+  },
+  "school.tiny.yellow.1": {
+    "path": "assets/phonics-ocean/school/tiny_yellow_1.png",
+    "width": 72,
+    "height": 52
+  },
+  "school.tiny.yellow.2": {
+    "path": "assets/phonics-ocean/school/tiny_yellow_2.png",
+    "width": 72,
+    "height": 52
+  },
+  "school.tiny.yellow.3": {
+    "path": "assets/phonics-ocean/school/tiny_yellow_3.png",
+    "width": 72,
+    "height": 52
+  },
+  "school.tiny.yellow.4": {
+    "path": "assets/phonics-ocean/school/tiny_yellow_4.png",
+    "width": 72,
+    "height": 52
+  },
+  "school.tiny.yellow.5": {
+    "path": "assets/phonics-ocean/school/tiny_yellow_5.png",
+    "width": 72,
+    "height": 55
+  },
+  "school.tiny.green.0": {
+    "path": "assets/phonics-ocean/school/tiny_green_0.png",
+    "width": 72,
+    "height": 52
+  },
+  "school.tiny.green.1": {
+    "path": "assets/phonics-ocean/school/tiny_green_1.png",
+    "width": 72,
+    "height": 50
+  },
+  "school.tiny.green.2": {
+    "path": "assets/phonics-ocean/school/tiny_green_2.png",
+    "width": 72,
+    "height": 48
+  },
+  "school.tiny.green.3": {
+    "path": "assets/phonics-ocean/school/tiny_green_3.png",
+    "width": 72,
+    "height": 52
+  },
+  "school.tiny.green.4": {
+    "path": "assets/phonics-ocean/school/tiny_green_4.png",
+    "width": 72,
+    "height": 50
+  },
+  "school.tiny.green.5": {
+    "path": "assets/phonics-ocean/school/tiny_green_5.png",
+    "width": 72,
+    "height": 50
+  },
+  "school.medium.striped.0": {
+    "path": "assets/phonics-ocean/school/medium_striped_0.png",
+    "width": 116,
+    "height": 82
+  },
+  "school.medium.striped.1": {
+    "path": "assets/phonics-ocean/school/medium_striped_1.png",
+    "width": 116,
+    "height": 82
+  },
+  "school.medium.striped.2": {
+    "path": "assets/phonics-ocean/school/medium_striped_2.png",
+    "width": 116,
+    "height": 106
+  },
+  "school.medium.butterfly.0": {
+    "path": "assets/phonics-ocean/school/medium_butterfly_0.png",
+    "width": 116,
+    "height": 110
+  },
+  "school.medium.butterfly.1": {
+    "path": "assets/phonics-ocean/school/medium_butterfly_1.png",
+    "width": 116,
+    "height": 139
+  },
+  "school.medium.butterfly.2": {
+    "path": "assets/phonics-ocean/school/medium_butterfly_2.png",
+    "width": 116,
+    "height": 119
+  },
+  "school.medium.red.0": {
+    "path": "assets/phonics-ocean/school/medium_red_0.png",
+    "width": 116,
+    "height": 84
+  },
+  "school.medium.red.1": {
+    "path": "assets/phonics-ocean/school/medium_red_1.png",
+    "width": 116,
+    "height": 83
+  },
+  "school.medium.red.2": {
+    "path": "assets/phonics-ocean/school/medium_red_2.png",
+    "width": 116,
+    "height": 83
+  },
+  "school.big.grouper.0": {
+    "path": "assets/phonics-ocean/school/big_grouper_0.png",
+    "width": 180,
+    "height": 103
+  },
+  "school.big.grouper.1": {
+    "path": "assets/phonics-ocean/school/big_grouper_1.png",
+    "width": 180,
+    "height": 100
+  },
+  "school.big.grouper.2": {
+    "path": "assets/phonics-ocean/school/big_grouper_2.png",
+    "width": 180,
+    "height": 105
+  },
   "item.star": {
     "path": "assets/phonics-ocean/items/star.png",
     "width": 96,
@@ -301,32 +496,32 @@
   },
   "bg.coral_reef": {
     "path": "assets/phonics-ocean/backgrounds/coral_reef.png",
-    "width": 423,
-    "height": 474
+    "width": 1692,
+    "height": 1896
   },
   "bg.shipwreck": {
     "path": "assets/phonics-ocean/backgrounds/shipwreck.png",
-    "width": 471,
-    "height": 474
+    "width": 1884,
+    "height": 1896
   },
   "bg.deep_ocean": {
     "path": "assets/phonics-ocean/backgrounds/deep_ocean.png",
-    "width": 462,
-    "height": 474
+    "width": 1848,
+    "height": 1896
   },
   "bg.ice_sea": {
     "path": "assets/phonics-ocean/backgrounds/ice_sea.png",
-    "width": 474,
-    "height": 474
+    "width": 1896,
+    "height": 1896
   },
   "bg.volcano": {
     "path": "assets/phonics-ocean/backgrounds/volcano.png",
-    "width": 498,
-    "height": 474
+    "width": 1992,
+    "height": 1896
   },
   "bg.treasure_zone": {
     "path": "assets/phonics-ocean/backgrounds/treasure_zone.png",
-    "width": 498,
-    "height": 474
+    "width": 1992,
+    "height": 1896
   }
 }

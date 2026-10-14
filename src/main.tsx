@@ -20,6 +20,7 @@ import { GAMES, UPCOMING } from '@/games';
 import { authActions } from '@/platform/account/authStore';
 import { ACCOUNT_ENABLED } from '@/platform/account/config';
 import { gamesSync } from '@/platform/account/gamesSync';
+import { homeworkActions } from '@/platform/homework/store/homeworkStore';
 import { notificationsActions } from '@/platform/account/notificationsStore';
 import { scoreSync } from '@/platform/account/scoreSync';
 import { events } from '@/platform/analytics/events';
@@ -34,6 +35,7 @@ if (ACCOUNT_ENABLED) {
     scoreSync.init();
     notificationsActions.init();
     gamesSync.init();
+    homeworkActions.init();
   });
   events.init();
 }

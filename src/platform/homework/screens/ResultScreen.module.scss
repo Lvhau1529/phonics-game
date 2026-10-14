@@ -1,0 +1,125 @@
+@use '@/platform/styles/abstracts' as *;
+@use '@/platform/homework/screens/homework' as *;
+
+@layer components {
+  @include keyframes-bob;
+  @include keyframes-pop;
+
+  .status {
+    @include hw-status;
+    color: var(--color-gold);
+    text-shadow: var(--outline);
+  }
+
+  .empty {
+    @include hw-empty;
+  }
+
+  .card {
+    @include hw-card;
+    align-items: center;
+    gap: 6px;
+    margin-top: 44px;
+    padding-top: 0;
+    text-align: center;
+    animation: pop 0.3s cubic-bezier(0.2, 1.4, 0.4, 1);
+  }
+
+  .graded {
+    border-color: var(--color-honey);
+  }
+
+  .mascot {
+    @include mascot-frame(110px);
+    margin-top: -52px;
+    animation: bob 1.8s ease-in-out infinite;
+  }
+
+  .title {
+    margin: 6px 0 0;
+    color: var(--color-ink);
+    font-size: 22px;
+    font-weight: 800;
+    line-height: 1.15;
+  }
+
+  .score {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0;
+    color: var(--color-ink);
+    font-size: 32px;
+    font-weight: 800;
+  }
+
+  .rank {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 2px 10px;
+    border: 3px solid var(--color-ink);
+    border-radius: 999px;
+    background: var(--color-gold);
+    font-size: 18px;
+  }
+
+  .checking {
+    margin: 0;
+    padding: 6px 14px;
+    border: 3px solid var(--color-ink);
+    border-radius: 999px;
+    background: var(--color-blue);
+    color: #fff;
+    font-size: 17px;
+    font-weight: 800;
+  }
+
+  .cheer {
+    margin: 0;
+    color: var(--color-orange-edge);
+    font-size: 16px;
+    font-weight: 800;
+  }
+
+  .late {
+    margin: 0;
+    color: var(--color-red-edge);
+    font-size: 13px;
+    font-weight: 800;
+  }
+
+  .actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+
+    > * {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    > :last-child:nth-child(odd) {
+      grid-column: 1 / -1;
+    }
+  }
+
+  .review {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .note {
+    margin: 0;
+    padding: 6px 10px;
+    border-left: 4px solid var(--color-blue);
+    border-radius: 0 10px 10px 0;
+    background: #eef5ff;
+    color: var(--color-ink);
+    font-size: 15px;
+    font-weight: 600;
+  }
+}

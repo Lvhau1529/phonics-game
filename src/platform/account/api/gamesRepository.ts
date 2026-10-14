@@ -8,11 +8,11 @@ import {
   StudentGamesResponse,
   type UnlockWithGemsBody,
 } from '@phonics/contracts';
-import { request } from '@/platform/api/client';
+import { AuthMode, HttpMethod, request } from '@/platform/api/client';
 
 export const gamesRepository = {
-  catalog: () => request(ENDPOINTS.public.games, { schema: PublicGamesResponse, auth: 'none' }),
+  catalog: () => request(ENDPOINTS.public.games, { schema: PublicGamesResponse, auth: AuthMode.NONE }),
   mine: () => request(ENDPOINTS.me.games, { schema: StudentGamesResponse }),
   unlockWithGems: (gameId: string, body: UnlockWithGemsBody) =>
-    request(ENDPOINTS.me.unlockGame(gameId), { method: 'POST', body }),
+    request(ENDPOINTS.me.unlockGame(gameId), { method: HttpMethod.POST, body }),
 };

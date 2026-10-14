@@ -29,6 +29,21 @@ describe('NotificationModel', () => {
     expect(read.markedRead('2026-10-02T00:00:00.000Z')).toBe(read);
   });
 
+  it('target: thông báo bài tập mở màn làm bài / kết quả; loại khác hoặc thiếu assignmentId -> null', () => {
+    const data = { assignmentId: 'a1', submissionId: 's1' };
+    expect(new NotificationModel({ ...dto, type: 'ASSIGNMENT_NEW', data }).target).toEqual({
+      name: 'do',
+      assignmentId: 'a1',
+    });
+    expect(new NotificationModel({ ...dto, type: 'SUBMISSION_GRADED', data }).target).toEqual({
+      name: 'result',
+      assignmentId: 'a1',
+    });
+    expect(new NotificationModel({ ...dto, type: 'COMMENT_REPLY', data }).target?.name).toBe('result');
+    expect(new NotificationModel({ ...dto, type: 'ASSIGNMENT_NEW', data: null }).target).toBeNull();
+    expect(new NotificationModel(dto).target).toBeNull();
+  });
+
   it('round-trip: toJSON -> NotificationView.parse -> new NotificationModel', () => {
     const item = new NotificationModel(dto);
     const restored = new NotificationModel(NotificationView.parse(JSON.parse(JSON.stringify(item))));

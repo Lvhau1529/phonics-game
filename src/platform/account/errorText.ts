@@ -21,6 +21,18 @@ const MESSAGES: Partial<Record<ApiErrorCode, string>> = {
   NOT_FOUND: 'Not found.',
   BAD_RESPONSE: 'Something went wrong. Try again later.',
   INTERNAL: 'Something went wrong. Try again later.',
+  // Bài tập về nhà
+  ASSIGNMENT_NOT_OPEN: 'This homework is not open now.',
+  ATTEMPTS_EXHAUSTED: 'No more tries for this homework.',
+  SUBMISSION_NOT_EDITABLE: 'This homework is already sent.',
+  SUBMISSION_NOT_SUBMITTED: 'Send your homework first.',
+  MEDIA_NOT_READY: 'Your recording is still uploading. Try again.',
+  MEDIA_TOO_LARGE: 'That file is too big.',
+  MEDIA_TYPE_UNSUPPORTED: 'That file type does not work here.',
+  MEDIA_UPLOAD_INCOMPLETE: 'Upload did not finish. Try again.',
+  MEDIA_STORAGE_DISABLED: 'Recording is not available right now.',
+  ANSWER_TYPE_MISMATCH: 'Something went wrong. Try again later.',
+  FORBIDDEN_SCOPE: 'This homework is not yours.',
 };
 
 const FALLBACK = 'Something went wrong. Try again later.';

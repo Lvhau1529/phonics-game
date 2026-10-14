@@ -16,13 +16,24 @@ import {
   AuthResponse,
   ENDPOINTS,
   REFRESH_TRANSPORT_HEADER,
-  type ErrorCode,
+  ErrorCode,
+  RefreshTransport,
 } from '@phonics/contracts';
 import type { ZodType } from 'zod';
 import { API_URL } from '@/platform/account/config';
 import { createStore } from '@/shared/createStore';
+import { type ValueOf } from '@/shared/types';
 
-export type ApiErrorCode = ErrorCode | 'NETWORK' | 'BAD_RESPONSE';
+/** Mã lỗi chỉ client sinh ra (không có trong `ErrorCode` của server) */
+export const ClientErrorCode = {
+  /** Không tới được server (mất mạng, DNS, CORS) */
+  NETWORK: 'NETWORK',
+  /** Server trả về nhưng response không đúng schema */
+  BAD_RESPONSE: 'BAD_RESPONSE',
+} as const;
+export type ClientErrorCode = ValueOf<typeof ClientErrorCode>;
+
+export type ApiErrorCode = ErrorCode | ClientErrorCode;
 
 export class ApiError extends Error {
   readonly statusCode: number;
@@ -39,7 +50,7 @@ export class ApiError extends Error {
 
   /** Không tới được server (mất mạng, DNS, CORS) — khác với server trả lỗi */
   get isNetworkError(): boolean {
-    return this.code === 'NETWORK';
+    return this.code === ClientErrorCode.NETWORK;
   }
 
   /** Lỗi do client (4xx) — gửi lại cũng không được */
@@ -66,19 +77,30 @@ export function clearTokens(): void {
   tokenStore.set({ accessToken: null, refreshToken: null });
 }
 
-export type AuthMode =
+export const AuthMode = {
   /** Bắt buộc đăng nhập: gắn bearer, 401 -> refresh -> gọi lại; chưa có access token thì refresh trước */
-  | 'required'
+  REQUIRED: 'required',
   /** Gắn bearer nếu đang đăng nhập, không có cũng gửi (sự kiện ẩn danh) */
-  | 'optional'
+  OPTIONAL: 'optional',
   /** Không gắn bearer (đăng nhập, đăng ký, public) */
-  | 'none';
+  NONE: 'none',
+} as const;
+export type AuthMode = ValueOf<typeof AuthMode>;
+
+export const HttpMethod = {
+  GET: 'GET',
+  POST: 'POST',
+  PATCH: 'PATCH',
+  PUT: 'PUT',
+  DELETE: 'DELETE',
+} as const;
+export type HttpMethod = ValueOf<typeof HttpMethod>;
 
 /** Query string (bỏ qua giá trị undefined) */
 export type QueryParams = Record<string, string | number | boolean | undefined>;
 
 export interface RequestOptions<T> {
-  method?: 'GET' | 'POST' | 'PATCH' | 'PUT' | 'DELETE';
+  method?: HttpMethod;
   body?: unknown;
   query?: QueryParams;
   /** Schema kiểm tra response; không có = không đọc body */
@@ -113,7 +135,7 @@ async function parseError(response: Response): Promise<ApiError> {
   }
   return new ApiError(
     response.status,
-    response.status >= 500 ? 'INTERNAL' : 'VALIDATION_ERROR',
+    response.status >= 500 ? ErrorCode.enum.INTERNAL : ErrorCode.enum.VALIDATION_ERROR,
     response.statusText || `HTTP ${response.status}`,
   );
 }
@@ -123,7 +145,7 @@ async function send(url: string, init: RequestInit): Promise<Response> {
   try {
     return await fetch(url, init);
   } catch (error) {
-    throw new ApiError(0, 'NETWORK', error instanceof Error ? error.message : 'Network error');
+    throw new ApiError(0, ClientErrorCode.NETWORK, error instanceof Error ? error.message : 'Network error');
   }
 }
 
@@ -154,8 +176,8 @@ async function doRefresh(): Promise<boolean> {
   const { refreshToken } = tokenStore.get();
   if (!refreshToken) return false;
   const response = await send(buildUrl(ENDPOINTS.auth.refresh), {
-    method: 'POST',
-    headers: { ...JSON_HEADERS, [REFRESH_TRANSPORT_HEADER]: 'body' },
+    method: HttpMethod.POST,
+    headers: { ...JSON_HEADERS, [REFRESH_TRANSPORT_HEADER]: RefreshTransport.enum.body },
     body: JSON.stringify({ refreshToken }),
   });
   if (!response.ok) {
@@ -167,7 +189,8 @@ async function doRefresh(): Promise<boolean> {
     throw error;
   }
   const parsed = AuthResponse.safeParse(await response.json().catch(() => null));
-  if (!parsed.success) throw new ApiError(response.status, 'BAD_RESPONSE', 'Unexpected refresh response');
+  if (!parsed.success)
+    throw new ApiError(response.status, ClientErrorCode.BAD_RESPONSE, 'Unexpected refresh response');
   lastRefreshed = parsed.data;
   // Token xoay vòng: luôn lưu refresh token MỚI (bản cũ đã bị server vô hiệu)
   setTokens({ accessToken: parsed.data.accessToken, refreshToken: parsed.data.refreshToken ?? refreshToken });
@@ -184,15 +207,15 @@ export function takeRefreshedAuth(): AuthResponse | null {
 // request
 // ---------------------------------------------------------------------------
 export async function request<T = void>(path: string, options: RequestOptions<T> = {}): Promise<T> {
-  const { method = 'GET', body, query, schema, auth = 'required', keepalive } = options;
+  const { method = HttpMethod.GET, body, query, schema, auth = AuthMode.REQUIRED, keepalive } = options;
   const url = buildUrl(path, query);
 
   const attempt = (): Promise<Response> => {
     const headers: Record<string, string> = {};
     if (body !== undefined) Object.assign(headers, JSON_HEADERS);
-    if (path.startsWith('/auth/')) headers[REFRESH_TRANSPORT_HEADER] = 'body';
+    if (path.startsWith('/auth/')) headers[REFRESH_TRANSPORT_HEADER] = RefreshTransport.enum.body;
     const { accessToken } = tokenStore.get();
-    if (auth !== 'none' && accessToken) headers.Authorization = `Bearer ${accessToken}`;
+    if (auth !== AuthMode.NONE && accessToken) headers.Authorization = `Bearer ${accessToken}`;
     return send(url, {
       method,
       headers,
@@ -202,19 +225,19 @@ export async function request<T = void>(path: string, options: RequestOptions<T>
   };
 
   // Vừa mở app (chỉ còn refresh token): lấy access token trước, đỡ một lượt 401
-  if (auth === 'required' && !tokenStore.get().accessToken && tokenStore.get().refreshToken) {
+  if (auth === AuthMode.REQUIRED && !tokenStore.get().accessToken && tokenStore.get().refreshToken) {
     await refreshAccessToken();
   }
 
   let response = await attempt();
-  if (response.status === 401 && auth !== 'none' && tokenStore.get().refreshToken) {
+  if (response.status === 401 && auth !== AuthMode.NONE && tokenStore.get().refreshToken) {
     if (await refreshAccessToken()) response = await attempt();
   }
 
   if (!response.ok) {
     const error = await parseError(response);
     // Hết cách lấy token hợp lệ -> coi như đã đăng xuất
-    if (response.status === 401 && auth === 'required') clearTokens();
+    if (response.status === 401 && auth === AuthMode.REQUIRED) clearTokens();
     throw error;
   }
 
@@ -223,7 +246,7 @@ export async function request<T = void>(path: string, options: RequestOptions<T>
   const parsed = schema.safeParse(json);
   if (!parsed.success) {
     console.error('[Phonics Arcade] Bad API response', path, parsed.error.issues);
-    throw new ApiError(response.status, 'BAD_RESPONSE', 'Unexpected response');
+    throw new ApiError(response.status, ClientErrorCode.BAD_RESPONSE, 'Unexpected response');
   }
   return parsed.data;
 }
