@@ -27,14 +27,24 @@ export const playerFrame = (biome: Biome, frame: number): string => `player.${bi
 /** Cá mồi mang chữ: 25 màu */
 export const PREY_KEYS: readonly string[] = Object.keys(SPRITES).filter((key) => key.startsWith('prey.'));
 
+/** Gom khung theo loại: "predator.shark.0" -> { shark: ["predator.shark.0", ...] } (loại 1 khung: "hazard.mine") */
+const framesByKind = (group: string): Record<string, readonly string[]> =>
+  Object.keys(SPRITES)
+    .filter((key) => key.startsWith(`${group}.`))
+    .reduce<Record<string, string[]>>((frames, key) => {
+      const kind = key.split('.')[1];
+      (frames[kind] ??= []).push(key);
+      return frames;
+    }, {});
+
 /** Khung bơi của từng loại cá săn mồi */
-export const PREDATOR_FRAMES: Record<string, readonly string[]> = Object.keys(SPRITES)
-  .filter((key) => key.startsWith('predator.'))
-  .reduce<Record<string, string[]>>((frames, key) => {
-    const kind = key.split('.')[1];
-    (frames[kind] ??= []).push(key);
-    return frames;
-  }, {});
+export const PREDATOR_FRAMES = framesByKind('predator');
+
+/** Bạn đồng hành (chỉ trang trí): turtle, dolphin */
+export const HELPER_FRAMES = framesByKind('helper');
+
+/** Chướng ngại vùng nước sâu: jelly, mine, crab, rock */
+export const HAZARD_FRAMES = framesByKind('hazard');
 
 /** Đàn cá kiểu Feeding Frenzy: "tiny.pink" -> các khung bơi (key sprites.json "school.tiny.pink.<i>") */
 export const SCHOOL_FRAMES: Record<string, readonly string[]> = Object.keys(SPRITES)

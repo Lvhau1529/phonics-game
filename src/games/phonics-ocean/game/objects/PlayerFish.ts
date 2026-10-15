@@ -22,6 +22,8 @@ export default class PlayerFish extends Phaser.GameObjects.Container {
   private readonly shieldBubble: Phaser.GameObjects.Image;
   /** Quầng vàng khi FRENZY! */
   private readonly aura: Phaser.GameObjects.Image;
+  /** Nam châm nhỏ lơ lửng trên đầu khi đang bật nam châm */
+  private readonly magnet: Phaser.GameObjects.Image;
   private readonly velocity = new Phaser.Math.Vector2();
   private facing = 1;
   private frame = 0;
@@ -43,7 +45,8 @@ export default class PlayerFish extends Phaser.GameObjects.Container {
     this.sprite = scene.add.image(0, 0, playerFrame(biome, 0));
     this.shieldBubble = scene.add.image(0, 0, FX.BUBBLE).setAlpha(0).setVisible(false);
     this.aura = scene.add.image(0, 0, FX.DOT).setTint(0xffd23f).setAlpha(0).setVisible(false);
-    this.add([this.aura, this.sprite, this.shieldBubble]);
+    this.magnet = scene.add.image(0, 0, 'item.magnet').setVisible(false);
+    this.add([this.aura, this.sprite, this.shieldBubble, this.magnet]);
     this.setDepth(DEPTH.PLAYER);
     this.applySize();
     scene.add.existing(this);
@@ -117,6 +120,27 @@ export default class PlayerFish extends Phaser.GameObjects.Container {
     this.scene.tweens.killTweensOf(this.aura);
     this.aura.setVisible(on).setAlpha(on ? 0.45 : 0);
     if (on) this.scene.tweens.add({ targets: this.aura, alpha: 0.15, duration: 260, yoyo: true, repeat: -1 });
+  }
+
+  /** Nam châm: hiện trên đầu; còn dưới 1,5 giây thì nhấp nháy báo sắp hết */
+  setMagnet(remainingMs: number): void {
+    const on = remainingMs > 0;
+    if (!on) {
+      if (this.magnet.visible) this.scene.tweens.killTweensOf(this.magnet);
+      this.magnet.setVisible(false);
+      return;
+    }
+    if (!this.magnet.visible) {
+      this.magnet.setVisible(true).setAlpha(1);
+      this.scene.tweens.add({
+        targets: this.magnet,
+        angle: { from: -12, to: 12 },
+        duration: 360,
+        yoyo: true,
+        repeat: -1,
+      });
+    }
+    this.magnet.setAlpha(remainingMs < 1500 && Math.floor(remainingMs / 150) % 2 === 0 ? 0.35 : 1);
   }
 
   /** Lớn thêm một cỡ: phồng lên rồi về kích thước mới */
@@ -259,5 +283,6 @@ export default class PlayerFish extends Phaser.GameObjects.Container {
     this.sprite.setScale(scale * this.facing, scale);
     this.shieldBubble.setDisplaySize(h * 1.9, h * 1.9);
     this.aura.setDisplaySize(h * 2.1, h * 1.7);
+    this.magnet.setScale(22 / Math.max(this.magnet.width, this.magnet.height)).setPosition(0, -h * 0.75);
   }
 }

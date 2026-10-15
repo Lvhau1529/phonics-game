@@ -7,6 +7,8 @@
  *   cá săn mồi (có cảnh báo "!") cắn thì mất tim; hết tim / hết giờ / đủ số từ -> kết thúc
  *   đàn cá thường kiểu Feeding Frenzy luôn bơi kín màn: ăn cá nhỏ hơn mình lấy điểm + đầy thanh FRENZY
  *     (FRENZY!: điểm ×2, bơi nhanh), va cá to hơn thì bật ra (session/frenzy.ts)
+ *   đại dương sống (session/sea.ts): nam châm hút cá đúng về phía bé; rùa / cá heo bơi qua (trang trí);
+ *     biome sâu có chướng ngại (sứa, thuỷ lôi, cua, đá rơi) — chạm thì choáng nhẹ, không mất tim
  *
  * Scene chỉ DIỄN: luật nằm ở session/round.ts + session/questions.ts, hình ở objects/ + ui/.
  */
@@ -18,6 +20,8 @@ import { FEEL, THEME } from '@/games/phonics-ocean/game/config/theme';
 import { SCENES } from '@/games/phonics-ocean/game/core/keys';
 import { getAudio, playOceanSfx, type OceanAudio } from '@/games/phonics-ocean/game/core/services';
 import OceanBackground from '@/games/phonics-ocean/game/objects/OceanBackground';
+import Companion from '@/games/phonics-ocean/game/objects/Companion';
+import Hazard from '@/games/phonics-ocean/game/objects/Hazard';
 import PlayerFish, { type SteerInput } from '@/games/phonics-ocean/game/objects/PlayerFish';
 import PowerUp, { type PowerUpKind } from '@/games/phonics-ocean/game/objects/PowerUp';
 import Predator, { showWarning } from '@/games/phonics-ocean/game/objects/Predator';
@@ -32,9 +36,19 @@ import TargetPanel from '@/games/phonics-ocean/game/ui/TargetPanel';
 import { canEat, FRENZY, FrenzyMeter } from '@/games/phonics-ocean/session/frenzy';
 import { QuestionDeck } from '@/games/phonics-ocean/session/questions';
 import { RoundState, RULES } from '@/games/phonics-ocean/session/round';
+import {
+  COMPANIONS,
+  dolphinCheers,
+  HAZARD,
+  HazardClock,
+  hazardHit,
+  hazardKinds,
+  magnetPull,
+  MagnetState,
+} from '@/games/phonics-ocean/session/sea';
 import { phonicsOceanActions, phonicsOceanStore } from '@/games/phonics-ocean/session/store';
 import type { EndReason, Question } from '@/games/phonics-ocean/session/types';
-import { PRAISE, TEXT } from '@/games/phonics-ocean/session/text';
+import { HAZARD_TEXT, PRAISE, TEXT } from '@/games/phonics-ocean/session/text';
 import { SFX } from '@/core/audio/sfx';
 import { setupView } from '@/core/phaser/view';
 import { pickRandom, shuffle } from '@/core/utils/random';
@@ -58,12 +72,20 @@ export default class OceanScene extends Phaser.Scene {
   private background!: OceanBackground;
   private schools!: SchoolDirector;
   private frenzy!: FrenzyMeter;
+  private magnet!: MagnetState;
+  private hazardClock!: HazardClock;
   private predatorsOn = true;
   private phase: Phase = 'intro';
   private question: Question | null = null;
   private fishes: WordFish[] = [];
   private predators: Predator[] = [];
   private powerUps: PowerUp[] = [];
+  private companions: Companion[] = [];
+  private hazards: Hazard[] = [];
+  /** Vừa chạm chướng ngại: không tính chạm lại tới mốc này (ms, theo scene.time.now) */
+  private hazardSafeUntil = 0;
+  private turtleClock = 0;
+  private magnetBubbleClock = 0;
   private incomingPredators = 0;
   private remainingMs = 0;
   private predatorClock = 0;
@@ -89,6 +111,11 @@ export default class OceanScene extends Phaser.Scene {
     this.fishes = [];
     this.predators = [];
     this.powerUps = [];
+    this.companions = [];
+    this.hazards = [];
+    this.hazardSafeUntil = 0;
+    this.turtleClock = COMPANIONS.turtleEveryMs - COMPANIONS.firstTurtleMs;
+    this.magnetBubbleClock = 0;
     this.incomingPredators = 0;
     this.predatorClock = 0;
     this.powerUpClock = 0;
@@ -115,6 +142,8 @@ export default class OceanScene extends Phaser.Scene {
     const { play } = this.layout;
     this.player = new PlayerFish(this, play.centerX, play.centerY, play, this.level.biome);
     this.frenzy = new FrenzyMeter();
+    this.magnet = new MagnetState();
+    this.hazardClock = new HazardClock(this.level.biome);
     this.schools = new SchoolDirector(this, play);
     this.schools.populate({ x: this.player.x, y: this.player.y });
     this.hud = new Hud(this, this.layout, {
@@ -155,20 +184,29 @@ export default class OceanScene extends Phaser.Scene {
     this.predators = this.predators.filter((predator) => !predator.finished);
     this.predatorsFeed();
     this.powerUps = this.powerUps.filter((item) => item.available);
+    this.companions.forEach((companion) => companion.update(delta));
+    this.companions = this.companions.filter((companion) => !companion.finished);
+    this.hazards.forEach((hazard) => hazard.update(delta));
+    this.hazards = this.hazards.filter((hazard) => !hazard.finished);
+    this.turtles(delta);
 
     if (this.phase === 'intro') return;
     frenzy.tick(delta);
     player.setFrenzy(frenzy.active);
     this.hud.setFrenzy(frenzy.display, frenzy.active);
+    this.magnet.tick(delta);
+    player.setMagnet(this.magnet.activeMs);
     this.remainingMs -= delta;
     this.hud.setTime(this.remainingMs);
     if (this.remainingMs <= 0) {
       this.complete('time');
       return;
     }
+    this.pullWithMagnet(delta);
     this.checkPrey();
     this.checkSchool();
     this.checkPredators();
+    this.checkHazards();
     this.checkPowerUps();
     this.spawnTimers(delta);
   }
@@ -276,6 +314,8 @@ export default class OceanScene extends Phaser.Scene {
         TEXT.moreFish,
         THEME.colors.sky,
       );
+
+    if (dolphinCheers(this.round.streak, outcome.rhymeCombo, outcome.grew)) this.spawnCompanion('dolphin');
 
     let delay: number = FEEL.nextQuestionDelay;
     if (outcome.grew) {
@@ -416,7 +456,57 @@ export default class OceanScene extends Phaser.Scene {
         this.hud.setHearts(this.round.hearts);
         this.effects.popup(x, y - 40, TEXT.extraHeart, THEME.colors.red);
         break;
+      case 'magnet':
+        this.magnet.start();
+        this.effects.popup(x, y - 40, TEXT.magnet, THEME.colors.sky);
+        break;
     }
+  }
+
+  /** Nam châm: cá mang chữ đúng ở gần trôi dần về miệng cá của bé (kèm vệt bong bóng nhỏ) */
+  private pullWithMagnet(delta: number): void {
+    if (!this.magnet.active || this.phase !== 'playing') return;
+    const fish = this.fishes.find((item) => item.correct && item.swimming);
+    if (!fish) return;
+    const pull = magnetPull(fish, this.player.mouth, delta);
+    if (pull.x === 0 && pull.y === 0) return;
+    fish.pull(pull.x, pull.y);
+    this.magnetBubbleClock += delta;
+    if (this.magnetBubbleClock >= 260) {
+      this.magnetBubbleClock = 0;
+      this.effects.bubbles(fish.x, fish.y, 1);
+    }
+  }
+
+  /** Chướng ngại: chỉ choáng nhẹ + mất nửa thanh FRENZY, không mất tim (session/sea.ts) */
+  private checkHazards(): void {
+    const { player } = this;
+    if (player.invulnerable || this.time.now < this.hazardSafeUntil) return;
+    const hazard = this.hazards.find((item) => {
+      if (!item.armed) return false;
+      const center = item.hitCenter;
+      return (
+        Phaser.Math.Distance.Between(center.x, center.y, player.x, player.y) <
+        item.hitRadius + player.hitRadius * 0.8
+      );
+    });
+    if (!hazard) return;
+    this.hazardSafeUntil = this.time.now + HAZARD.cooldownMs;
+    const outcome = hazardHit(player.shielded);
+    const { x, y } = player;
+    const from = { x: hazard.x, y: hazard.y };
+    hazard.hit();
+    if (outcome.stun) player.stun();
+    player.bump(from.x, from.y);
+    if (outcome.blocked) {
+      playOceanSfx(this, OCEAN_SFX.COLLECT);
+      this.effects.popup(x, y - 40, TEXT.shield, THEME.colors.sky);
+      return;
+    }
+    if (outcome.frenzyLoss) this.frenzy.bump();
+    playOceanSfx(this, OCEAN_SFX.WRONG, { rate: 0.9 });
+    this.effects.bubbles(x, y, 4);
+    this.effects.popup(x, y - 40, HAZARD_TEXT[hazard.kind], THEME.colors.sky, 20);
   }
 
   // -------------------------------------------------------------------------
@@ -433,6 +523,15 @@ export default class OceanScene extends Phaser.Scene {
         this.predatorClock = Phaser.Math.Between(-2000, 1000);
         this.spawnPredator();
       }
+    }
+    // Chướng ngại đi theo công tắc cá săn mồi (chế độ luyện tập không có)
+    if (
+      this.predatorsOn &&
+      this.hazardClock.tick(delta, { onScreen: this.hazards.length, calm: this.round.predatorsCalm })
+    ) {
+      this.hazards.push(
+        new Hazard(this, pickRandom(hazardKinds(this.level.biome)), this.layout.play, this.player.x),
+      );
     }
     this.powerUpClock += delta;
     if (this.powerUpClock >= FEEL.powerUpEveryMs) {
@@ -460,13 +559,29 @@ export default class OceanScene extends Phaser.Scene {
   }
 
   private spawnPowerUp(): void {
-    const kinds: PowerUpKind[] = ['clock'];
+    const kinds: PowerUpKind[] = ['clock', 'magnet'];
+    // Bé đang gặp khó (nhầm liên tiếp) -> nam châm hay ra hơn
+    if (this.round.predatorsCalm) kinds.push('magnet');
     if (this.predatorsOn) kinds.push('bubble');
     if (this.predatorsOn && this.round.hearts < RULES.hearts) kinds.push('heart', 'heart');
     const { play } = this.layout;
     this.powerUps.push(
       new PowerUp(this, pickRandom(kinds), Phaser.Math.Between(play.x + 40, play.right - 40), play),
     );
+  }
+
+  /** Rùa thỉnh thoảng bơi chậm ngang qua (trang trí — cả lúc intro) */
+  private turtles(delta: number): void {
+    this.turtleClock += delta;
+    if (this.turtleClock < COMPANIONS.turtleEveryMs) return;
+    this.turtleClock = Phaser.Math.Between(-COMPANIONS.turtleJitterMs, COMPANIONS.turtleJitterMs);
+    if (!this.companions.some((companion) => companion.kind === 'turtle')) this.spawnCompanion('turtle');
+  }
+
+  private spawnCompanion(kind: Companion['kind']): void {
+    // Mỗi lúc chỉ một cá heo (chuỗi đúng liên tiếp không dồn đàn)
+    if (kind === 'dolphin' && this.companions.some((companion) => companion.kind === 'dolphin')) return;
+    this.companions.push(new Companion(this, kind, this.layout.play));
   }
 
   // -------------------------------------------------------------------------

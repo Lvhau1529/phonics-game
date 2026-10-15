@@ -72,6 +72,21 @@ export default class WordFish extends Phaser.GameObjects.Container {
     return this.fishState === 'gone';
   }
 
+  /** Đang bơi trong màn (nam châm chỉ hút cá ở trạng thái này) */
+  get swimming(): boolean {
+    return this.fishState === 'swim';
+  }
+
+  /** Nam châm hút: dời cá (cả đường nhấp nhô) về phía cá của bé, quay đầu về phía đó */
+  pull(dx: number, dy: number): void {
+    this.x += dx;
+    this.baseY += dy;
+    if (dx !== 0 && Math.sign(dx) !== Math.sign(this.vx)) {
+      this.vx = -this.vx;
+      this.face();
+    }
+  }
+
   override update(deltaMs: number, bounds: Phaser.Geom.Rectangle, speedScale: number): void {
     if (this.fishState === 'gone') return;
     const dt = deltaMs / 1000;

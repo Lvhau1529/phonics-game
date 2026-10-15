@@ -9,10 +9,11 @@ Nguồn (v3/README.md, v3/GAMEPLAY_PHONICS_V3.md):
   - backgrounds/<biome>.png: nền 6 biome 16:9 (rạn san hô -> núi lửa) -> WebP cùng độ phân giải
   - sheets/*.png: sprite sheet nền magenta (#FF00FF), mỗi hàng một nhóm. Sheet được chia thành các dải ngang
     (SHEETS: box x0, y0, x1, y1), mỗi dải cắt theo lưới rows × cols (common/magenta_sheet.py), thứ tự đọc trái -> phải,
-    trên -> dưới; ô nào không có key thì bỏ (vd cá rùa, cá heo, chướng ngại, nút UI — game chưa dùng).
+    trên -> dưới; ô nào không có key thì bỏ (vd nút UI, VFX — game chưa dùng).
       player_fish_levels_sheet      6 loài cá của bé (mỗi biome một loài) × 4 khung bơi
       word_fish_and_prey_sheet      25 cá mang chữ (nhãn trống — chữ vẽ live trong game) + đàn cá nhỏ / vừa / lớn
-      predators_ui_items_effects    cá săn mồi (cá mập, cá nóc, lươn, cá lồng đèn, cá nhồng) + vật phẩm
+      predators_ui_items_effects    cá săn mồi (cá mập, cá nóc, lươn, cá lồng đèn, cá nhồng), bạn đồng hành (rùa, cá heo),
+                                    chướng ngại (sứa, thuỷ lôi, cua, đá rơi) + vật phẩm (gồm nam châm)
 
 Texture xuất ở độ phân giải canvas (gấp RENDER_SCALE = 2 toạ độ logic), game tự đặt kích thước hiển thị.
 """
@@ -39,7 +40,7 @@ OUT = PUBLIC_ASSETS / "phonics-ocean"
 ASSET_URL = "assets/phonics-ocean"
 MANIFEST = GAME_APP / "src" / "games" / "phonics-ocean" / "game" / "config" / "sprites.json"
 # Thư mục ảnh do script này sinh (xoá sạch trước khi build; sfx/ do tools/build_audio.py sinh — giữ nguyên)
-OUT_DIRS = ("backgrounds", "items", "player", "predators", "prey", "school")
+OUT_DIRS = ("backgrounds", "hazards", "helpers", "items", "player", "predators", "prey", "school")
 
 # Biome theo thứ tự cấp của pack — cũng là thứ tự loài cá của bé trên player_fish_levels_sheet
 BIOMES = ["coral_reef", "kelp_forest", "shipwreck_bay", "twilight_trench", "abyss_cave", "volcanic_ruins"]
@@ -52,6 +53,8 @@ PREY_W = 160
 ITEM_SIDE = 96
 SCHOOL_W = {"tiny": 72, "medium": 116, "big": 180}
 PREDATOR_H = {"shark": 132, "puffer": 120, "eel": 120, "angler": 140, "barracuda": 112}
+HELPER_H = 112
+HAZARD_SIDE = 112
 
 COVER_SIZE = (480, 270)
 
@@ -80,11 +83,17 @@ SHEETS: list[Band] = [
      _frames("predator.shark", 3) + _frames("predator.puffer", 3), {}),
     ("predators_ui_items_effects_sheet", (0, 160, W, 318), 1, 6,
      _frames("predator.eel", 3) + _frames("predator.angler", 3), {}),
-    # Cá nhồng ×3 (bên phải: rùa, cá heo — chưa dùng)
+    # Cá nhồng ×3 | rùa ×3 · cá heo ×3 (bạn đồng hành, chỉ trang trí)
     ("predators_ui_items_effects_sheet", (0, 318, 640, 466), 1, 3, _frames("predator.barracuda", 3), {}),
-    # Sao · tia chớp · bong bóng · đồng hồ · tim · rương · nam châm (chưa dùng)
+    ("predators_ui_items_effects_sheet", (640, 318, W, 466), 1, 6,
+     _frames("helper.turtle", 3) + _frames("helper.dolphin", 3), {"height": HELPER_H}),
+    # Chướng ngại vùng nước sâu: sứa ×3 · thuỷ lôi · cua ×3 · đá rơi ×3
+    ("predators_ui_items_effects_sheet", (0, 466, W, 630), 1, 10,
+     _frames("hazard.jelly", 3) + ["hazard.mine"] + _frames("hazard.crab", 3) + _frames("hazard.rock", 3),
+     {"max_side": HAZARD_SIDE}),
+    # Sao · tia chớp · bong bóng · đồng hồ · tim · rương · nam châm
     ("predators_ui_items_effects_sheet", (0, 630, W, 776), 1, 7,
-     [f"item.{k}" for k in ("star", "bolt", "bubble", "clock", "heart", "chest")] + [None], {"max_side": ITEM_SIDE}),
+     [f"item.{k}" for k in ("star", "bolt", "bubble", "clock", "heart", "chest", "magnet")], {"max_side": ITEM_SIDE}),
 ]
 
 
@@ -93,7 +102,8 @@ def file_for(key: str) -> str:
     group, rest = key.split(".", 1)
     if group == "prey":
         return f"prey/fish_{int(rest):02d}"
-    folder = {"predator": "predators", "item": "items"}[group] if group in ("predator", "item") else group
+    folders = {"predator": "predators", "item": "items", "helper": "helpers", "hazard": "hazards"}
+    folder = folders.get(group, group)
     return f"{folder}/{rest.replace('.', '_')}"
 
 

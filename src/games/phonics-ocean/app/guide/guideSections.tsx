@@ -8,6 +8,7 @@ import type { QuestionMode } from '@/games/phonics-ocean/content/schema';
 import { FRENZY } from '@/games/phonics-ocean/session/frenzy';
 import { RHYME_CHAIN } from '@/games/phonics-ocean/session/questions';
 import { RULES } from '@/games/phonics-ocean/session/round';
+import { COMPANIONS, hazardKinds, MAGNET } from '@/games/phonics-ocean/session/sea';
 import GuideCard from '@/ui/guide/GuideCard/GuideCard';
 import type { GuideSection } from '@/ui/guide/GuideDialog/GuideDialog';
 import guide from '@/ui/guide/guideContent.module.scss';
@@ -22,6 +23,11 @@ const MODE_GUIDE: Record<QuestionMode, string> = {
   contains: 'Khung hiện một CỤM CHỮ (bl, st, sh, ch...). Bé ăn từ có chứa cụm đó (ship, fish).',
   sentence: 'Ôn tập: máy đọc "I can see a ___" kèm một từ. Bé tìm từ còn thiếu; ăn đúng thì câu hiện đầy đủ.',
 };
+
+/** Các cấp ở biome sâu (có chướng ngại), vd "6, 7, 8" */
+const HAZARD_LEVELS = LEVELS.filter((level) => hazardKinds(level.biome).length > 0)
+  .map((level) => level.number)
+  .join(', ');
 
 export const PHONICS_OCEAN_GUIDE_SECTIONS: GuideSection[] = [
   {
@@ -104,12 +110,47 @@ export const PHONICS_OCEAN_GUIDE_SECTIONS: GuideSection[] = [
                 <img src={imageUrl('item.bubble')} alt="" width={28} height={28} />
                 <img src={imageUrl('item.clock')} alt="" width={28} height={28} />
                 <img src={imageUrl('item.heart')} alt="" width={28} height={28} />
+                <img src={imageUrl('item.magnet')} alt="" width={28} height={26} />
               </span>
               Vật phẩm
             </h3>
             <p>
               Bong bóng: đỡ một lần bị cắn. Đồng hồ: +{RULES.bonusSeconds} giây. Tim: +1 tim. Mỗi vật phẩm +
               {RULES.points.powerUp} điểm.
+            </p>
+            <p>
+              <b>Nam châm</b>: {MAGNET.durationMs / 1000} giây cá mang <b>đúng</b> từ ở gần tự bơi dần về
+              miệng cá của bé (cá sai không bị hút). Bé đang nhầm liên tiếp thì nam châm xuất hiện thường hơn.
+            </p>
+          </GuideCard>
+          <GuideCard>
+            <h3>
+              <span className={guide.mascots}>
+                <img src={imageUrl('helper.turtle.0')} alt="" width={36} height={25} />
+                <img src={imageUrl('helper.dolphin.0')} alt="" width={34} height={28} />
+              </span>
+              Bạn đồng hành
+            </h3>
+            <p>
+              Rùa thỉnh thoảng bơi chậm ngang qua; cá heo lướt qua ăn mừng khi bé đúng liên tiếp{' '}
+              {COMPANIONS.dolphinStreak} câu, được RHYME COMBO hoặc lớn thêm một cỡ. Chỉ để trang trí — không
+              chạm, không ảnh hưởng điểm.
+            </p>
+          </GuideCard>
+          <GuideCard>
+            <h3>
+              <span className={guide.mascots}>
+                <img src={imageUrl('hazard.jelly.0')} alt="" width={19} height={28} />
+                <img src={imageUrl('hazard.mine')} alt="" width={28} height={28} />
+                <img src={imageUrl('hazard.crab.0')} alt="" width={30} height={20} />
+                <img src={imageUrl('hazard.rock.0')} alt="" width={25} height={28} />
+              </span>
+              Chướng ngại vùng nước sâu
+            </h3>
+            <p>
+              Chỉ ở cấp {HAZARD_LEVELS} (biển sâu): sứa trôi lên, thuỷ lôi trôi ngang, cua bò dưới đáy, đá rơi
+              chậm (có hạt vụn báo trước). Chạm vào chỉ <b>choáng nhẹ</b> và mất nửa thanh tia sét —{' '}
+              <b>không mất tim</b>. Bong bóng bảo vệ đỡ được mà không vỡ.
             </p>
           </GuideCard>
           <GuideCard>
@@ -120,8 +161,8 @@ export const PHONICS_OCEAN_GUIDE_SECTIONS: GuideSection[] = [
               BIG FISH: OFF
             </h3>
             <p>
-              Tắt cá săn mồi ở màn Setup để chơi <b>luyện tập</b>: không có tim, chỉ tập trung vào âm và từ —
-              hợp với bé mới làm quen.
+              Tắt cá săn mồi ở màn Setup để chơi <b>luyện tập</b>: không có tim, không có chướng ngại, chỉ tập
+              trung vào âm và từ — hợp với bé mới làm quen.
             </p>
           </GuideCard>
         </div>

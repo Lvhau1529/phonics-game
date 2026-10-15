@@ -36,7 +36,10 @@ export const THEME = {
 export const DEPTH = {
   BACKGROUND: 0,
   AMBIENT: 5,
+  /** Rùa / cá heo: sau đàn cá, không che cá mang chữ */
+  HELPER: 12,
   ITEMS: 15,
+  HAZARD: 25,
   SCHOOL: 18,
   PREY: 20,
   PLAYER: 30,
@@ -77,6 +80,22 @@ export const FEEL = {
   /** Va vào cá to hơn: bật lùi (px/s) và không va lại trong khoảng này (ms) */
   bumpSpeed: 140,
   bumpCooldownMs: 900,
+} as const;
+
+/** Bạn đồng hành (chỉ trang trí): chiều cao hiển thị (px logic), tốc độ (px/s), thời lượng mỗi khung (ms) */
+export const HELPER = {
+  turtle: { height: 40, speed: [18, 26], frameMs: 320, alpha: 0.92 },
+  dolphin: { height: 46, speed: [230, 260], frameMs: 120, alpha: 1 },
+} as const;
+
+/** Chướng ngại vùng nước sâu (session/sea.ts): kích thước hiển thị (px logic, cạnh dài) và tốc độ (px/s) */
+export const HAZARD_LOOK = {
+  jelly: { size: 46, speed: 22, frameMs: 260 },
+  mine: { size: 38, speed: 26, frameMs: 0 },
+  crab: { size: 42, speed: 30, frameMs: 180 },
+  rock: { size: 34, speed: 48, frameMs: 0 },
+  /** Đá rơi: hạt vụn lắc rắc ở mép trên trước khi rơi (ms) */
+  rockWarnMs: 900,
 } as const;
 
 /**

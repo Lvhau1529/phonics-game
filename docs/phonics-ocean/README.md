@@ -20,7 +20,16 @@ Code: `src/games/phonics-ocean/` — khung chung xem [README gốc](../../README
   - Ăn nhầm (chỉ khi bé chủ động bơi vào cá sai): choáng nhẹ, mất chuỗi, đọc lại đề — **không mất tim**. Nhầm 2 lần
     liên tiếp: cá đúng phát sáng gợi ý. Cá sai tự bơi vào cá đang đứng yên thì chỉ bị đẩy ra.
   - Cá săn mồi: dấu `!` cảnh báo ở mép màn ~1,3 giây trước khi vào, xuất hiện từ phía xa bé; cắn thì mất 1 tim.
-  - Vật phẩm trôi lên: bong bóng (đỡ 1 lần cắn), đồng hồ (+10 giây), tim (+1).
+  - Vật phẩm trôi lên: bong bóng (đỡ 1 lần cắn), đồng hồ (+10 giây), tim (+1), **nam châm** (6 giây: cá mang
+    chữ ĐÚNG trong bán kính ~240 px tự trôi dần về miệng cá của bé; cá sai không bị hút; bé nhầm liên tiếp thì nam
+    châm ra thường hơn). Nam châm nhỏ lơ lửng trên đầu cá khi đang bật, nhấp nháy lúc sắp hết.
+  - **Bạn đồng hành** (chỉ trang trí, không va chạm): rùa bơi chậm ngang qua nửa dưới mỗi ~20 giây; cá heo lướt
+    vòng cung ăn mừng khi chuỗi đúng 5 / 10…, RHYME COMBO hoặc lớn thêm một cỡ.
+  - **Chướng ngại** (chỉ biome sâu: twilight_trench = sứa, thuỷ lôi; abyss_cave = + cua; volcanic_ruins = sứa, cua,
+    đá rơi): cái đầu sau 8 giây, rồi mỗi ~9 giây, tối đa 1 (twilight) / 2 cùng lúc; bé nhầm liên tiếp thì ra thưa
+    gấp đôi. Xuất hiện xa cá của bé, chậm, đá rơi có hạt vụn báo trước. Chạm: choáng nhẹ (như ăn nhầm) + bật ra +
+    mất nửa thanh FRENZY — **không mất tim**; bong bóng đỡ được (không vỡ). Thuỷ lôi chạm thì "POP" thành bong bóng
+    (không nổ). BIG FISH OFF (luyện tập) thì không có chướng ngại.
   - **Đàn cá kiểu Feeding Frenzy** (`session/frenzy.ts`, `game/systems/SchoolDirector.ts`): biển luôn có ~16 cá
     nhỏ bơi theo bầy, ~4 cá vừa, 1 cá mú lớn. Ăn được cá **nhỏ hơn mình** (cỡ 1: cá nhỏ; cỡ 2: thêm cá vừa; cỡ 3:
     cả cá mú) — +10 / +25 / +60 điểm, cá ăn được thì sợ và lảng ra; va cá to hơn chỉ bật ra (không mất tim).
@@ -56,9 +65,10 @@ mục tiêu hiện luôn từ thay cho giọng đọc.
   `tools/phonics_ocean/build_content.py`.
 - **Ảnh (pack v3, `_source/phonics-ocean/v3/`):** `tools/phonics_ocean/build_sprites.py` cắt 3 sprite sheet nền
   magenta theo dải hàng (bảng `SHEETS`): 6 loài cá của bé × 4 khung bơi, 25 cá mang chữ, đàn cá (nhỏ: cá hề / xanh /
-  vàng / lục; vừa: cá thù lù / cá bướm cam / cá đuôi gai; lớn: cá mú), 5 loại cá săn mồi × 3 khung, 6 vật phẩm →
-  `public/assets/phonics-ocean/` + `game/config/sprites.json`. Ô chưa dùng (rùa, cá heo, sứa, thuỷ lôi, cua, đá rơi,
-  nam châm, nút UI, hiệu ứng) bỏ qua — thêm key vào `SHEETS` khi làm tính năng.
+  vàng / lục; vừa: cá thù lù / cá bướm cam / cá đuôi gai; lớn: cá mú), 5 loại cá săn mồi × 3 khung, rùa / cá heo
+  × 3 khung (`helper.*`), chướng ngại (`hazard.jelly.*`, `hazard.mine`, `hazard.crab.*`, `hazard.rock.*`), 7 vật
+  phẩm (gồm `item.magnet`) → `public/assets/phonics-ocean/` + `game/config/sprites.json`. Ô chưa dùng (nút UI, hiệu
+  ứng) bỏ qua — thêm key vào `SHEETS` khi làm tính năng.
 - **Cá mang chữ:** sprite v3 có sẵn nhãn kem trống giữa thân; game vẽ chữ trên nhãn cùng màu đúng chỗ đó (nới rộng
   theo độ dài từ — `game/objects/WordFish.ts`).
 - **Nền:** 6 ảnh 16:9 (1672×941) xuất WebP cùng độ phân giải, trôi parallax nhẹ theo cá của bé.
@@ -80,6 +90,6 @@ mục tiêu hiện luôn từ thay cho giọng đọc.
 | Thư mục    | Nội dung                                                                                       |
 | ---------- | ---------------------------------------------------------------------------------------------- |
 | `content/` | `levels.json` (sinh tự động) + `schema.ts` (zod) + `levels.ts`                                 |
-| `session/` | `questions.ts` (sinh đề), `round.ts` (luật điểm / lớn lên / độ khó / sao), `store.ts`, `storage.ts` — có test |
-| `game/`    | `OceanScene` (lượt chơi), `LobbyScene` (nền sau màn React), `PauseScene`; `objects/` cá, cá săn mồi, vật phẩm; `ui/` HUD, khung mục tiêu |
+| `session/` | `questions.ts` (sinh đề), `round.ts` (luật điểm / lớn lên / độ khó / sao), `frenzy.ts` (đàn cá, FRENZY), `sea.ts` (nam châm, rùa / cá heo, chướng ngại), `store.ts`, `storage.ts` — có test |
+| `game/`    | `OceanScene` (lượt chơi), `LobbyScene` (nền sau màn React), `PauseScene`; `objects/` cá, cá săn mồi, vật phẩm, `Companion` (rùa / cá heo), `Hazard`; `ui/` HUD, khung mục tiêu |
 | `app/`     | màn Home / Setup / Results, Hướng dẫn                                                          |

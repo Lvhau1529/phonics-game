@@ -439,6 +439,86 @@
     "width": 272,
     "height": 112
   },
+  "helper.turtle.0": {
+    "path": "assets/phonics-ocean/helpers/turtle_0.png",
+    "width": 164,
+    "height": 112
+  },
+  "helper.turtle.1": {
+    "path": "assets/phonics-ocean/helpers/turtle_1.png",
+    "width": 158,
+    "height": 112
+  },
+  "helper.turtle.2": {
+    "path": "assets/phonics-ocean/helpers/turtle_2.png",
+    "width": 163,
+    "height": 112
+  },
+  "helper.dolphin.0": {
+    "path": "assets/phonics-ocean/helpers/dolphin_0.png",
+    "width": 136,
+    "height": 112
+  },
+  "helper.dolphin.1": {
+    "path": "assets/phonics-ocean/helpers/dolphin_1.png",
+    "width": 144,
+    "height": 112
+  },
+  "helper.dolphin.2": {
+    "path": "assets/phonics-ocean/helpers/dolphin_2.png",
+    "width": 135,
+    "height": 112
+  },
+  "hazard.jelly.0": {
+    "path": "assets/phonics-ocean/hazards/jelly_0.png",
+    "width": 75,
+    "height": 112
+  },
+  "hazard.jelly.1": {
+    "path": "assets/phonics-ocean/hazards/jelly_1.png",
+    "width": 75,
+    "height": 112
+  },
+  "hazard.jelly.2": {
+    "path": "assets/phonics-ocean/hazards/jelly_2.png",
+    "width": 69,
+    "height": 112
+  },
+  "hazard.mine": {
+    "path": "assets/phonics-ocean/hazards/mine.png",
+    "width": 110,
+    "height": 112
+  },
+  "hazard.crab.0": {
+    "path": "assets/phonics-ocean/hazards/crab_0.png",
+    "width": 112,
+    "height": 73
+  },
+  "hazard.crab.1": {
+    "path": "assets/phonics-ocean/hazards/crab_1.png",
+    "width": 112,
+    "height": 94
+  },
+  "hazard.crab.2": {
+    "path": "assets/phonics-ocean/hazards/crab_2.png",
+    "width": 112,
+    "height": 78
+  },
+  "hazard.rock.0": {
+    "path": "assets/phonics-ocean/hazards/rock_0.png",
+    "width": 100,
+    "height": 112
+  },
+  "hazard.rock.1": {
+    "path": "assets/phonics-ocean/hazards/rock_1.png",
+    "width": 78,
+    "height": 112
+  },
+  "hazard.rock.2": {
+    "path": "assets/phonics-ocean/hazards/rock_2.png",
+    "width": 85,
+    "height": 112
+  },
   "item.star": {
     "path": "assets/phonics-ocean/items/star.png",
     "width": 96,
@@ -468,6 +548,11 @@
     "path": "assets/phonics-ocean/items/chest.png",
     "width": 96,
     "height": 69
+  },
+  "item.magnet": {
+    "path": "assets/phonics-ocean/items/magnet.png",
+    "width": 96,
+    "height": 89
   },
   "bg.coral_reef": {
     "path": "assets/phonics-ocean/backgrounds/coral_reef.webp",

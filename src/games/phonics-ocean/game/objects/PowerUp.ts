@@ -1,11 +1,12 @@
 /**
- * Vật phẩm trôi trong nước (bảng power-up của pack): bong bóng bảo vệ, đồng hồ +10 giây, tim +1.
+ * Vật phẩm trôi trong nước (bảng power-up của pack): bong bóng bảo vệ, đồng hồ +10 giây, tim +1,
+ * nam châm (hút cá mang chữ đúng ở gần về phía bé — session/sea.ts).
  * Trôi chậm từ dưới lên, lắc lư; không nhặt thì mờ dần rồi biến mất.
  */
 import Phaser from 'phaser';
 import { DEPTH, FEEL } from '@/games/phonics-ocean/game/config/theme';
 
-export type PowerUpKind = 'bubble' | 'clock' | 'heart';
+export type PowerUpKind = 'bubble' | 'clock' | 'heart' | 'magnet';
 
 const SIZE = 30;
 

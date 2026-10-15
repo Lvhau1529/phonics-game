@@ -33,6 +33,7 @@ export const TEXT = {
   shield: 'SHIELD!',
   extraTime: '+10 SEC',
   extraHeart: '+1 HEART',
+  magnet: 'MAGNET!',
   timesUp: "TIME'S UP!",
   caught: 'OH NO!',
   levelClear: 'LEVEL CLEAR!',
@@ -57,4 +58,7 @@ export const TEXT = {
 } as const;
 
 /** Lời khen ngắn bay lên khi ăn đúng */
+/** Chữ bay lên khi chạm chướng ngại vùng nước sâu (nhẹ nhàng, không đáng sợ) */
+export const HAZARD_TEXT = { jelly: 'ZAP!', mine: 'POP!', crab: 'PINCH!', rock: 'BONK!' } as const;
+
 export const PRAISE = ['YUMMY!', 'GREAT!', 'NICE!', 'SUPER!', 'YES!'] as const;
