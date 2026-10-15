@@ -1,0 +1,2436 @@
+{
+  "version": 1,
+  "puzzles": [
+    {
+      "id": "colors-e1",
+      "topic": "colors",
+      "level": "easy",
+      "options": [
+        {
+          "name": "red",
+          "emoji": "🔴"
+        },
+        {
+          "name": "blue",
+          "emoji": "🔵"
+        },
+        {
+          "name": "cat",
+          "emoji": "🐱"
+        },
+        {
+          "name": "yellow",
+          "emoji": "🟡"
+        }
+      ],
+      "odd": 2,
+      "group": "colors",
+      "sample": "The cat is different because the others are colors.",
+      "vi": "Ba hình là màu sắc."
+    },
+    {
+      "id": "colors-e2",
+      "topic": "colors",
+      "level": "easy",
+      "options": [
+        {
+          "name": "green",
+          "emoji": "🟢"
+        },
+        {
+          "name": "ball",
+          "emoji": "⚽"
+        },
+        {
+          "name": "purple",
+          "emoji": "🟣"
+        },
+        {
+          "name": "orange",
+          "emoji": "🟠"
+        }
+      ],
+      "odd": 1,
+      "group": "colors",
+      "sample": "The ball is different because the others are colors.",
+      "vi": "Ba hình là màu sắc."
+    },
+    {
+      "id": "colors-e3",
+      "topic": "colors",
+      "level": "easy",
+      "options": [
+        {
+          "name": "sun",
+          "emoji": "☀️"
+        },
+        {
+          "name": "pink",
+          "shape": "dot",
+          "color": "#ff7eb6"
+        },
+        {
+          "name": "brown",
+          "emoji": "🟤"
+        },
+        {
+          "name": "black",
+          "emoji": "⚫"
+        }
+      ],
+      "odd": 0,
+      "group": "colors",
+      "sample": "The sun is different because the others show colors.",
+      "vi": "Ba hình chỉ màu sắc."
+    },
+    {
+      "id": "colors-c1",
+      "topic": "colors",
+      "level": "challenge",
+      "options": [
+        {
+          "name": "red",
+          "emoji": "🔴"
+        },
+        {
+          "name": "orange",
+          "emoji": "🟠"
+        },
+        {
+          "name": "yellow",
+          "emoji": "🟡"
+        },
+        {
+          "name": "blue",
+          "emoji": "🔵"
+        }
+      ],
+      "odd": 3,
+      "group": "warm colors",
+      "sample": "Blue is different because the others are warm colors.",
+      "vi": "Ba màu nóng."
+    },
+    {
+      "id": "colors-c2",
+      "topic": "colors",
+      "level": "challenge",
+      "options": [
+        {
+          "name": "blue",
+          "emoji": "🔵"
+        },
+        {
+          "name": "green",
+          "emoji": "🟢"
+        },
+        {
+          "name": "red",
+          "emoji": "🔴"
+        },
+        {
+          "name": "purple",
+          "emoji": "🟣"
+        }
+      ],
+      "odd": 2,
+      "group": "cool colors",
+      "sample": "Red is different because the others are cool colors.",
+      "vi": "Ba màu lạnh."
+    },
+    {
+      "id": "colors-c3",
+      "topic": "colors",
+      "level": "challenge",
+      "options": [
+        {
+          "name": "red",
+          "emoji": "🔴"
+        },
+        {
+          "name": "green",
+          "emoji": "🟢"
+        },
+        {
+          "name": "yellow",
+          "emoji": "🟡"
+        },
+        {
+          "name": "blue",
+          "emoji": "🔵"
+        }
+      ],
+      "odd": 1,
+      "group": "primary colors in painting",
+      "sample": "Green is different because the others are primary colors in painting.",
+      "vi": "Ba màu cơ bản trong hội họa."
+    },
+    {
+      "id": "shapes-e1",
+      "topic": "shapes",
+      "level": "easy",
+      "options": [
+        {
+          "name": "triangle",
+          "emoji": "🔺"
+        },
+        {
+          "name": "square",
+          "emoji": "🟦"
+        },
+        {
+          "name": "apple",
+          "emoji": "🍎"
+        },
+        {
+          "name": "circle",
+          "emoji": "🔵"
+        }
+      ],
+      "odd": 2,
+      "group": "shapes",
+      "sample": "The apple is different because the others are shapes.",
+      "vi": "Ba hình là hình học."
+    },
+    {
+      "id": "shapes-e2",
+      "topic": "shapes",
+      "level": "easy",
+      "options": [
+        {
+          "name": "circle",
+          "emoji": "🔵"
+        },
+        {
+          "name": "car",
+          "emoji": "🚗"
+        },
+        {
+          "name": "square",
+          "emoji": "🟩"
+        },
+        {
+          "name": "triangle",
+          "emoji": "🔺"
+        }
+      ],
+      "odd": 1,
+      "group": "shapes",
+      "sample": "The car is different because the others are shapes.",
+      "vi": "Ba hình là hình học."
+    },
+    {
+      "id": "shapes-e3",
+      "topic": "shapes",
+      "level": "easy",
+      "options": [
+        {
+          "name": "dog",
+          "emoji": "🐶"
+        },
+        {
+          "name": "star",
+          "emoji": "⭐"
+        },
+        {
+          "name": "heart",
+          "emoji": "❤️"
+        },
+        {
+          "name": "diamond",
+          "emoji": "🔶"
+        }
+      ],
+      "odd": 0,
+      "group": "shapes",
+      "sample": "The dog is different because the others are shapes.",
+      "vi": "Ba hình là hình học."
+    },
+    {
+      "id": "shapes-c1",
+      "topic": "shapes",
+      "level": "challenge",
+      "options": [
+        {
+          "name": "triangle",
+          "emoji": "🔺"
+        },
+        {
+          "name": "square",
+          "emoji": "🟦"
+        },
+        {
+          "name": "rectangle",
+          "shape": "rectangle"
+        },
+        {
+          "name": "circle",
+          "emoji": "🔵"
+        }
+      ],
+      "odd": 3,
+      "group": "shapes with straight sides",
+      "sample": "The circle is different because it has no straight sides.",
+      "vi": "Ba hình có cạnh thẳng."
+    },
+    {
+      "id": "shapes-c2",
+      "topic": "shapes",
+      "level": "challenge",
+      "options": [
+        {
+          "name": "square",
+          "emoji": "🟦"
+        },
+        {
+          "name": "rectangle",
+          "shape": "rectangle"
+        },
+        {
+          "name": "triangle",
+          "emoji": "🔺"
+        },
+        {
+          "name": "diamond",
+          "emoji": "🔶"
+        }
+      ],
+      "odd": 2,
+      "group": "shapes with four sides",
+      "sample": "The triangle is different because it has three sides.",
+      "vi": "Ba hình có bốn cạnh."
+    },
+    {
+      "id": "shapes-c3",
+      "topic": "shapes",
+      "level": "challenge",
+      "options": [
+        {
+          "name": "triangle",
+          "emoji": "🔺"
+        },
+        {
+          "name": "oval",
+          "shape": "oval"
+        },
+        {
+          "name": "square",
+          "emoji": "🟦"
+        },
+        {
+          "name": "rectangle",
+          "shape": "rectangle"
+        }
+      ],
+      "odd": 1,
+      "group": "polygons",
+      "sample": "The oval is different because it has no straight sides.",
+      "vi": "Ba hình chỉ có cạnh thẳng."
+    },
+    {
+      "id": "toys-e1",
+      "topic": "toys",
+      "level": "easy",
+      "options": [
+        {
+          "name": "carrot",
+          "emoji": "🥕"
+        },
+        {
+          "name": "doll",
+          "emoji": "🪆"
+        },
+        {
+          "name": "teddy bear",
+          "emoji": "🧸"
+        },
+        {
+          "name": "kite",
+          "emoji": "🪁"
+        }
+      ],
+      "odd": 0,
+      "group": "toys",
+      "sample": "The carrot is different because the others are toys.",
+      "vi": "Ba món đồ chơi."
+    },
+    {
+      "id": "toys-e2",
+      "topic": "toys",
+      "level": "easy",
+      "options": [
+        {
+          "name": "ball",
+          "emoji": "⚽"
+        },
+        {
+          "name": "yo-yo",
+          "emoji": "🪀"
+        },
+        {
+          "name": "puzzle",
+          "emoji": "🧩"
+        },
+        {
+          "name": "banana",
+          "emoji": "🍌"
+        }
+      ],
+      "odd": 3,
+      "group": "toys",
+      "sample": "The banana is different because the others are toys.",
+      "vi": "Ba món đồ chơi."
+    },
+    {
+      "id": "toys-e3",
+      "topic": "toys",
+      "level": "easy",
+      "options": [
+        {
+          "name": "robot",
+          "emoji": "🤖"
+        },
+        {
+          "name": "kite",
+          "emoji": "🪁"
+        },
+        {
+          "name": "fish",
+          "emoji": "🐟"
+        },
+        {
+          "name": "teddy bear",
+          "emoji": "🧸"
+        }
+      ],
+      "odd": 2,
+      "group": "toys",
+      "sample": "The fish is different because the others are toys.",
+      "vi": "Ba món đồ chơi."
+    },
+    {
+      "id": "toys-c1",
+      "topic": "toys",
+      "level": "challenge",
+      "options": [
+        {
+          "name": "football",
+          "emoji": "⚽"
+        },
+        {
+          "name": "doll",
+          "emoji": "🪆"
+        },
+        {
+          "name": "basketball",
+          "emoji": "🏀"
+        },
+        {
+          "name": "tennis ball",
+          "emoji": "🎾"
+        }
+      ],
+      "odd": 1,
+      "group": "balls",
+      "sample": "The doll is different because the others are balls.",
+      "vi": "Ba loại bóng."
+    },
+    {
+      "id": "toys-c2",
+      "topic": "toys",
+      "level": "challenge",
+      "options": [
+        {
+          "name": "kite",
+          "emoji": "🪁"
+        },
+        {
+          "name": "teddy bear",
+          "emoji": "🧸"
+        },
+        {
+          "name": "doll",
+          "emoji": "🪆"
+        },
+        {
+          "name": "robot",
+          "emoji": "🤖"
+        }
+      ],
+      "odd": 0,
+      "group": "character toys",
+      "sample": "The kite is different because the others look like people or animals.",
+      "vi": "Ba đồ chơi hình nhân vật."
+    },
+    {
+      "id": "toys-c3",
+      "topic": "toys",
+      "level": "challenge",
+      "options": [
+        {
+          "name": "kite",
+          "emoji": "🪁"
+        },
+        {
+          "name": "toy plane",
+          "emoji": "🛩️"
+        },
+        {
+          "name": "frisbee",
+          "emoji": "🥏"
+        },
+        {
+          "name": "teddy bear",
+          "emoji": "🧸"
+        }
+      ],
+      "odd": 3,
+      "group": "toys that can fly",
+      "sample": "The teddy bear is different because the others can fly through the air.",
+      "vi": "Ba đồ chơi có thể bay."
+    },
+    {
+      "id": "bugs-e1",
+      "topic": "bugs",
+      "level": "easy",
+      "options": [
+        {
+          "name": "cat",
+          "emoji": "🐱"
+        },
+        {
+          "name": "ant",
+          "emoji": "🐜"
+        },
+        {
+          "name": "bee",
+          "emoji": "🐝"
+        },
+        {
+          "name": "butterfly",
+          "emoji": "🦋"
+        }
+      ],
+      "odd": 0,
+      "group": "insects",
+      "sample": "The cat is different because the others are insects.",
+      "vi": "Ba con côn trùng."
+    },
+    {
+      "id": "bugs-e2",
+      "topic": "bugs",
+      "level": "easy",
+      "options": [
+        {
+          "name": "ladybug",
+          "emoji": "🐞"
+        },
+        {
+          "name": "ant",
+          "emoji": "🐜"
+        },
+        {
+          "name": "cricket",
+          "emoji": "🦗"
+        },
+        {
+          "name": "dog",
+          "emoji": "🐶"
+        }
+      ],
+      "odd": 3,
+      "group": "insects",
+      "sample": "The dog is different because the others are insects.",
+      "vi": "Ba con côn trùng."
+    },
+    {
+      "id": "bugs-e3",
+      "topic": "bugs",
+      "level": "easy",
+      "options": [
+        {
+          "name": "bee",
+          "emoji": "🐝"
+        },
+        {
+          "name": "butterfly",
+          "emoji": "🦋"
+        },
+        {
+          "name": "fish",
+          "emoji": "🐟"
+        },
+        {
+          "name": "fly",
+          "emoji": "🪰"
+        }
+      ],
+      "odd": 2,
+      "group": "insects",
+      "sample": "The fish is different because the others are insects.",
+      "vi": "Ba con côn trùng."
+    },
+    {
+      "id": "bugs-c1",
+      "topic": "bugs",
+      "level": "challenge",
+      "options": [
+        {
+          "name": "bee",
+          "emoji": "🐝"
+        },
+        {
+          "name": "ant",
+          "emoji": "🐜"
+        },
+        {
+          "name": "butterfly",
+          "emoji": "🦋"
+        },
+        {
+          "name": "fly",
+          "emoji": "🪰"
+        }
+      ],
+      "odd": 1,
+      "group": "winged insects",
+      "sample": "The ant is different because it has no wings.",
+      "vi": "Ba con có cánh; kiến thợ không có cánh."
+    },
+    {
+      "id": "bugs-c2",
+      "topic": "bugs",
+      "level": "challenge",
+      "options": [
+        {
+          "name": "spider",
+          "emoji": "🕷️"
+        },
+        {
+          "name": "ant",
+          "emoji": "🐜"
+        },
+        {
+          "name": "bee",
+          "emoji": "🐝"
+        },
+        {
+          "name": "butterfly",
+          "emoji": "🦋"
+        }
+      ],
+      "odd": 0,
+      "group": "six-legged insects",
+      "sample": "The spider is different because it has eight legs, not six.",
+      "vi": "Nhện có tám chân."
+    },
+    {
+      "id": "bugs-c3",
+      "topic": "bugs",
+      "level": "challenge",
+      "options": [
+        {
+          "name": "butterfly",
+          "emoji": "🦋"
+        },
+        {
+          "name": "bee",
+          "emoji": "🐝"
+        },
+        {
+          "name": "ladybug",
+          "emoji": "🐞"
+        },
+        {
+          "name": "worm",
+          "emoji": "🪱"
+        }
+      ],
+      "odd": 3,
+      "group": "adult insects with wings",
+      "sample": "The worm is different because the others have wings.",
+      "vi": "Ba con trưởng thành có cánh."
+    },
+    {
+      "id": "garden-e1",
+      "topic": "garden",
+      "level": "easy",
+      "options": [
+        {
+          "name": "rose",
+          "emoji": "🌹"
+        },
+        {
+          "name": "sunflower",
+          "emoji": "🌻"
+        },
+        {
+          "name": "car",
+          "emoji": "🚗"
+        },
+        {
+          "name": "tulip",
+          "emoji": "🌷"
+        }
+      ],
+      "odd": 2,
+      "group": "flowers",
+      "sample": "The car is different because the others are flowers.",
+      "vi": "Ba loại hoa."
+    },
+    {
+      "id": "garden-e2",
+      "topic": "garden",
+      "level": "easy",
+      "options": [
+        {
+          "name": "tree",
+          "emoji": "🌳"
+        },
+        {
+          "name": "chair",
+          "emoji": "🪑"
+        },
+        {
+          "name": "flower",
+          "emoji": "🌼"
+        },
+        {
+          "name": "grass",
+          "emoji": "🌱"
+        }
+      ],
+      "odd": 1,
+      "group": "plants",
+      "sample": "The chair is different because the others are plants.",
+      "vi": "Ba loại cây."
+    },
+    {
+      "id": "garden-e3",
+      "topic": "garden",
+      "level": "easy",
+      "options": [
+        {
+          "name": "bus",
+          "emoji": "🚌"
+        },
+        {
+          "name": "carrot",
+          "emoji": "🥕"
+        },
+        {
+          "name": "tomato",
+          "emoji": "🍅"
+        },
+        {
+          "name": "pumpkin",
+          "emoji": "🎃"
+        }
+      ],
+      "odd": 0,
+      "group": "garden crops",
+      "sample": "The bus is different because the others grow in gardens.",
+      "vi": "Ba loại cây trồng."
+    },
+    {
+      "id": "garden-c1",
+      "topic": "garden",
+      "level": "challenge",
+      "options": [
+        {
+          "name": "rose",
+          "emoji": "🌹"
+        },
+        {
+          "name": "tulip",
+          "emoji": "🌷"
+        },
+        {
+          "name": "sunflower",
+          "emoji": "🌻"
+        },
+        {
+          "name": "carrot",
+          "emoji": "🥕"
+        }
+      ],
+      "odd": 3,
+      "group": "flowers",
+      "sample": "The carrot is different because the others are flowers.",
+      "vi": "Ba loại hoa."
+    },
+    {
+      "id": "garden-c2",
+      "topic": "garden",
+      "level": "challenge",
+      "options": [
+        {
+          "name": "gloves",
+          "emoji": "🧤"
+        },
+        {
+          "name": "bucket",
+          "emoji": "🪣"
+        },
+        {
+          "name": "bed",
+          "emoji": "🛏️"
+        },
+        {
+          "name": "flower pot",
+          "emoji": "🪴"
+        }
+      ],
+      "odd": 2,
+      "group": "things for the garden",
+      "sample": "The bed is different because we use the others in the garden.",
+      "vi": "Ba đồ dùng làm vườn."
+    },
+    {
+      "id": "garden-c3",
+      "topic": "garden",
+      "level": "challenge",
+      "options": [
+        {
+          "name": "apple tree",
+          "emoji": "🌳"
+        },
+        {
+          "name": "stone",
+          "emoji": "🪨"
+        },
+        {
+          "name": "sunflower",
+          "emoji": "🌻"
+        },
+        {
+          "name": "grass",
+          "emoji": "🌱"
+        }
+      ],
+      "odd": 1,
+      "group": "living plants",
+      "sample": "The stone is different because the others are living plants.",
+      "vi": "Ba cây đang sống."
+    },
+    {
+      "id": "animals-e1",
+      "topic": "animals",
+      "level": "easy",
+      "options": [
+        {
+          "name": "cat",
+          "emoji": "🐱"
+        },
+        {
+          "name": "dog",
+          "emoji": "🐶"
+        },
+        {
+          "name": "rabbit",
+          "emoji": "🐰"
+        },
+        {
+          "name": "bus",
+          "emoji": "🚌"
+        }
+      ],
+      "odd": 3,
+      "group": "animals",
+      "sample": "The bus is different because the others are animals.",
+      "vi": "Ba con vật."
+    },
+    {
+      "id": "animals-e2",
+      "topic": "animals",
+      "level": "easy",
+      "options": [
+        {
+          "name": "lion",
+          "emoji": "🦁"
+        },
+        {
+          "name": "tiger",
+          "emoji": "🐯"
+        },
+        {
+          "name": "apple",
+          "emoji": "🍎"
+        },
+        {
+          "name": "bear",
+          "emoji": "🐻"
+        }
+      ],
+      "odd": 2,
+      "group": "animals",
+      "sample": "The apple is different because the others are animals.",
+      "vi": "Ba con vật."
+    },
+    {
+      "id": "animals-e3",
+      "topic": "animals",
+      "level": "easy",
+      "options": [
+        {
+          "name": "cow",
+          "emoji": "🐮"
+        },
+        {
+          "name": "shoe",
+          "emoji": "👟"
+        },
+        {
+          "name": "pig",
+          "emoji": "🐷"
+        },
+        {
+          "name": "sheep",
+          "emoji": "🐑"
+        }
+      ],
+      "odd": 1,
+      "group": "farm animals",
+      "sample": "The shoe is different because the others are farm animals.",
+      "vi": "Ba vật nuôi nông trại."
+    },
+    {
+      "id": "animals-c1",
+      "topic": "animals",
+      "level": "challenge",
+      "options": [
+        {
+          "name": "cow",
+          "emoji": "🐮"
+        },
+        {
+          "name": "lion",
+          "emoji": "🦁"
+        },
+        {
+          "name": "tiger",
+          "emoji": "🐯"
+        },
+        {
+          "name": "cat",
+          "emoji": "🐱"
+        }
+      ],
+      "odd": 0,
+      "group": "members of the cat family",
+      "sample": "The cow is different because the others belong to the cat family.",
+      "vi": "Ba con thuộc họ mèo."
+    },
+    {
+      "id": "animals-c2",
+      "topic": "animals",
+      "level": "challenge",
+      "options": [
+        {
+          "name": "eagle",
+          "emoji": "🦅"
+        },
+        {
+          "name": "parrot",
+          "emoji": "🦜"
+        },
+        {
+          "name": "duck",
+          "emoji": "🦆"
+        },
+        {
+          "name": "rabbit",
+          "emoji": "🐰"
+        }
+      ],
+      "odd": 3,
+      "group": "birds",
+      "sample": "The rabbit is different because the others are birds.",
+      "vi": "Ba loài chim."
+    },
+    {
+      "id": "animals-c3",
+      "topic": "animals",
+      "level": "challenge",
+      "options": [
+        {
+          "name": "fish",
+          "emoji": "🐟"
+        },
+        {
+          "name": "shark",
+          "emoji": "🦈"
+        },
+        {
+          "name": "camel",
+          "emoji": "🐪"
+        },
+        {
+          "name": "dolphin",
+          "emoji": "🐬"
+        }
+      ],
+      "odd": 2,
+      "group": "aquatic animals",
+      "sample": "The camel is different because the others live in water.",
+      "vi": "Ba con sống dưới nước."
+    },
+    {
+      "id": "jobs-e1",
+      "topic": "jobs",
+      "level": "easy",
+      "options": [
+        {
+          "name": "banana",
+          "emoji": "🍌"
+        },
+        {
+          "name": "teacher",
+          "emoji": "👩‍🏫"
+        },
+        {
+          "name": "doctor",
+          "emoji": "👩‍⚕️"
+        },
+        {
+          "name": "chef",
+          "emoji": "👨‍🍳"
+        }
+      ],
+      "odd": 0,
+      "group": "jobs",
+      "sample": "The banana is different because the others show jobs.",
+      "vi": "Ba nghề nghiệp."
+    },
+    {
+      "id": "jobs-e2",
+      "topic": "jobs",
+      "level": "easy",
+      "options": [
+        {
+          "name": "firefighter",
+          "emoji": "👩‍🚒"
+        },
+        {
+          "name": "police officer",
+          "emoji": "👮"
+        },
+        {
+          "name": "farmer",
+          "emoji": "👩‍🌾"
+        },
+        {
+          "name": "car",
+          "emoji": "🚗"
+        }
+      ],
+      "odd": 3,
+      "group": "jobs",
+      "sample": "The car is different because the others show jobs.",
+      "vi": "Ba nghề nghiệp."
+    },
+    {
+      "id": "jobs-e3",
+      "topic": "jobs",
+      "level": "easy",
+      "options": [
+        {
+          "name": "pilot",
+          "emoji": "👨‍✈️"
+        },
+        {
+          "name": "scientist",
+          "emoji": "👩‍🔬"
+        },
+        {
+          "name": "cat",
+          "emoji": "🐱"
+        },
+        {
+          "name": "artist",
+          "emoji": "👩‍🎨"
+        }
+      ],
+      "odd": 2,
+      "group": "jobs",
+      "sample": "The cat is different because the others show jobs.",
+      "vi": "Ba nghề nghiệp."
+    },
+    {
+      "id": "jobs-c1",
+      "topic": "jobs",
+      "level": "challenge",
+      "options": [
+        {
+          "name": "doctor",
+          "emoji": "👩‍⚕️"
+        },
+        {
+          "name": "pilot",
+          "emoji": "👨‍✈️"
+        },
+        {
+          "name": "nurse",
+          "emoji": "👨‍⚕️"
+        },
+        {
+          "name": "dentist",
+          "emoji": "🦷"
+        }
+      ],
+      "odd": 1,
+      "group": "healthcare jobs",
+      "sample": "The pilot is different because the others work in healthcare.",
+      "vi": "Ba nghề chăm sóc sức khỏe."
+    },
+    {
+      "id": "jobs-c2",
+      "topic": "jobs",
+      "level": "challenge",
+      "options": [
+        {
+          "name": "firefighter",
+          "emoji": "👩‍🚒"
+        },
+        {
+          "name": "chef",
+          "emoji": "👨‍🍳"
+        },
+        {
+          "name": "baker",
+          "emoji": "👩‍🍳"
+        },
+        {
+          "name": "waiter",
+          "emoji": "🧑‍🍳"
+        }
+      ],
+      "odd": 0,
+      "group": "food-service jobs",
+      "sample": "The firefighter is different because the others work with food.",
+      "vi": "Ba nghề liên quan đến đồ ăn."
+    },
+    {
+      "id": "jobs-c3",
+      "topic": "jobs",
+      "level": "challenge",
+      "options": [
+        {
+          "name": "teacher",
+          "emoji": "👩‍🏫"
+        },
+        {
+          "name": "librarian",
+          "emoji": "📚"
+        },
+        {
+          "name": "school principal",
+          "emoji": "🏫"
+        },
+        {
+          "name": "farmer",
+          "emoji": "👩‍🌾"
+        }
+      ],
+      "odd": 3,
+      "group": "school jobs",
+      "sample": "The farmer is different because the others work at a school.",
+      "vi": "Ba công việc ở trường."
+    },
+    {
+      "id": "work-places-e1",
+      "topic": "work-places",
+      "level": "easy",
+      "options": [
+        {
+          "name": "hospital",
+          "emoji": "🏥"
+        },
+        {
+          "name": "school",
+          "emoji": "🏫"
+        },
+        {
+          "name": "banana",
+          "emoji": "🍌"
+        },
+        {
+          "name": "restaurant",
+          "emoji": "🍽️"
+        }
+      ],
+      "odd": 2,
+      "group": "workplaces",
+      "sample": "The banana is different because the others are workplaces.",
+      "vi": "Ba nơi làm việc."
+    },
+    {
+      "id": "work-places-e2",
+      "topic": "work-places",
+      "level": "easy",
+      "options": [
+        {
+          "name": "farm",
+          "emoji": "🚜"
+        },
+        {
+          "name": "teddy bear",
+          "emoji": "🧸"
+        },
+        {
+          "name": "office",
+          "emoji": "🏢"
+        },
+        {
+          "name": "factory",
+          "emoji": "🏭"
+        }
+      ],
+      "odd": 1,
+      "group": "workplaces",
+      "sample": "The teddy bear is different because the others are workplaces.",
+      "vi": "Ba nơi làm việc."
+    },
+    {
+      "id": "work-places-e3",
+      "topic": "work-places",
+      "level": "easy",
+      "options": [
+        {
+          "name": "orange",
+          "emoji": "🍊"
+        },
+        {
+          "name": "police station",
+          "emoji": "🚓"
+        },
+        {
+          "name": "fire station",
+          "emoji": "🚒"
+        },
+        {
+          "name": "hospital",
+          "emoji": "🏥"
+        }
+      ],
+      "odd": 0,
+      "group": "workplaces",
+      "sample": "The orange is different because the others are workplaces.",
+      "vi": "Ba nơi làm việc."
+    },
+    {
+      "id": "work-places-c1",
+      "topic": "work-places",
+      "level": "challenge",
+      "options": [
+        {
+          "name": "hospital",
+          "emoji": "🏥"
+        },
+        {
+          "name": "clinic",
+          "emoji": "🩺"
+        },
+        {
+          "name": "dental clinic",
+          "emoji": "🦷"
+        },
+        {
+          "name": "airport",
+          "emoji": "✈️"
+        }
+      ],
+      "odd": 3,
+      "group": "healthcare workplaces",
+      "sample": "The airport is different because the others provide healthcare.",
+      "vi": "Ba nơi chăm sóc sức khỏe."
+    },
+    {
+      "id": "work-places-c2",
+      "topic": "work-places",
+      "level": "challenge",
+      "options": [
+        {
+          "name": "school",
+          "emoji": "🏫"
+        },
+        {
+          "name": "library",
+          "emoji": "📚"
+        },
+        {
+          "name": "farm",
+          "emoji": "🚜"
+        },
+        {
+          "name": "university",
+          "emoji": "🎓"
+        }
+      ],
+      "odd": 2,
+      "group": "learning places",
+      "sample": "The farm is different because the others are places for learning.",
+      "vi": "Ba nơi học tập."
+    },
+    {
+      "id": "work-places-c3",
+      "topic": "work-places",
+      "level": "challenge",
+      "options": [
+        {
+          "name": "restaurant",
+          "emoji": "🍽️"
+        },
+        {
+          "name": "police station",
+          "emoji": "🚓"
+        },
+        {
+          "name": "cafe",
+          "emoji": "☕"
+        },
+        {
+          "name": "bakery",
+          "emoji": "🥐"
+        }
+      ],
+      "odd": 1,
+      "group": "places serving food or drinks",
+      "sample": "The police station is different because the others serve food or drinks.",
+      "vi": "Ba nơi bán đồ ăn, thức uống."
+    },
+    {
+      "id": "transport-e1",
+      "topic": "transport",
+      "level": "easy",
+      "options": [
+        {
+          "name": "car",
+          "emoji": "🚗"
+        },
+        {
+          "name": "bus",
+          "emoji": "🚌"
+        },
+        {
+          "name": "train",
+          "emoji": "🚆"
+        },
+        {
+          "name": "apple",
+          "emoji": "🍎"
+        }
+      ],
+      "odd": 3,
+      "group": "vehicles",
+      "sample": "The apple is different because the others are vehicles.",
+      "vi": "Ba phương tiện."
+    },
+    {
+      "id": "transport-e2",
+      "topic": "transport",
+      "level": "easy",
+      "options": [
+        {
+          "name": "plane",
+          "emoji": "✈️"
+        },
+        {
+          "name": "boat",
+          "emoji": "⛵"
+        },
+        {
+          "name": "cat",
+          "emoji": "🐱"
+        },
+        {
+          "name": "bicycle",
+          "emoji": "🚲"
+        }
+      ],
+      "odd": 2,
+      "group": "vehicles",
+      "sample": "The cat is different because the others are vehicles.",
+      "vi": "Ba phương tiện."
+    },
+    {
+      "id": "transport-e3",
+      "topic": "transport",
+      "level": "easy",
+      "options": [
+        {
+          "name": "truck",
+          "emoji": "🚚"
+        },
+        {
+          "name": "cake",
+          "emoji": "🎂"
+        },
+        {
+          "name": "taxi",
+          "emoji": "🚕"
+        },
+        {
+          "name": "motorbike",
+          "emoji": "🏍️"
+        }
+      ],
+      "odd": 1,
+      "group": "vehicles",
+      "sample": "The cake is different because the others are vehicles.",
+      "vi": "Ba phương tiện."
+    },
+    {
+      "id": "transport-c1",
+      "topic": "transport",
+      "level": "challenge",
+      "options": [
+        {
+          "name": "boat",
+          "emoji": "⛵"
+        },
+        {
+          "name": "car",
+          "emoji": "🚗"
+        },
+        {
+          "name": "bus",
+          "emoji": "🚌"
+        },
+        {
+          "name": "truck",
+          "emoji": "🚚"
+        }
+      ],
+      "odd": 0,
+      "group": "road vehicles",
+      "sample": "The boat is different because the others travel on roads.",
+      "vi": "Ba xe chạy trên đường."
+    },
+    {
+      "id": "transport-c2",
+      "topic": "transport",
+      "level": "challenge",
+      "options": [
+        {
+          "name": "plane",
+          "emoji": "✈️"
+        },
+        {
+          "name": "helicopter",
+          "emoji": "🚁"
+        },
+        {
+          "name": "hot-air balloon",
+          "emoji": "🎈"
+        },
+        {
+          "name": "ship",
+          "emoji": "🚢"
+        }
+      ],
+      "odd": 3,
+      "group": "air transport",
+      "sample": "The ship is different because the others travel in the air.",
+      "vi": "Ba phương tiện bay trên trời."
+    },
+    {
+      "id": "transport-c3",
+      "topic": "transport",
+      "level": "challenge",
+      "options": [
+        {
+          "name": "bicycle",
+          "emoji": "🚲"
+        },
+        {
+          "name": "scooter",
+          "emoji": "🛴"
+        },
+        {
+          "name": "car",
+          "emoji": "🚗"
+        },
+        {
+          "name": "skateboard",
+          "emoji": "🛹"
+        }
+      ],
+      "odd": 2,
+      "group": "human-powered transport",
+      "sample": "The car is different because the others move with human power.",
+      "vi": "Ba phương tiện dùng sức người."
+    },
+    {
+      "id": "weather-e1",
+      "topic": "weather",
+      "level": "easy",
+      "options": [
+        {
+          "name": "sunny",
+          "emoji": "☀️"
+        },
+        {
+          "name": "dog",
+          "emoji": "🐶"
+        },
+        {
+          "name": "rainy",
+          "emoji": "🌧️"
+        },
+        {
+          "name": "snowy",
+          "emoji": "❄️"
+        }
+      ],
+      "odd": 1,
+      "group": "weather",
+      "sample": "The dog is different because the others show weather.",
+      "vi": "Ba kiểu thời tiết."
+    },
+    {
+      "id": "weather-e2",
+      "topic": "weather",
+      "level": "easy",
+      "options": [
+        {
+          "name": "car",
+          "emoji": "🚗"
+        },
+        {
+          "name": "spring",
+          "emoji": "🌸"
+        },
+        {
+          "name": "summer",
+          "emoji": "🏖️"
+        },
+        {
+          "name": "winter",
+          "emoji": "⛄"
+        }
+      ],
+      "odd": 0,
+      "group": "seasons",
+      "sample": "The car is different because the others are seasons.",
+      "vi": "Ba mùa."
+    },
+    {
+      "id": "weather-e3",
+      "topic": "weather",
+      "level": "easy",
+      "options": [
+        {
+          "name": "cloudy",
+          "emoji": "☁️"
+        },
+        {
+          "name": "windy",
+          "emoji": "🌬️"
+        },
+        {
+          "name": "stormy",
+          "emoji": "⛈️"
+        },
+        {
+          "name": "banana",
+          "emoji": "🍌"
+        }
+      ],
+      "odd": 3,
+      "group": "weather",
+      "sample": "The banana is different because the others show weather.",
+      "vi": "Ba kiểu thời tiết."
+    },
+    {
+      "id": "weather-c1",
+      "topic": "weather",
+      "level": "challenge",
+      "options": [
+        {
+          "name": "spring",
+          "emoji": "🌸"
+        },
+        {
+          "name": "summer",
+          "emoji": "☀️"
+        },
+        {
+          "name": "Monday",
+          "emoji": "📅"
+        },
+        {
+          "name": "autumn",
+          "emoji": "🍂"
+        }
+      ],
+      "odd": 2,
+      "group": "seasons",
+      "sample": "Monday is different because the others are seasons.",
+      "vi": "Ba mùa và một thứ trong tuần."
+    },
+    {
+      "id": "weather-c2",
+      "topic": "weather",
+      "level": "challenge",
+      "options": [
+        {
+          "name": "rainy",
+          "emoji": "🌧️"
+        },
+        {
+          "name": "sunny",
+          "emoji": "☀️"
+        },
+        {
+          "name": "snowy",
+          "emoji": "🌨️"
+        },
+        {
+          "name": "stormy",
+          "emoji": "⛈️"
+        }
+      ],
+      "odd": 1,
+      "group": "weather with precipitation",
+      "sample": "Sunny is different because the others can bring rain or snow.",
+      "vi": "Ba kiểu thời tiết có mưa hoặc tuyết."
+    },
+    {
+      "id": "weather-c3",
+      "topic": "weather",
+      "level": "challenge",
+      "options": [
+        {
+          "name": "January",
+          "emoji": "🗓️"
+        },
+        {
+          "name": "spring",
+          "emoji": "🌷"
+        },
+        {
+          "name": "summer",
+          "emoji": "🏝️"
+        },
+        {
+          "name": "autumn",
+          "emoji": "🍁"
+        }
+      ],
+      "odd": 0,
+      "group": "seasons",
+      "sample": "January is different because the others are seasons.",
+      "vi": "Ba mùa và một tháng."
+    },
+    {
+      "id": "clothes-e1",
+      "topic": "clothes",
+      "level": "easy",
+      "options": [
+        {
+          "name": "shirt",
+          "emoji": "👕"
+        },
+        {
+          "name": "dress",
+          "emoji": "👗"
+        },
+        {
+          "name": "coat",
+          "emoji": "🧥"
+        },
+        {
+          "name": "apple",
+          "emoji": "🍎"
+        }
+      ],
+      "odd": 3,
+      "group": "clothes",
+      "sample": "The apple is different because the others are clothes.",
+      "vi": "Ba món quần áo."
+    },
+    {
+      "id": "clothes-e2",
+      "topic": "clothes",
+      "level": "easy",
+      "options": [
+        {
+          "name": "hat",
+          "emoji": "🧢"
+        },
+        {
+          "name": "scarf",
+          "emoji": "🧣"
+        },
+        {
+          "name": "dog",
+          "emoji": "🐶"
+        },
+        {
+          "name": "gloves",
+          "emoji": "🧤"
+        }
+      ],
+      "odd": 2,
+      "group": "things to wear",
+      "sample": "The dog is different because the others are things we wear.",
+      "vi": "Ba đồ để mặc."
+    },
+    {
+      "id": "clothes-e3",
+      "topic": "clothes",
+      "level": "easy",
+      "options": [
+        {
+          "name": "shoes",
+          "emoji": "👟"
+        },
+        {
+          "name": "bus",
+          "emoji": "🚌"
+        },
+        {
+          "name": "socks",
+          "emoji": "🧦"
+        },
+        {
+          "name": "boots",
+          "emoji": "🥾"
+        }
+      ],
+      "odd": 1,
+      "group": "things to wear on feet",
+      "sample": "The bus is different because the others are worn on feet.",
+      "vi": "Ba món mang ở chân."
+    },
+    {
+      "id": "clothes-c1",
+      "topic": "clothes",
+      "level": "challenge",
+      "options": [
+        {
+          "name": "swimsuit",
+          "emoji": "🩱"
+        },
+        {
+          "name": "coat",
+          "emoji": "🧥"
+        },
+        {
+          "name": "scarf",
+          "emoji": "🧣"
+        },
+        {
+          "name": "gloves",
+          "emoji": "🧤"
+        }
+      ],
+      "odd": 0,
+      "group": "cold-weather clothing",
+      "sample": "The swimsuit is different because the others keep us warm in cold weather.",
+      "vi": "Ba món mặc trời lạnh."
+    },
+    {
+      "id": "clothes-c2",
+      "topic": "clothes",
+      "level": "challenge",
+      "options": [
+        {
+          "name": "sandals",
+          "emoji": "🩴"
+        },
+        {
+          "name": "shorts",
+          "emoji": "🩳"
+        },
+        {
+          "name": "T-shirt",
+          "emoji": "👕"
+        },
+        {
+          "name": "winter coat",
+          "emoji": "🧥"
+        }
+      ],
+      "odd": 3,
+      "group": "warm-weather clothes",
+      "sample": "The winter coat is different because the others are for warm weather.",
+      "vi": "Ba món mặc trời nóng."
+    },
+    {
+      "id": "clothes-c3",
+      "topic": "clothes",
+      "level": "challenge",
+      "options": [
+        {
+          "name": "hat",
+          "emoji": "👒"
+        },
+        {
+          "name": "helmet",
+          "emoji": "⛑️"
+        },
+        {
+          "name": "socks",
+          "emoji": "🧦"
+        },
+        {
+          "name": "cap",
+          "emoji": "🧢"
+        }
+      ],
+      "odd": 2,
+      "group": "headwear",
+      "sample": "The socks are different because the others go on your head.",
+      "vi": "Ba món đội đầu."
+    },
+    {
+      "id": "feelings-e1",
+      "topic": "feelings",
+      "level": "easy",
+      "options": [
+        {
+          "name": "car",
+          "emoji": "🚗"
+        },
+        {
+          "name": "happy",
+          "emoji": "😊"
+        },
+        {
+          "name": "sad",
+          "emoji": "😢"
+        },
+        {
+          "name": "angry",
+          "emoji": "😠"
+        }
+      ],
+      "odd": 0,
+      "group": "feelings",
+      "sample": "The car is different because the others show feelings.",
+      "vi": "Ba cảm xúc."
+    },
+    {
+      "id": "feelings-e2",
+      "topic": "feelings",
+      "level": "easy",
+      "options": [
+        {
+          "name": "excited",
+          "emoji": "🤩"
+        },
+        {
+          "name": "scared",
+          "emoji": "😨"
+        },
+        {
+          "name": "sleepy",
+          "emoji": "😴"
+        },
+        {
+          "name": "apple",
+          "emoji": "🍎"
+        }
+      ],
+      "odd": 3,
+      "group": "feelings or states",
+      "sample": "The apple is different because the others show how someone feels.",
+      "vi": "Ba trạng thái cảm xúc."
+    },
+    {
+      "id": "feelings-e3",
+      "topic": "feelings",
+      "level": "easy",
+      "options": [
+        {
+          "name": "surprised",
+          "emoji": "😮"
+        },
+        {
+          "name": "worried",
+          "emoji": "😟"
+        },
+        {
+          "name": "dog",
+          "emoji": "🐶"
+        },
+        {
+          "name": "calm",
+          "emoji": "😌"
+        }
+      ],
+      "odd": 2,
+      "group": "feelings",
+      "sample": "The dog is different because the others show feelings.",
+      "vi": "Ba cảm xúc."
+    },
+    {
+      "id": "feelings-c1",
+      "topic": "feelings",
+      "level": "challenge",
+      "options": [
+        {
+          "name": "happy",
+          "emoji": "😄"
+        },
+        {
+          "name": "sad",
+          "emoji": "😢"
+        },
+        {
+          "name": "excited",
+          "emoji": "🤩"
+        },
+        {
+          "name": "proud",
+          "emoji": "🥳"
+        }
+      ],
+      "odd": 1,
+      "group": "positive feelings",
+      "sample": "Sad is different because the others are positive feelings.",
+      "vi": "Ba cảm xúc tích cực."
+    },
+    {
+      "id": "feelings-c2",
+      "topic": "feelings",
+      "level": "challenge",
+      "options": [
+        {
+          "name": "happy",
+          "emoji": "😊"
+        },
+        {
+          "name": "angry",
+          "emoji": "😠"
+        },
+        {
+          "name": "scared",
+          "emoji": "😨"
+        },
+        {
+          "name": "worried",
+          "emoji": "😟"
+        }
+      ],
+      "odd": 0,
+      "group": "unpleasant feelings",
+      "sample": "Happy is different because the others are unpleasant feelings.",
+      "vi": "Ba cảm xúc khó chịu."
+    },
+    {
+      "id": "feelings-c3",
+      "topic": "feelings",
+      "level": "challenge",
+      "options": [
+        {
+          "name": "happy",
+          "emoji": "😊"
+        },
+        {
+          "name": "excited",
+          "emoji": "🤩"
+        },
+        {
+          "name": "cheerful",
+          "emoji": "😁"
+        },
+        {
+          "name": "afraid",
+          "emoji": "😱"
+        }
+      ],
+      "odd": 3,
+      "group": "happy feelings",
+      "sample": "Afraid is different because the others show happiness.",
+      "vi": "Ba cảm xúc vui vẻ."
+    },
+    {
+      "id": "food-e1",
+      "topic": "food",
+      "level": "easy",
+      "options": [
+        {
+          "name": "bread",
+          "emoji": "🍞"
+        },
+        {
+          "name": "apple",
+          "emoji": "🍎"
+        },
+        {
+          "name": "banana",
+          "emoji": "🍌"
+        },
+        {
+          "name": "orange",
+          "emoji": "🍊"
+        }
+      ],
+      "odd": 0,
+      "group": "fruits",
+      "sample": "Bread is different because the others are fruits.",
+      "vi": "Ba loại trái cây."
+    },
+    {
+      "id": "food-e2",
+      "topic": "food",
+      "level": "easy",
+      "options": [
+        {
+          "name": "rice",
+          "emoji": "🍚"
+        },
+        {
+          "name": "pizza",
+          "emoji": "🍕"
+        },
+        {
+          "name": "sandwich",
+          "emoji": "🥪"
+        },
+        {
+          "name": "car",
+          "emoji": "🚗"
+        }
+      ],
+      "odd": 3,
+      "group": "foods",
+      "sample": "The car is different because the others are foods.",
+      "vi": "Ba món ăn."
+    },
+    {
+      "id": "food-e3",
+      "topic": "food",
+      "level": "easy",
+      "options": [
+        {
+          "name": "carrot",
+          "emoji": "🥕"
+        },
+        {
+          "name": "broccoli",
+          "emoji": "🥦"
+        },
+        {
+          "name": "ball",
+          "emoji": "⚽"
+        },
+        {
+          "name": "corn",
+          "emoji": "🌽"
+        }
+      ],
+      "odd": 2,
+      "group": "vegetables",
+      "sample": "The ball is different because the others are vegetables.",
+      "vi": "Ba loại rau củ."
+    },
+    {
+      "id": "food-c1",
+      "topic": "food",
+      "level": "challenge",
+      "options": [
+        {
+          "name": "apple",
+          "emoji": "🍎"
+        },
+        {
+          "name": "carrot",
+          "emoji": "🥕"
+        },
+        {
+          "name": "pear",
+          "emoji": "🍐"
+        },
+        {
+          "name": "peach",
+          "emoji": "🍑"
+        }
+      ],
+      "odd": 1,
+      "group": "fruits",
+      "sample": "The carrot is different because the others are fruits.",
+      "vi": "Ba loại trái cây."
+    },
+    {
+      "id": "food-c2",
+      "topic": "food",
+      "level": "challenge",
+      "options": [
+        {
+          "name": "salad",
+          "emoji": "🥗"
+        },
+        {
+          "name": "cake",
+          "emoji": "🍰"
+        },
+        {
+          "name": "cookie",
+          "emoji": "🍪"
+        },
+        {
+          "name": "ice cream",
+          "emoji": "🍨"
+        }
+      ],
+      "odd": 0,
+      "group": "sweet desserts",
+      "sample": "The salad is different because the others are sweet desserts.",
+      "vi": "Ba món tráng miệng ngọt."
+    },
+    {
+      "id": "food-c3",
+      "topic": "food",
+      "level": "challenge",
+      "options": [
+        {
+          "name": "bread",
+          "emoji": "🍞"
+        },
+        {
+          "name": "rice",
+          "emoji": "🍚"
+        },
+        {
+          "name": "pasta",
+          "emoji": "🍝"
+        },
+        {
+          "name": "strawberry",
+          "emoji": "🍓"
+        }
+      ],
+      "odd": 3,
+      "group": "starchy foods",
+      "sample": "The strawberry is different because the others are starchy foods.",
+      "vi": "Ba thực phẩm giàu tinh bột."
+    },
+    {
+      "id": "drinks-e1",
+      "topic": "drinks",
+      "level": "easy",
+      "options": [
+        {
+          "name": "water",
+          "emoji": "💧"
+        },
+        {
+          "name": "milk",
+          "emoji": "🥛"
+        },
+        {
+          "name": "pizza",
+          "emoji": "🍕"
+        },
+        {
+          "name": "juice",
+          "emoji": "🧃"
+        }
+      ],
+      "odd": 2,
+      "group": "drinks",
+      "sample": "The pizza is different because the others are drinks.",
+      "vi": "Ba loại thức uống."
+    },
+    {
+      "id": "drinks-e2",
+      "topic": "drinks",
+      "level": "easy",
+      "options": [
+        {
+          "name": "tea",
+          "emoji": "🍵"
+        },
+        {
+          "name": "ball",
+          "emoji": "⚽"
+        },
+        {
+          "name": "coffee",
+          "emoji": "☕"
+        },
+        {
+          "name": "lemonade",
+          "emoji": "🍋"
+        }
+      ],
+      "odd": 1,
+      "group": "drinks",
+      "sample": "The ball is different because the others are drinks.",
+      "vi": "Ba loại thức uống."
+    },
+    {
+      "id": "drinks-e3",
+      "topic": "drinks",
+      "level": "easy",
+      "options": [
+        {
+          "name": "cat",
+          "emoji": "🐱"
+        },
+        {
+          "name": "milk",
+          "emoji": "🥛"
+        },
+        {
+          "name": "water",
+          "emoji": "💧"
+        },
+        {
+          "name": "smoothie",
+          "emoji": "🥤"
+        }
+      ],
+      "odd": 0,
+      "group": "drinks",
+      "sample": "The cat is different because the others are drinks.",
+      "vi": "Ba loại thức uống."
+    },
+    {
+      "id": "drinks-c1",
+      "topic": "drinks",
+      "level": "challenge",
+      "options": [
+        {
+          "name": "orange juice",
+          "emoji": "🍊"
+        },
+        {
+          "name": "apple juice",
+          "emoji": "🧃"
+        },
+        {
+          "name": "grape juice",
+          "emoji": "🍇"
+        },
+        {
+          "name": "milk",
+          "emoji": "🥛"
+        }
+      ],
+      "odd": 3,
+      "group": "fruit juices",
+      "sample": "Milk is different because the others are fruit juices.",
+      "vi": "Ba loại nước ép trái cây."
+    },
+    {
+      "id": "drinks-c2",
+      "topic": "drinks",
+      "level": "challenge",
+      "options": [
+        {
+          "name": "hot tea",
+          "emoji": "🍵"
+        },
+        {
+          "name": "hot coffee",
+          "emoji": "☕"
+        },
+        {
+          "name": "iced water",
+          "emoji": "🧊"
+        },
+        {
+          "name": "hot chocolate",
+          "emoji": "🍫"
+        }
+      ],
+      "odd": 2,
+      "group": "hot drinks",
+      "sample": "Iced water is different because the others are hot drinks.",
+      "vi": "Ba đồ uống nóng."
+    },
+    {
+      "id": "drinks-c3",
+      "topic": "drinks",
+      "level": "challenge",
+      "options": [
+        {
+          "name": "milk",
+          "emoji": "🥛"
+        },
+        {
+          "name": "black coffee",
+          "emoji": "☕"
+        },
+        {
+          "name": "yogurt drink",
+          "emoji": "🧃"
+        },
+        {
+          "name": "milkshake",
+          "emoji": "🥤"
+        }
+      ],
+      "odd": 1,
+      "group": "milk-based drinks",
+      "sample": "Black coffee is different because the others contain milk.",
+      "vi": "Ba thức uống từ sữa."
+    },
+    {
+      "id": "family-e1",
+      "topic": "family",
+      "level": "easy",
+      "options": [
+        {
+          "name": "mother",
+          "emoji": "👩"
+        },
+        {
+          "name": "father",
+          "emoji": "👨"
+        },
+        {
+          "name": "car",
+          "emoji": "🚗"
+        },
+        {
+          "name": "sister",
+          "emoji": "👧"
+        }
+      ],
+      "odd": 2,
+      "group": "family members",
+      "sample": "The car is different because the others are family members.",
+      "vi": "Ba thành viên gia đình."
+    },
+    {
+      "id": "family-e2",
+      "topic": "family",
+      "level": "easy",
+      "options": [
+        {
+          "name": "grandmother",
+          "emoji": "👵"
+        },
+        {
+          "name": "apple",
+          "emoji": "🍎"
+        },
+        {
+          "name": "grandfather",
+          "emoji": "👴"
+        },
+        {
+          "name": "brother",
+          "emoji": "👦"
+        }
+      ],
+      "odd": 1,
+      "group": "family members",
+      "sample": "The apple is different because the others are family members.",
+      "vi": "Ba thành viên gia đình."
+    },
+    {
+      "id": "family-e3",
+      "topic": "family",
+      "level": "easy",
+      "options": [
+        {
+          "name": "bus",
+          "emoji": "🚌"
+        },
+        {
+          "name": "aunt",
+          "emoji": "👩"
+        },
+        {
+          "name": "uncle",
+          "emoji": "👨"
+        },
+        {
+          "name": "cousin",
+          "emoji": "🧒"
+        }
+      ],
+      "odd": 0,
+      "group": "family members",
+      "sample": "The bus is different because the others are family members.",
+      "vi": "Ba thành viên gia đình."
+    },
+    {
+      "id": "family-c1",
+      "topic": "family",
+      "level": "challenge",
+      "options": [
+        {
+          "name": "mother",
+          "emoji": "👩"
+        },
+        {
+          "name": "aunt",
+          "emoji": "👩‍🦰"
+        },
+        {
+          "name": "grandmother",
+          "emoji": "👵"
+        },
+        {
+          "name": "father",
+          "emoji": "👨"
+        }
+      ],
+      "odd": 3,
+      "group": "female family members",
+      "sample": "Father is different because the others are female family members.",
+      "vi": "Ba thành viên nữ."
+    },
+    {
+      "id": "family-c2",
+      "topic": "family",
+      "level": "challenge",
+      "options": [
+        {
+          "name": "father",
+          "emoji": "👨"
+        },
+        {
+          "name": "uncle",
+          "emoji": "👨‍🦱"
+        },
+        {
+          "name": "sister",
+          "emoji": "👧"
+        },
+        {
+          "name": "grandfather",
+          "emoji": "👴"
+        }
+      ],
+      "odd": 2,
+      "group": "male family members",
+      "sample": "Sister is different because the others are male family members.",
+      "vi": "Ba thành viên nam."
+    },
+    {
+      "id": "family-c3",
+      "topic": "family",
+      "level": "challenge",
+      "options": [
+        {
+          "name": "baby",
+          "emoji": "👶"
+        },
+        {
+          "name": "girl",
+          "emoji": "👧"
+        },
+        {
+          "name": "boy",
+          "emoji": "👦"
+        },
+        {
+          "name": "grandfather",
+          "emoji": "👴"
+        }
+      ],
+      "odd": 3,
+      "group": "children",
+      "sample": "Grandfather is different because the others are children.",
+      "vi": "Ba bạn nhỏ."
+    }
+  ]
+}

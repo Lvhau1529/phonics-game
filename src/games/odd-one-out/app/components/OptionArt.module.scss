@@ -1,0 +1,44 @@
+@use '@/ui/styles/abstracts' as *;
+
+@layer components {
+  // Cỡ hình theo font-size của phần tử cha (1em) để dùng chung cho ô câu đố / danh sách kết quả
+  .emoji {
+    display: inline-block;
+    font-family: 'Segoe UI Emoji', 'Apple Color Emoji', 'Noto Color Emoji', sans-serif;
+    line-height: 1;
+  }
+
+  .shapeBox {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1em;
+    height: 1em;
+  }
+
+  .shape {
+    display: block;
+    border: 0.06em solid rgba(0, 0, 0, 0.25);
+    background: var(--shape-color, #4b8df8);
+  }
+
+  .dot {
+    width: 0.86em;
+    height: 0.86em;
+    border-radius: 50%;
+  }
+
+  .rectangle {
+    width: 0.95em;
+    height: 0.56em;
+    border-radius: 0.06em;
+    background: var(--shape-color, #ff9f43);
+  }
+
+  .oval {
+    width: 0.62em;
+    height: 0.9em;
+    border-radius: 50%;
+    background: var(--shape-color, #b689f5);
+  }
+}

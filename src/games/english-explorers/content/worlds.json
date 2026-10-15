@@ -1,0 +1,692 @@
+{
+  "version": 1,
+  "worlds": [
+    {
+      "id": "habitats",
+      "title": "WHERE DO THEY LIVE?",
+      "grammar": "live / lives + place",
+      "emoji": "🌿",
+      "cover": "fish",
+      "questions": [
+        {
+          "id": "habitats-1",
+          "prompt": "Where does the fish live?",
+          "picture": {
+            "image": "fish"
+          },
+          "options": [
+            {
+              "label": "the forest",
+              "image": "forest"
+            },
+            {
+              "label": "the ocean",
+              "image": "ocean"
+            },
+            {
+              "label": "the desert",
+              "image": "desert"
+            }
+          ],
+          "answer": 1,
+          "sentence": "The fish lives in the ocean.",
+          "vi": "Con cá sống ở đại dương."
+        },
+        {
+          "id": "habitats-2",
+          "prompt": "Where does the camel live?",
+          "picture": {
+            "emoji": "🐪"
+          },
+          "options": [
+            {
+              "label": "the ocean",
+              "image": "ocean"
+            },
+            {
+              "label": "the desert",
+              "image": "desert"
+            },
+            {
+              "label": "the forest",
+              "image": "forest"
+            }
+          ],
+          "answer": 1,
+          "sentence": "The camel lives in the desert.",
+          "vi": "Con lạc đà sống ở sa mạc."
+        },
+        {
+          "id": "habitats-3",
+          "prompt": "Where does the bear live?",
+          "picture": {
+            "emoji": "🐻"
+          },
+          "options": [
+            {
+              "label": "the forest",
+              "image": "forest"
+            },
+            {
+              "label": "the desert",
+              "image": "desert"
+            },
+            {
+              "label": "the ocean",
+              "image": "ocean"
+            }
+          ],
+          "answer": 0,
+          "sentence": "The bear lives in the forest.",
+          "vi": "Con gấu sống trong rừng."
+        },
+        {
+          "id": "habitats-4",
+          "prompt": "Where does the monkey live?",
+          "picture": {
+            "emoji": "🐒"
+          },
+          "options": [
+            {
+              "label": "the snow",
+              "emoji": "❄️"
+            },
+            {
+              "label": "the desert",
+              "image": "desert"
+            },
+            {
+              "label": "the jungle",
+              "emoji": "🌴"
+            }
+          ],
+          "answer": 2,
+          "sentence": "The monkey lives in the jungle.",
+          "vi": "Con khỉ sống trong rừng rậm."
+        },
+        {
+          "id": "habitats-5",
+          "prompt": "Where does the bird live?",
+          "picture": {
+            "emoji": "🐦"
+          },
+          "options": [
+            {
+              "label": "the ocean",
+              "image": "ocean"
+            },
+            {
+              "label": "a tree",
+              "emoji": "🌳"
+            },
+            {
+              "label": "the desert",
+              "image": "desert"
+            }
+          ],
+          "answer": 1,
+          "sentence": "The bird lives in a tree.",
+          "vi": "Con chim sống trên cây."
+        },
+        {
+          "id": "habitats-6",
+          "prompt": "Where does the dog live?",
+          "picture": {
+            "emoji": "🐶"
+          },
+          "options": [
+            {
+              "label": "a house",
+              "emoji": "🏠"
+            },
+            {
+              "label": "the ocean",
+              "image": "ocean"
+            },
+            {
+              "label": "the jungle",
+              "emoji": "🌴"
+            }
+          ],
+          "answer": 0,
+          "sentence": "The dog lives in a house.",
+          "vi": "Con chó sống trong nhà."
+        },
+        {
+          "id": "habitats-7",
+          "prompt": "Where do whales live?",
+          "picture": {
+            "emoji": "🐳"
+          },
+          "options": [
+            {
+              "label": "the desert",
+              "image": "desert"
+            },
+            {
+              "label": "a tree",
+              "emoji": "🌳"
+            },
+            {
+              "label": "the ocean",
+              "image": "ocean"
+            }
+          ],
+          "answer": 2,
+          "sentence": "Whales live in the ocean.",
+          "vi": "Cá voi sống ở đại dương."
+        },
+        {
+          "id": "habitats-8",
+          "prompt": "Where do penguins live?",
+          "picture": {
+            "emoji": "🐧"
+          },
+          "options": [
+            {
+              "label": "the jungle",
+              "emoji": "🌴"
+            },
+            {
+              "label": "the snow",
+              "emoji": "❄️"
+            },
+            {
+              "label": "the desert",
+              "image": "desert"
+            }
+          ],
+          "answer": 1,
+          "sentence": "Penguins live in the snow.",
+          "vi": "Chim cánh cụt sống ở xứ tuyết."
+        },
+        {
+          "id": "habitats-9",
+          "prompt": "Where do cows live?",
+          "picture": {
+            "emoji": "🐄"
+          },
+          "options": [
+            {
+              "label": "a farm",
+              "emoji": "🚜"
+            },
+            {
+              "label": "the ocean",
+              "image": "ocean"
+            },
+            {
+              "label": "a tree",
+              "emoji": "🌳"
+            }
+          ],
+          "answer": 0,
+          "sentence": "Cows live on a farm.",
+          "vi": "Những con bò sống ở trang trại."
+        },
+        {
+          "id": "habitats-10",
+          "prompt": "Where do sharks live?",
+          "picture": {
+            "emoji": "🦈"
+          },
+          "options": [
+            {
+              "label": "the forest",
+              "image": "forest"
+            },
+            {
+              "label": "a house",
+              "emoji": "🏠"
+            },
+            {
+              "label": "the sea",
+              "emoji": "🌊"
+            }
+          ],
+          "answer": 2,
+          "sentence": "Sharks live in the sea.",
+          "vi": "Cá mập sống ở biển."
+        }
+      ]
+    },
+    {
+      "id": "describe",
+      "title": "WHAT AM I LIKE?",
+      "grammar": "am / is / are + describing word",
+      "emoji": "🐘",
+      "cover": "elephant_scene",
+      "questions": [
+        {
+          "id": "describe-1",
+          "prompt": "The elephant is ___.",
+          "picture": {
+            "image": "elephant_scene"
+          },
+          "options": [
+            {
+              "label": "big"
+            },
+            {
+              "label": "small"
+            },
+            {
+              "label": "thin"
+            }
+          ],
+          "answer": 0,
+          "sentence": "The elephant is big.",
+          "vi": "Con voi thì to."
+        },
+        {
+          "id": "describe-2",
+          "prompt": "The mouse is ___.",
+          "picture": {
+            "emoji": "🐭"
+          },
+          "options": [
+            {
+              "label": "big"
+            },
+            {
+              "label": "small"
+            },
+            {
+              "label": "tall"
+            }
+          ],
+          "answer": 1,
+          "sentence": "The mouse is small.",
+          "vi": "Con chuột thì nhỏ."
+        },
+        {
+          "id": "describe-3",
+          "prompt": "The giraffe is ___.",
+          "picture": {
+            "emoji": "🦒"
+          },
+          "options": [
+            {
+              "label": "short"
+            },
+            {
+              "label": "round"
+            },
+            {
+              "label": "tall"
+            }
+          ],
+          "answer": 2,
+          "sentence": "The giraffe is tall.",
+          "vi": "Con hươu cao cổ thì cao."
+        },
+        {
+          "id": "describe-4",
+          "prompt": "The snail is ___.",
+          "picture": {
+            "emoji": "🐌"
+          },
+          "options": [
+            {
+              "label": "slow"
+            },
+            {
+              "label": "fast"
+            },
+            {
+              "label": "loud"
+            }
+          ],
+          "answer": 0,
+          "sentence": "The snail is slow.",
+          "vi": "Con ốc sên thì chậm."
+        },
+        {
+          "id": "describe-5",
+          "prompt": "The rabbit is ___.",
+          "picture": {
+            "image": "rabbit"
+          },
+          "options": [
+            {
+              "label": "slow"
+            },
+            {
+              "label": "fast"
+            },
+            {
+              "label": "heavy"
+            }
+          ],
+          "answer": 1,
+          "sentence": "The rabbit is fast.",
+          "vi": "Con thỏ thì nhanh."
+        },
+        {
+          "id": "describe-6",
+          "prompt": "The chicks are ___.",
+          "picture": {
+            "emoji": "🐥🐥🐥"
+          },
+          "options": [
+            {
+              "label": "blue"
+            },
+            {
+              "label": "black"
+            },
+            {
+              "label": "yellow"
+            }
+          ],
+          "answer": 2,
+          "sentence": "The chicks are yellow.",
+          "vi": "Những chú gà con màu vàng."
+        },
+        {
+          "id": "describe-7",
+          "prompt": "I ___ happy.",
+          "picture": {
+            "emoji": "😄"
+          },
+          "options": [
+            {
+              "label": "am"
+            },
+            {
+              "label": "is"
+            },
+            {
+              "label": "are"
+            }
+          ],
+          "answer": 0,
+          "sentence": "I am happy.",
+          "vi": "Tôi vui."
+        },
+        {
+          "id": "describe-8",
+          "prompt": "The bear ___ brown.",
+          "picture": {
+            "emoji": "🐻"
+          },
+          "options": [
+            {
+              "label": "am"
+            },
+            {
+              "label": "is"
+            },
+            {
+              "label": "are"
+            }
+          ],
+          "answer": 1,
+          "sentence": "The bear is brown.",
+          "vi": "Con gấu màu nâu."
+        },
+        {
+          "id": "describe-9",
+          "prompt": "The birds ___ small.",
+          "picture": {
+            "emoji": "🐦🐦"
+          },
+          "options": [
+            {
+              "label": "am"
+            },
+            {
+              "label": "is"
+            },
+            {
+              "label": "are"
+            }
+          ],
+          "answer": 2,
+          "sentence": "The birds are small.",
+          "vi": "Những chú chim thì nhỏ."
+        },
+        {
+          "id": "describe-10",
+          "prompt": "I am ___.",
+          "picture": {
+            "emoji": "😴"
+          },
+          "options": [
+            {
+              "label": "sleepy"
+            },
+            {
+              "label": "hungry"
+            },
+            {
+              "label": "angry"
+            }
+          ],
+          "answer": 0,
+          "sentence": "I am sleepy.",
+          "vi": "Tôi buồn ngủ."
+        }
+      ]
+    },
+    {
+      "id": "body",
+      "title": "WHAT DO I HAVE?",
+      "grammar": "has / have + body parts",
+      "emoji": "🐰",
+      "cover": "rabbit_scene",
+      "questions": [
+        {
+          "id": "body-1",
+          "prompt": "The rabbit has ___ long ears.",
+          "picture": {
+            "image": "rabbit_scene"
+          },
+          "options": [
+            {
+              "label": "one"
+            },
+            {
+              "label": "two"
+            },
+            {
+              "label": "three"
+            }
+          ],
+          "answer": 1,
+          "sentence": "The rabbit has two long ears.",
+          "vi": "Con thỏ có hai cái tai dài."
+        },
+        {
+          "id": "body-2",
+          "prompt": "The elephant has a long ___.",
+          "picture": {
+            "image": "elephant"
+          },
+          "options": [
+            {
+              "label": "trunk"
+            },
+            {
+              "label": "wing"
+            },
+            {
+              "label": "fin"
+            }
+          ],
+          "answer": 0,
+          "sentence": "The elephant has a long trunk.",
+          "vi": "Con voi có cái vòi dài."
+        },
+        {
+          "id": "body-3",
+          "prompt": "The fish has ___.",
+          "picture": {
+            "image": "fish"
+          },
+          "options": [
+            {
+              "label": "legs"
+            },
+            {
+              "label": "fins"
+            },
+            {
+              "label": "hands"
+            }
+          ],
+          "answer": 1,
+          "sentence": "The fish has fins.",
+          "vi": "Con cá có vây."
+        },
+        {
+          "id": "body-4",
+          "prompt": "The bird has two ___.",
+          "picture": {
+            "emoji": "🐦"
+          },
+          "options": [
+            {
+              "label": "fins"
+            },
+            {
+              "label": "horns"
+            },
+            {
+              "label": "wings"
+            }
+          ],
+          "answer": 2,
+          "sentence": "The bird has two wings.",
+          "vi": "Con chim có hai cánh."
+        },
+        {
+          "id": "body-5",
+          "prompt": "The spider has ___ legs.",
+          "picture": {
+            "emoji": "🕷️"
+          },
+          "options": [
+            {
+              "label": "eight"
+            },
+            {
+              "label": "two"
+            },
+            {
+              "label": "four"
+            }
+          ],
+          "answer": 0,
+          "sentence": "The spider has eight legs.",
+          "vi": "Con nhện có tám chân."
+        },
+        {
+          "id": "body-6",
+          "prompt": "I have ___ fingers on one hand.",
+          "picture": {
+            "emoji": "🖐️"
+          },
+          "options": [
+            {
+              "label": "two"
+            },
+            {
+              "label": "five"
+            },
+            {
+              "label": "three"
+            }
+          ],
+          "answer": 1,
+          "sentence": "I have five fingers on one hand.",
+          "vi": "Một bàn tay tôi có năm ngón."
+        },
+        {
+          "id": "body-7",
+          "prompt": "The lion has sharp ___.",
+          "picture": {
+            "image": "lion"
+          },
+          "options": [
+            {
+              "label": "wings"
+            },
+            {
+              "label": "fins"
+            },
+            {
+              "label": "teeth"
+            }
+          ],
+          "answer": 2,
+          "sentence": "The lion has sharp teeth.",
+          "vi": "Sư tử có răng sắc."
+        },
+        {
+          "id": "body-8",
+          "prompt": "I ___ two eyes.",
+          "picture": {
+            "emoji": "👀"
+          },
+          "options": [
+            {
+              "label": "have"
+            },
+            {
+              "label": "has"
+            },
+            {
+              "label": "is"
+            }
+          ],
+          "answer": 0,
+          "sentence": "I have two eyes.",
+          "vi": "Tôi có hai mắt."
+        },
+        {
+          "id": "body-9",
+          "prompt": "The cat ___ a long tail.",
+          "picture": {
+            "emoji": "🐱"
+          },
+          "options": [
+            {
+              "label": "have"
+            },
+            {
+              "label": "has"
+            },
+            {
+              "label": "am"
+            }
+          ],
+          "answer": 1,
+          "sentence": "The cat has a long tail.",
+          "vi": "Con mèo có cái đuôi dài."
+        },
+        {
+          "id": "body-10",
+          "prompt": "Cows ___ four legs.",
+          "picture": {
+            "emoji": "🐄"
+          },
+          "options": [
+            {
+              "label": "has"
+            },
+            {
+              "label": "is"
+            },
+            {
+              "label": "have"
+            }
+          ],
+          "answer": 2,
+          "sentence": "Cows have four legs.",
+          "vi": "Những con bò có bốn chân."
+        }
+      ]
+    }
+  ]
+}

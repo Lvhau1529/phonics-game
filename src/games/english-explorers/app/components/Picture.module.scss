@@ -1,0 +1,17 @@
+@use '@/ui/styles/abstracts' as *;
+
+@layer components {
+  .image {
+    display: block;
+    object-fit: cover;
+  }
+
+  // Cỡ theo font-size của phần tử cha
+  .emoji {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Segoe UI Emoji', 'Apple Color Emoji', 'Noto Color Emoji', sans-serif;
+    line-height: 1;
+  }
+}

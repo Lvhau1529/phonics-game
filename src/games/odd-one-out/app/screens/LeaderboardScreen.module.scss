@@ -1,0 +1,184 @@
+@use '@/ui/styles/abstracts' as *;
+
+@layer components {
+  .board {
+    @include screen;
+    text-align: center;
+  }
+
+  .sub {
+    margin: 0;
+    color: var(--color-ink);
+    font-size: 17px;
+    font-weight: 800;
+  }
+
+  .empty {
+    @include card;
+    margin: 0;
+    font-size: 19px;
+    font-weight: 800;
+  }
+
+  // Bục: hạng 1 ở giữa, cao nhất
+  .podium {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 8px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    li {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+      max-width: 200px;
+      min-width: 0;
+      padding: 10px 6px 12px;
+      border: 3px solid #fff;
+      border-radius: 22px 22px 14px 14px;
+      font-weight: 800;
+    }
+  }
+
+  .place1 {
+    order: 2;
+    min-height: 160px;
+    background: linear-gradient(160deg, #fff6cc, #fff9e9);
+    box-shadow: 0 7px 0 #f1d78c;
+  }
+
+  .place2 {
+    order: 1;
+    min-height: 140px;
+    background: #f0f8ff;
+    box-shadow: 0 7px 0 #d7e3f3;
+  }
+
+  .place3 {
+    order: 3;
+    min-height: 124px;
+    background: #fff0e9;
+    box-shadow: 0 7px 0 #edcdb9;
+  }
+
+  .medal {
+    font-size: 34px;
+    line-height: 1;
+  }
+
+  .podiumName {
+    max-width: 100%;
+    color: var(--color-ink);
+    font-size: 16px;
+    overflow-wrap: anywhere;
+  }
+
+  .podiumScore {
+    color: #aa7325;
+    font-size: 20px;
+  }
+
+  .podiumTime {
+    color: #18798d;
+    font-size: 13px;
+  }
+
+  .filters {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+
+    label {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 18px;
+    }
+
+    select {
+      min-height: 44px;
+      padding: 6px 10px;
+      border: 3px solid var(--color-tan);
+      border-radius: 12px;
+      background: #fff;
+      color: var(--color-ink);
+      font-family: inherit;
+      font-size: 15px;
+      font-weight: 800;
+    }
+  }
+
+  .tableWrap {
+    overflow-x: auto;
+    border: 3px solid #fff;
+    border-radius: 18px;
+    background: #fff;
+    box-shadow: 0 6px 0 rgba(0, 0, 0, 0.15);
+  }
+
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+    color: var(--color-brown);
+    font-weight: 700;
+    text-align: left;
+
+    th {
+      padding: 10px 8px;
+      background: #eef6ff;
+      color: var(--color-ink);
+      font-size: 14px;
+    }
+
+    td {
+      padding: 8px;
+      border-top: 1px solid #edf1f7;
+      font-variant-numeric: tabular-nums;
+    }
+  }
+
+  .place {
+    width: 40px;
+    font-size: 20px;
+    text-align: center;
+  }
+
+  .name {
+    color: var(--color-ink);
+    overflow-wrap: anywhere;
+
+    small {
+      display: block;
+      color: #6e7f9a;
+      font-size: 12px;
+    }
+  }
+
+  .points {
+    color: #8660cb;
+    font-size: 18px;
+  }
+
+  .highlight td {
+    background: #fff6d6;
+  }
+
+  .note {
+    margin: 0;
+    color: var(--color-ink);
+    font-size: 13px;
+    font-weight: 700;
+  }
+
+  .clear {
+    align-self: center;
+    color: var(--color-red-edge);
+    @include text-button;
+  }
+}

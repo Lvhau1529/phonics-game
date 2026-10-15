@@ -1,0 +1,126 @@
+@use '@/ui/styles/abstracts' as *;
+
+@layer components {
+  @include keyframes-bob($distance: -6px);
+
+  .home {
+    @include screen;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    padding-top: max(72px, env(safe-area-inset-top));
+    text-align: center;
+  }
+
+  .exit {
+    position: absolute;
+    top: max(16px, env(safe-area-inset-top));
+    left: 16px;
+  }
+
+  .eyebrow {
+    margin: 0;
+    padding: 6px 18px;
+    border: 4px solid #fff4b3;
+    border-radius: 999px;
+    background: #ffe66b;
+    box-shadow: 0 5px 0 #d8a339;
+    color: #795020;
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 1px;
+  }
+
+  .logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -1px;
+  }
+
+  .logoTop {
+    color: #fff;
+    font-size: clamp(34px, 10vw, 60px);
+    text-shadow:
+      0 4px 0 #4076e7,
+      0 8px 0 #2e3697,
+      0 12px 18px rgba(34, 58, 123, 0.5);
+  }
+
+  .logoBottom {
+    color: #ffdd3c;
+    font-size: clamp(42px, 13vw, 76px);
+    text-shadow:
+      0 4px 0 #f27023,
+      0 8px 0 #4932a1,
+      0 14px 22px rgba(36, 71, 161, 0.45);
+    -webkit-text-stroke: 2px #fff;
+  }
+
+  // Biển gỗ
+  .sub {
+    margin: 4px 0 0;
+    padding: 6px 22px;
+    border: 3px solid #e9b17a;
+    border-radius: 20px;
+    background: linear-gradient(130deg, #b66b39, #8b472e);
+    color: #fff;
+    font-size: clamp(18px, 5vw, 26px);
+    font-weight: 800;
+    text-shadow: 0 3px 0 #975126;
+    transform: rotate(-2deg);
+  }
+
+  .animals {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 8px;
+    width: min(520px, 100%);
+  }
+
+  .animal {
+    width: 31%;
+    aspect-ratio: 1.1;
+    overflow: hidden;
+    border: 5px solid #fff;
+    border-radius: 28px 28px 18px 18px;
+    background: linear-gradient(#daf7ff, #8ae1a2);
+    box-shadow:
+      0 10px 0 rgba(0, 0, 0, 0.13),
+      0 16px 30px rgba(38, 49, 108, 0.2);
+    animation: bob 2.6s ease-in-out infinite;
+
+    &:nth-child(2) {
+      margin-bottom: 14px;
+      animation-delay: 0.4s;
+    }
+
+    &:nth-child(3) {
+      animation-delay: 0.8s;
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  .buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+    width: min(100%, 380px);
+  }
+
+  .play {
+    min-height: 76px;
+    font-size: 32px;
+    letter-spacing: 2px;
+  }
+}

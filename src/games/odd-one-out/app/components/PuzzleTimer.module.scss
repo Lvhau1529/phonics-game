@@ -1,0 +1,17 @@
+@use '@/ui/styles/abstracts' as *;
+
+@layer components {
+  .timer {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 12px;
+    border: 3px solid #bceef5;
+    border-radius: 14px;
+    background: #e8faff;
+    color: #18798d;
+    font-size: 18px;
+    font-weight: 800;
+    font-variant-numeric: tabular-nums;
+  }
+}

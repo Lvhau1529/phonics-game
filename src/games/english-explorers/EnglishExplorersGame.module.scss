@@ -1,0 +1,30 @@
+// Theme "magic animal adventure" của Little English Explorers (theo bản HTML gốc): trời xanh nhạt -> cỏ,
+// mực navy. Ghi đè token màu (styles/tailwind.css) trên phần tử gốc — component chung tự đổi màu theo.
+@use '@/ui/styles/abstracts' as *;
+
+@layer components {
+  .theme {
+    --color-bg: #74d5ff;
+    --color-ink: #20336f;
+    --color-brown: #2c4380;
+    --color-cream: #fffaf0;
+    --color-paper: #ffffff;
+    --color-tan: #9ad2f9;
+    @include text-outline-vars;
+    --screen-layer-bg: transparent;
+    --guide-backdrop-bg: rgba(32, 51, 111, 0.7);
+    position: relative;
+    overflow: hidden;
+    background: var(--color-bg);
+  }
+
+  .scenery {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 160px 56px at 15% 13%, #ffffffb3 70%, transparent 72%),
+      radial-gradient(ellipse 180px 62px at 79% 19%, #ffffffb3 65%, transparent 67%),
+      radial-gradient(ellipse 240px 70px at 52% 5%, #ffffff99 65%, transparent 68%),
+      linear-gradient(180deg, #74d5ff, #bbebff 46%, #81d875 90%);
+  }
+}

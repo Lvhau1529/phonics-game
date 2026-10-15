@@ -1,0 +1,254 @@
+@use '@/ui/styles/abstracts' as *;
+
+@layer components {
+  @include keyframes-pop;
+
+  .play {
+    @include screen;
+    gap: 12px;
+  }
+
+  // Thanh trên: QUIT · tiến độ · đồng hồ · điểm
+  .top {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 12px;
+    border: 3px solid #fff;
+    border-radius: 22px;
+    background: rgba(255, 255, 255, 0.88);
+    box-shadow: 0 6px 0 #a0cfdd;
+  }
+
+  .progress {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 0;
+  }
+
+  .progressLabel {
+    color: var(--color-ink);
+    white-space: nowrap;
+    font-size: 16px;
+    font-weight: 800;
+  }
+
+  .bar {
+    display: block;
+    height: 10px;
+    overflow: hidden;
+    border-radius: 999px;
+    background: #dcecf6;
+  }
+
+  .fill {
+    display: block;
+    height: 100%;
+    border-radius: inherit;
+    background: linear-gradient(90deg, #42cfae, #56b6fa);
+    transition: width 0.3s ease-out;
+  }
+
+  .score {
+    padding: 4px 12px;
+    border: 3px solid #ffdf92;
+    border-radius: 14px;
+    background: #fffae8;
+    color: #8b6113;
+    font-size: 18px;
+    font-weight: 800;
+    white-space: nowrap;
+  }
+
+  // Khung chính trắng mờ trên nền trời
+  .stage {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    padding: 16px 14px 20px;
+    border: 4px solid #fff;
+    border-radius: 30px;
+    background: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 10px 0 rgba(96, 169, 76, 0.55);
+    text-align: center;
+  }
+
+  .tags {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .tag {
+    padding: 2px 12px;
+    border-radius: 999px;
+    background: #e6f4ff;
+    color: var(--color-ink);
+    font-size: 14px;
+    font-weight: 800;
+  }
+
+  .levelTag {
+    background: #fff1d6;
+    color: #a2620f;
+  }
+
+  .stepTitle {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+
+    h1 {
+      margin: 0;
+      color: var(--color-ink);
+      font-size: clamp(26px, 7vw, 36px);
+      line-height: 1.1;
+    }
+  }
+
+  .kicker {
+    padding: 2px 12px;
+    border-radius: 999px;
+    background: #fff;
+    color: #317ec0;
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+  }
+
+  .sub {
+    margin: 0;
+    color: var(--color-brown);
+    font-size: 16px;
+    font-weight: 700;
+  }
+
+  .listen {
+    margin-top: 4px;
+    padding: 6px 16px;
+    border: 3px solid var(--color-blue-edge);
+    border-radius: 999px;
+    background: var(--color-blue);
+    color: #fff;
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 800;
+    cursor: pointer;
+    @include focus-ring;
+  }
+
+  .great {
+    color: var(--color-green-edge) !important;
+  }
+
+  .goodTry {
+    color: #d9446f !important;
+  }
+
+  // Bước nói / đáp án
+  .panel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 14px;
+    border: 3px dashed #ad91f5;
+    border-radius: 22px;
+    background: #f7f2ff;
+    animation: pop 0.25s ease-out;
+  }
+
+  .frame {
+    margin: 0;
+    color: #5b3fb0;
+    font-family: var(--font-learning);
+    font-size: 21px;
+    font-weight: 700;
+  }
+
+  .heard,
+  .micStatus {
+    margin: 0;
+    color: var(--color-brown);
+    font-size: 16px;
+    font-weight: 700;
+  }
+
+  .heard b {
+    color: var(--color-ink);
+    font-family: var(--font-learning);
+  }
+
+  .mainAction {
+    width: min(100%, 360px);
+  }
+
+  .answer {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 4px 8px;
+    margin: 0;
+    padding: 4px 16px;
+    border-radius: 16px;
+    background: #d7ffe1;
+    color: var(--color-ink);
+    font-size: 18px;
+    font-weight: 800;
+
+    b {
+      font-family: var(--font-learning);
+      font-size: 22px;
+    }
+  }
+
+  .answerArt {
+    font-size: 34px;
+  }
+
+  .sample {
+    margin: 0;
+    color: var(--color-ink);
+    font-family: var(--font-learning);
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1.3;
+  }
+
+  .group {
+    margin: 0;
+    color: var(--color-brown);
+    font-size: 16px;
+    font-weight: 700;
+
+    b {
+      color: #7a5cf0;
+    }
+  }
+
+  .gained {
+    display: flex;
+    gap: 12px;
+    margin: 0;
+    color: #a2620f;
+    font-size: 17px;
+    font-weight: 800;
+
+    &:empty {
+      display: none;
+    }
+  }
+
+  .answerActions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+  }
+}

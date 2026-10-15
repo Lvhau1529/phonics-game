@@ -1,0 +1,190 @@
+@use '@/ui/styles/abstracts' as *;
+
+@layer components {
+  @include keyframes-pop;
+
+  .results {
+    @include screen;
+    text-align: center;
+  }
+
+  .hero {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+  }
+
+  .kid {
+    width: 96px;
+    height: auto;
+    filter: drop-shadow(0 4px 2px rgba(50, 122, 50, 0.35));
+  }
+
+  .kicker {
+    display: inline-block;
+    margin: 0;
+    padding: 2px 12px;
+    border-radius: 999px;
+    background: #fff;
+    color: #317ec0;
+    font-size: 13px;
+    font-weight: 800;
+  }
+
+  .title {
+    margin: 4px 0;
+    color: #fff;
+    font-size: clamp(28px, 8vw, 40px);
+    line-height: 1.05;
+    text-shadow:
+      0 3px 0 #226da8,
+      0 6px 0 #184a85;
+
+    span {
+      color: #ffdf45;
+      text-shadow:
+        0 3px 0 #f68e35,
+        0 6px 0 #a8491f;
+      overflow-wrap: anywhere;
+    }
+  }
+
+  .set {
+    margin: 0;
+    color: var(--color-ink);
+    font-size: 15px;
+    font-weight: 800;
+  }
+
+  .stars {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+  }
+
+  .star {
+    opacity: 0.25;
+    filter: grayscale(1);
+  }
+
+  .earned {
+    opacity: 1;
+    filter: none;
+    animation: pop 0.4s ease-out both;
+
+    &:nth-child(2) {
+      animation-delay: 0.25s;
+    }
+
+    &:nth-child(3) {
+      animation-delay: 0.5s;
+    }
+  }
+
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+    margin: 0;
+
+    @include app-landscape {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+  }
+
+  .stat {
+    @include card;
+    padding: 8px;
+
+    dt {
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    dd {
+      margin: 0;
+      color: var(--color-ink);
+      font-size: 24px;
+      font-weight: 800;
+    }
+  }
+
+  .list {
+    @include card;
+    text-align: left;
+
+    h2 {
+      margin: 0 0 8px;
+      font-size: 18px;
+      text-align: center;
+    }
+
+    ol {
+      display: grid;
+      gap: 6px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+
+      @include app-landscape {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    li {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 10px;
+      border-radius: 12px;
+      font-weight: 700;
+    }
+  }
+
+  .right {
+    background: #e3fbe9;
+  }
+
+  .miss {
+    background: #fff0f4;
+  }
+
+  .mark {
+    font-size: 18px;
+  }
+
+  .listArt {
+    font-size: 28px;
+  }
+
+  .listName {
+    flex: 1;
+    color: var(--color-ink);
+    font-family: var(--font-learning);
+    font-size: 18px;
+  }
+
+  .time {
+    color: #18798d;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+
+    > :first-child {
+      width: min(100%, 380px);
+    }
+  }
+
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+  }
+}

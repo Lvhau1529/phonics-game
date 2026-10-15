@@ -3,7 +3,7 @@
   "version": "3.0.0",
   "private": true,
   "type": "module",
-  "description": "Phonics Arcade — classroom phonics games (Bread Catcher, Food Stream, Phonics Ocean) built with Phaser 3 + React",
+  "description": "Phonics Arcade — classroom phonics games (Bread Catcher, Food Stream, Phonics Ocean, Odd One Out, Little English Explorers) built with Phaser 3 + React",
   "packageManager": "pnpm@12.8.1",
   "engines": {
     "node": ">=22.12"
@@ -20,11 +20,13 @@
     "assets:bread": "python tools/bread_catcher/build_sprites.py",
     "assets:food-stream": "python tools/food_stream/build_sprites.py",
     "assets:phonics-ocean": "python tools/phonics_ocean/build_sprites.py && python tools/phonics_ocean/build_content.py",
+    "assets:odd-one-out": "python tools/odd_one_out/build_assets.py",
+    "assets:english-explorers": "python tools/english_explorers/build_assets.py",
     "assets:audio": "python tools/build_audio.py",
     "assets:icons": "python tools/build_app_icons.py",
     "assets:avatars": "python tools/build_avatars.py",
     "assets:ui": "python tools/arcade_ui/build_ui.py",
-    "assets": "pnpm run assets:bread && pnpm run assets:food-stream && pnpm run assets:phonics-ocean && pnpm run assets:ui && pnpm run assets:audio && pnpm run assets:icons && pnpm run assets:avatars"
+    "assets": "pnpm run assets:bread && pnpm run assets:food-stream && pnpm run assets:phonics-ocean && pnpm run assets:odd-one-out && pnpm run assets:english-explorers && pnpm run assets:ui && pnpm run assets:audio && pnpm run assets:icons && pnpm run assets:avatars"
   },
   "dependencies": {
     "@fontsource/andika": "^5.3.0",

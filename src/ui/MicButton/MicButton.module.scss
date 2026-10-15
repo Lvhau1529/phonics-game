@@ -1,0 +1,47 @@
+@use '@/ui/styles/abstracts' as *;
+
+@layer components {
+  @keyframes pulse {
+    50% {
+      box-shadow:
+        0 5px 0 var(--color-red-edge),
+        0 0 0 10px rgba(255, 77, 94, 0.25);
+    }
+  }
+
+  .mic {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 56px;
+    padding: 8px 20px;
+    border: 3px solid var(--color-ink);
+    border-radius: 999px;
+    background: linear-gradient(#ff9a8b, #ff5f6d);
+    box-shadow: 0 5px 0 var(--color-red-edge);
+    color: #fff;
+    font-family: inherit;
+    font-size: 20px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    text-shadow: 0 2px 0 rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+    @include focus-ring;
+
+    &:active {
+      transform: translateY(3px);
+      box-shadow: 0 2px 0 var(--color-red-edge);
+    }
+  }
+
+  .listening {
+    background: linear-gradient(#ff5f6d, #e8273a);
+    animation: pulse 1s ease-in-out infinite;
+  }
+
+  .icon {
+    font-size: 24px;
+    line-height: 1;
+  }
+}

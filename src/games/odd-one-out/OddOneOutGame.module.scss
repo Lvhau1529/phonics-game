@@ -1,0 +1,36 @@
+// Theme "storybook" của Odd One Out (theo bản HTML gốc): trời xanh -> đồi cỏ, mực xanh navy, nút hồng.
+// Ghi đè token màu (styles/tailwind.css) trên phần tử gốc — component chung bên trong tự đổi màu theo.
+@use '@/ui/styles/abstracts' as *;
+
+@layer components {
+  .theme {
+    --color-bg: #8ddaff;
+    --color-ink: #173d6b;
+    --color-brown: #22497a;
+    --color-cream: #fffdf3;
+    --color-paper: #ffffff;
+    --color-tan: #b9def3;
+    // Viền chữ tính theo --color-ink nên khai báo lại sau khi đổi mực
+    @include text-outline-vars;
+    // Cảnh vẽ bằng CSS phía sau nên lớp màn React gần như trong suốt
+    --screen-layer-bg: transparent;
+    --guide-backdrop-bg: rgba(23, 61, 107, 0.7);
+    position: relative;
+    overflow: hidden;
+    background: var(--color-bg);
+  }
+
+  // Trời -> cỏ, mây trắng, đồi xanh phía dưới
+  .scenery {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 90px 30px at 14% 12%, #fffffff2 70%, transparent 72%),
+      radial-gradient(ellipse 120px 38px at 22% 9%, #fffffff2 65%, transparent 67%),
+      radial-gradient(ellipse 110px 34px at 80% 16%, #ffffffe6 70%, transparent 72%),
+      radial-gradient(ellipse 140px 42px at 88% 12%, #ffffffe6 65%, transparent 67%),
+      radial-gradient(ellipse 80% 22% at 20% 100%, #6cc560 60%, transparent 62%),
+      radial-gradient(ellipse 70% 18% at 85% 100%, #5ab955 60%, transparent 62%),
+      linear-gradient(180deg, #8ddaff 0%, #d4f6ff 45%, #e1f6bc 78%, #c3e99a 100%);
+  }
+}

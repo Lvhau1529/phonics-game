@@ -1,0 +1,179 @@
+@use '@/ui/styles/abstracts' as *;
+
+@layer components {
+  @include keyframes-pop;
+
+  .results {
+    @include screen;
+    align-items: center;
+    text-align: center;
+  }
+
+  .world {
+    margin: 0;
+    padding: 4px 16px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.8);
+    color: var(--color-ink);
+    font-size: 15px;
+    font-weight: 800;
+  }
+
+  .title {
+    margin: 0;
+    color: #fff;
+    font-size: clamp(28px, 8vw, 42px);
+    line-height: 1.05;
+    text-shadow:
+      0 4px 0 #2657a8,
+      0 8px 14px rgba(41, 89, 141, 0.6);
+
+    span {
+      color: #ffdd3c;
+      overflow-wrap: anywhere;
+      text-shadow:
+        0 4px 0 #f27023,
+        0 8px 0 #4932a1;
+    }
+  }
+
+  .stars {
+    display: flex;
+    gap: 6px;
+  }
+
+  .star {
+    opacity: 0.25;
+    filter: grayscale(1);
+  }
+
+  .earned {
+    opacity: 1;
+    filter: none;
+    animation: pop 0.4s ease-out both;
+
+    &:nth-child(2) {
+      animation-delay: 0.25s;
+    }
+
+    &:nth-child(3) {
+      animation-delay: 0.5s;
+    }
+  }
+
+  .best {
+    margin: 0;
+    padding: 2px 14px;
+    border-radius: 999px;
+    background: #ffe66b;
+    color: #795020;
+    font-weight: 800;
+    animation: pop 0.4s 0.8s ease-out both;
+  }
+
+  .stats {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    margin: 0;
+  }
+
+  .stat {
+    @include card;
+    flex: 1;
+    min-width: 96px;
+    padding: 8px;
+
+    dt {
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    dd {
+      margin: 0;
+      color: var(--color-ink);
+      font-size: 24px;
+      font-weight: 800;
+    }
+  }
+
+  .sentences {
+    @include card;
+    width: 100%;
+    text-align: left;
+
+    h2 {
+      margin: 0 0 8px;
+      font-size: 18px;
+      text-align: center;
+    }
+
+    ul {
+      display: grid;
+      gap: 6px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+
+      @include app-landscape {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    button {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      width: 100%;
+      padding: 4px 8px;
+      border: 2px solid #e2ecfa;
+      border-radius: 14px;
+      background: #fff;
+      color: var(--color-ink);
+      font-family: inherit;
+      text-align: left;
+      cursor: pointer;
+      @include focus-ring;
+    }
+  }
+
+  .thumb {
+    flex-shrink: 0;
+    width: 52px;
+    height: 40px;
+    border-radius: 8px;
+    font-size: 26px;
+  }
+
+  .text {
+    flex: 1;
+    font-family: var(--font-learning);
+    font-size: 17px;
+    font-weight: 700;
+  }
+
+  .marks {
+    white-space: nowrap;
+  }
+
+  .actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+
+    > :first-child {
+      width: min(100%, 380px);
+    }
+  }
+
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+  }
+}
