@@ -1,0 +1,58 @@
+@use '@/ui/styles/abstracts' as *;
+
+@layer components {
+  @keyframes mascot-run {
+    to {
+      transform: translate(6px, -6px) rotate(3deg);
+    }
+  }
+
+  // Màn chờ phủ kín (trên canvas và màn React)
+  .screen {
+    position: fixed;
+    inset: 0;
+    z-index: 20;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    padding: 24px;
+    background: $arcade-sky;
+  }
+
+  .mascot {
+    @include mascot-frame(140px);
+
+    animation: mascot-run 0.35s ease-in-out infinite alternate;
+  }
+
+  .track {
+    width: min(260px, 70vw);
+    height: 14px;
+    padding: 2px;
+    border: 2px solid var(--color-ink);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.6);
+  }
+
+  .fill {
+    display: block;
+    height: 100%;
+    border-radius: inherit;
+    background: var(--color-gold);
+    transition: width 0.2s ease-out;
+  }
+
+  // Thanh mảnh ở đáy màn: game đang tải phía sau màn React (không chặn thao tác)
+  .bar {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 20;
+    height: 5px;
+    background: rgba(0, 0, 0, 0.25);
+    pointer-events: none;
+  }
+}

@@ -12,7 +12,6 @@ import {
   type LazyExoticComponent,
   type ReactNode,
 } from 'react';
-import clsx from 'clsx';
 import { ACCOUNT_ENABLED } from '@/core/config/account';
 import { useCatalog } from '@/modules/catalog';
 import HubScreen from '@/modules/hub/screens/HubScreen/HubScreen';
@@ -20,9 +19,8 @@ import { useStore } from '@/core/store/useStore';
 import { platformActions, platformStore } from '@/core/navigation/platformStore';
 import type { GameManifest, UpcomingGame } from '@/core/types/game';
 import Button from '@/ui/Button/Button';
-import { useDelayedLoading } from '@/core/hooks/useDelayedLoading';
 import { MASCOT } from '@/ui/icons';
-import LottieLoader from '@/ui/LottieLoader/LottieLoader';
+import GameLoading from '@/ui/GameLoading/GameLoading';
 import RotateHint from '@/ui/RotateHint/RotateHint';
 import styles from '@/app/PlatformApp/PlatformApp.module.scss';
 
@@ -65,7 +63,7 @@ export default function PlatformApp({ games: baseGames, upcoming: baseUpcoming }
     if ((activeId && !game) || (needsApi && !ACCOUNT_ENABLED)) platformActions.exitToHub();
   }, [activeId, game, route.kind]);
 
-  const loading = <LoadingScreen />;
+  const loading = <GameLoading />;
 
   return (
     <>
@@ -92,21 +90,6 @@ export default function PlatformApp({ games: baseGames, upcoming: baseUpcoming }
       )}
       <RotateHint />
     </>
-  );
-}
-
-/** Màn chờ tải chunk: nền vườn hiện ngay, linh vật + chấm nhún chỉ hiện sau 200ms (tải nhanh thì không nháy) */
-function LoadingScreen() {
-  const show = useDelayedLoading(true);
-  return (
-    <div className={styles.loading}>
-      {show && (
-        <>
-          <img className={clsx(styles.mascot, styles.running)} src={MASCOT.loading} alt="" />
-          <LottieLoader size="lg" label="LOADING…" />
-        </>
-      )}
-    </div>
   );
 }
 

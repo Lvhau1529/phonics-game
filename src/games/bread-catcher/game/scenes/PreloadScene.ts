@@ -1,6 +1,6 @@
 /**
  * Tải toàn bộ hình ảnh (theo sprites.json + atlas tranh từ vựng), SFX và nhạc nền.
- * Người chơi thường đang ở màn Home (React) trong lúc này nên không cần màn loading riêng.
+ * Tiến độ báo qua core/phaser/assetLoading.ts (PhaserHost hiện thanh tiến độ / màn LOADING).
  */
 import Phaser from 'phaser';
 import {
@@ -14,9 +14,7 @@ import { SCENES } from '@/games/bread-catcher/game/core/keys';
 import { isLandscape } from '@/core/phaser/view';
 import { registerBrainrotAnims } from '@/games/bread-catcher/game/objects/brainrot';
 import { SFX, sfxUrls } from '@/core/audio/sfx';
-
-/** Game phát event này khi asset đã sẵn sàng (SceneDirector bắt đầu điều phối) */
-export const ASSETS_READY = 'assets-ready';
+import { markAssetsReady, reportLoadProgress } from '@/core/phaser/assetLoading';
 
 export default class PreloadScene extends Phaser.Scene {
   constructor() {
@@ -24,6 +22,7 @@ export default class PreloadScene extends Phaser.Scene {
   }
 
   preload(): void {
+    reportLoadProgress(this);
     const manifest = this.cache.json.get(SPRITE_MANIFEST.key) as SpriteManifest;
     // Ảnh nền chỉ tải bộ đúng hướng màn hình (bản dọc hoặc bản ngang "_wide")
     const landscape = isLandscape(this);
@@ -41,7 +40,7 @@ export default class PreloadScene extends Phaser.Scene {
 
   create(): void {
     registerBrainrotAnims(this.anims);
-    this.game.events.emit(ASSETS_READY);
+    markAssetsReady(this.game);
     this.scene.stop();
   }
 }

@@ -5,9 +5,10 @@
  *   play                   -> OceanScene (mỗi phiên mới chạy lại từ đầu)
  */
 import Phaser from 'phaser';
-import { ASSETS_READY, SCENES, type SceneKey } from '@/games/phonics-ocean/game/core/keys';
+import { SCENES, type SceneKey } from '@/games/phonics-ocean/game/core/keys';
 import type LobbyScene from '@/games/phonics-ocean/game/scenes/LobbyScene';
 import { phonicsOceanStore } from '@/games/phonics-ocean/session/store';
+import { ASSETS_READY } from '@/core/phaser/assetLoading';
 
 const MANAGED_SCENES: SceneKey[] = [SCENES.LOBBY, SCENES.OCEAN, SCENES.PAUSE];
 

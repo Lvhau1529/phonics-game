@@ -129,7 +129,10 @@ Mỗi game tự chứa (`src/games/<id>/`): `manifest.ts` (thẻ game + `load: (
 1. Tạo `src/games/<id>/` với root component (dùng `PhaserHost` + `createPhaserGame`, `useGameOrientation`,
    `ScreenLayer`, `GuideDialog`...) và `manifest.ts` (`id` dùng cho URL và key lưu trữ — không đổi sau khi phát
    hành). Phần tử gốc: ``<main className={clsx('app', `app--${orientation}`, styles.theme)}>`` — theme riêng
-   (nếu có) ghi đè token `--color-*` trong `<Root>.module.scss` (xem Food Stream).
+   (nếu có) ghi đè token `--color-*` trong `<Root>.module.scss` (xem Food Stream). `PreloadScene` gọi
+   `reportLoadProgress(this)` trong `preload()` và `markAssetsReady(this.game)` khi xong (`core/phaser/assetLoading.ts`):
+   SceneDirector chờ `ASSETS_READY`, còn `PhaserHost` hiện thanh tải ở đáy màn React / màn LOADING nếu bé vào chơi
+   khi ảnh chưa tải xong (tải xong tự vào ván).
 2. Thêm manifest vào `src/games/index.ts` (bỏ thẻ COMING SOON tương ứng trong `UPCOMING`). Muốn bé dùng
    kim cương mở khoá thì đặt `price` trong manifest; bỏ trống = miễn phí.
 3. Asset vào `public/assets/<id>/` (script sinh ở `tools/<id>/`), ảnh bìa 16:9 `public/assets/<id>/cover.png`.

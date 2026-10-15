@@ -5,9 +5,10 @@
  *   play                   -> LiveScene (mỗi phiên mới chạy lại từ đầu)
  */
 import Phaser from 'phaser';
-import { ASSETS_READY, SCENES, type SceneKey } from '@/games/food-stream/game/core/keys';
+import { SCENES, type SceneKey } from '@/games/food-stream/game/core/keys';
 import type StudioScene from '@/games/food-stream/game/scenes/StudioScene';
 import { foodStreamStore } from '@/games/food-stream/session/store';
+import { ASSETS_READY } from '@/core/phaser/assetLoading';
 
 const MANAGED_SCENES: SceneKey[] = [SCENES.STUDIO, SCENES.LIVE, SCENES.PAUSE];
 

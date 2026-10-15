@@ -10,10 +10,10 @@
  */
 import Phaser from 'phaser';
 import { SCENES, type SceneKey } from '@/games/bread-catcher/game/core/keys';
-import { ASSETS_READY } from '@/games/bread-catcher/game/scenes/PreloadScene';
 import type ShellScene from '@/games/bread-catcher/game/scenes/ShellScene';
 import type { ShellScreen } from '@/games/bread-catcher/game/scenes/ShellScene';
 import { appStore } from '@/games/bread-catcher/session/sessionStore';
+import { ASSETS_READY } from '@/core/phaser/assetLoading';
 
 /** Các scene có thể bị Director dừng (không gồm Boot / Preload) */
 const MANAGED_SCENES: SceneKey[] = [
