@@ -111,6 +111,11 @@ export interface RequestOptions<T> {
 }
 
 const JSON_HEADERS = { 'Content-Type': 'application/json' } as const;
+/**
+ * API trả `message` / `details` theo Accept-Language (vi | en, mặc định vi — ADR 0025). UI game chỉ tiếng Anh nên
+ * luôn xin `en` (không để trình duyệt tự gửi vi-VN), kể cả lời gọi refresh. Header nằm trong danh sách CORS-safelisted.
+ */
+const LOCALE_HEADERS = { 'Accept-Language': 'en' } as const;
 
 function buildUrl(path: string, query?: QueryParams): string {
   const url = new URL(`${API_URL}${API_PREFIX}${path}`);
@@ -177,7 +182,7 @@ async function doRefresh(): Promise<boolean> {
   if (!refreshToken) return false;
   const response = await send(buildUrl(ENDPOINTS.auth.refresh), {
     method: HttpMethod.POST,
-    headers: { ...JSON_HEADERS, [REFRESH_TRANSPORT_HEADER]: RefreshTransport.enum.body },
+    headers: { ...LOCALE_HEADERS, ...JSON_HEADERS, [REFRESH_TRANSPORT_HEADER]: RefreshTransport.enum.body },
     body: JSON.stringify({ refreshToken }),
   });
   if (!response.ok) {
@@ -211,7 +216,7 @@ export async function request<T = void>(path: string, options: RequestOptions<T>
   const url = buildUrl(path, query);
 
   const attempt = (): Promise<Response> => {
-    const headers: Record<string, string> = {};
+    const headers: Record<string, string> = { ...LOCALE_HEADERS };
     if (body !== undefined) Object.assign(headers, JSON_HEADERS);
     if (path.startsWith('/auth/')) headers[REFRESH_TRANSPORT_HEADER] = RefreshTransport.enum.body;
     const { accessToken } = tokenStore.get();

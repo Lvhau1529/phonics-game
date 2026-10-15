@@ -70,6 +70,22 @@ describe('api client request', () => {
     expect(tokenStore.get()).toEqual({ accessToken: null, refreshToken: null });
   });
 
+  it('mọi request (kể cả refresh) gửi Accept-Language: en', async () => {
+    fetchMock
+      .mockResolvedValueOnce(json(401, { statusCode: 401, code: 'TOKEN_EXPIRED', message: 'expired' }))
+      .mockResolvedValueOnce(json(200, authBody('new-access', 'new-refresh')))
+      .mockResolvedValueOnce(json(200, { ok: true }))
+      .mockResolvedValueOnce(new Response(null, { status: 204 }));
+
+    await request('/me/points', { schema: z.object({ ok: z.boolean() }) });
+    await request('/public/events', { method: 'POST', body: { a: 1 }, auth: 'none', keepalive: true });
+
+    expect(fetchMock).toHaveBeenCalledTimes(4);
+    for (const [, init] of fetchMock.mock.calls) {
+      expect((init?.headers as Record<string, string>)['Accept-Language']).toBe('en');
+    }
+  });
+
   it('mất mạng -> ApiError.isNetworkError', async () => {
     fetchMock.mockRejectedValueOnce(new TypeError('Failed to fetch'));
     const error = await request('/public/games', { auth: 'none', schema: z.object({}) }).catch((e) => e);
