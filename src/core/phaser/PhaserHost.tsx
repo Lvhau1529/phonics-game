@@ -10,6 +10,7 @@
  */
 import { useEffect, useRef, useState } from 'react';
 import Phaser from 'phaser';
+import { beginAssetLoad } from '@/core/phaser/assetActivity';
 import { ASSETS_PROGRESS, ASSETS_READY } from '@/core/phaser/assetLoading';
 import GameLoading, { LoadingBar } from '@/ui/GameLoading/GameLoading';
 import styles from '@/core/phaser/PhaserHost.module.scss';
@@ -39,17 +40,24 @@ export default function PhaserHost({ create, inputLocked = false }: PhaserHostPr
 
     // Tạo game ở tick sau: StrictMode mount → unmount → mount ngay lập tức,
     // lần mount đầu bị huỷ trước khi Phaser kịp boot (tránh lỗi WebGL/AudioContext).
+    let endLoad: ((ready: boolean) => void) | undefined;
     const timer = window.setTimeout(() => {
+      // Báo đang tải để việc nền (PWA precache) chờ game tải xong mới chạy — core/phaser/assetActivity.ts
+      endLoad = beginAssetLoad();
       const game = create(container);
       gameRef.current = game;
       game.events.once(Phaser.Core.Events.READY, () => applyInputLock(game, lockedRef.current));
       game.events.on(ASSETS_PROGRESS, (value: number) =>
         setProgress((current) => (current === null ? null : value)),
       );
-      game.events.once(ASSETS_READY, () => setProgress(null));
+      game.events.once(ASSETS_READY, () => {
+        setProgress(null);
+        endLoad?.(true);
+      });
     });
     return () => {
       window.clearTimeout(timer);
+      endLoad?.(false);
       gameRef.current?.destroy(true);
       gameRef.current = null;
     };

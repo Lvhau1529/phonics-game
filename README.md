@@ -357,6 +357,8 @@ build bằng `pnpm run build`, xuất ra `dist/`. Import repo GitHub vào Vercel
   (`pnpm assets`) và commit lên.
 - Cache: bundle JS/CSS/font có hash ở `/static` (cache 1 năm); ảnh / SFX ở `/assets` (1 ngày),
   nhạc 7 ngày; `sw.js` và manifest luôn kiểm tra bản mới. Service worker precache mọi game để chơi offline.
+  Lần mở đầu chỉ đăng ký service worker khi game đầu tiên tải xong asset (hoặc sau 20 giây ở màn chọn game) để
+  lượt precache ~19 MB không tranh băng thông với game bé vừa mở (`core/phaser/assetActivity.ts`).
 - Cập nhật PWA (`src/modules/pwa/`): deploy xong, máy người dùng phát hiện `sw.js` mới khi mở / tải lại
   trang, quay lại tab, hoặc mỗi 30 phút → màn chọn game hiện nút **NEW VERSION! UPDATE** (không tự reload
   giữa ván). Mã bản build (`version · commit`) ghi ở cuối phần Hướng dẫn của mỗi game.
