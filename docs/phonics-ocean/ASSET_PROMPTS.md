@@ -1,25 +1,23 @@
 # Phonics Ocean — Prompt gen tài nguyên HD
 
-Tài nguyên hiện tại cắt từ các board concept của pack (ảnh nhỏ: nền ~480px, cá ~40–60px) nên nền phải phóng to
-×4 và trông thô. File này là bộ prompt để đưa cho AI khác (ChatGPT / GPT-image, Midjourney, Leonardo, Suno…) gen
-**bộ tài nguyên đầy đủ, đồng bộ phong cách**. Pipeline đã sẵn sàng nhận file mới — không phải sửa code.
+> **Ảnh đã có bản HD:** Phonics Ocean v3 pack (`_source/phonics-ocean/v3/` — 6 nền 16:9 + 3 sprite sheet nền
+> magenta) thay toàn bộ ảnh cũ; cách cắt ở `tools/phonics_ocean/build_sprites.py` (bảng `SHEETS`). Các prompt ảnh
+> dưới đây giữ làm tham khảo phong cách khi cần gen thêm (sửa / thêm sheet thì giữ bố cục hàng của v3 hoặc sửa
+> `SHEETS`). Phần **Âm thanh** (§3) vẫn còn dùng.
+
+Bộ prompt để đưa cho AI khác (ChatGPT / GPT-image, Midjourney, Leonardo, Suno…) gen tài nguyên đồng bộ phong cách.
 
 ## Cách đưa tài nguyên vào game
 
-1. Lưu file đúng **tên + thư mục** ghi ở từng mục:
-   - nền → `_source/phonics-ocean/hd/backgrounds/<biome>.png`
-   - sprite sheet → `_source/phonics-ocean/hd/sheets/<tên>.png` (nền magenta, lưới đúng số hàng × cột)
-   - (tuỳ chọn) một sprite lẻ → `_source/phonics-ocean/hd/sprites/<key>.png` (nền trong suốt, key trong
-     `src/games/phonics-ocean/game/config/sprites.json`)
+1. Lưu file:
+   - nền → `_source/phonics-ocean/v3/backgrounds/<biome>.png` (tên biome trong `content/schema.ts`)
+   - sprite sheet → `_source/phonics-ocean/v3/sheets/<tên>.png` (nền magenta; vị trí dải / lưới khai báo ở `SHEETS`)
    - nhạc → `_source/phonics-ocean/audio/bgm/<tên>.wav`, SFX → `_source/phonics-ocean/audio/sfx/<tên>.wav`
 2. Chạy `pnpm assets:phonics-ocean` (ảnh) và `pnpm assets:audio` (âm thanh), mở game kiểm tra, commit cả
    `_source/` lẫn `public/assets/phonics-ocean/`.
-3. File nào chưa có thì game vẫn dùng ảnh cũ từ pack. Sheet có mặt thì thay **cả nhóm khung** (vd sheet cá nóc 3
-   khung thay 5 khung cũ).
 
 Mẹo khi gen: gen từng sheet một, dán **Style guide** vào đầu mỗi prompt; nếu AI không xuất được đúng lưới thì gen từng
-con rồi tự ghép vào lưới (ô bằng nhau, cách nhau ≥ 40px nền magenta), hoặc xuất PNG trong suốt từng con vào
-`hd/sprites/`.
+con rồi tự ghép vào lưới (ô bằng nhau, cách nhau ≥ 40px nền magenta).
 
 ---
 

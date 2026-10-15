@@ -1,6 +1,7 @@
 /**
- * Cá mồi mang một từ (word-fish). Chữ vẽ live trên nhãn trắng — sprite chỉ là "vật mang" dùng lại cho
- * mọi danh sách từ (README của pack). Bơi ngang, nhấp nhô nhẹ, chạm mép vùng chơi thì quay đầu.
+ * Cá mồi mang một từ (word-fish). Sprite pack v3 có sẵn nhãn kem trống giữa thân; chữ vẽ live trên một nhãn
+ * cùng màu đặt đúng chỗ đó (nới rộng theo độ dài từ) — sprite chỉ là "vật mang" dùng lại cho mọi danh sách từ.
+ * Bơi ngang, nhấp nhô nhẹ, chạm mép vùng chơi thì quay đầu.
  */
 import Phaser from 'phaser';
 import { DEPTH, FEEL, THEME } from '@/games/phonics-ocean/game/config/theme';
@@ -9,7 +10,11 @@ import { FX } from '@/games/phonics-ocean/game/systems/textures';
 
 type FishState = 'enter' | 'swim' | 'leave' | 'gone';
 
-const LABEL_HEIGHT = 28;
+const LABEL_HEIGHT = 24;
+/** Tâm nhãn trống trên sprite: lệch xuống dưới tâm ảnh (tỉ lệ chiều cao) — đo trên 25 cá của pack v3 */
+const PLATE_Y = 0.065;
+/** Bề rộng nhãn trống (tỉ lệ bề rộng cá) — nhãn chữ không hẹp hơn */
+const PLATE_W = 0.42;
 
 export default class WordFish extends Phaser.GameObjects.Container {
   private readonly fish: Phaser.GameObjects.Image;
@@ -36,17 +41,17 @@ export default class WordFish extends Phaser.GameObjects.Container {
     this.glow = scene.add.image(0, 0, FX.DOT).setTint(THEME.hex.gold).setAlpha(0).setVisible(false);
     this.glow.setDisplaySize(FEEL.preyWidth * 1.8, FEEL.preyWidth * 1.4);
 
-    this.fish = scene.add.image(0, -6, texture);
+    this.fish = scene.add.image(0, 0, texture);
     this.fish.setScale(FEEL.preyWidth / this.fish.width);
 
-    const text = addText(scene, 0, 0, word, 'learning', { fontSize: '20px' });
-    const width = Math.max(44, text.width + 18);
+    const centerY = this.fish.displayHeight * PLATE_Y;
+    const text = addText(scene, 0, centerY, word, 'learning', { fontSize: '18px' });
+    const width = Math.max(FEEL.preyWidth * PLATE_W, text.width + 14);
     this.halfWidth = Math.max(FEEL.preyWidth, width) / 2;
     const label = scene.add.graphics();
-    const top = this.fish.displayHeight * 0.18;
-    label.fillStyle(THEME.hex.ink).fillRoundedRect(-width / 2 - 2, top - 2, width + 4, LABEL_HEIGHT + 4, 14);
-    label.fillStyle(THEME.hex.white).fillRoundedRect(-width / 2, top, width, LABEL_HEIGHT, 12);
-    text.setY(top + LABEL_HEIGHT / 2);
+    const top = centerY - LABEL_HEIGHT / 2;
+    label.fillStyle(THEME.hex.ink).fillRoundedRect(-width / 2 - 2, top - 2, width + 4, LABEL_HEIGHT + 4, 12);
+    label.fillStyle(THEME.hex.cream).fillRoundedRect(-width / 2, top, width, LABEL_HEIGHT, 10);
 
     this.add([this.glow, this.fish, label, text]);
     this.setDepth(DEPTH.PREY);
@@ -56,7 +61,7 @@ export default class WordFish extends Phaser.GameObjects.Container {
 
   /** Bán kính va chạm (thân + nhãn) */
   get radius(): number {
-    return FEEL.preyWidth * 0.45;
+    return FEEL.preyWidth * 0.4;
   }
 
   get catchable(): boolean {

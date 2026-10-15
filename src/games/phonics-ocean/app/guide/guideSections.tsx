@@ -82,8 +82,8 @@ export const PHONICS_OCEAN_GUIDE_SECTIONS: GuideSection[] = [
           <GuideCard>
             <h3>
               <span className={guide.mascots}>
-                <img src={imageUrl('school.tiny.pink.0')} alt="" width={28} height={20} />
-                <img src={imageUrl('school.medium.butterfly.0')} alt="" width={32} height={28} />
+                <img src={imageUrl('school.tiny.clown.0')} alt="" width={28} height={20} />
+                <img src={imageUrl('school.medium.idol.0')} alt="" width={32} height={28} />
                 <img src={imageUrl('item.bolt')} alt="" width={24} height={28} />
               </span>
               Đàn cá &amp; FRENZY
@@ -115,7 +115,7 @@ export const PHONICS_OCEAN_GUIDE_SECTIONS: GuideSection[] = [
           <GuideCard>
             <h3>
               <span className={guide.mascots}>
-                <img src={playerUrl(1)} alt="" width={32} height={24} />
+                <img src={playerUrl()} alt="" width={32} height={24} />
               </span>
               BIG FISH: OFF
             </h3>

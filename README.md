@@ -289,7 +289,7 @@ vào build. Script Python sinh file dùng trong game ở `public/assets/`:
 pip install -r tools/requirements.txt
 pnpm assets:bread         # Bread Catcher: cắt sprite + vẽ pixel-art bằng code -> public/assets/bread-catcher
 pnpm assets:food-stream   # Food Stream: cắt art board -> public/assets/food-stream + src/games/food-stream/game/config/sprites.json
-pnpm assets:phonics-ocean # Phonics Ocean: cắt board của pack -> public/assets/phonics-ocean + sprites.json; word_bank.csv -> content/levels.json
+pnpm assets:phonics-ocean # Phonics Ocean: cắt sheet của pack v3 -> public/assets/phonics-ocean + sprites.json; word_bank.csv -> content/levels.json
 pnpm assets:audio         # mọi WAV master -> .ogg + .mp3 (SFX chung -> public/assets/shared/sfx)
 pnpm assets:ui            # giao diện chung (icon, kim cương, linh vật ong, nền màn chọn game) -> public/assets/shared/ui
 pnpm assets:icons         # icon PWA / favicon hoa cúc pixel (_source/platform/app-icon) -> public/icons
@@ -302,9 +302,9 @@ pnpm assets               # chạy tất cả
 - `tools/bread_catcher/`: `build_sprites.py` (toạ độ cắt, ảnh bìa), `phonics_art.py`, `brainrot_art.py`.
 - `tools/food_stream/build_sprites.py`: toạ độ cắt nhân vật / món ăn / đạo cụ / tranh, huy hiệu che chữ in sẵn,
   frame cắn, ảnh bìa.
-- `tools/phonics_ocean/`: `build_sprites.py` (cá người chơi 3 cỡ, cá mồi, cá săn mồi, vật phẩm từ board nền
-  navy / nền sáng — xoá nền bằng flood fill; 6 nền biome; ảnh bìa), `build_content.py` (word_bank.csv +
-  level_0x.json -> `src/games/phonics-ocean/content/levels.json`).
+- `tools/phonics_ocean/`: `build_sprites.py` (pack v3: cắt 3 sheet nền magenta theo dải hàng — cá của bé theo
+  biome, cá mang chữ, đàn cá, cá săn mồi, vật phẩm; 6 nền biome -> WebP; ảnh bìa), `build_content.py`
+  (word_bank.csv + level_0x.json -> `src/games/phonics-ocean/content/levels.json`).
 - `tools/build_audio.py`: bảng nguồn -> đích cho mọi game (đã mix sẵn, không normalize lại).
 - `tools/arcade_ui/build_ui.py`: cắt Phonics Arcade Bee resource pack (`_source/platform/`: sheet lưới 4×4 / 3×3
   nền vàng gradient không alpha, thứ tự ô trong `asset_manifest.json`). Tách nền bằng flood fill từ mép sheet (giữ

@@ -1,9 +1,10 @@
 /**
- * Cá của bé (cá săn mồi đỏ — bản sửa mới nhất của pack, không phải cá hề), 3 cỡ lớn dần.
+ * Cá của bé: mỗi biome một loài (pack v3 — cá đỏ rạn san hô ... cá giáp núi lửa), 3 cỡ lớn dần.
  * Bơi về phía ngón tay / con trỏ (chạm giữ hoặc chạm một lần) hoặc theo phím mũi tên / WASD.
  * Hitbox là vòng tròn ở miệng, nhỏ hơn hình ~15% (GAMEPLAY_PHONICS_V2 §12) cho dễ chịu với trẻ.
  */
 import Phaser from 'phaser';
+import type { Biome } from '@/games/phonics-ocean/content/schema';
 import { DEPTH, FEEL } from '@/games/phonics-ocean/game/config/theme';
 import { PLAYER_FRAMES, playerFrame } from '@/games/phonics-ocean/game/config/sprites';
 import { FX } from '@/games/phonics-ocean/game/systems/textures';
@@ -25,7 +26,6 @@ export default class PlayerFish extends Phaser.GameObjects.Container {
   private facing = 1;
   private frame = 0;
   private frameTimer = 0;
-  private biteUntil = 0;
   private stunUntil = 0;
   private invulnerableUntil = 0;
   private shieldUntil = 0;
@@ -37,9 +37,10 @@ export default class PlayerFish extends Phaser.GameObjects.Container {
     x: number,
     y: number,
     private readonly bounds: Phaser.Geom.Rectangle,
+    private readonly biome: Biome,
   ) {
     super(scene, x, y);
-    this.sprite = scene.add.image(0, 0, playerFrame(1, 0));
+    this.sprite = scene.add.image(0, 0, playerFrame(biome, 0));
     this.shieldBubble = scene.add.image(0, 0, FX.BUBBLE).setAlpha(0).setVisible(false);
     this.aura = scene.add.image(0, 0, FX.DOT).setTint(0xffd23f).setAlpha(0).setVisible(false);
     this.add([this.aura, this.sprite, this.shieldBubble]);
@@ -131,10 +132,8 @@ export default class PlayerFish extends Phaser.GameObjects.Container {
     });
   }
 
+  /** Đớp mồi: phồng nhanh (pack v3 không có khung há miệng) */
   bite(): void {
-    this.biteUntil = this.scene.time.now + FEEL.biteMs;
-    this.sprite.setTexture('player.bite');
-    this.applySize();
     this.scene.tweens.add({ targets: this, scale: 1.12, duration: 110, yoyo: true });
   }
 
@@ -244,17 +243,13 @@ export default class PlayerFish extends Phaser.GameObjects.Container {
   }
 
   private animate(deltaMs: number): void {
-    if (this.scene.time.now < this.biteUntil) {
-      this.applySize();
-      return;
-    }
     const moving = this.velocity.length() > 20;
     this.frameTimer += deltaMs * (moving ? 1 : 0.5);
     if (this.frameTimer >= FEEL.swimFrameMs) {
       this.frameTimer = 0;
-      this.frame = (this.frame + 1) % PLAYER_FRAMES[this.tier];
+      this.frame = (this.frame + 1) % PLAYER_FRAMES;
     }
-    this.sprite.setTexture(playerFrame(this.tier, this.frame));
+    this.sprite.setTexture(playerFrame(this.biome, this.frame));
     this.applySize();
   }
 

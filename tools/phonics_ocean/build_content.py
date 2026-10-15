@@ -12,6 +12,7 @@ Bổ sung của game (pack không có):
   - SPEECH: cách viết để Web Speech đọc gần đúng âm / vần / cụm phụ âm (vd "m" -> "mmm")
   - EXTRA_DISTRACTORS: từ gây nhiễu thêm (cặp Magic-E: kit / kite, cub / cube...)
   - PREDATORS: cá săn mồi theo biome (bảng §9 của GAMEPLAY_PHONICS_V2.md)
+  - BIOMES: biome của pack v3 (GAMEPLAY_PHONICS_V3.md §5 — nông -> sâu) thay biome cũ trong level_0x.json
 """
 
 from __future__ import annotations
@@ -53,6 +54,19 @@ PREDATORS = {
     6: ["angler"],
     7: ["shark", "puffer"],
     8: ["angler", "shark"],
+}
+
+# Biome v3 theo trọng tâm từng cấp (§5: rạn san hô -> rừng tảo bẹ -> vịnh tàu đắm -> rãnh chạng vạng -> hang vực
+# thẳm -> phế tích núi lửa); 8 cấp / 6 biome nên hai cặp cấp đầu dùng chung biome
+BIOMES = {
+    1: "coral_reef",
+    2: "coral_reef",
+    3: "kelp_forest",
+    4: "kelp_forest",
+    5: "shipwreck_bay",
+    6: "twilight_trench",
+    7: "abyss_cave",
+    8: "volcanic_ruins",
 }
 
 # Web Speech không đọc được âm vị "sạch": viết gần đúng (tránh thêm "uh" khi có thể — README §11).
@@ -111,7 +125,7 @@ def main() -> None:
                 "title": config["name"].upper(),
                 "focus": config["focus"],
                 "mode": mode,
-                "biome": config["biome"],
+                "biome": BIOMES[number],
                 "roundSeconds": config["round_seconds"],
                 "correctToClear": config["correct_to_clear"],
                 "minAccuracy": config["mastery_gate"]["min_accuracy"],

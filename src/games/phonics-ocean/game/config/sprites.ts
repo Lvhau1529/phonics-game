@@ -3,6 +3,7 @@
  * Import thẳng vào bundle nên React (màn kết quả) và Phaser (preload) dùng chung.
  */
 import manifest from '@/games/phonics-ocean/game/config/sprites.json';
+import type { Biome } from '@/games/phonics-ocean/content/schema';
 
 export interface SpriteInfo {
   path: string;
@@ -14,10 +15,14 @@ export const SPRITES: Readonly<Record<string, SpriteInfo>> = manifest;
 
 export const spriteUrl = (key: string): string | undefined => SPRITES[key]?.path;
 
-/** Số khung bơi của cá người chơi theo cỡ (1–3) */
-export const PLAYER_FRAMES: Record<number, number> = { 1: 6, 2: 6, 3: 2 };
+/** Số khung bơi của cá người chơi (mọi loài) */
+export const PLAYER_FRAMES = 4;
 
-export const playerFrame = (tier: number, frame: number): string => `player.${tier}.${frame}`;
+/**
+ * Cá của bé: mỗi biome một loài (pack v3 — cá đỏ ở rạn san hô ... cá giáp ở núi lửa); lớn lên chỉ đổi kích
+ * thước hiển thị (FEEL.playerHeight).
+ */
+export const playerFrame = (biome: Biome, frame: number): string => `player.${biome}.${frame}`;
 
 /** Cá mồi mang chữ: 25 màu */
 export const PREY_KEYS: readonly string[] = Object.keys(SPRITES).filter((key) => key.startsWith('prey.'));

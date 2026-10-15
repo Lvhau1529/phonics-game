@@ -56,7 +56,7 @@ export const FEEL = {
   chaseMinSpeed: 45,
   /** Chiều cao cá người chơi theo cỡ 1–3 */
   playerHeight: { 1: 46, 2: 58, 3: 72 } as Record<number, number>,
-  preyWidth: 54,
+  preyWidth: 76,
   preySpeed: { min: 26, max: 44 },
   predatorSpeed: 78,
   predatorHeight: { shark: 58, puffer: 50, eel: 40, angler: 56, barracuda: 36 } as Record<
@@ -74,7 +74,6 @@ export const FEEL = {
   powerUpLifeMs: 9000,
   nextQuestionDelay: 650,
   swimFrameMs: 110,
-  biteMs: 260,
   /** Va vào cá to hơn: bật lùi (px/s) và không va lại trong khoảng này (ms) */
   bumpSpeed: 140,
   bumpCooldownMs: 900,
@@ -98,9 +97,9 @@ export const SCHOOL = {
 /** Biome -> key ảnh nền + lớp nước phủ rất nhẹ (giữ nền rực, chỉ dịu bớt chỗ quá chói) */
 export const BIOMES: Record<Biome, { image: string; tint: number; tintAlpha: number }> = {
   coral_reef: { image: 'bg.coral_reef', tint: 0x0a4d7a, tintAlpha: 0 },
-  shipwreck: { image: 'bg.shipwreck', tint: 0x06324f, tintAlpha: 0.04 },
-  deep_ocean: { image: 'bg.deep_ocean', tint: 0x041d33, tintAlpha: 0 },
-  ice_sea: { image: 'bg.ice_sea', tint: 0x0a4d7a, tintAlpha: 0.08 },
-  volcano: { image: 'bg.volcano', tint: 0x2a0d06, tintAlpha: 0.12 },
-  treasure_zone: { image: 'bg.treasure_zone', tint: 0x06324f, tintAlpha: 0.06 },
+  kelp_forest: { image: 'bg.kelp_forest', tint: 0x0a4d7a, tintAlpha: 0.04 },
+  shipwreck_bay: { image: 'bg.shipwreck_bay', tint: 0x06324f, tintAlpha: 0.06 },
+  twilight_trench: { image: 'bg.twilight_trench', tint: 0x041d33, tintAlpha: 0.04 },
+  abyss_cave: { image: 'bg.abyss_cave', tint: 0x041d33, tintAlpha: 0 },
+  volcanic_ruins: { image: 'bg.volcanic_ruins', tint: 0x2a0d06, tintAlpha: 0.08 },
 };

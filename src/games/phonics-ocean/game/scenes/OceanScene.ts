@@ -113,11 +113,12 @@ export default class OceanScene extends Phaser.Scene {
     // Dải tối nhẹ sau HUD cho chữ dễ đọc
     this.add.rectangle(0, 0, width, this.layout.play.y, THEME.hex.ink, 0.28).setOrigin(0).setDepth(1);
     const { play } = this.layout;
-    this.player = new PlayerFish(this, play.centerX, play.centerY, play);
+    this.player = new PlayerFish(this, play.centerX, play.centerY, play, this.level.biome);
     this.frenzy = new FrenzyMeter();
     this.schools = new SchoolDirector(this, play);
     this.schools.populate({ x: this.player.x, y: this.player.y });
     this.hud = new Hud(this, this.layout, {
+      biome: this.level.biome,
       maxHearts: RULES.hearts,
       showHearts: this.predatorsOn,
       onPause: () => this.openPause(),

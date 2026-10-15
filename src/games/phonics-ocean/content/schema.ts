@@ -16,13 +16,14 @@ const word = z.string().regex(/^[a-z]+$/, 'chỉ gồm chữ cái thường');
  */
 export const QuestionModeSchema = z.enum(['initial', 'word', 'rime', 'contains', 'sentence']);
 
+/** 6 biome của pack v3, nông -> sâu (mỗi biome một nền + một loài cá của bé) */
 export const BiomeSchema = z.enum([
   'coral_reef',
-  'shipwreck',
-  'deep_ocean',
-  'ice_sea',
-  'volcano',
-  'treasure_zone',
+  'kelp_forest',
+  'shipwreck_bay',
+  'twilight_trench',
+  'abyss_cave',
+  'volcanic_ruins',
 ]);
 
 export const PredatorKindSchema = z.enum(['shark', 'puffer', 'eel', 'angler', 'barracuda']);

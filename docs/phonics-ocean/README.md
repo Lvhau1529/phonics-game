@@ -1,8 +1,10 @@
 # 🐟 Phonics Ocean
 
-Game kiểu **Feeding Frenzy** luyện phonics: bé điều khiển cá đỏ bơi trong biển, **ăn cá mang đúng từ** theo âm /
-vần / từ vừa nghe để được điểm và **lớn dần** (3 cỡ), né **cá săn mồi**. Thiết kế gốc: resource pack _Phonics Ocean
-Complete Pack_ (`GAMEPLAY_PHONICS_V2.md`) — nguồn đã chép vào `_source/phonics-ocean/`.
+Game kiểu **Feeding Frenzy** luyện phonics: bé điều khiển cá bơi trong biển, **ăn cá mang đúng từ** theo âm /
+vần / từ vừa nghe để được điểm và **lớn dần** (3 cỡ), né **cá săn mồi**. Biển sâu dần qua 6 biome, mỗi biome bé
+điều khiển một loài cá khác. Thiết kế gốc: resource pack _Phonics Ocean Complete Pack_ (`GAMEPLAY_PHONICS_V2.md`:
+luật chơi, word bank) + ảnh của _Phonics Ocean v3_ (`GAMEPLAY_PHONICS_V3.md`) — nguồn đã chép vào
+`_source/phonics-ocean/`.
 Code: `src/games/phonics-ocean/` — khung chung xem [README gốc](../../README.md).
 
 ## Cách chơi
@@ -31,16 +33,16 @@ Code: `src/games/phonics-ocean/` — khung chung xem [README gốc](../../README
 
 ### Cấp độ (`content/levels.json`, sinh từ CSV của pack)
 
-| Cấp | Tên             | Kiểu (`mode`) | Mục tiêu                                     | Biome         | Cá săn mồi     |
-| --- | --------------- | ------------- | -------------------------------------------- | ------------- | -------------- |
-| 1   | SOUND REEF      | `initial`     | nghe /m/ → ăn từ bắt đầu bằng m              | coral_reef    | puffer         |
-| 2   | CVC LAGOON A-I  | `word`        | nghe từ (cat) → ăn đúng từ, nhiễu khác 1 âm  | shipwreck     | puffer         |
-| 3   | CVC DEEP SEA    | `word`        | như trên với e / o / u                       | deep_ocean    | shark          |
-| 4   | RHYME CURRENT   | `rime`        | -at → ăn từ cùng vần; 3 câu cùng vần = COMBO | ice_sea       | shark, puffer  |
-| 5   | BLEND WRECK     | `contains`    | bl, st, nd… → ăn từ có cụm đó                | volcano       | eel, barracuda |
-| 6   | DIGRAPH TRENCH  | `contains`    | sh, ch, th…                                  | treasure_zone | angler         |
-| 7   | MAGIC-E BAY     | `word`        | nghe kite, nhiễu ưu tiên cặp kit / kite      | ice_sea       | shark, puffer  |
-| 8   | TREASURE REVIEW | `sentence`    | "I can see a ___." + từ                      | treasure_zone | angler, shark  |
+| Cấp | Tên             | Kiểu (`mode`) | Mục tiêu                                     | Biome (cá của bé)              | Cá săn mồi     |
+| --- | --------------- | ------------- | -------------------------------------------- | ------------------------------ | -------------- |
+| 1   | SOUND REEF      | `initial`     | nghe /m/ → ăn từ bắt đầu bằng m              | coral_reef (cá đỏ)             | puffer         |
+| 2   | CVC LAGOON A-I  | `word`        | nghe từ (cat) → ăn đúng từ, nhiễu khác 1 âm  | coral_reef (cá đỏ)             | puffer         |
+| 3   | CVC DEEP SEA    | `word`        | như trên với e / o / u                       | kelp_forest (cá bướm sọc vàng) | shark          |
+| 4   | RHYME CURRENT   | `rime`        | -at → ăn từ cùng vần; 3 câu cùng vần = COMBO | kelp_forest (cá bướm sọc vàng) | shark, puffer  |
+| 5   | BLEND WRECK     | `contains`    | bl, st, nd… → ăn từ có cụm đó                | shipwreck_bay (cá đuôi gai)    | eel, barracuda |
+| 6   | DIGRAPH TRENCH  | `contains`    | sh, ch, th…                                  | twilight_trench (cá mao tiên)  | angler         |
+| 7   | MAGIC-E BAY     | `word`        | nghe kite, nhiễu ưu tiên cặp kit / kite      | abyss_cave (cá lồng đèn tím)   | shark, puffer  |
+| 8   | TREASURE REVIEW | `sentence`    | "I can see a ___." + từ                      | volcanic_ruins (cá giáp)       | angler, shark  |
 
 Độ khó tự điều chỉnh (§7 của pack): chuỗi 5 đúng → thêm 1 cá + bơi nhanh hơn chút; nhầm 2 lần → bớt 1 cá, gợi ý,
 cá săn mồi chậm lại; tỉ lệ đúng < 70% → tối đa 3 cá. Máy không đọc được (không có Web Speech / tắt VOICE) thì khung
@@ -50,16 +52,17 @@ mục tiêu hiện luôn từ thay cho giọng đọc.
 
 - **Đổi danh sách từ:** sửa `_source/phonics-ocean/data/word_bank.csv` (và `levels/level_0x.json` cho thời gian,
   số từ, số cá…) rồi `pnpm assets:phonics-ocean`. Chữ trên cá vẽ live nên không phải vẽ lại sprite. Cách đọc âm cho
-  Web Speech (`SPEECH`), kiểu câu hỏi, cá săn mồi theo cấp, từ gây nhiễu Magic-E nằm ở `tools/phonics_ocean/build_content.py`.
-- **Ảnh:** `tools/phonics_ocean/build_sprites.py` cắt `_source/phonics-ocean/art/player-revision-board.png` (cá đỏ
-  bản mới — không dùng cá hề — theo README của pack, cá săn mồi, vật phẩm) và `level-design-master.png` (25 cá mồi),
-  cùng 6 nền biome → `public/assets/phonics-ocean/` + `game/config/sprites.json`.
-- **Nền:** ảnh của pack chỉ ~480px nên được phóng ×4 kiểu pixel-art (nearest) cho sắc nét, trôi parallax nhẹ theo
-  cá của bé; lớp nước phủ gần như bỏ hẳn.
-- **Đàn cá:** khung bơi đã cắt sẵn của OceanFeast pack (`_source/phonics-ocean/oceanfeast/`).
-- **Tài nguyên HD:** prompt gen đầy đủ (nền 16:9, sprite sheet nhân vật, nhạc, SFX, giọng đọc) ở
-  [ASSET_PROMPTS.md](ASSET_PROMPTS.md). Thả file vào `_source/phonics-ocean/hd/` (`backgrounds/`, `sheets/` nền
-  magenta theo lưới, hoặc `sprites/<key>.png`) rồi `pnpm assets:phonics-ocean` — có file nào thì thay file đó.
+  Web Speech (`SPEECH`), kiểu câu hỏi, cá săn mồi và biome theo cấp, từ gây nhiễu Magic-E nằm ở
+  `tools/phonics_ocean/build_content.py`.
+- **Ảnh (pack v3, `_source/phonics-ocean/v3/`):** `tools/phonics_ocean/build_sprites.py` cắt 3 sprite sheet nền
+  magenta theo dải hàng (bảng `SHEETS`): 6 loài cá của bé × 4 khung bơi, 25 cá mang chữ, đàn cá (nhỏ: cá hề / xanh /
+  vàng / lục; vừa: cá thù lù / cá bướm cam / cá đuôi gai; lớn: cá mú), 5 loại cá săn mồi × 3 khung, 6 vật phẩm →
+  `public/assets/phonics-ocean/` + `game/config/sprites.json`. Ô chưa dùng (rùa, cá heo, sứa, thuỷ lôi, cua, đá rơi,
+  nam châm, nút UI, hiệu ứng) bỏ qua — thêm key vào `SHEETS` khi làm tính năng.
+- **Cá mang chữ:** sprite v3 có sẵn nhãn kem trống giữa thân; game vẽ chữ trên nhãn cùng màu đúng chỗ đó (nới rộng
+  theo độ dài từ — `game/objects/WordFish.ts`).
+- **Nền:** 6 ảnh 16:9 (1672×941) xuất WebP cùng độ phân giải, trôi parallax nhẹ theo cá của bé.
+- **Prompt gen thêm tài nguyên** (phong cách, nhạc, SFX, giọng đọc): [ASSET_PROMPTS.md](ASSET_PROMPTS.md).
 - **Âm thanh:** 5 SFX của pack (`correct`, `wrong_soft`, `level_up`, `collect`, `danger`) qua `pnpm assets:audio`
   → `public/assets/phonics-ocean/sfx/`. Pack chưa có nhạc nền nên dùng chung nhạc của Food Stream.
 - **Giọng đọc:** Web Speech (`shared/speech.ts`). Khi có file ghi âm theo `audio_manifest.csv` của pack thì thay

@@ -14,7 +14,7 @@ import { pickRandom } from '@/core/utils/random';
 
 const SIZES: readonly SchoolSize[] = ['tiny', 'medium', 'big'];
 
-/** "tiny" -> ["tiny.gray", "tiny.pink", ...] */
+/** "tiny" -> ["tiny.clown", "tiny.blue", ...] */
 const KINDS: Record<SchoolSize, string[]> = {
   tiny: Object.keys(SCHOOL_FRAMES).filter((kind) => kind.startsWith('tiny.')),
   medium: Object.keys(SCHOOL_FRAMES).filter((kind) => kind.startsWith('medium.')),

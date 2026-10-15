@@ -5,6 +5,7 @@
  */
 import Phaser from 'phaser';
 import { getLevel } from '@/games/phonics-ocean/content/levels';
+import type { Biome } from '@/games/phonics-ocean/content/schema';
 import { MUSIC } from '@/games/phonics-ocean/game/config/assets';
 import { playerFrame, PLAYER_FRAMES } from '@/games/phonics-ocean/game/config/sprites';
 import { DEPTH, FEEL } from '@/games/phonics-ocean/game/config/theme';
@@ -22,7 +23,7 @@ const LOBBY_DENSITY = 0.7;
 
 export default class LobbyScene extends Phaser.Scene {
   private screen: LobbyScreen | null = null;
-  private biome = '';
+  private biome: Biome | null = null;
   private background: OceanBackground | null = null;
   private schools!: SchoolDirector;
   private hero!: Phaser.GameObjects.Image;
@@ -36,13 +37,12 @@ export default class LobbyScene extends Phaser.Scene {
 
   create({ screen }: { screen: LobbyScreen }): void {
     this.screen = null;
-    this.biome = '';
+    this.biome = null;
     this.background = null;
     this.elapsed = 0;
     const { width, height } = setupView(this);
+    this.hero = this.add.image(width / 2, height * 0.7, playerFrame('coral_reef', 0)).setDepth(DEPTH.PLAYER);
     this.drawBackground();
-
-    this.hero = this.add.image(width / 2, height * 0.7, playerFrame(2, 0)).setDepth(DEPTH.PLAYER);
     this.schools = new SchoolDirector(this, new Phaser.Geom.Rectangle(0, 0, width, height), LOBBY_DENSITY);
     this.schools.populate(null);
 
@@ -66,8 +66,8 @@ export default class LobbyScene extends Phaser.Scene {
     this.heroTimer += delta;
     if (this.heroTimer >= FEEL.swimFrameMs * 1.4) {
       this.heroTimer = 0;
-      this.heroFrame = (this.heroFrame + 1) % PLAYER_FRAMES[2];
-      this.hero.setTexture(playerFrame(2, this.heroFrame));
+      this.heroFrame = (this.heroFrame + 1) % PLAYER_FRAMES;
+      if (this.biome) this.hero.setTexture(playerFrame(this.biome, this.heroFrame));
     }
     const scale = (FEEL.playerHeight[2] * 1.3) / this.hero.height;
     this.hero.setScale(scale * facing, scale);
@@ -90,5 +90,6 @@ export default class LobbyScene extends Phaser.Scene {
     this.background?.destroy();
     const { width, height } = view(this);
     this.background = new OceanBackground(this, biome, new Phaser.Geom.Rectangle(0, 0, width, height));
+    this.hero.setTexture(playerFrame(biome, this.heroFrame));
   }
 }

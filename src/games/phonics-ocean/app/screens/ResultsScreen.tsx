@@ -51,7 +51,7 @@ function Summary({ session, outcome }: { session: ActiveSession; outcome: Sessio
     <>
       <h1 className={clsx(styles.title, !result.cleared && styles.soft)}>{titleOf(result)}</h1>
       <div className={styles.card}>
-        <img className={styles.fish} src={playerUrl(result.tier, result.cleared)} alt="" />
+        <img className={styles.fish} src={playerUrl(level.biome)} alt="" />
         <p className={styles.level}>
           {level.number}. {level.title}
         </p>

@@ -17,7 +17,7 @@ import styles from '@/games/phonics-ocean/app/screens/SetupScreen.module.scss';
 
 const PREDATOR_OPTIONS: Option<'on' | 'off'>[] = [
   { value: 'on', label: TEXT.predatorsOn, sub: TEXT.predatorsOnSub, icon: imageUrl('predator.shark.0') },
-  { value: 'off', label: TEXT.predatorsOff, sub: TEXT.predatorsOffSub, icon: playerUrl(1) },
+  { value: 'off', label: TEXT.predatorsOff, sub: TEXT.predatorsOffSub, icon: playerUrl() },
 ];
 
 const starsLabel = (stars: number) => '★'.repeat(stars) + '☆'.repeat(3 - stars);

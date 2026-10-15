@@ -4,6 +4,7 @@
  * Mục tiêu + loa ở TargetPanel.
  */
 import Phaser from 'phaser';
+import type { Biome } from '@/games/phonics-ocean/content/schema';
 import { playerFrame } from '@/games/phonics-ocean/game/config/sprites';
 import { DEPTH, THEME } from '@/games/phonics-ocean/game/config/theme';
 import type { OceanLayout } from '@/games/phonics-ocean/game/ui/layout';
@@ -31,7 +32,12 @@ export default class Hud {
   constructor(
     private readonly scene: Phaser.Scene,
     layout: OceanLayout,
-    { maxHearts, showHearts, onPause }: { maxHearts: number; showHearts: boolean; onPause: () => void },
+    {
+      biome,
+      maxHearts,
+      showHearts,
+      onPause,
+    }: { biome: Biome; maxHearts: number; showHearts: boolean; onPause: () => void },
   ) {
     const y = layout.topY;
 
@@ -74,7 +80,7 @@ export default class Hud {
     bar.fillStyle(THEME.hex.ink).fillRoundedRect(left - 3, growth.y - 9, growth.width + 6, 18, 9);
     bar.fillStyle(THEME.hex.woodDark).fillRoundedRect(left, growth.y - 6, growth.width, 12, 6);
     this.growthFill = scene.add.graphics({ x: left, y: growth.y }).setDepth(DEPTH.HUD);
-    this.growthFish = scene.add.image(left - 6, growth.y, playerFrame(1, 0)).setDepth(DEPTH.HUD + 1);
+    this.growthFish = scene.add.image(left - 6, growth.y, playerFrame(biome, 0)).setDepth(DEPTH.HUD + 1);
     this.setGrowth(0, 1, false);
 
     // Thanh FRENZY (tia sét)
@@ -144,7 +150,6 @@ export default class Hud {
 
   /** `progress`: 0–1 trong cỡ hiện tại */
   setGrowth(progress: number, tier: number, animate = true): void {
-    this.growthFish.setTexture(playerFrame(tier, 0));
     this.growthFish.setScale((14 + tier * 4) / this.growthFish.height);
     const from = { value: this.growth };
     this.growth = progress;
