@@ -2,6 +2,7 @@
  * Gốc của app: màn chọn game (hub), game đang mở, màn tài khoản (#/account/...) hoặc bài tập (#/homework/...).
  * Mỗi game được tải động (chunk riêng) khi mở lần đầu; rời game thì unmount toàn bộ (kể cả Phaser).
  * Màn tài khoản cũng là một chunk riêng, chỉ tải khi có API (ACCOUNT_ENABLED).
+ * Màn xem trước cho admin (#/preview) không cần API: nội dung admin gửi qua postMessage.
  */
 import {
   Component,
@@ -38,6 +39,7 @@ function rootOf(game: GameManifest): LazyExoticComponent<ComponentType> {
 
 const AccountRoot = lazy(() => import('@/app/AccountRoot/AccountRoot'));
 const HomeworkRoot = lazy(() => import('@/modules/homework/screens/HomeworkRoot/HomeworkRoot'));
+const PreviewScreen = lazy(() => import('@/modules/homework/screens/PreviewScreen/PreviewScreen'));
 
 interface PlatformAppProps {
   games: readonly GameManifest[];
@@ -64,6 +66,17 @@ export default function PlatformApp({ games: baseGames, upcoming: baseUpcoming }
   }, [activeId, game, route.kind]);
 
   const loading = <GameLoading />;
+
+  // Admin nhúng iframe: chỉ màn xem trước, không gợi ý xoay máy
+  if (route.kind === 'preview') {
+    return (
+      <LoadErrorBoundary key="preview">
+        <Suspense fallback={loading}>
+          <PreviewScreen />
+        </Suspense>
+      </LoadErrorBoundary>
+    );
+  }
 
   return (
     <>

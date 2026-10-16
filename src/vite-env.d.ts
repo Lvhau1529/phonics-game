@@ -12,6 +12,8 @@ interface ImportMetaEnv {
   readonly VITE_API_URL?: string;
   /** Google Identity Services client id; rỗng = ẩn nút Google */
   readonly VITE_GOOGLE_CLIENT_ID?: string;
+  /** URL admin được nhúng màn xem trước `#/preview` (cách nhau dấu phẩy); đọc qua src/core/config/preview.ts */
+  readonly VITE_ADMIN_URL?: string;
 }
 
 interface ImportMeta {

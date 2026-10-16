@@ -40,6 +40,11 @@ describe('parseHash', () => {
     });
   });
 
+  it('#/preview -> màn xem trước cho admin', () => {
+    expect(parseHash('#/preview')).toEqual({ kind: 'preview' });
+    expect(parseHash('#/preview/')).toEqual({ kind: 'preview' });
+  });
+
   it('hashOf là nghịch đảo của parseHash', () => {
     const routes = [
       { kind: 'hub' },
@@ -50,6 +55,7 @@ describe('parseHash', () => {
       { kind: 'homework', page: { name: 'do', assignmentId: 'a1' } },
       { kind: 'homework', page: { name: 'result', assignmentId: 'a1' } },
       { kind: 'homework', page: { name: 'ranking', assignmentId: 'a1' } },
+      { kind: 'preview' },
     ] as const;
     routes.forEach((route) => expect(parseHash(hashOf(route))).toEqual(route));
   });

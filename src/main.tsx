@@ -25,12 +25,16 @@ import { notificationsActions } from '@/modules/notifications';
 import { scoreSync } from '@/modules/results';
 import { events } from '@/modules/analytics';
 import PlatformApp from '@/app/PlatformApp/PlatformApp';
+import { parseHash } from '@/core/navigation/platformStore';
 import { initPwa } from '@/modules/pwa';
 
-initPwa();
+// Admin nhúng màn xem trước (#/preview) trong iframe: không cài PWA, không khôi phục phiên / đồng bộ
+const EMBEDDED_PREVIEW = parseHash(window.location.hash).kind === 'preview';
+
+if (!EMBEDDED_PREVIEW) initPwa();
 
 // Tài khoản & đồng bộ (chỉ khi có VITE_API_URL): khôi phục phiên, gửi điểm / sự kiện đang chờ, thông báo, catalog
-if (ACCOUNT_ENABLED) {
+if (ACCOUNT_ENABLED && !EMBEDDED_PREVIEW) {
   void authActions.restore().finally(() => {
     scoreSync.init();
     notificationsActions.init();

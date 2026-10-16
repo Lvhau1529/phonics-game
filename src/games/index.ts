@@ -9,7 +9,7 @@ import { foodStreamManifest } from '@/games/food-stream/manifest';
 import { phonicsOceanManifest } from '@/games/phonics-ocean/manifest';
 import { oddOneOutManifest } from '@/games/odd-one-out/manifest';
 import { englishExplorersManifest } from '@/games/english-explorers/manifest';
-import { ACCOUNT_SEGMENT, HOMEWORK_SEGMENT } from '@/core/navigation/platformStore';
+import { ACCOUNT_SEGMENT, HOMEWORK_SEGMENT, PREVIEW_SEGMENT } from '@/core/navigation/platformStore';
 import type { GameManifest, UpcomingGame } from '@/core/types/game';
 
 export const GAMES: readonly GameManifest[] = [
@@ -24,8 +24,9 @@ export const UPCOMING: readonly UpcomingGame[] = [
   { id: 'next-game', title: 'NEW GAME', tagline: 'A brand-new phonics game is on the way!' },
 ];
 
-// `#/account` là màn tài khoản, `#/homework` là màn bài tập (platformStore): không game nào được lấy id này
-const RESERVED = [ACCOUNT_SEGMENT, HOMEWORK_SEGMENT];
+// `#/account` là màn tài khoản, `#/homework` là màn bài tập, `#/preview` là màn xem trước cho admin (platformStore):
+// không game nào được lấy id này
+const RESERVED = [ACCOUNT_SEGMENT, HOMEWORK_SEGMENT, PREVIEW_SEGMENT];
 if (import.meta.env.DEV && GAMES.some((game) => RESERVED.includes(game.id))) {
   throw new Error(`Game ids ${RESERVED.join(', ')} are reserved for platform screens`);
 }

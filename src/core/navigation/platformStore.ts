@@ -3,6 +3,7 @@
  *   #/<game-id>                    — game (giáo viên đánh dấu / chia sẻ link mở thẳng một game)
  *   #/account[/login|register|edit|ranking|notifications] — màn tài khoản (`#/account` = hồ sơ)
  *   #/homework[/<assignmentId>[/result|/ranking]] — bài tập về nhà (phiếu bài tập GV giao)
+ *   #/preview                      — xem trước câu hỏi / phiếu cho admin (nhúng iframe, nội dung gửi qua postMessage)
  *   (không có hash)                — màn chọn game
  * Nút Back của trình duyệt / Android quay về màn trước.
  */
@@ -14,6 +15,8 @@ const HASH_PREFIX = '#/';
 export const ACCOUNT_SEGMENT = 'account';
 /** Đoạn hash của màn bài tập về nhà — cũng không game nào được dùng */
 export const HOMEWORK_SEGMENT = 'homework';
+/** Đoạn hash của màn xem trước (admin nhúng iframe) — cũng không game nào được dùng */
+export const PREVIEW_SEGMENT = 'preview';
 
 export const AccountPage = {
   PROFILE: 'profile',
@@ -48,6 +51,7 @@ export const RouteKind = {
   GAME: 'game',
   ACCOUNT: 'account',
   HOMEWORK: 'homework',
+  PREVIEW: 'preview',
 } as const;
 export type RouteKind = ValueOf<typeof RouteKind>;
 
@@ -55,7 +59,8 @@ export type Route =
   | { kind: typeof RouteKind.HUB }
   | { kind: typeof RouteKind.GAME; gameId: string }
   | { kind: typeof RouteKind.ACCOUNT; page: AccountPage }
-  | { kind: typeof RouteKind.HOMEWORK; page: HomeworkPage };
+  | { kind: typeof RouteKind.HOMEWORK; page: HomeworkPage }
+  | { kind: typeof RouteKind.PREVIEW };
 
 function parseHomework(rest: string[]): HomeworkPage {
   const [assignmentId, sub] = rest;
@@ -73,6 +78,7 @@ export function parseHash(hash: string): Route {
     return { kind: RouteKind.ACCOUNT, page: ACCOUNT_PAGES[rest.join('/')] ?? AccountPage.PROFILE };
   }
   if (head === HOMEWORK_SEGMENT) return { kind: RouteKind.HOMEWORK, page: parseHomework(rest) };
+  if (head === PREVIEW_SEGMENT) return { kind: RouteKind.PREVIEW };
   return { kind: RouteKind.GAME, gameId: path };
 }
 
@@ -90,6 +96,8 @@ export function hashOf(route: Route): string {
       const base = `${HASH_PREFIX}${HOMEWORK_SEGMENT}/${encodeURIComponent(page.assignmentId)}`;
       return page.name === HomeworkPageName.DO ? base : `${base}/${page.name}`;
     }
+    case RouteKind.PREVIEW:
+      return `${HASH_PREFIX}${PREVIEW_SEGMENT}`;
   }
 }
 

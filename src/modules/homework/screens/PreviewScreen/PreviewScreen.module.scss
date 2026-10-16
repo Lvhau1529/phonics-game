@@ -1,0 +1,59 @@
+// Màn xem trước cho admin: cùng nền / khung với HomeworkRoot + nút như DoScreen
+@use '@/ui/styles/abstracts' as *;
+@use '@/modules/homework/styles/homework' as *;
+
+@layer components {
+  .root {
+    --color-ink: var(--color-arcade-ink);
+    @include text-outline-vars;
+    position: fixed;
+    inset: 0;
+    overflow-y: auto;
+    touch-action: pan-y;
+    background: $arcade-sky;
+    background-attachment: fixed;
+
+    @include candy-scrollbar($size: 14px);
+  }
+
+  .screen {
+    @include screen;
+    max-width: 520px;
+  }
+
+  .empty {
+    @include hw-empty;
+    color: var(--color-gold);
+    font-size: 20px;
+    font-weight: 800;
+    text-align: center;
+    text-shadow: var(--outline);
+
+    p {
+      margin: 0;
+    }
+  }
+
+  .mascot {
+    @include mascot-frame(120px);
+  }
+
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+
+    > * {
+      flex: 1;
+    }
+  }
+
+  .note {
+    margin: 0;
+    color: var(--color-cream);
+    font-size: 13px;
+    font-weight: 800;
+    text-align: center;
+    text-shadow: var(--outline);
+  }
+}

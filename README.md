@@ -159,6 +159,7 @@ Mặc định (BE chưa lên) game chạy **offline mode**: không gọi mạng,
 | `VITE_OFFLINE_MODE`     | **Mặc định bật** (thiếu biến cũng tính là bật): game chạy offline, không gọi API. `false` / `0` / `off` = bật tài khoản khi API đã sẵn sàng. |
 | `VITE_API_URL`          | Gốc API, không có `/` cuối (vd `http://localhost:3000`); client ghép `${VITE_API_URL}${API_PREFIX}${path}` (`/api/v1/...`, hằng số trong contracts). Rỗng = tắt tài khoản.                      |
 | `VITE_GOOGLE_CLIENT_ID` | Client id Google Identity Services cho nút **Continue with Google**; rỗng = ẩn nút Google. Script GIS chỉ nạp khi mở màn đăng nhập / đăng ký. |
+| `VITE_ADMIN_URL` | URL admin được nhúng màn xem trước câu hỏi / phiếu `#/preview` (nhiều URL cách nhau dấu phẩy). Rỗng = chỉ admin dev `http://localhost:5174`. Màn này nhận nội dung qua `postMessage`, chỉ từ origin này. |
 
 Biến được kiểm tra bằng zod ở `core/config/account.ts` (`OFFLINE_MODE`, `ACCOUNT_ENABLED`, `API_URL`,
 `GOOGLE_CLIENT_ID`). Chạy cả hệ thống qua phonics-dev mà muốn thử tài khoản thì đặt `VITE_OFFLINE_MODE=false` trong `.env`.
