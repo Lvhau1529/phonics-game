@@ -72,6 +72,8 @@ export default tseslint.config(
       'public/**',
       '_source/**',
       'tools/**',
+      // venv Python của tools/ (gitignored)
+      '.venv/**',
     ],
   },
   js.configs.recommended,

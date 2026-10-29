@@ -1,0 +1,115 @@
+@use '@/ui/styles/abstracts' as *;
+
+@layer components {
+  @include keyframes-bob($distance: -6px);
+
+  .home {
+    @include screen;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding-top: max(72px, env(safe-area-inset-top));
+    text-align: center;
+  }
+
+  .exit {
+    position: absolute;
+    top: max(16px, env(safe-area-inset-top));
+    left: 16px;
+  }
+
+  .eyebrow {
+    margin: 0;
+    padding: 6px 18px;
+    border: 4px solid #ffd9a0;
+    border-radius: 999px;
+    background: #ff8a1f;
+    box-shadow: 0 5px 0 #a8480c;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 800;
+    letter-spacing: 1px;
+  }
+
+  .logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+    font-weight: 800;
+    line-height: 1;
+  }
+
+  .logoTop {
+    color: #ffb13b;
+    font-size: clamp(36px, 11vw, 64px);
+    text-shadow:
+      0 4px 0 #c2410c,
+      0 8px 0 #3b1a6e,
+      0 12px 18px rgba(0, 0, 0, 0.5);
+  }
+
+  .logoBottom {
+    color: #fff;
+    font-size: clamp(30px, 9vw, 54px);
+    text-shadow:
+      0 4px 0 #8b3fd9,
+      0 8px 0 #2a1150,
+      0 12px 18px rgba(0, 0, 0, 0.5);
+  }
+
+  .sub {
+    margin: 0;
+    color: #ffe2b8;
+    font-size: clamp(16px, 4.5vw, 22px);
+    font-weight: 700;
+  }
+
+  .friends {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 18px;
+  }
+
+  .friend {
+    animation: bob 2.6s ease-in-out infinite;
+    filter: drop-shadow(0 6px 0 rgba(0, 0, 0, 0.3));
+
+    &:nth-child(2) {
+      margin-bottom: 10px;
+      animation-delay: 0.4s;
+    }
+  }
+
+  .candies {
+    display: flex;
+    gap: 6px;
+
+    img {
+      width: 36px;
+      height: 36px;
+      image-rendering: pixelated;
+      animation: bob 2.4s ease-in-out infinite;
+
+      &:nth-child(even) {
+        animation-delay: 0.5s;
+      }
+    }
+  }
+
+  .buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+    width: min(100%, 380px);
+  }
+
+  .play {
+    min-height: 76px;
+    font-size: 32px;
+    letter-spacing: 2px;
+  }
+}

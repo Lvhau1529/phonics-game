@@ -1,0 +1,187 @@
+@use '@/ui/styles/abstracts' as *;
+
+@layer components {
+  .vocab {
+    @include screen;
+  }
+
+  .section {
+    @include card;
+    display: grid;
+    gap: 10px;
+
+    h2 {
+      margin: 0;
+      font-size: 20px;
+    }
+  }
+
+  .sectionHead {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+  }
+
+  .row {
+    display: flex;
+    gap: 8px;
+  }
+
+  .empty {
+    margin: 0;
+    font-weight: 700;
+    opacity: 0.8;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(96px, 1fr));
+    gap: 8px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .tile {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    border: 3px solid var(--color-tan);
+    border-radius: 16px;
+    background: var(--color-paper);
+    opacity: 0.6;
+    transition: opacity 0.15s;
+  }
+
+  .on {
+    border-color: #ff8a1f;
+    background: #fff0dc;
+    box-shadow: 0 4px 0 #c2560c;
+    opacity: 1;
+  }
+
+  .toggle {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    padding: 8px 4px 4px;
+    border: 0;
+    background: none;
+    color: var(--color-brown);
+    font: inherit;
+    cursor: pointer;
+
+    @include focus-ring;
+  }
+
+  .picture {
+    width: 64px;
+    height: 64px;
+  }
+
+  .text {
+    font-family: var(--font-learning);
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.1;
+    text-align: center;
+  }
+
+  .meaning {
+    font-size: 12px;
+    opacity: 0.75;
+    text-align: center;
+  }
+
+  .mark {
+    position: absolute;
+    top: 4px;
+    right: 6px;
+    color: #e8620e;
+    font-size: 18px;
+    font-weight: 900;
+  }
+
+  .tileActions {
+    display: flex;
+    justify-content: center;
+    gap: 4px;
+    padding-bottom: 6px;
+  }
+
+  .small {
+    min-width: 40px;
+    min-height: 36px;
+    border: 2px solid var(--color-tan);
+    border-radius: 10px;
+    background: #fff;
+    font-size: 16px;
+    cursor: pointer;
+
+    @include focus-ring;
+  }
+
+  .form {
+    display: grid;
+    gap: 8px;
+    padding-top: 8px;
+    border-top: 3px dashed var(--color-tan);
+
+    h3 {
+      margin: 0;
+      font-size: 18px;
+    }
+  }
+
+  .formRow {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+  }
+
+  .upload {
+    display: grid;
+    flex: none;
+    place-items: center;
+    width: 112px;
+    height: 112px;
+    padding: 6px;
+    border: 3px dashed #8b48d6;
+    border-radius: 16px;
+    background: #f5ecff;
+    color: #5a2a9a;
+    font: inherit;
+    font-size: 13px;
+    font-weight: 800;
+    cursor: pointer;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    @include focus-ring;
+  }
+
+  .fields {
+    display: grid;
+    flex: 1;
+    gap: 6px;
+    min-width: 0;
+  }
+
+  .error {
+    margin: 0;
+    color: #c0182c;
+    font-weight: 800;
+  }
+
+  .done {
+    min-height: 60px;
+    font-size: 24px;
+  }
+}

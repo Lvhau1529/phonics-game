@@ -1,0 +1,154 @@
+@use '@/ui/styles/abstracts' as *;
+
+@layer components {
+  @include keyframes-pop;
+
+  .hud {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto auto;
+    grid-template-areas: 'teams progress teacher';
+    align-items: center;
+    gap: 8px;
+    padding: max(6px, env(safe-area-inset-top)) max(8px, env(safe-area-inset-right)) 6px
+      max(8px, env(safe-area-inset-left));
+    background: linear-gradient(180deg, #1a0d3a, #2a1560);
+    border-bottom: 3px solid #4a2a80;
+    color: #fff;
+  }
+
+  .teams {
+    grid-area: teams;
+    display: flex;
+    gap: 6px;
+    min-width: 0;
+  }
+
+  .team {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    min-width: 0;
+    padding: 2px 10px 2px 4px;
+    border: 3px solid transparent;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  .pumpkin {
+    --team: #ff8a1f;
+  }
+
+  .ghost {
+    --team: #9b5be0;
+  }
+
+  .active {
+    border-color: var(--team);
+    background: color-mix(in srgb, var(--team) 40%, transparent);
+    box-shadow: 0 0 12px var(--team);
+  }
+
+  .portrait {
+    width: 40px;
+    height: 40px;
+    image-rendering: pixelated;
+  }
+
+  .name {
+    max-width: 9em;
+    font-size: 13px;
+    font-weight: 800;
+
+    @include ellipsis;
+  }
+
+  .basket {
+    width: 38px;
+    height: 38px;
+    image-rendering: pixelated;
+  }
+
+  .score {
+    min-width: 1.4em;
+    color: #ffe066;
+    font-size: 26px;
+    font-weight: 800;
+    line-height: 1;
+    text-shadow: var(--outline);
+    animation: pop 0.4s ease-out;
+  }
+
+  .progress {
+    grid-area: progress;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    line-height: 1.05;
+    text-align: center;
+  }
+
+  .turn {
+    font-size: 18px;
+    font-weight: 800;
+  }
+
+  .zone {
+    color: #ffc27a;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+  }
+
+  .teacher {
+    grid-area: teacher;
+    display: flex;
+    gap: 4px;
+  }
+
+  .control {
+    width: 44px;
+    height: 44px;
+    border: 3px solid #6c46b0;
+    border-radius: 12px;
+    background: #3a2275;
+    font-size: 20px;
+    cursor: pointer;
+
+    &:disabled {
+      opacity: 0.4;
+      cursor: default;
+    }
+
+    @include focus-ring;
+  }
+
+  // Điện thoại dọc: đội xuống hàng riêng
+  @media (max-width: 560px) {
+    .hud {
+      grid-template-columns: auto minmax(0, 1fr) auto;
+      grid-template-areas:
+        'progress . teacher'
+        'teams teams teams';
+    }
+
+    .teams {
+      justify-content: center;
+    }
+
+    .progress {
+      align-items: flex-start;
+    }
+
+    .portrait {
+      width: 32px;
+      height: 32px;
+    }
+
+    // Hai đội trên màn hẹp: bỏ giỏ để đủ chỗ cho tên đội
+    .name + .basket {
+      display: none;
+    }
+  }
+}

@@ -1,0 +1,2274 @@
+{
+  "pack": "Halloween Candy Quest v1.0",
+  "total_images": 252,
+  "assets": [
+    {
+      "path": "backgrounds/pumpkin_garden/main_native_320x180.png",
+      "category": "background",
+      "width": 320,
+      "height": 180,
+      "transparent": false,
+      "note": "16:9 native pixel art; nearest-neighbor scaling",
+      "zone": "pumpkin_garden"
+    },
+    {
+      "path": "backgrounds/pumpkin_garden/main_1280x720.png",
+      "category": "background",
+      "width": 1280,
+      "height": 720,
+      "transparent": false,
+      "note": "16:9 upscale x4; no interpolation",
+      "zone": "pumpkin_garden"
+    },
+    {
+      "path": "backgrounds/pumpkin_garden/alternate_native_320x180.png",
+      "category": "background",
+      "width": 320,
+      "height": 180,
+      "transparent": false,
+      "note": "16:9 native pixel art; nearest-neighbor scaling",
+      "zone": "pumpkin_garden"
+    },
+    {
+      "path": "backgrounds/pumpkin_garden/alternate_1280x720.png",
+      "category": "background",
+      "width": 1280,
+      "height": 720,
+      "transparent": false,
+      "note": "16:9 upscale x4; no interpolation",
+      "zone": "pumpkin_garden"
+    },
+    {
+      "path": "backgrounds/candy_village/main_native_320x180.png",
+      "category": "background",
+      "width": 320,
+      "height": 180,
+      "transparent": false,
+      "note": "16:9 native pixel art; nearest-neighbor scaling",
+      "zone": "candy_village"
+    },
+    {
+      "path": "backgrounds/candy_village/main_1280x720.png",
+      "category": "background",
+      "width": 1280,
+      "height": 720,
+      "transparent": false,
+      "note": "16:9 upscale x4; no interpolation",
+      "zone": "candy_village"
+    },
+    {
+      "path": "backgrounds/candy_village/alternate_native_320x180.png",
+      "category": "background",
+      "width": 320,
+      "height": 180,
+      "transparent": false,
+      "note": "16:9 native pixel art; nearest-neighbor scaling",
+      "zone": "candy_village"
+    },
+    {
+      "path": "backgrounds/candy_village/alternate_1280x720.png",
+      "category": "background",
+      "width": 1280,
+      "height": 720,
+      "transparent": false,
+      "note": "16:9 upscale x4; no interpolation",
+      "zone": "candy_village"
+    },
+    {
+      "path": "backgrounds/magic_castle/main_native_320x180.png",
+      "category": "background",
+      "width": 320,
+      "height": 180,
+      "transparent": false,
+      "note": "16:9 native pixel art; nearest-neighbor scaling",
+      "zone": "magic_castle"
+    },
+    {
+      "path": "backgrounds/magic_castle/main_1280x720.png",
+      "category": "background",
+      "width": 1280,
+      "height": 720,
+      "transparent": false,
+      "note": "16:9 upscale x4; no interpolation",
+      "zone": "magic_castle"
+    },
+    {
+      "path": "backgrounds/magic_castle/alternate_native_320x180.png",
+      "category": "background",
+      "width": 320,
+      "height": 180,
+      "transparent": false,
+      "note": "16:9 native pixel art; nearest-neighbor scaling",
+      "zone": "magic_castle"
+    },
+    {
+      "path": "backgrounds/magic_castle/alternate_1280x720.png",
+      "category": "background",
+      "width": 1280,
+      "height": 720,
+      "transparent": false,
+      "note": "16:9 upscale x4; no interpolation",
+      "zone": "magic_castle"
+    },
+    {
+      "path": "parallax/moon_and_clouds.png",
+      "category": "parallax",
+      "width": 286,
+      "height": 54,
+      "transparent": false,
+      "note": "layer sample from themed atlas; modular repeat requires edge adjustment"
+    },
+    {
+      "path": "parallax/distant_mountains.png",
+      "category": "parallax",
+      "width": 286,
+      "height": 43,
+      "transparent": false,
+      "note": "layer sample from themed atlas; modular repeat requires edge adjustment"
+    },
+    {
+      "path": "parallax/garden_shrubs.png",
+      "category": "parallax",
+      "width": 286,
+      "height": 50,
+      "transparent": false,
+      "note": "layer sample from themed atlas; modular repeat requires edge adjustment"
+    },
+    {
+      "path": "parallax/fences_and_plants.png",
+      "category": "parallax",
+      "width": 286,
+      "height": 41,
+      "transparent": false,
+      "note": "layer sample from themed atlas; modular repeat requires edge adjustment"
+    },
+    {
+      "path": "characters/pumpkin_kid/portrait_96.png",
+      "category": "character_portrait",
+      "width": 96,
+      "height": 96,
+      "transparent": true,
+      "note": "pumpkin_kid",
+      "character": "pumpkin_kid"
+    },
+    {
+      "path": "characters/pumpkin_kid/idle_01.png",
+      "category": "character_frame",
+      "width": 48,
+      "height": 48,
+      "transparent": true,
+      "note": "pumpkin_kid / idle / frame 1",
+      "character": "pumpkin_kid",
+      "pose": "idle",
+      "frame": 1
+    },
+    {
+      "path": "characters/pumpkin_kid/idle_02.png",
+      "category": "character_frame",
+      "width": 48,
+      "height": 48,
+      "transparent": true,
+      "note": "pumpkin_kid / idle / frame 2",
+      "character": "pumpkin_kid",
+      "pose": "idle",
+      "frame": 2
+    },
+    {
+      "path": "characters/pumpkin_kid/walk_01.png",
+      "category": "character_frame",
+      "width": 48,
+      "height": 48,
+      "transparent": true,
+      "note": "pumpkin_kid / walk / frame 1",
+      "character": "pumpkin_kid",
+      "pose": "walk",
+      "frame": 1
+    },
+    {
+      "path": "characters/pumpkin_kid/walk_02.png",
+      "category": "character_frame",
+      "width": 48,
+      "height": 48,
+      "transparent": true,
+      "note": "pumpkin_kid / walk / frame 2",
+      "character": "pumpkin_kid",
+      "pose": "walk",
+      "frame": 2
+    },
+    {
+      "path": "characters/pumpkin_kid/knock_01.png",
+      "category": "character_frame",
+      "width": 48,
+      "height": 48,
+      "transparent": true,
+      "note": "pumpkin_kid / knock / frame 1",
+      "character": "pumpkin_kid",
+      "pose": "knock",
+      "frame": 1
+    },
+    {
+      "path": "characters/pumpkin_kid/knock_02.png",
+      "category": "character_frame",
+      "width": 48,
+      "height": 48,
+      "transparent": true,
+      "note": "pumpkin_kid / knock / frame 2",
+      "character": "pumpkin_kid",
+      "pose": "knock",
+      "frame": 2
+    },
+    {
+      "path": "characters/pumpkin_kid/celebrate_01.png",
+      "category": "character_frame",
+      "width": 48,
+      "height": 48,
+      "transparent": true,
+      "note": "pumpkin_kid / celebrate / frame 1",
+      "character": "pumpkin_kid",
+      "pose": "celebrate",
+      "frame": 1
+    },
+    {
+      "path": "characters/pumpkin_kid/celebrate_02.png",
+      "category": "character_frame",
+      "width": 48,
+      "height": 48,
+      "transparent": true,
+      "note": "pumpkin_kid / celebrate / frame 2",
+      "character": "pumpkin_kid",
+      "pose": "celebrate",
+      "frame": 2
+    },
+    {
+      "path": "characters/pumpkin_kid/try_again_01.png",
+      "category": "character_frame",
+      "width": 48,
+      "height": 48,
+      "transparent": true,
+      "note": "pumpkin_kid / try_again / frame 1",
+      "character": "pumpkin_kid",
+      "pose": "try_again",
+      "frame": 1
+    },
+    {
+      "path": "characters/pumpkin_kid/try_again_02.png",
+      "category": "character_frame",
+      "width": 48,
+      "height": 48,
+      "transparent": true,
+      "note": "pumpkin_kid / try_again / frame 2",
+      "character": "pumpkin_kid",
+      "pose": "try_again",
+      "frame": 2
+    },
+    {
+      "path": "characters/spritesheets/pumpkin_kid_5x2_48px.png",
+      "category": "character_spritesheet",
+      "width": 96,
+      "height": 240,
+      "transparent": true,
+      "note": "2 frames per row; rows: idle, walk, knock, celebrate, try_again",
+      "character": "pumpkin_kid"
+    },
+    {
+      "path": "characters/little_ghost/portrait_96.png",
+      "category": "character_portrait",
+      "width": 96,
+      "height": 96,
+      "transparent": true,
+      "note": "little_ghost",
+      "character": "little_ghost"
+    },
+    {
+      "path": "characters/little_ghost/idle_01.png",
+      "category": "character_frame",
+      "width": 48,
+      "height": 48,
+      "transparent": true,
+      "note": "little_ghost / idle / frame 1",
+      "character": "little_ghost",
+      "pose": "idle",
+      "frame": 1
+    },
+    {
+      "path": "characters/little_ghost/idle_02.png",
+      "category": "character_frame",
+      "width": 48,
+      "height": 48,
+      "transparent": true,
+      "note": "little_ghost / idle / frame 2",
+      "character": "little_ghost",
+      "pose": "idle",
+      "frame": 2
+    },
+    {
+      "path": "characters/little_ghost/walk_01.png",
+      "category": "character_frame",
+      "width": 48,
+      "height": 48,
+      "transparent": true,
+      "note": "little_ghost / walk / frame 1",
+      "character": "little_ghost",
+      "pose": "walk",
+      "frame": 1
+    },
+    {
+      "path": "characters/little_ghost/walk_02.png",
+      "category": "character_frame",
+      "width": 48,
+      "height": 48,
+      "transparent": true,
+      "note": "little_ghost / walk / frame 2",
+      "character": "little_ghost",
+      "pose": "walk",
+      "frame": 2
+    },
+    {
+      "path": "characters/little_ghost/knock_01.png",
+      "category": "character_frame",
+      "width": 48,
+      "height": 48,
+      "transparent": true,
+      "note": "little_ghost / knock / frame 1",
+      "character": "little_ghost",
+      "pose": "knock",
+      "frame": 1
+    },
+    {
+      "path": "characters/little_ghost/knock_02.png",
+      "category": "character_frame",
+      "width": 48,
+      "height": 48,
+      "transparent": true,
+      "note": "little_ghost / knock / frame 2",
+      "character": "little_ghost",
+      "pose": "knock",
+      "frame": 2
+    },
+    {
+      "path": "characters/little_ghost/celebrate_01.png",
+      "category": "character_frame",
+      "width": 48,
+      "height": 48,
+      "transparent": true,
+      "note": "little_ghost / celebrate / frame 1",
+      "character": "little_ghost",
+      "pose": "celebrate",
+      "frame": 1
+    },
+    {
+      "path": "characters/little_ghost/celebrate_02.png",
+      "category": "character_frame",
+      "width": 48,
+      "height": 48,
+      "transparent": true,
+      "note": "little_ghost / celebrate / frame 2",
+      "character": "little_ghost",
+      "pose": "celebrate",
+      "frame": 2
+    },
+    {
+      "path": "characters/little_ghost/try_again_01.png",
+      "category": "character_frame",
+      "width": 48,
+      "height": 48,
+      "transparent": true,
+      "note": "little_ghost / try_again / frame 1",
+      "character": "little_ghost",
+      "pose": "try_again",
+      "frame": 1
+    },
+    {
+      "path": "characters/little_ghost/try_again_02.png",
+      "category": "character_frame",
+      "width": 48,
+      "height": 48,
+      "transparent": true,
+      "note": "little_ghost / try_again / frame 2",
+      "character": "little_ghost",
+      "pose": "try_again",
+      "frame": 2
+    },
+    {
+      "path": "characters/spritesheets/little_ghost_5x2_48px.png",
+      "category": "character_spritesheet",
+      "width": 96,
+      "height": 240,
+      "transparent": true,
+      "note": "2 frames per row; rows: idle, walk, knock, celebrate, try_again",
+      "character": "little_ghost"
+    },
+    {
+      "path": "characters/mini_witch/portrait_96.png",
+      "category": "character_portrait",
+      "width": 96,
+      "height": 96,
+      "transparent": true,
+      "note": "mini_witch",
+      "character": "mini_witch"
+    },
+    {
+      "path": "characters/mini_witch/idle_01.png",
+      "category": "character_frame",
+      "width": 48,
+      "height": 48,
+      "transparent": true,
+      "note": "mini_witch / idle / frame 1",
+      "character": "mini_witch",
+      "pose": "idle",
+      "frame": 1
+    },
+    {
+      "path": "characters/mini_witch/idle_02.png",
+      "category": "character_frame",
+      "width": 48,
+      "height": 48,
+      "transparent": true,
+      "note": "mini_witch / idle / frame 2",
+      "character": "mini_witch",
+      "pose": "idle",
+      "frame": 2
+    },
+    {
+      "path": "characters/mini_witch/walk_01.png",
+      "category": "character_frame",
+      "width": 48,
+      "height": 48,
+      "transparent": true,
+      "note": "mini_witch / walk / frame 1",
+      "character": "mini_witch",
+      "pose": "walk",
+      "frame": 1
+    },
+    {
+      "path": "characters/mini_witch/walk_02.png",
+      "category": "character_frame",
+      "width": 48,
+      "height": 48,
+      "transparent": true,
+      "note": "mini_witch / walk / frame 2",
+      "character": "mini_witch",
+      "pose": "walk",
+      "frame": 2
+    },
+    {
+      "path": "characters/mini_witch/knock_01.png",
+      "category": "character_frame",
+      "width": 48,
+      "height": 48,
+      "transparent": true,
+      "note": "mini_witch / knock / frame 1",
+      "character": "mini_witch",
+      "pose": "knock",
+      "frame": 1
+    },
+    {
+      "path": "characters/mini_witch/knock_02.png",
+      "category": "character_frame",
+      "width": 48,
+      "height": 48,
+      "transparent": true,
+      "note": "mini_witch / knock / frame 2",
+      "character": "mini_witch",
+      "pose": "knock",
+      "frame": 2
+    },
+    {
+      "path": "characters/mini_witch/celebrate_01.png",
+      "category": "character_frame",
+      "width": 48,
+      "height": 48,
+      "transparent": true,
+      "note": "mini_witch / celebrate / frame 1",
+      "character": "mini_witch",
+      "pose": "celebrate",
+      "frame": 1
+    },
+    {
+      "path": "characters/mini_witch/celebrate_02.png",
+      "category": "character_frame",
+      "width": 48,
+      "height": 48,
+      "transparent": true,
+      "note": "mini_witch / celebrate / frame 2",
+      "character": "mini_witch",
+      "pose": "celebrate",
+      "frame": 2
+    },
+    {
+      "path": "characters/mini_witch/try_again_01.png",
+      "category": "character_frame",
+      "width": 48,
+      "height": 48,
+      "transparent": true,
+      "note": "mini_witch / try_again / frame 1",
+      "character": "mini_witch",
+      "pose": "try_again",
+      "frame": 1
+    },
+    {
+      "path": "characters/mini_witch/try_again_02.png",
+      "category": "character_frame",
+      "width": 48,
+      "height": 48,
+      "transparent": true,
+      "note": "mini_witch / try_again / frame 2",
+      "character": "mini_witch",
+      "pose": "try_again",
+      "frame": 2
+    },
+    {
+      "path": "characters/spritesheets/mini_witch_5x2_48px.png",
+      "category": "character_spritesheet",
+      "width": 96,
+      "height": 240,
+      "transparent": true,
+      "note": "2 frames per row; rows: idle, walk, knock, celebrate, try_again",
+      "character": "mini_witch"
+    },
+    {
+      "path": "characters/vampire_kid/portrait_96.png",
+      "category": "character_portrait",
+      "width": 96,
+      "height": 96,
+      "transparent": true,
+      "note": "vampire_kid",
+      "character": "vampire_kid"
+    },
+    {
+      "path": "characters/vampire_kid/idle_01.png",
+      "category": "character_frame",
+      "width": 48,
+      "height": 48,
+      "transparent": true,
+      "note": "vampire_kid / idle / frame 1",
+      "character": "vampire_kid",
+      "pose": "idle",
+      "frame": 1
+    },
+    {
+      "path": "characters/vampire_kid/idle_02.png",
+      "category": "character_frame",
+      "width": 48,
+      "height": 48,
+      "transparent": true,
+      "note": "vampire_kid / idle / frame 2",
+      "character": "vampire_kid",
+      "pose": "idle",
+      "frame": 2
+    },
+    {
+      "path": "characters/vampire_kid/walk_01.png",
+      "category": "character_frame",
+      "width": 48,
+      "height": 48,
+      "transparent": true,
+      "note": "vampire_kid / walk / frame 1",
+      "character": "vampire_kid",
+      "pose": "walk",
+      "frame": 1
+    },
+    {
+      "path": "characters/vampire_kid/walk_02.png",
+      "category": "character_frame",
+      "width": 48,
+      "height": 48,
+      "transparent": true,
+      "note": "vampire_kid / walk / frame 2",
+      "character": "vampire_kid",
+      "pose": "walk",
+      "frame": 2
+    },
+    {
+      "path": "characters/vampire_kid/knock_01.png",
+      "category": "character_frame",
+      "width": 48,
+      "height": 48,
+      "transparent": true,
+      "note": "vampire_kid / knock / frame 1",
+      "character": "vampire_kid",
+      "pose": "knock",
+      "frame": 1
+    },
+    {
+      "path": "characters/vampire_kid/knock_02.png",
+      "category": "character_frame",
+      "width": 48,
+      "height": 48,
+      "transparent": true,
+      "note": "vampire_kid / knock / frame 2",
+      "character": "vampire_kid",
+      "pose": "knock",
+      "frame": 2
+    },
+    {
+      "path": "characters/vampire_kid/celebrate_01.png",
+      "category": "character_frame",
+      "width": 48,
+      "height": 48,
+      "transparent": true,
+      "note": "vampire_kid / celebrate / frame 1",
+      "character": "vampire_kid",
+      "pose": "celebrate",
+      "frame": 1
+    },
+    {
+      "path": "characters/vampire_kid/celebrate_02.png",
+      "category": "character_frame",
+      "width": 48,
+      "height": 48,
+      "transparent": true,
+      "note": "vampire_kid / celebrate / frame 2",
+      "character": "vampire_kid",
+      "pose": "celebrate",
+      "frame": 2
+    },
+    {
+      "path": "characters/vampire_kid/try_again_01.png",
+      "category": "character_frame",
+      "width": 48,
+      "height": 48,
+      "transparent": true,
+      "note": "vampire_kid / try_again / frame 1",
+      "character": "vampire_kid",
+      "pose": "try_again",
+      "frame": 1
+    },
+    {
+      "path": "characters/vampire_kid/try_again_02.png",
+      "category": "character_frame",
+      "width": 48,
+      "height": 48,
+      "transparent": true,
+      "note": "vampire_kid / try_again / frame 2",
+      "character": "vampire_kid",
+      "pose": "try_again",
+      "frame": 2
+    },
+    {
+      "path": "characters/spritesheets/vampire_kid_5x2_48px.png",
+      "category": "character_spritesheet",
+      "width": 96,
+      "height": 240,
+      "transparent": true,
+      "note": "2 frames per row; rows: idle, walk, knock, celebrate, try_again",
+      "character": "vampire_kid"
+    },
+    {
+      "path": "characters/black_cat/portrait_96.png",
+      "category": "character_portrait",
+      "width": 96,
+      "height": 96,
+      "transparent": true,
+      "note": "black_cat",
+      "character": "black_cat"
+    },
+    {
+      "path": "characters/black_cat/idle_01.png",
+      "category": "character_frame",
+      "width": 48,
+      "height": 48,
+      "transparent": true,
+      "note": "black_cat / idle / frame 1",
+      "character": "black_cat",
+      "pose": "idle",
+      "frame": 1
+    },
+    {
+      "path": "characters/black_cat/idle_02.png",
+      "category": "character_frame",
+      "width": 48,
+      "height": 48,
+      "transparent": true,
+      "note": "black_cat / idle / frame 2",
+      "character": "black_cat",
+      "pose": "idle",
+      "frame": 2
+    },
+    {
+      "path": "characters/black_cat/walk_01.png",
+      "category": "character_frame",
+      "width": 48,
+      "height": 48,
+      "transparent": true,
+      "note": "black_cat / walk / frame 1",
+      "character": "black_cat",
+      "pose": "walk",
+      "frame": 1
+    },
+    {
+      "path": "characters/black_cat/walk_02.png",
+      "category": "character_frame",
+      "width": 48,
+      "height": 48,
+      "transparent": true,
+      "note": "black_cat / walk / frame 2",
+      "character": "black_cat",
+      "pose": "walk",
+      "frame": 2
+    },
+    {
+      "path": "characters/black_cat/knock_01.png",
+      "category": "character_frame",
+      "width": 48,
+      "height": 48,
+      "transparent": true,
+      "note": "black_cat / knock / frame 1",
+      "character": "black_cat",
+      "pose": "knock",
+      "frame": 1
+    },
+    {
+      "path": "characters/black_cat/knock_02.png",
+      "category": "character_frame",
+      "width": 48,
+      "height": 48,
+      "transparent": true,
+      "note": "black_cat / knock / frame 2",
+      "character": "black_cat",
+      "pose": "knock",
+      "frame": 2
+    },
+    {
+      "path": "characters/black_cat/celebrate_01.png",
+      "category": "character_frame",
+      "width": 48,
+      "height": 48,
+      "transparent": true,
+      "note": "black_cat / celebrate / frame 1",
+      "character": "black_cat",
+      "pose": "celebrate",
+      "frame": 1
+    },
+    {
+      "path": "characters/black_cat/celebrate_02.png",
+      "category": "character_frame",
+      "width": 48,
+      "height": 48,
+      "transparent": true,
+      "note": "black_cat / celebrate / frame 2",
+      "character": "black_cat",
+      "pose": "celebrate",
+      "frame": 2
+    },
+    {
+      "path": "characters/black_cat/try_again_01.png",
+      "category": "character_frame",
+      "width": 48,
+      "height": 48,
+      "transparent": true,
+      "note": "black_cat / try_again / frame 1",
+      "character": "black_cat",
+      "pose": "try_again",
+      "frame": 1
+    },
+    {
+      "path": "characters/black_cat/try_again_02.png",
+      "category": "character_frame",
+      "width": 48,
+      "height": 48,
+      "transparent": true,
+      "note": "black_cat / try_again / frame 2",
+      "character": "black_cat",
+      "pose": "try_again",
+      "frame": 2
+    },
+    {
+      "path": "characters/spritesheets/black_cat_5x2_48px.png",
+      "category": "character_spritesheet",
+      "width": 96,
+      "height": 240,
+      "transparent": true,
+      "note": "2 frames per row; rows: idle, walk, knock, celebrate, try_again",
+      "character": "black_cat"
+    },
+    {
+      "path": "characters/bat_explorer/portrait_96.png",
+      "category": "character_portrait",
+      "width": 96,
+      "height": 96,
+      "transparent": true,
+      "note": "bat_explorer",
+      "character": "bat_explorer"
+    },
+    {
+      "path": "characters/bat_explorer/idle_01.png",
+      "category": "character_frame",
+      "width": 48,
+      "height": 48,
+      "transparent": true,
+      "note": "bat_explorer / idle / frame 1",
+      "character": "bat_explorer",
+      "pose": "idle",
+      "frame": 1
+    },
+    {
+      "path": "characters/bat_explorer/idle_02.png",
+      "category": "character_frame",
+      "width": 48,
+      "height": 48,
+      "transparent": true,
+      "note": "bat_explorer / idle / frame 2",
+      "character": "bat_explorer",
+      "pose": "idle",
+      "frame": 2
+    },
+    {
+      "path": "characters/bat_explorer/walk_01.png",
+      "category": "character_frame",
+      "width": 48,
+      "height": 48,
+      "transparent": true,
+      "note": "bat_explorer / walk / frame 1",
+      "character": "bat_explorer",
+      "pose": "walk",
+      "frame": 1
+    },
+    {
+      "path": "characters/bat_explorer/walk_02.png",
+      "category": "character_frame",
+      "width": 48,
+      "height": 48,
+      "transparent": true,
+      "note": "bat_explorer / walk / frame 2",
+      "character": "bat_explorer",
+      "pose": "walk",
+      "frame": 2
+    },
+    {
+      "path": "characters/bat_explorer/knock_01.png",
+      "category": "character_frame",
+      "width": 48,
+      "height": 48,
+      "transparent": true,
+      "note": "bat_explorer / knock / frame 1",
+      "character": "bat_explorer",
+      "pose": "knock",
+      "frame": 1
+    },
+    {
+      "path": "characters/bat_explorer/knock_02.png",
+      "category": "character_frame",
+      "width": 48,
+      "height": 48,
+      "transparent": true,
+      "note": "bat_explorer / knock / frame 2",
+      "character": "bat_explorer",
+      "pose": "knock",
+      "frame": 2
+    },
+    {
+      "path": "characters/bat_explorer/celebrate_01.png",
+      "category": "character_frame",
+      "width": 48,
+      "height": 48,
+      "transparent": true,
+      "note": "bat_explorer / celebrate / frame 1",
+      "character": "bat_explorer",
+      "pose": "celebrate",
+      "frame": 1
+    },
+    {
+      "path": "characters/bat_explorer/celebrate_02.png",
+      "category": "character_frame",
+      "width": 48,
+      "height": 48,
+      "transparent": true,
+      "note": "bat_explorer / celebrate / frame 2",
+      "character": "bat_explorer",
+      "pose": "celebrate",
+      "frame": 2
+    },
+    {
+      "path": "characters/bat_explorer/try_again_01.png",
+      "category": "character_frame",
+      "width": 48,
+      "height": 48,
+      "transparent": true,
+      "note": "bat_explorer / try_again / frame 1",
+      "character": "bat_explorer",
+      "pose": "try_again",
+      "frame": 1
+    },
+    {
+      "path": "characters/bat_explorer/try_again_02.png",
+      "category": "character_frame",
+      "width": 48,
+      "height": 48,
+      "transparent": true,
+      "note": "bat_explorer / try_again / frame 2",
+      "character": "bat_explorer",
+      "pose": "try_again",
+      "frame": 2
+    },
+    {
+      "path": "characters/spritesheets/bat_explorer_5x2_48px.png",
+      "category": "character_spritesheet",
+      "width": 96,
+      "height": 240,
+      "transparent": true,
+      "note": "2 frames per row; rows: idle, walk, knock, celebrate, try_again",
+      "character": "bat_explorer"
+    },
+    {
+      "path": "npcs/pumpkin_host_96.png",
+      "category": "npc",
+      "width": 96,
+      "height": 96,
+      "transparent": true,
+      "note": "pumpkin_host"
+    },
+    {
+      "path": "npcs/friendly_ghost_96.png",
+      "category": "npc",
+      "width": 96,
+      "height": 96,
+      "transparent": true,
+      "note": "friendly_ghost"
+    },
+    {
+      "path": "npcs/witch_host_96.png",
+      "category": "npc",
+      "width": 96,
+      "height": 96,
+      "transparent": true,
+      "note": "witch_host"
+    },
+    {
+      "path": "npcs/vampire_host_96.png",
+      "category": "npc",
+      "width": 96,
+      "height": 96,
+      "transparent": true,
+      "note": "vampire_host"
+    },
+    {
+      "path": "npcs/black_cat_host_96.png",
+      "category": "npc",
+      "width": 96,
+      "height": 96,
+      "transparent": true,
+      "note": "black_cat_host"
+    },
+    {
+      "path": "npcs/mummy_96.png",
+      "category": "npc",
+      "width": 96,
+      "height": 96,
+      "transparent": true,
+      "note": "mummy"
+    },
+    {
+      "path": "npcs/frankenstein_96.png",
+      "category": "npc",
+      "width": 96,
+      "height": 96,
+      "transparent": true,
+      "note": "frankenstein"
+    },
+    {
+      "path": "npcs/skeleton_96.png",
+      "category": "npc",
+      "width": 96,
+      "height": 96,
+      "transparent": true,
+      "note": "skeleton"
+    },
+    {
+      "path": "npcs/owl_96.png",
+      "category": "npc",
+      "width": 96,
+      "height": 96,
+      "transparent": true,
+      "note": "owl"
+    },
+    {
+      "path": "npcs/cute_blue_monster_96.png",
+      "category": "npc",
+      "width": 96,
+      "height": 96,
+      "transparent": true,
+      "note": "bonus NPC"
+    },
+    {
+      "path": "buildings/witch_cottage_128.png",
+      "category": "building",
+      "width": 128,
+      "height": 128,
+      "transparent": true,
+      "note": "witch_cottage"
+    },
+    {
+      "path": "buildings/pumpkin_house_128.png",
+      "category": "building",
+      "width": 128,
+      "height": 128,
+      "transparent": true,
+      "note": "pumpkin_house"
+    },
+    {
+      "path": "buildings/mushroom_shop_128.png",
+      "category": "building",
+      "width": 128,
+      "height": 128,
+      "transparent": true,
+      "note": "mushroom_shop"
+    },
+    {
+      "path": "buildings/purple_house_128.png",
+      "category": "building",
+      "width": 128,
+      "height": 128,
+      "transparent": true,
+      "note": "purple_house"
+    },
+    {
+      "path": "buildings/ghost_house_128.png",
+      "category": "building",
+      "width": 128,
+      "height": 128,
+      "transparent": true,
+      "note": "ghost_house"
+    },
+    {
+      "path": "buildings/candy_shop_128.png",
+      "category": "building",
+      "width": 128,
+      "height": 128,
+      "transparent": true,
+      "note": "candy_shop"
+    },
+    {
+      "path": "buildings/castle_gate_128.png",
+      "category": "building",
+      "width": 128,
+      "height": 128,
+      "transparent": true,
+      "note": "castle_gate"
+    },
+    {
+      "path": "buildings/castle_towers_128.png",
+      "category": "building",
+      "width": 128,
+      "height": 128,
+      "transparent": true,
+      "note": "castle_towers"
+    },
+    {
+      "path": "buildings/castle_main_128.png",
+      "category": "building",
+      "width": 128,
+      "height": 128,
+      "transparent": true,
+      "note": "castle_main"
+    },
+    {
+      "path": "doors/wood_closed_80x96.png",
+      "category": "door",
+      "width": 80,
+      "height": 96,
+      "transparent": true,
+      "note": "wood_closed"
+    },
+    {
+      "path": "doors/stone_open_80x96.png",
+      "category": "door",
+      "width": 80,
+      "height": 96,
+      "transparent": true,
+      "note": "stone_open"
+    },
+    {
+      "path": "doors/wood_glowing_80x96.png",
+      "category": "door",
+      "width": 80,
+      "height": 96,
+      "transparent": true,
+      "note": "wood_glowing"
+    },
+    {
+      "path": "doors/purple_closed_80x96.png",
+      "category": "door",
+      "width": 80,
+      "height": 96,
+      "transparent": true,
+      "note": "purple_closed"
+    },
+    {
+      "path": "doors/stoneway_open_80x96.png",
+      "category": "door",
+      "width": 80,
+      "height": 96,
+      "transparent": true,
+      "note": "stoneway_open"
+    },
+    {
+      "path": "doors/golden_open_80x96.png",
+      "category": "door",
+      "width": 80,
+      "height": 96,
+      "transparent": true,
+      "note": "golden_open"
+    },
+    {
+      "path": "doors/pumpkin_door_80x96.png",
+      "category": "door",
+      "width": 80,
+      "height": 96,
+      "transparent": true,
+      "note": "pumpkin_door"
+    },
+    {
+      "path": "doors/dark_door_80x96.png",
+      "category": "door",
+      "width": 80,
+      "height": 96,
+      "transparent": true,
+      "note": "dark_door"
+    },
+    {
+      "path": "doors/magic_pumpkin_portal_80x96.png",
+      "category": "door",
+      "width": 80,
+      "height": 96,
+      "transparent": true,
+      "note": "magic_pumpkin_portal"
+    },
+    {
+      "path": "doors/pink_closed_80x96.png",
+      "category": "door",
+      "width": 80,
+      "height": 96,
+      "transparent": true,
+      "note": "pink_closed"
+    },
+    {
+      "path": "doors/purple_wood_80x96.png",
+      "category": "door",
+      "width": 80,
+      "height": 96,
+      "transparent": true,
+      "note": "purple_wood"
+    },
+    {
+      "path": "doors/pink_magic_80x96.png",
+      "category": "door",
+      "width": 80,
+      "height": 96,
+      "transparent": true,
+      "note": "pink_magic"
+    },
+    {
+      "path": "interactables/pumpkin_closed_96.png",
+      "category": "interactive_prop",
+      "width": 96,
+      "height": 96,
+      "transparent": true,
+      "note": "pumpkin_closed"
+    },
+    {
+      "path": "interactables/pumpkin_open_96.png",
+      "category": "interactive_prop",
+      "width": 96,
+      "height": 96,
+      "transparent": true,
+      "note": "pumpkin_open"
+    },
+    {
+      "path": "interactables/chest_closed_96.png",
+      "category": "interactive_prop",
+      "width": 96,
+      "height": 96,
+      "transparent": true,
+      "note": "chest_closed"
+    },
+    {
+      "path": "interactables/chest_open_96.png",
+      "category": "interactive_prop",
+      "width": 96,
+      "height": 96,
+      "transparent": true,
+      "note": "chest_open"
+    },
+    {
+      "path": "interactables/door_bell_96.png",
+      "category": "interactive_prop",
+      "width": 96,
+      "height": 96,
+      "transparent": true,
+      "note": "door_bell"
+    },
+    {
+      "path": "interactables/signpost_96.png",
+      "category": "interactive_prop",
+      "width": 96,
+      "height": 96,
+      "transparent": true,
+      "note": "signpost"
+    },
+    {
+      "path": "interactables/well_96.png",
+      "category": "interactive_prop",
+      "width": 96,
+      "height": 96,
+      "transparent": true,
+      "note": "well"
+    },
+    {
+      "path": "interactables/cauldron_96.png",
+      "category": "interactive_prop",
+      "width": 96,
+      "height": 96,
+      "transparent": true,
+      "note": "cauldron"
+    },
+    {
+      "path": "interactables/candy_cart_96.png",
+      "category": "interactive_prop",
+      "width": 96,
+      "height": 96,
+      "transparent": true,
+      "note": "candy_cart"
+    },
+    {
+      "path": "interactables/mailbox_96.png",
+      "category": "interactive_prop",
+      "width": 96,
+      "height": 96,
+      "transparent": true,
+      "note": "mailbox"
+    },
+    {
+      "path": "interactables/barrel_96.png",
+      "category": "interactive_prop",
+      "width": 96,
+      "height": 96,
+      "transparent": true,
+      "note": "barrel"
+    },
+    {
+      "path": "interactables/bench_96.png",
+      "category": "interactive_prop",
+      "width": 96,
+      "height": 96,
+      "transparent": true,
+      "note": "bench"
+    },
+    {
+      "path": "interactables/haystack_96.png",
+      "category": "interactive_prop",
+      "width": 96,
+      "height": 96,
+      "transparent": true,
+      "note": "haystack"
+    },
+    {
+      "path": "interactables/fence_96.png",
+      "category": "interactive_prop",
+      "width": 96,
+      "height": 96,
+      "transparent": true,
+      "note": "fence"
+    },
+    {
+      "path": "interactables/lantern_96.png",
+      "category": "interactive_prop",
+      "width": 96,
+      "height": 96,
+      "transparent": true,
+      "note": "lantern"
+    },
+    {
+      "path": "candy/blue_wrap_48.png",
+      "category": "candy",
+      "width": 48,
+      "height": 48,
+      "transparent": true,
+      "note": "blue_wrap"
+    },
+    {
+      "path": "candy/pink_wrap_48.png",
+      "category": "candy",
+      "width": 48,
+      "height": 48,
+      "transparent": true,
+      "note": "pink_wrap"
+    },
+    {
+      "path": "candy/orange_wrap_48.png",
+      "category": "candy",
+      "width": 48,
+      "height": 48,
+      "transparent": true,
+      "note": "orange_wrap"
+    },
+    {
+      "path": "candy/candy_corn_48.png",
+      "category": "candy",
+      "width": 48,
+      "height": 48,
+      "transparent": true,
+      "note": "candy_corn"
+    },
+    {
+      "path": "candy/red_heart_48.png",
+      "category": "candy",
+      "width": 48,
+      "height": 48,
+      "transparent": true,
+      "note": "red_heart"
+    },
+    {
+      "path": "candy/pink_sweet_48.png",
+      "category": "candy",
+      "width": 48,
+      "height": 48,
+      "transparent": true,
+      "note": "pink_sweet"
+    },
+    {
+      "path": "candy/star_candy_48.png",
+      "category": "candy",
+      "width": 48,
+      "height": 48,
+      "transparent": true,
+      "note": "star_candy"
+    },
+    {
+      "path": "candy/mini_corn_48.png",
+      "category": "candy",
+      "width": 48,
+      "height": 48,
+      "transparent": true,
+      "note": "mini_corn"
+    },
+    {
+      "path": "candy/purple_wrap_48.png",
+      "category": "candy",
+      "width": 48,
+      "height": 48,
+      "transparent": true,
+      "note": "purple_wrap"
+    },
+    {
+      "path": "candy/purple_sweet_48.png",
+      "category": "candy",
+      "width": 48,
+      "height": 48,
+      "transparent": true,
+      "note": "purple_sweet"
+    },
+    {
+      "path": "candy/lollipop_48.png",
+      "category": "candy",
+      "width": 48,
+      "height": 48,
+      "transparent": true,
+      "note": "lollipop"
+    },
+    {
+      "path": "candy/green_star_48.png",
+      "category": "candy",
+      "width": 48,
+      "height": 48,
+      "transparent": true,
+      "note": "green_star"
+    },
+    {
+      "path": "candy/brown_sweet_48.png",
+      "category": "candy",
+      "width": 48,
+      "height": 48,
+      "transparent": true,
+      "note": "brown_sweet"
+    },
+    {
+      "path": "candy/round_lollipop_48.png",
+      "category": "candy",
+      "width": 48,
+      "height": 48,
+      "transparent": true,
+      "note": "round_lollipop"
+    },
+    {
+      "path": "candy/baskets/empty_112.png",
+      "category": "basket",
+      "width": 112,
+      "height": 96,
+      "transparent": true,
+      "note": "empty"
+    },
+    {
+      "path": "candy/baskets/half_112.png",
+      "category": "basket",
+      "width": 112,
+      "height": 96,
+      "transparent": true,
+      "note": "half"
+    },
+    {
+      "path": "candy/baskets/full_112.png",
+      "category": "basket",
+      "width": 112,
+      "height": 96,
+      "transparent": true,
+      "note": "full"
+    },
+    {
+      "path": "effects/candy_flight_transparent.png",
+      "category": "effect",
+      "width": 143,
+      "height": 48,
+      "transparent": true,
+      "note": "candy_flight"
+    },
+    {
+      "path": "effects/magic_sparkles_transparent.png",
+      "category": "effect",
+      "width": 86,
+      "height": 44,
+      "transparent": true,
+      "note": "magic_sparkles"
+    },
+    {
+      "path": "effects/heart_sparkles_transparent.png",
+      "category": "effect",
+      "width": 80,
+      "height": 56,
+      "transparent": true,
+      "note": "heart_sparkles"
+    },
+    {
+      "path": "effects/smoke_puffs_transparent.png",
+      "category": "effect",
+      "width": 141,
+      "height": 53,
+      "transparent": true,
+      "note": "smoke_puffs"
+    },
+    {
+      "path": "effects/confetti_transparent.png",
+      "category": "effect",
+      "width": 92,
+      "height": 46,
+      "transparent": true,
+      "note": "confetti"
+    },
+    {
+      "path": "effects/knock_spark_transparent.png",
+      "category": "effect",
+      "width": 59,
+      "height": 39,
+      "transparent": true,
+      "note": "knock_spark"
+    },
+    {
+      "path": "environment/tiles/grass_01.png",
+      "category": "tile",
+      "width": 50,
+      "height": 30,
+      "transparent": false,
+      "note": "grass_01"
+    },
+    {
+      "path": "environment/tiles/grass_02.png",
+      "category": "tile",
+      "width": 48,
+      "height": 31,
+      "transparent": false,
+      "note": "grass_02"
+    },
+    {
+      "path": "environment/tiles/stone_01.png",
+      "category": "tile",
+      "width": 55,
+      "height": 40,
+      "transparent": false,
+      "note": "stone_01"
+    },
+    {
+      "path": "environment/tiles/stone_02.png",
+      "category": "tile",
+      "width": 56,
+      "height": 40,
+      "transparent": false,
+      "note": "stone_02"
+    },
+    {
+      "path": "environment/tiles/grass_dirt.png",
+      "category": "tile",
+      "width": 58,
+      "height": 34,
+      "transparent": false,
+      "note": "grass_dirt"
+    },
+    {
+      "path": "environment/tiles/dirt.png",
+      "category": "tile",
+      "width": 62,
+      "height": 26,
+      "transparent": false,
+      "note": "dirt"
+    },
+    {
+      "path": "environment/tiles/stone_wall.png",
+      "category": "tile",
+      "width": 58,
+      "height": 32,
+      "transparent": false,
+      "note": "stone_wall"
+    },
+    {
+      "path": "environment/tiles/stone_path.png",
+      "category": "tile",
+      "width": 61,
+      "height": 35,
+      "transparent": false,
+      "note": "stone_path"
+    },
+    {
+      "path": "environment/tiles/bush_tile.png",
+      "category": "tile",
+      "width": 62,
+      "height": 24,
+      "transparent": false,
+      "note": "bush_tile"
+    },
+    {
+      "path": "environment/tiles/leaf_tile.png",
+      "category": "tile",
+      "width": 54,
+      "height": 24,
+      "transparent": false,
+      "note": "leaf_tile"
+    },
+    {
+      "path": "environment/props/autumn_tree_96.png",
+      "category": "environment_prop",
+      "width": 96,
+      "height": 96,
+      "transparent": true,
+      "note": "autumn_tree"
+    },
+    {
+      "path": "environment/props/green_shrub_96.png",
+      "category": "environment_prop",
+      "width": 96,
+      "height": 96,
+      "transparent": true,
+      "note": "green_shrub"
+    },
+    {
+      "path": "environment/props/orange_shrub_96.png",
+      "category": "environment_prop",
+      "width": 96,
+      "height": 96,
+      "transparent": true,
+      "note": "orange_shrub"
+    },
+    {
+      "path": "environment/props/dark_house_96.png",
+      "category": "environment_prop",
+      "width": 96,
+      "height": 96,
+      "transparent": true,
+      "note": "dark_house"
+    },
+    {
+      "path": "environment/props/lamp_post_96.png",
+      "category": "environment_prop",
+      "width": 96,
+      "height": 96,
+      "transparent": true,
+      "note": "lamp_post"
+    },
+    {
+      "path": "environment/props/wood_fence_96.png",
+      "category": "environment_prop",
+      "width": 96,
+      "height": 96,
+      "transparent": true,
+      "note": "wood_fence"
+    },
+    {
+      "path": "environment/props/street_lantern_96.png",
+      "category": "environment_prop",
+      "width": 96,
+      "height": 96,
+      "transparent": true,
+      "note": "street_lantern"
+    },
+    {
+      "path": "environment/props/jack_o_lantern_96.png",
+      "category": "environment_prop",
+      "width": 96,
+      "height": 96,
+      "transparent": true,
+      "note": "jack_o_lantern"
+    },
+    {
+      "path": "environment/props/sign_board_96.png",
+      "category": "environment_prop",
+      "width": 96,
+      "height": 96,
+      "transparent": true,
+      "note": "sign_board"
+    },
+    {
+      "path": "environment/props/purple_tree_96.png",
+      "category": "environment_prop",
+      "width": 96,
+      "height": 96,
+      "transparent": true,
+      "note": "purple_tree"
+    },
+    {
+      "path": "ui/panels/parchment_panel.png",
+      "category": "ui_panel",
+      "width": 117,
+      "height": 78,
+      "transparent": true,
+      "note": "parchment_panel"
+    },
+    {
+      "path": "ui/panels/dialog_box.png",
+      "category": "ui_panel",
+      "width": 116,
+      "height": 61,
+      "transparent": true,
+      "note": "dialog_box"
+    },
+    {
+      "path": "ui/panels/answer_card.png",
+      "category": "ui_panel",
+      "width": 63,
+      "height": 53,
+      "transparent": true,
+      "note": "answer_card"
+    },
+    {
+      "path": "ui/panels/score_widget.png",
+      "category": "ui_panel",
+      "width": 89,
+      "height": 45,
+      "transparent": true,
+      "note": "score_widget"
+    },
+    {
+      "path": "ui/panels/team_widget.png",
+      "category": "ui_panel",
+      "width": 93,
+      "height": 72,
+      "transparent": true,
+      "note": "team_widget"
+    },
+    {
+      "path": "ui/panels/speech_bubble.png",
+      "category": "ui_panel",
+      "width": 107,
+      "height": 60,
+      "transparent": true,
+      "note": "speech_bubble"
+    },
+    {
+      "path": "ui/buttons/play_normal.png",
+      "category": "ui_button",
+      "width": 69,
+      "height": 40,
+      "transparent": true,
+      "note": "play_normal"
+    },
+    {
+      "path": "ui/buttons/play_hover.png",
+      "category": "ui_button",
+      "width": 65,
+      "height": 40,
+      "transparent": true,
+      "note": "play_hover"
+    },
+    {
+      "path": "ui/buttons/play_disabled.png",
+      "category": "ui_button",
+      "width": 77,
+      "height": 39,
+      "transparent": true,
+      "note": "play_disabled"
+    },
+    {
+      "path": "ui/buttons/next_orange.png",
+      "category": "ui_button",
+      "width": 67,
+      "height": 40,
+      "transparent": true,
+      "note": "next_orange"
+    },
+    {
+      "path": "ui/buttons/next_hover.png",
+      "category": "ui_button",
+      "width": 71,
+      "height": 44,
+      "transparent": true,
+      "note": "next_hover"
+    },
+    {
+      "path": "ui/buttons/replay_audio.png",
+      "category": "ui_button",
+      "width": 57,
+      "height": 44,
+      "transparent": true,
+      "note": "replay_audio"
+    },
+    {
+      "path": "ui/buttons/home.png",
+      "category": "ui_button",
+      "width": 45,
+      "height": 44,
+      "transparent": true,
+      "note": "home"
+    },
+    {
+      "path": "ui/buttons/settings.png",
+      "category": "ui_button",
+      "width": 44,
+      "height": 45,
+      "transparent": true,
+      "note": "settings"
+    },
+    {
+      "path": "ui/buttons/help.png",
+      "category": "ui_button",
+      "width": 45,
+      "height": 44,
+      "transparent": true,
+      "note": "help"
+    },
+    {
+      "path": "ui/buttons/back.png",
+      "category": "ui_button",
+      "width": 41,
+      "height": 45,
+      "transparent": true,
+      "note": "back"
+    },
+    {
+      "path": "ui/buttons/forward.png",
+      "category": "ui_button",
+      "width": 43,
+      "height": 45,
+      "transparent": true,
+      "note": "forward"
+    },
+    {
+      "path": "ui/buttons/correct.png",
+      "category": "ui_button",
+      "width": 52,
+      "height": 49,
+      "transparent": true,
+      "note": "correct"
+    },
+    {
+      "path": "ui/buttons/wrong.png",
+      "category": "ui_button",
+      "width": 49,
+      "height": 45,
+      "transparent": true,
+      "note": "wrong"
+    },
+    {
+      "path": "ui/buttons/pause.png",
+      "category": "ui_button",
+      "width": 49,
+      "height": 49,
+      "transparent": true,
+      "note": "pause"
+    },
+    {
+      "path": "vocabulary/icons/pumpkin_72.png",
+      "category": "vocabulary_icon",
+      "width": 72,
+      "height": 72,
+      "transparent": true,
+      "note": "pumpkin",
+      "word": "pumpkin"
+    },
+    {
+      "path": "vocabulary/cards/pumpkin_256.png",
+      "category": "vocabulary_card",
+      "width": 256,
+      "height": 256,
+      "transparent": false,
+      "note": "pumpkin",
+      "word": "pumpkin"
+    },
+    {
+      "path": "vocabulary/icons/ghost_72.png",
+      "category": "vocabulary_icon",
+      "width": 72,
+      "height": 72,
+      "transparent": true,
+      "note": "ghost",
+      "word": "ghost"
+    },
+    {
+      "path": "vocabulary/cards/ghost_256.png",
+      "category": "vocabulary_card",
+      "width": 256,
+      "height": 256,
+      "transparent": false,
+      "note": "ghost",
+      "word": "ghost"
+    },
+    {
+      "path": "vocabulary/icons/bat_72.png",
+      "category": "vocabulary_icon",
+      "width": 72,
+      "height": 72,
+      "transparent": true,
+      "note": "bat",
+      "word": "bat"
+    },
+    {
+      "path": "vocabulary/cards/bat_256.png",
+      "category": "vocabulary_card",
+      "width": 256,
+      "height": 256,
+      "transparent": false,
+      "note": "bat",
+      "word": "bat"
+    },
+    {
+      "path": "vocabulary/icons/cat_72.png",
+      "category": "vocabulary_icon",
+      "width": 72,
+      "height": 72,
+      "transparent": true,
+      "note": "cat",
+      "word": "cat"
+    },
+    {
+      "path": "vocabulary/cards/cat_256.png",
+      "category": "vocabulary_card",
+      "width": 256,
+      "height": 256,
+      "transparent": false,
+      "note": "cat",
+      "word": "cat"
+    },
+    {
+      "path": "vocabulary/icons/candy_72.png",
+      "category": "vocabulary_icon",
+      "width": 72,
+      "height": 72,
+      "transparent": true,
+      "note": "candy",
+      "word": "candy"
+    },
+    {
+      "path": "vocabulary/cards/candy_256.png",
+      "category": "vocabulary_card",
+      "width": 256,
+      "height": 256,
+      "transparent": false,
+      "note": "candy",
+      "word": "candy"
+    },
+    {
+      "path": "vocabulary/icons/witch_72.png",
+      "category": "vocabulary_icon",
+      "width": 72,
+      "height": 72,
+      "transparent": true,
+      "note": "witch",
+      "word": "witch"
+    },
+    {
+      "path": "vocabulary/cards/witch_256.png",
+      "category": "vocabulary_card",
+      "width": 256,
+      "height": 256,
+      "transparent": false,
+      "note": "witch",
+      "word": "witch"
+    },
+    {
+      "path": "vocabulary/icons/hat_72.png",
+      "category": "vocabulary_icon",
+      "width": 72,
+      "height": 72,
+      "transparent": true,
+      "note": "hat",
+      "word": "hat"
+    },
+    {
+      "path": "vocabulary/cards/hat_256.png",
+      "category": "vocabulary_card",
+      "width": 256,
+      "height": 256,
+      "transparent": false,
+      "note": "hat",
+      "word": "hat"
+    },
+    {
+      "path": "vocabulary/icons/spider_72.png",
+      "category": "vocabulary_icon",
+      "width": 72,
+      "height": 72,
+      "transparent": true,
+      "note": "spider",
+      "word": "spider"
+    },
+    {
+      "path": "vocabulary/cards/spider_256.png",
+      "category": "vocabulary_card",
+      "width": 256,
+      "height": 256,
+      "transparent": false,
+      "note": "spider",
+      "word": "spider"
+    },
+    {
+      "path": "vocabulary/icons/moon_72.png",
+      "category": "vocabulary_icon",
+      "width": 72,
+      "height": 72,
+      "transparent": true,
+      "note": "moon",
+      "word": "moon"
+    },
+    {
+      "path": "vocabulary/cards/moon_256.png",
+      "category": "vocabulary_card",
+      "width": 256,
+      "height": 256,
+      "transparent": false,
+      "note": "moon",
+      "word": "moon"
+    },
+    {
+      "path": "vocabulary/icons/broom_72.png",
+      "category": "vocabulary_icon",
+      "width": 72,
+      "height": 72,
+      "transparent": true,
+      "note": "broom",
+      "word": "broom"
+    },
+    {
+      "path": "vocabulary/cards/broom_256.png",
+      "category": "vocabulary_card",
+      "width": 256,
+      "height": 256,
+      "transparent": false,
+      "note": "broom",
+      "word": "broom"
+    },
+    {
+      "path": "vocabulary/icons/vampire_72.png",
+      "category": "vocabulary_icon",
+      "width": 72,
+      "height": 72,
+      "transparent": true,
+      "note": "vampire",
+      "word": "vampire"
+    },
+    {
+      "path": "vocabulary/cards/vampire_256.png",
+      "category": "vocabulary_card",
+      "width": 256,
+      "height": 256,
+      "transparent": false,
+      "note": "vampire",
+      "word": "vampire"
+    },
+    {
+      "path": "vocabulary/icons/owl_72.png",
+      "category": "vocabulary_icon",
+      "width": 72,
+      "height": 72,
+      "transparent": true,
+      "note": "owl",
+      "word": "owl"
+    },
+    {
+      "path": "vocabulary/cards/owl_256.png",
+      "category": "vocabulary_card",
+      "width": 256,
+      "height": 256,
+      "transparent": false,
+      "note": "owl",
+      "word": "owl"
+    },
+    {
+      "path": "vocabulary/icons/cauldron_72.png",
+      "category": "vocabulary_icon",
+      "width": 72,
+      "height": 72,
+      "transparent": true,
+      "note": "cauldron",
+      "word": "cauldron"
+    },
+    {
+      "path": "vocabulary/cards/cauldron_256.png",
+      "category": "vocabulary_card",
+      "width": 256,
+      "height": 256,
+      "transparent": false,
+      "note": "cauldron",
+      "word": "cauldron"
+    },
+    {
+      "path": "vocabulary/icons/potion_72.png",
+      "category": "vocabulary_icon",
+      "width": 72,
+      "height": 72,
+      "transparent": true,
+      "note": "potion",
+      "word": "potion"
+    },
+    {
+      "path": "vocabulary/cards/potion_256.png",
+      "category": "vocabulary_card",
+      "width": 256,
+      "height": 256,
+      "transparent": false,
+      "note": "potion",
+      "word": "potion"
+    },
+    {
+      "path": "vocabulary/icons/mask_72.png",
+      "category": "vocabulary_icon",
+      "width": 72,
+      "height": 72,
+      "transparent": true,
+      "note": "mask",
+      "word": "mask"
+    },
+    {
+      "path": "vocabulary/cards/mask_256.png",
+      "category": "vocabulary_card",
+      "width": 256,
+      "height": 256,
+      "transparent": false,
+      "note": "mask",
+      "word": "mask"
+    },
+    {
+      "path": "vocabulary/icons/lantern_72.png",
+      "category": "vocabulary_icon",
+      "width": 72,
+      "height": 72,
+      "transparent": true,
+      "note": "lantern",
+      "word": "lantern"
+    },
+    {
+      "path": "vocabulary/cards/lantern_256.png",
+      "category": "vocabulary_card",
+      "width": 256,
+      "height": 256,
+      "transparent": false,
+      "note": "lantern",
+      "word": "lantern"
+    },
+    {
+      "path": "vocabulary/icons/skeleton_72.png",
+      "category": "vocabulary_icon",
+      "width": 72,
+      "height": 72,
+      "transparent": true,
+      "note": "skeleton",
+      "word": "skeleton"
+    },
+    {
+      "path": "vocabulary/cards/skeleton_256.png",
+      "category": "vocabulary_card",
+      "width": 256,
+      "height": 256,
+      "transparent": false,
+      "note": "skeleton",
+      "word": "skeleton"
+    },
+    {
+      "path": "vocabulary/icons/castle_72.png",
+      "category": "vocabulary_icon",
+      "width": 72,
+      "height": 72,
+      "transparent": true,
+      "note": "castle",
+      "word": "castle"
+    },
+    {
+      "path": "vocabulary/cards/castle_256.png",
+      "category": "vocabulary_card",
+      "width": 256,
+      "height": 256,
+      "transparent": false,
+      "note": "castle",
+      "word": "castle"
+    },
+    {
+      "path": "vocabulary/icons/monster_72.png",
+      "category": "vocabulary_icon",
+      "width": 72,
+      "height": 72,
+      "transparent": true,
+      "note": "monster",
+      "word": "monster"
+    },
+    {
+      "path": "vocabulary/cards/monster_256.png",
+      "category": "vocabulary_card",
+      "width": 256,
+      "height": 256,
+      "transparent": false,
+      "note": "monster",
+      "word": "monster"
+    },
+    {
+      "path": "vocabulary/icons/costume_72.png",
+      "category": "vocabulary_icon",
+      "width": 72,
+      "height": 72,
+      "transparent": true,
+      "note": "costume",
+      "word": "costume"
+    },
+    {
+      "path": "vocabulary/cards/costume_256.png",
+      "category": "vocabulary_card",
+      "width": 256,
+      "height": 256,
+      "transparent": false,
+      "note": "costume",
+      "word": "costume"
+    },
+    {
+      "path": "vocabulary/icons/web_72.png",
+      "category": "vocabulary_icon",
+      "width": 72,
+      "height": 72,
+      "transparent": true,
+      "note": "web",
+      "word": "web"
+    },
+    {
+      "path": "vocabulary/cards/web_256.png",
+      "category": "vocabulary_card",
+      "width": 256,
+      "height": 256,
+      "transparent": false,
+      "note": "web",
+      "word": "web"
+    },
+    {
+      "path": "vocabulary/icons/star_72.png",
+      "category": "vocabulary_icon",
+      "width": 72,
+      "height": 72,
+      "transparent": true,
+      "note": "star",
+      "word": "star"
+    },
+    {
+      "path": "vocabulary/cards/star_256.png",
+      "category": "vocabulary_card",
+      "width": 256,
+      "height": 256,
+      "transparent": false,
+      "note": "star",
+      "word": "star"
+    },
+    {
+      "path": "vocabulary/icons/trick_or_treat_72.png",
+      "category": "vocabulary_icon",
+      "width": 72,
+      "height": 72,
+      "transparent": true,
+      "note": "trick_or_treat",
+      "word": "trick_or_treat"
+    },
+    {
+      "path": "vocabulary/cards/trick_or_treat_256.png",
+      "category": "vocabulary_card",
+      "width": 256,
+      "height": 256,
+      "transparent": false,
+      "note": "trick_or_treat",
+      "word": "trick_or_treat"
+    },
+    {
+      "path": "vocabulary/icons/haunted_house_72.png",
+      "category": "vocabulary_icon",
+      "width": 72,
+      "height": 72,
+      "transparent": true,
+      "note": "haunted_house",
+      "word": "haunted_house"
+    },
+    {
+      "path": "vocabulary/cards/haunted_house_256.png",
+      "category": "vocabulary_card",
+      "width": 256,
+      "height": 256,
+      "transparent": false,
+      "note": "haunted_house",
+      "word": "haunted_house"
+    },
+    {
+      "path": "ui/audio_icons/music.png",
+      "category": "ui_icon",
+      "width": 61,
+      "height": 73,
+      "transparent": true,
+      "note": "music"
+    },
+    {
+      "path": "ui/audio_icons/sound.png",
+      "category": "ui_icon",
+      "width": 54,
+      "height": 73,
+      "transparent": true,
+      "note": "sound"
+    },
+    {
+      "path": "ui/audio_icons/microphone.png",
+      "category": "ui_icon",
+      "width": 56,
+      "height": 73,
+      "transparent": true,
+      "note": "microphone"
+    },
+    {
+      "path": "00_PREVIEW.png",
+      "category": "preview",
+      "width": 1440,
+      "height": 870,
+      "transparent": false,
+      "note": "Preview only, not a game asset"
+    },
+    {
+      "path": "source_atlases/reference_atlas_01.png",
+      "category": "source_atlas",
+      "width": 1536,
+      "height": 1024,
+      "transparent": false,
+      "note": "Reference only: includes text/layout; use separated game assets instead"
+    },
+    {
+      "path": "source_atlases/reference_atlas_02.png",
+      "category": "source_atlas",
+      "width": 1536,
+      "height": 1024,
+      "transparent": false,
+      "note": "Reference only: includes text/layout; use separated game assets instead"
+    },
+    {
+      "path": "source_atlases/reference_atlas_03.png",
+      "category": "source_atlas",
+      "width": 1312,
+      "height": 1199,
+      "transparent": false,
+      "note": "Reference only: includes text/layout; use separated game assets instead"
+    }
+  ]
+}

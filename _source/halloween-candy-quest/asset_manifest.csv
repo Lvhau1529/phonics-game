@@ -1,0 +1,253 @@
+﻿path,category,width,height,transparent,note,character,pose,frame,zone,word
+backgrounds/pumpkin_garden/main_native_320x180.png,background,320,180,False,16:9 native pixel art; nearest-neighbor scaling,,,,pumpkin_garden,
+backgrounds/pumpkin_garden/main_1280x720.png,background,1280,720,False,16:9 upscale x4; no interpolation,,,,pumpkin_garden,
+backgrounds/pumpkin_garden/alternate_native_320x180.png,background,320,180,False,16:9 native pixel art; nearest-neighbor scaling,,,,pumpkin_garden,
+backgrounds/pumpkin_garden/alternate_1280x720.png,background,1280,720,False,16:9 upscale x4; no interpolation,,,,pumpkin_garden,
+backgrounds/candy_village/main_native_320x180.png,background,320,180,False,16:9 native pixel art; nearest-neighbor scaling,,,,candy_village,
+backgrounds/candy_village/main_1280x720.png,background,1280,720,False,16:9 upscale x4; no interpolation,,,,candy_village,
+backgrounds/candy_village/alternate_native_320x180.png,background,320,180,False,16:9 native pixel art; nearest-neighbor scaling,,,,candy_village,
+backgrounds/candy_village/alternate_1280x720.png,background,1280,720,False,16:9 upscale x4; no interpolation,,,,candy_village,
+backgrounds/magic_castle/main_native_320x180.png,background,320,180,False,16:9 native pixel art; nearest-neighbor scaling,,,,magic_castle,
+backgrounds/magic_castle/main_1280x720.png,background,1280,720,False,16:9 upscale x4; no interpolation,,,,magic_castle,
+backgrounds/magic_castle/alternate_native_320x180.png,background,320,180,False,16:9 native pixel art; nearest-neighbor scaling,,,,magic_castle,
+backgrounds/magic_castle/alternate_1280x720.png,background,1280,720,False,16:9 upscale x4; no interpolation,,,,magic_castle,
+parallax/moon_and_clouds.png,parallax,286,54,False,layer sample from themed atlas; modular repeat requires edge adjustment,,,,,
+parallax/distant_mountains.png,parallax,286,43,False,layer sample from themed atlas; modular repeat requires edge adjustment,,,,,
+parallax/garden_shrubs.png,parallax,286,50,False,layer sample from themed atlas; modular repeat requires edge adjustment,,,,,
+parallax/fences_and_plants.png,parallax,286,41,False,layer sample from themed atlas; modular repeat requires edge adjustment,,,,,
+characters/pumpkin_kid/portrait_96.png,character_portrait,96,96,True,pumpkin_kid,pumpkin_kid,,,,
+characters/pumpkin_kid/idle_01.png,character_frame,48,48,True,pumpkin_kid / idle / frame 1,pumpkin_kid,idle,1,,
+characters/pumpkin_kid/idle_02.png,character_frame,48,48,True,pumpkin_kid / idle / frame 2,pumpkin_kid,idle,2,,
+characters/pumpkin_kid/walk_01.png,character_frame,48,48,True,pumpkin_kid / walk / frame 1,pumpkin_kid,walk,1,,
+characters/pumpkin_kid/walk_02.png,character_frame,48,48,True,pumpkin_kid / walk / frame 2,pumpkin_kid,walk,2,,
+characters/pumpkin_kid/knock_01.png,character_frame,48,48,True,pumpkin_kid / knock / frame 1,pumpkin_kid,knock,1,,
+characters/pumpkin_kid/knock_02.png,character_frame,48,48,True,pumpkin_kid / knock / frame 2,pumpkin_kid,knock,2,,
+characters/pumpkin_kid/celebrate_01.png,character_frame,48,48,True,pumpkin_kid / celebrate / frame 1,pumpkin_kid,celebrate,1,,
+characters/pumpkin_kid/celebrate_02.png,character_frame,48,48,True,pumpkin_kid / celebrate / frame 2,pumpkin_kid,celebrate,2,,
+characters/pumpkin_kid/try_again_01.png,character_frame,48,48,True,pumpkin_kid / try_again / frame 1,pumpkin_kid,try_again,1,,
+characters/pumpkin_kid/try_again_02.png,character_frame,48,48,True,pumpkin_kid / try_again / frame 2,pumpkin_kid,try_again,2,,
+characters/spritesheets/pumpkin_kid_5x2_48px.png,character_spritesheet,96,240,True,"2 frames per row; rows: idle, walk, knock, celebrate, try_again",pumpkin_kid,,,,
+characters/little_ghost/portrait_96.png,character_portrait,96,96,True,little_ghost,little_ghost,,,,
+characters/little_ghost/idle_01.png,character_frame,48,48,True,little_ghost / idle / frame 1,little_ghost,idle,1,,
+characters/little_ghost/idle_02.png,character_frame,48,48,True,little_ghost / idle / frame 2,little_ghost,idle,2,,
+characters/little_ghost/walk_01.png,character_frame,48,48,True,little_ghost / walk / frame 1,little_ghost,walk,1,,
+characters/little_ghost/walk_02.png,character_frame,48,48,True,little_ghost / walk / frame 2,little_ghost,walk,2,,
+characters/little_ghost/knock_01.png,character_frame,48,48,True,little_ghost / knock / frame 1,little_ghost,knock,1,,
+characters/little_ghost/knock_02.png,character_frame,48,48,True,little_ghost / knock / frame 2,little_ghost,knock,2,,
+characters/little_ghost/celebrate_01.png,character_frame,48,48,True,little_ghost / celebrate / frame 1,little_ghost,celebrate,1,,
+characters/little_ghost/celebrate_02.png,character_frame,48,48,True,little_ghost / celebrate / frame 2,little_ghost,celebrate,2,,
+characters/little_ghost/try_again_01.png,character_frame,48,48,True,little_ghost / try_again / frame 1,little_ghost,try_again,1,,
+characters/little_ghost/try_again_02.png,character_frame,48,48,True,little_ghost / try_again / frame 2,little_ghost,try_again,2,,
+characters/spritesheets/little_ghost_5x2_48px.png,character_spritesheet,96,240,True,"2 frames per row; rows: idle, walk, knock, celebrate, try_again",little_ghost,,,,
+characters/mini_witch/portrait_96.png,character_portrait,96,96,True,mini_witch,mini_witch,,,,
+characters/mini_witch/idle_01.png,character_frame,48,48,True,mini_witch / idle / frame 1,mini_witch,idle,1,,
+characters/mini_witch/idle_02.png,character_frame,48,48,True,mini_witch / idle / frame 2,mini_witch,idle,2,,
+characters/mini_witch/walk_01.png,character_frame,48,48,True,mini_witch / walk / frame 1,mini_witch,walk,1,,
+characters/mini_witch/walk_02.png,character_frame,48,48,True,mini_witch / walk / frame 2,mini_witch,walk,2,,
+characters/mini_witch/knock_01.png,character_frame,48,48,True,mini_witch / knock / frame 1,mini_witch,knock,1,,
+characters/mini_witch/knock_02.png,character_frame,48,48,True,mini_witch / knock / frame 2,mini_witch,knock,2,,
+characters/mini_witch/celebrate_01.png,character_frame,48,48,True,mini_witch / celebrate / frame 1,mini_witch,celebrate,1,,
+characters/mini_witch/celebrate_02.png,character_frame,48,48,True,mini_witch / celebrate / frame 2,mini_witch,celebrate,2,,
+characters/mini_witch/try_again_01.png,character_frame,48,48,True,mini_witch / try_again / frame 1,mini_witch,try_again,1,,
+characters/mini_witch/try_again_02.png,character_frame,48,48,True,mini_witch / try_again / frame 2,mini_witch,try_again,2,,
+characters/spritesheets/mini_witch_5x2_48px.png,character_spritesheet,96,240,True,"2 frames per row; rows: idle, walk, knock, celebrate, try_again",mini_witch,,,,
+characters/vampire_kid/portrait_96.png,character_portrait,96,96,True,vampire_kid,vampire_kid,,,,
+characters/vampire_kid/idle_01.png,character_frame,48,48,True,vampire_kid / idle / frame 1,vampire_kid,idle,1,,
+characters/vampire_kid/idle_02.png,character_frame,48,48,True,vampire_kid / idle / frame 2,vampire_kid,idle,2,,
+characters/vampire_kid/walk_01.png,character_frame,48,48,True,vampire_kid / walk / frame 1,vampire_kid,walk,1,,
+characters/vampire_kid/walk_02.png,character_frame,48,48,True,vampire_kid / walk / frame 2,vampire_kid,walk,2,,
+characters/vampire_kid/knock_01.png,character_frame,48,48,True,vampire_kid / knock / frame 1,vampire_kid,knock,1,,
+characters/vampire_kid/knock_02.png,character_frame,48,48,True,vampire_kid / knock / frame 2,vampire_kid,knock,2,,
+characters/vampire_kid/celebrate_01.png,character_frame,48,48,True,vampire_kid / celebrate / frame 1,vampire_kid,celebrate,1,,
+characters/vampire_kid/celebrate_02.png,character_frame,48,48,True,vampire_kid / celebrate / frame 2,vampire_kid,celebrate,2,,
+characters/vampire_kid/try_again_01.png,character_frame,48,48,True,vampire_kid / try_again / frame 1,vampire_kid,try_again,1,,
+characters/vampire_kid/try_again_02.png,character_frame,48,48,True,vampire_kid / try_again / frame 2,vampire_kid,try_again,2,,
+characters/spritesheets/vampire_kid_5x2_48px.png,character_spritesheet,96,240,True,"2 frames per row; rows: idle, walk, knock, celebrate, try_again",vampire_kid,,,,
+characters/black_cat/portrait_96.png,character_portrait,96,96,True,black_cat,black_cat,,,,
+characters/black_cat/idle_01.png,character_frame,48,48,True,black_cat / idle / frame 1,black_cat,idle,1,,
+characters/black_cat/idle_02.png,character_frame,48,48,True,black_cat / idle / frame 2,black_cat,idle,2,,
+characters/black_cat/walk_01.png,character_frame,48,48,True,black_cat / walk / frame 1,black_cat,walk,1,,
+characters/black_cat/walk_02.png,character_frame,48,48,True,black_cat / walk / frame 2,black_cat,walk,2,,
+characters/black_cat/knock_01.png,character_frame,48,48,True,black_cat / knock / frame 1,black_cat,knock,1,,
+characters/black_cat/knock_02.png,character_frame,48,48,True,black_cat / knock / frame 2,black_cat,knock,2,,
+characters/black_cat/celebrate_01.png,character_frame,48,48,True,black_cat / celebrate / frame 1,black_cat,celebrate,1,,
+characters/black_cat/celebrate_02.png,character_frame,48,48,True,black_cat / celebrate / frame 2,black_cat,celebrate,2,,
+characters/black_cat/try_again_01.png,character_frame,48,48,True,black_cat / try_again / frame 1,black_cat,try_again,1,,
+characters/black_cat/try_again_02.png,character_frame,48,48,True,black_cat / try_again / frame 2,black_cat,try_again,2,,
+characters/spritesheets/black_cat_5x2_48px.png,character_spritesheet,96,240,True,"2 frames per row; rows: idle, walk, knock, celebrate, try_again",black_cat,,,,
+characters/bat_explorer/portrait_96.png,character_portrait,96,96,True,bat_explorer,bat_explorer,,,,
+characters/bat_explorer/idle_01.png,character_frame,48,48,True,bat_explorer / idle / frame 1,bat_explorer,idle,1,,
+characters/bat_explorer/idle_02.png,character_frame,48,48,True,bat_explorer / idle / frame 2,bat_explorer,idle,2,,
+characters/bat_explorer/walk_01.png,character_frame,48,48,True,bat_explorer / walk / frame 1,bat_explorer,walk,1,,
+characters/bat_explorer/walk_02.png,character_frame,48,48,True,bat_explorer / walk / frame 2,bat_explorer,walk,2,,
+characters/bat_explorer/knock_01.png,character_frame,48,48,True,bat_explorer / knock / frame 1,bat_explorer,knock,1,,
+characters/bat_explorer/knock_02.png,character_frame,48,48,True,bat_explorer / knock / frame 2,bat_explorer,knock,2,,
+characters/bat_explorer/celebrate_01.png,character_frame,48,48,True,bat_explorer / celebrate / frame 1,bat_explorer,celebrate,1,,
+characters/bat_explorer/celebrate_02.png,character_frame,48,48,True,bat_explorer / celebrate / frame 2,bat_explorer,celebrate,2,,
+characters/bat_explorer/try_again_01.png,character_frame,48,48,True,bat_explorer / try_again / frame 1,bat_explorer,try_again,1,,
+characters/bat_explorer/try_again_02.png,character_frame,48,48,True,bat_explorer / try_again / frame 2,bat_explorer,try_again,2,,
+characters/spritesheets/bat_explorer_5x2_48px.png,character_spritesheet,96,240,True,"2 frames per row; rows: idle, walk, knock, celebrate, try_again",bat_explorer,,,,
+npcs/pumpkin_host_96.png,npc,96,96,True,pumpkin_host,,,,,
+npcs/friendly_ghost_96.png,npc,96,96,True,friendly_ghost,,,,,
+npcs/witch_host_96.png,npc,96,96,True,witch_host,,,,,
+npcs/vampire_host_96.png,npc,96,96,True,vampire_host,,,,,
+npcs/black_cat_host_96.png,npc,96,96,True,black_cat_host,,,,,
+npcs/mummy_96.png,npc,96,96,True,mummy,,,,,
+npcs/frankenstein_96.png,npc,96,96,True,frankenstein,,,,,
+npcs/skeleton_96.png,npc,96,96,True,skeleton,,,,,
+npcs/owl_96.png,npc,96,96,True,owl,,,,,
+npcs/cute_blue_monster_96.png,npc,96,96,True,bonus NPC,,,,,
+buildings/witch_cottage_128.png,building,128,128,True,witch_cottage,,,,,
+buildings/pumpkin_house_128.png,building,128,128,True,pumpkin_house,,,,,
+buildings/mushroom_shop_128.png,building,128,128,True,mushroom_shop,,,,,
+buildings/purple_house_128.png,building,128,128,True,purple_house,,,,,
+buildings/ghost_house_128.png,building,128,128,True,ghost_house,,,,,
+buildings/candy_shop_128.png,building,128,128,True,candy_shop,,,,,
+buildings/castle_gate_128.png,building,128,128,True,castle_gate,,,,,
+buildings/castle_towers_128.png,building,128,128,True,castle_towers,,,,,
+buildings/castle_main_128.png,building,128,128,True,castle_main,,,,,
+doors/wood_closed_80x96.png,door,80,96,True,wood_closed,,,,,
+doors/stone_open_80x96.png,door,80,96,True,stone_open,,,,,
+doors/wood_glowing_80x96.png,door,80,96,True,wood_glowing,,,,,
+doors/purple_closed_80x96.png,door,80,96,True,purple_closed,,,,,
+doors/stoneway_open_80x96.png,door,80,96,True,stoneway_open,,,,,
+doors/golden_open_80x96.png,door,80,96,True,golden_open,,,,,
+doors/pumpkin_door_80x96.png,door,80,96,True,pumpkin_door,,,,,
+doors/dark_door_80x96.png,door,80,96,True,dark_door,,,,,
+doors/magic_pumpkin_portal_80x96.png,door,80,96,True,magic_pumpkin_portal,,,,,
+doors/pink_closed_80x96.png,door,80,96,True,pink_closed,,,,,
+doors/purple_wood_80x96.png,door,80,96,True,purple_wood,,,,,
+doors/pink_magic_80x96.png,door,80,96,True,pink_magic,,,,,
+interactables/pumpkin_closed_96.png,interactive_prop,96,96,True,pumpkin_closed,,,,,
+interactables/pumpkin_open_96.png,interactive_prop,96,96,True,pumpkin_open,,,,,
+interactables/chest_closed_96.png,interactive_prop,96,96,True,chest_closed,,,,,
+interactables/chest_open_96.png,interactive_prop,96,96,True,chest_open,,,,,
+interactables/door_bell_96.png,interactive_prop,96,96,True,door_bell,,,,,
+interactables/signpost_96.png,interactive_prop,96,96,True,signpost,,,,,
+interactables/well_96.png,interactive_prop,96,96,True,well,,,,,
+interactables/cauldron_96.png,interactive_prop,96,96,True,cauldron,,,,,
+interactables/candy_cart_96.png,interactive_prop,96,96,True,candy_cart,,,,,
+interactables/mailbox_96.png,interactive_prop,96,96,True,mailbox,,,,,
+interactables/barrel_96.png,interactive_prop,96,96,True,barrel,,,,,
+interactables/bench_96.png,interactive_prop,96,96,True,bench,,,,,
+interactables/haystack_96.png,interactive_prop,96,96,True,haystack,,,,,
+interactables/fence_96.png,interactive_prop,96,96,True,fence,,,,,
+interactables/lantern_96.png,interactive_prop,96,96,True,lantern,,,,,
+candy/blue_wrap_48.png,candy,48,48,True,blue_wrap,,,,,
+candy/pink_wrap_48.png,candy,48,48,True,pink_wrap,,,,,
+candy/orange_wrap_48.png,candy,48,48,True,orange_wrap,,,,,
+candy/candy_corn_48.png,candy,48,48,True,candy_corn,,,,,
+candy/red_heart_48.png,candy,48,48,True,red_heart,,,,,
+candy/pink_sweet_48.png,candy,48,48,True,pink_sweet,,,,,
+candy/star_candy_48.png,candy,48,48,True,star_candy,,,,,
+candy/mini_corn_48.png,candy,48,48,True,mini_corn,,,,,
+candy/purple_wrap_48.png,candy,48,48,True,purple_wrap,,,,,
+candy/purple_sweet_48.png,candy,48,48,True,purple_sweet,,,,,
+candy/lollipop_48.png,candy,48,48,True,lollipop,,,,,
+candy/green_star_48.png,candy,48,48,True,green_star,,,,,
+candy/brown_sweet_48.png,candy,48,48,True,brown_sweet,,,,,
+candy/round_lollipop_48.png,candy,48,48,True,round_lollipop,,,,,
+candy/baskets/empty_112.png,basket,112,96,True,empty,,,,,
+candy/baskets/half_112.png,basket,112,96,True,half,,,,,
+candy/baskets/full_112.png,basket,112,96,True,full,,,,,
+effects/candy_flight_transparent.png,effect,143,48,True,candy_flight,,,,,
+effects/magic_sparkles_transparent.png,effect,86,44,True,magic_sparkles,,,,,
+effects/heart_sparkles_transparent.png,effect,80,56,True,heart_sparkles,,,,,
+effects/smoke_puffs_transparent.png,effect,141,53,True,smoke_puffs,,,,,
+effects/confetti_transparent.png,effect,92,46,True,confetti,,,,,
+effects/knock_spark_transparent.png,effect,59,39,True,knock_spark,,,,,
+environment/tiles/grass_01.png,tile,50,30,False,grass_01,,,,,
+environment/tiles/grass_02.png,tile,48,31,False,grass_02,,,,,
+environment/tiles/stone_01.png,tile,55,40,False,stone_01,,,,,
+environment/tiles/stone_02.png,tile,56,40,False,stone_02,,,,,
+environment/tiles/grass_dirt.png,tile,58,34,False,grass_dirt,,,,,
+environment/tiles/dirt.png,tile,62,26,False,dirt,,,,,
+environment/tiles/stone_wall.png,tile,58,32,False,stone_wall,,,,,
+environment/tiles/stone_path.png,tile,61,35,False,stone_path,,,,,
+environment/tiles/bush_tile.png,tile,62,24,False,bush_tile,,,,,
+environment/tiles/leaf_tile.png,tile,54,24,False,leaf_tile,,,,,
+environment/props/autumn_tree_96.png,environment_prop,96,96,True,autumn_tree,,,,,
+environment/props/green_shrub_96.png,environment_prop,96,96,True,green_shrub,,,,,
+environment/props/orange_shrub_96.png,environment_prop,96,96,True,orange_shrub,,,,,
+environment/props/dark_house_96.png,environment_prop,96,96,True,dark_house,,,,,
+environment/props/lamp_post_96.png,environment_prop,96,96,True,lamp_post,,,,,
+environment/props/wood_fence_96.png,environment_prop,96,96,True,wood_fence,,,,,
+environment/props/street_lantern_96.png,environment_prop,96,96,True,street_lantern,,,,,
+environment/props/jack_o_lantern_96.png,environment_prop,96,96,True,jack_o_lantern,,,,,
+environment/props/sign_board_96.png,environment_prop,96,96,True,sign_board,,,,,
+environment/props/purple_tree_96.png,environment_prop,96,96,True,purple_tree,,,,,
+ui/panels/parchment_panel.png,ui_panel,117,78,True,parchment_panel,,,,,
+ui/panels/dialog_box.png,ui_panel,116,61,True,dialog_box,,,,,
+ui/panels/answer_card.png,ui_panel,63,53,True,answer_card,,,,,
+ui/panels/score_widget.png,ui_panel,89,45,True,score_widget,,,,,
+ui/panels/team_widget.png,ui_panel,93,72,True,team_widget,,,,,
+ui/panels/speech_bubble.png,ui_panel,107,60,True,speech_bubble,,,,,
+ui/buttons/play_normal.png,ui_button,69,40,True,play_normal,,,,,
+ui/buttons/play_hover.png,ui_button,65,40,True,play_hover,,,,,
+ui/buttons/play_disabled.png,ui_button,77,39,True,play_disabled,,,,,
+ui/buttons/next_orange.png,ui_button,67,40,True,next_orange,,,,,
+ui/buttons/next_hover.png,ui_button,71,44,True,next_hover,,,,,
+ui/buttons/replay_audio.png,ui_button,57,44,True,replay_audio,,,,,
+ui/buttons/home.png,ui_button,45,44,True,home,,,,,
+ui/buttons/settings.png,ui_button,44,45,True,settings,,,,,
+ui/buttons/help.png,ui_button,45,44,True,help,,,,,
+ui/buttons/back.png,ui_button,41,45,True,back,,,,,
+ui/buttons/forward.png,ui_button,43,45,True,forward,,,,,
+ui/buttons/correct.png,ui_button,52,49,True,correct,,,,,
+ui/buttons/wrong.png,ui_button,49,45,True,wrong,,,,,
+ui/buttons/pause.png,ui_button,49,49,True,pause,,,,,
+vocabulary/icons/pumpkin_72.png,vocabulary_icon,72,72,True,pumpkin,,,,,pumpkin
+vocabulary/cards/pumpkin_256.png,vocabulary_card,256,256,False,pumpkin,,,,,pumpkin
+vocabulary/icons/ghost_72.png,vocabulary_icon,72,72,True,ghost,,,,,ghost
+vocabulary/cards/ghost_256.png,vocabulary_card,256,256,False,ghost,,,,,ghost
+vocabulary/icons/bat_72.png,vocabulary_icon,72,72,True,bat,,,,,bat
+vocabulary/cards/bat_256.png,vocabulary_card,256,256,False,bat,,,,,bat
+vocabulary/icons/cat_72.png,vocabulary_icon,72,72,True,cat,,,,,cat
+vocabulary/cards/cat_256.png,vocabulary_card,256,256,False,cat,,,,,cat
+vocabulary/icons/candy_72.png,vocabulary_icon,72,72,True,candy,,,,,candy
+vocabulary/cards/candy_256.png,vocabulary_card,256,256,False,candy,,,,,candy
+vocabulary/icons/witch_72.png,vocabulary_icon,72,72,True,witch,,,,,witch
+vocabulary/cards/witch_256.png,vocabulary_card,256,256,False,witch,,,,,witch
+vocabulary/icons/hat_72.png,vocabulary_icon,72,72,True,hat,,,,,hat
+vocabulary/cards/hat_256.png,vocabulary_card,256,256,False,hat,,,,,hat
+vocabulary/icons/spider_72.png,vocabulary_icon,72,72,True,spider,,,,,spider
+vocabulary/cards/spider_256.png,vocabulary_card,256,256,False,spider,,,,,spider
+vocabulary/icons/moon_72.png,vocabulary_icon,72,72,True,moon,,,,,moon
+vocabulary/cards/moon_256.png,vocabulary_card,256,256,False,moon,,,,,moon
+vocabulary/icons/broom_72.png,vocabulary_icon,72,72,True,broom,,,,,broom
+vocabulary/cards/broom_256.png,vocabulary_card,256,256,False,broom,,,,,broom
+vocabulary/icons/vampire_72.png,vocabulary_icon,72,72,True,vampire,,,,,vampire
+vocabulary/cards/vampire_256.png,vocabulary_card,256,256,False,vampire,,,,,vampire
+vocabulary/icons/owl_72.png,vocabulary_icon,72,72,True,owl,,,,,owl
+vocabulary/cards/owl_256.png,vocabulary_card,256,256,False,owl,,,,,owl
+vocabulary/icons/cauldron_72.png,vocabulary_icon,72,72,True,cauldron,,,,,cauldron
+vocabulary/cards/cauldron_256.png,vocabulary_card,256,256,False,cauldron,,,,,cauldron
+vocabulary/icons/potion_72.png,vocabulary_icon,72,72,True,potion,,,,,potion
+vocabulary/cards/potion_256.png,vocabulary_card,256,256,False,potion,,,,,potion
+vocabulary/icons/mask_72.png,vocabulary_icon,72,72,True,mask,,,,,mask
+vocabulary/cards/mask_256.png,vocabulary_card,256,256,False,mask,,,,,mask
+vocabulary/icons/lantern_72.png,vocabulary_icon,72,72,True,lantern,,,,,lantern
+vocabulary/cards/lantern_256.png,vocabulary_card,256,256,False,lantern,,,,,lantern
+vocabulary/icons/skeleton_72.png,vocabulary_icon,72,72,True,skeleton,,,,,skeleton
+vocabulary/cards/skeleton_256.png,vocabulary_card,256,256,False,skeleton,,,,,skeleton
+vocabulary/icons/castle_72.png,vocabulary_icon,72,72,True,castle,,,,,castle
+vocabulary/cards/castle_256.png,vocabulary_card,256,256,False,castle,,,,,castle
+vocabulary/icons/monster_72.png,vocabulary_icon,72,72,True,monster,,,,,monster
+vocabulary/cards/monster_256.png,vocabulary_card,256,256,False,monster,,,,,monster
+vocabulary/icons/costume_72.png,vocabulary_icon,72,72,True,costume,,,,,costume
+vocabulary/cards/costume_256.png,vocabulary_card,256,256,False,costume,,,,,costume
+vocabulary/icons/web_72.png,vocabulary_icon,72,72,True,web,,,,,web
+vocabulary/cards/web_256.png,vocabulary_card,256,256,False,web,,,,,web
+vocabulary/icons/star_72.png,vocabulary_icon,72,72,True,star,,,,,star
+vocabulary/cards/star_256.png,vocabulary_card,256,256,False,star,,,,,star
+vocabulary/icons/trick_or_treat_72.png,vocabulary_icon,72,72,True,trick_or_treat,,,,,trick_or_treat
+vocabulary/cards/trick_or_treat_256.png,vocabulary_card,256,256,False,trick_or_treat,,,,,trick_or_treat
+vocabulary/icons/haunted_house_72.png,vocabulary_icon,72,72,True,haunted_house,,,,,haunted_house
+vocabulary/cards/haunted_house_256.png,vocabulary_card,256,256,False,haunted_house,,,,,haunted_house
+ui/audio_icons/music.png,ui_icon,61,73,True,music,,,,,
+ui/audio_icons/sound.png,ui_icon,54,73,True,sound,,,,,
+ui/audio_icons/microphone.png,ui_icon,56,73,True,microphone,,,,,
+00_PREVIEW.png,preview,1440,870,False,"Preview only, not a game asset",,,,,
+source_atlases/reference_atlas_01.png,source_atlas,1536,1024,False,Reference only: includes text/layout; use separated game assets instead,,,,,
+source_atlases/reference_atlas_02.png,source_atlas,1536,1024,False,Reference only: includes text/layout; use separated game assets instead,,,,,
+source_atlases/reference_atlas_03.png,source_atlas,1312,1199,False,Reference only: includes text/layout; use separated game assets instead,,,,,

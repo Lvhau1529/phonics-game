@@ -9,6 +9,7 @@ import { foodStreamManifest } from '@/games/food-stream/manifest';
 import { phonicsOceanManifest } from '@/games/phonics-ocean/manifest';
 import { oddOneOutManifest } from '@/games/odd-one-out/manifest';
 import { englishExplorersManifest } from '@/games/english-explorers/manifest';
+import { halloweenCandyQuestManifest } from '@/games/halloween-candy-quest/manifest';
 import { ACCOUNT_SEGMENT, HOMEWORK_SEGMENT, PREVIEW_SEGMENT } from '@/core/navigation/platformStore';
 import type { GameManifest, UpcomingGame } from '@/core/types/game';
 
@@ -18,6 +19,7 @@ export const GAMES: readonly GameManifest[] = [
   phonicsOceanManifest,
   oddOneOutManifest,
   englishExplorersManifest,
+  halloweenCandyQuestManifest,
 ];
 
 export const UPCOMING: readonly UpcomingGame[] = [

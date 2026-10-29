@@ -1,0 +1,36 @@
+// Theme "đêm Halloween dễ thương" (cam – tím – xanh đêm, spec §2): ghi đè token màu (styles/tailwind.css) trên phần
+// tử gốc — component chung (Button, Dialog, OptionGroup...) tự đổi màu theo.
+@use '@/ui/styles/abstracts' as *;
+
+@layer components {
+  .theme {
+    --color-bg: #1d1240;
+    --color-ink: #24113f;
+    --color-brown: #3b2165;
+    --color-cream: #fff3df;
+    --color-paper: #fffaf2;
+    --color-tan: #c9a6f0;
+    @include text-outline-vars;
+    --screen-layer-bg: transparent;
+    --guide-backdrop-bg: rgba(29, 18, 64, 0.75);
+    position: relative;
+    overflow: hidden;
+    background: var(--color-bg);
+  }
+
+  // Nền đêm: trăng + sao + đồi tím (CSS, phía sau các màn menu)
+  .scenery {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at 82% 14%, #fff2b0 0 34px, #ffd86b55 36px, transparent 90px),
+      radial-gradient(1.5px 1.5px at 12% 20%, #fff 99%, transparent),
+      radial-gradient(1.5px 1.5px at 30% 8%, #fff 99%, transparent),
+      radial-gradient(2px 2px at 48% 26%, #ffe9a8 99%, transparent),
+      radial-gradient(1.5px 1.5px at 66% 12%, #fff 99%, transparent),
+      radial-gradient(2px 2px at 20% 40%, #ffe9a8 99%, transparent),
+      radial-gradient(ellipse 70% 22% at 20% 100%, #3a1d6e 98%, transparent),
+      radial-gradient(ellipse 70% 26% at 85% 100%, #2c1558 98%, transparent),
+      linear-gradient(180deg, #120a2e, #2a1460 55%, #4a2380);
+  }
+}

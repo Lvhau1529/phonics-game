@@ -11,6 +11,7 @@ là một module độc lập, thêm game mới không phải sửa game cũ.
 | 🐟 **Phonics Ocean** | Kiểu Feeding Frenzy: bơi ăn đúng cá mang chữ để lớn dần, né cá săn mồi. 8 cấp: âm đầu → CVC → vần → blend → digraph → Magic E → ôn tập. | [docs/phonics-ocean](docs/phonics-ocean/README.md) |
 | 🧩 **Odd One Out** | Nhìn 4 hình, tìm hình khác loại rồi nói lý do bằng tiếng Anh. 15 chủ đề × 6 câu, bảng xếp hạng trên máy, micro (Web Speech). | [docs/odd-one-out](docs/odd-one-out/README.md) |
 | 🦁 **Little English Explorers** | 3 thế giới con vật, mỗi thế giới một mẫu câu (lives in / is / has): chọn đáp án, nói cả câu. | [docs/english-explorers](docs/english-explorers/README.md) |
+| 🎃 **Halloween Candy Quest** | Phiêu lưu xin kẹo pixel-art: nhân vật tự đi, bé gõ cửa, chủ nhà hỏi từ vựng (4 dạng: nghe chọn, tìm vật, nghe loa, ghép cặp), đúng thì kẹo bay vào giỏ. Solo / 2 đội luân phiên, giáo viên tự chọn bộ từ. | [docs/halloween-candy-quest](docs/halloween-candy-quest/README.md) |
 
 Màn chọn game có **kim cương**: bé nhận 1 viên cho mỗi câu / từ đúng (tối đa 10 viên mỗi ván, ở mọi game),
 dùng để **mở khoá game mới** (game có `price` trong manifest); game sắp ra mắt hiện thẻ **COMING SOON**.
@@ -47,7 +48,7 @@ pnpm typecheck
 pnpm format       # Prettier
 ```
 
-Link mở thẳng một game: `/#/bread-catcher`, `/#/food-stream`, `/#/phonics-ocean`, `/#/odd-one-out`, `/#/english-explorers`; màn tài khoản: `/#/account` (nút Back của trình
+Link mở thẳng một game: `/#/bread-catcher`, `/#/food-stream`, `/#/phonics-ocean`, `/#/odd-one-out`, `/#/english-explorers`, `/#/halloween-candy-quest`; màn tài khoản: `/#/account` (nút Back của trình
 duyệt / Android quay về màn chọn game).
 
 ## Kiến trúc
@@ -85,7 +86,8 @@ src/
     ├── food-stream/         # xem docs/food-stream
     ├── phonics-ocean/       # xem docs/phonics-ocean
     ├── odd-one-out/         # xem docs/odd-one-out (chỉ màn React, không Phaser)
-    └── english-explorers/   # xem docs/english-explorers (chỉ màn React, không Phaser)
+    ├── english-explorers/   # xem docs/english-explorers (chỉ màn React, không Phaser)
+    └── halloween-candy-quest/ # xem docs/halloween-candy-quest (chỉ màn React, sân khấu pixel-art bằng DOM)
 ```
 
 ### Module (ADR 0023)

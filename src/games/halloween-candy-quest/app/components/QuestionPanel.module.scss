@@ -1,0 +1,433 @@
+@use '@/ui/styles/abstracts' as *;
+
+@layer components {
+  @include keyframes-pop;
+  @include keyframes-bob($distance: -4px);
+
+  @keyframes shake {
+    20%,
+    60% {
+      transform: translateX(-6px);
+    }
+    40%,
+    80% {
+      transform: translateX(6px);
+    }
+  }
+
+  @keyframes ring {
+    50% {
+      box-shadow:
+        0 0 0 6px #ffe066,
+        0 0 24px #ffe066;
+    }
+  }
+
+  // Lớp phủ trên bản đồ (không phải trang trắng riêng — spec §12)
+  .backdrop {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    display: grid;
+    place-items: center;
+    padding: 10px;
+    overflow-y: auto;
+    background: rgba(20, 10, 48, 0.45);
+  }
+
+  .panel {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: min(100%, 760px);
+    padding: 12px 14px 14px;
+    border: 5px solid #6a2fb5;
+    border-radius: 26px;
+    background: #fff3df;
+    box-shadow:
+      0 8px 0 #3a1670,
+      0 18px 40px rgba(0, 0, 0, 0.4);
+    color: var(--color-ink);
+    animation: pop 0.25s ease-out;
+  }
+
+  .correct {
+    border-color: #2f9e44;
+  }
+
+  .head {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .npc {
+    flex: none;
+    width: 64px;
+    height: 64px;
+    image-rendering: pixelated;
+  }
+
+  .bubble {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    min-width: 0;
+    padding: 8px 14px;
+    border: 3px solid #d9b98a;
+    border-radius: 18px;
+    background: #fff;
+  }
+
+  .teacher {
+    color: #8a4b00;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+  }
+
+  .prompt {
+    font-family: var(--font-learning);
+    font-size: clamp(20px, 5vw, 28px);
+    font-weight: 700;
+    line-height: 1.15;
+  }
+
+  .big {
+    font-size: clamp(24px, 6vw, 34px);
+  }
+
+  .replay {
+    flex: none;
+    width: 60px;
+    height: 60px;
+    border: 4px solid #2458b8;
+    border-radius: 50%;
+    background: #3f8cff;
+    box-shadow: 0 5px 0 #2458b8;
+    font-size: 28px;
+    cursor: pointer;
+
+    &:active {
+      transform: translateY(3px);
+      box-shadow: 0 2px 0 #2458b8;
+    }
+
+    @include focus-ring;
+  }
+
+  // ---------------------------------------------------------------- thẻ hình
+
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, min(34vh, 240px)));
+    justify-content: center;
+    gap: 14px;
+
+    &[data-count='3'] {
+      grid-template-columns: repeat(3, minmax(0, min(34vh, 220px)));
+
+      // Màn hẹp: tối đa 2 cột (spec §13.2)
+      @media (max-width: 440px) {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+  }
+
+  .card {
+    position: relative;
+    aspect-ratio: 1;
+    min-height: 96px;
+    padding: 0;
+    border: 5px solid #d9b98a;
+    border-radius: 22px;
+    background: radial-gradient(circle at 50% 40%, #fff, #ffe6c2);
+    box-shadow: 0 6px 0 #b98a4e;
+    cursor: pointer;
+    transition: transform 0.12s;
+
+    &:active:not(:disabled) {
+      transform: translateY(4px);
+      box-shadow: 0 2px 0 #b98a4e;
+    }
+
+    &:disabled {
+      cursor: default;
+    }
+
+    @include focus-ring;
+  }
+
+  // Hình phủ gần kín thẻ (icon pixel 72px phóng to)
+  .cardArt {
+    position: absolute;
+    top: 10%;
+    left: 10%;
+    width: 80%;
+    height: 80%;
+  }
+
+  .right {
+    border-color: #2f9e44 !important;
+    background: #d9f8d0 !important;
+    animation: pop 0.3s ease-out;
+  }
+
+  .miss {
+    animation: shake 0.45s ease-in-out;
+    opacity: 0.75;
+  }
+
+  .reveal {
+    border-color: #ffb100 !important;
+    animation: ring 1s ease-in-out infinite;
+  }
+
+  .label {
+    position: absolute;
+    bottom: 6px;
+    left: 50%;
+    padding: 2px 10px;
+    border-radius: 999px;
+    background: var(--color-ink);
+    color: #fff;
+    font-family: var(--font-learning);
+    font-size: 18px;
+    font-weight: 700;
+    white-space: nowrap;
+    transform: translateX(-50%);
+  }
+
+  // ---------------------------------------------------------------- Find the Object
+
+  .scene {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    max-height: 52vh;
+    overflow: hidden;
+    border: 4px solid #3a1670;
+    border-radius: 18px;
+    background-position: center;
+    background-size: cover;
+    image-rendering: pixelated;
+  }
+
+  .object {
+    position: absolute;
+    width: 22%;
+    aspect-ratio: 1;
+    // Căn tâm bằng margin (% theo bề ngang khung) — transform dành cho hiệu ứng nhún
+    margin: -11% 0 0 -11%;
+    padding: 1%;
+    border: 3px solid transparent;
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.18);
+    cursor: pointer;
+    animation: bob 2.4s ease-in-out infinite;
+
+    // Vùng chạm lớn hơn hình
+    &::before {
+      content: '';
+      position: absolute;
+      inset: -12px;
+    }
+
+    &:disabled {
+      cursor: default;
+    }
+
+    @include focus-ring;
+  }
+
+  // ---------------------------------------------------------------- Look & Listen
+
+  .lookListen {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+  }
+
+  .bigPicture {
+    width: clamp(120px, 30vw, 220px);
+    aspect-ratio: 1;
+    padding: 14px;
+    border: 5px solid #d9b98a;
+    border-radius: 24px;
+    background: radial-gradient(circle at 50% 40%, #fff, #ffe6c2);
+  }
+
+  .speakers {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .speakerCard {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 10px 12px;
+    border: 4px solid var(--speaker);
+    border-radius: 20px;
+    background: color-mix(in srgb, var(--speaker) 14%, #fff);
+
+    .label {
+      position: static;
+      transform: none;
+    }
+  }
+
+  .speaker,
+  .matchSound {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    min-width: 112px;
+    min-height: 84px;
+    border: 4px solid color-mix(in srgb, var(--speaker) 60%, #000);
+    border-radius: 18px;
+    background: var(--speaker);
+    box-shadow: 0 5px 0 color-mix(in srgb, var(--speaker) 55%, #000);
+    color: #fff;
+    font-size: 30px;
+    cursor: pointer;
+
+    &:active {
+      transform: translateY(3px);
+    }
+
+    @include focus-ring;
+  }
+
+  .playing {
+    animation: pop 0.3s ease-out;
+  }
+
+  .mark {
+    font-size: 26px;
+    font-weight: 900;
+    text-shadow: 0 2px 0 rgba(0, 0, 0, 0.35);
+  }
+
+  .pick {
+    min-width: 96px;
+    min-height: 48px;
+    border: 4px solid #a8480c;
+    border-radius: 14px;
+    background: #ff8a1f;
+    color: #fff;
+    font: inherit;
+    font-size: 18px;
+    font-weight: 800;
+    cursor: pointer;
+
+    &:disabled {
+      opacity: 0.6;
+      cursor: default;
+    }
+
+    @include focus-ring;
+  }
+
+  // ---------------------------------------------------------------- Match the Pairs
+
+  .match {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+    align-items: center;
+    gap: 10px;
+  }
+
+  .column {
+    display: grid;
+    gap: 10px;
+  }
+
+  .link {
+    color: #6a2fb5;
+    font-size: 34px;
+    font-weight: 900;
+  }
+
+  .matchImage {
+    justify-self: end;
+    width: min(100%, 180px);
+    aspect-ratio: 1;
+    padding: 12px;
+    border: 5px solid #d9b98a;
+    border-radius: 20px;
+    background: #fff;
+    cursor: pointer;
+
+    @include focus-ring;
+  }
+
+  .matchSound {
+    justify-self: start;
+    width: min(100%, 180px);
+    min-height: 110px;
+
+    .label {
+      bottom: -14px;
+      font-size: 15px;
+    }
+  }
+
+  .selected {
+    border-color: #ffb100;
+    box-shadow: 0 0 0 5px #ffe066;
+  }
+
+  .pair0 {
+    border-color: #e8620e !important;
+    box-shadow: 0 0 0 5px #ffb36b;
+  }
+
+  .pair1 {
+    border-color: #6a2fb5 !important;
+    box-shadow: 0 0 0 5px #c9a6f0;
+  }
+
+  // ---------------------------------------------------------------- phản hồi + đồng hồ
+
+  .feedback {
+    min-height: 1.4em;
+    margin: 0;
+    font-size: clamp(20px, 5vw, 26px);
+    font-weight: 800;
+    text-align: center;
+  }
+
+  .feedbackOn {
+    animation: pop 0.3s ease-out;
+  }
+
+  .timer {
+    height: 10px;
+    overflow: hidden;
+    border-radius: 999px;
+    background: #e8d7c0;
+
+    span {
+      display: block;
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, #ffb13b, #ff8a1f);
+      transition: width 0.2s linear;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .object,
+    .reveal {
+      animation: none;
+    }
+  }
+}

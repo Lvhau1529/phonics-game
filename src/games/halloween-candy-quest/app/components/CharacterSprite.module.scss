@@ -1,0 +1,36 @@
+@use '@/ui/styles/abstracts' as *;
+
+@layer components {
+  @keyframes frames {
+    from {
+      background-position-x: 0%;
+    }
+    to {
+      background-position-x: 100%;
+    }
+  }
+
+  .sprite {
+    flex: none;
+    background-repeat: no-repeat;
+    background-size: 200% 500%;
+    background-position-y: calc(var(--row) * 25%);
+    image-rendering: pixelated;
+    // 2 frame: steps(2) chạy 0% -> 100% (frame 1 -> frame 2)
+    animation: frames 0.9s steps(2, jump-none) infinite alternate;
+  }
+
+  .fast {
+    animation-duration: 0.36s;
+  }
+
+  .flip {
+    transform: scaleX(-1);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .sprite {
+      animation: none;
+    }
+  }
+}

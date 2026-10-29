@@ -1,0 +1,124 @@
+{
+  "words": [
+    {
+      "id": "pumpkin",
+      "text": "pumpkin",
+      "meaning": "quả bí ngô"
+    },
+    {
+      "id": "ghost",
+      "text": "ghost",
+      "meaning": "con ma"
+    },
+    {
+      "id": "bat",
+      "text": "bat",
+      "meaning": "con dơi"
+    },
+    {
+      "id": "cat",
+      "text": "cat",
+      "meaning": "con mèo"
+    },
+    {
+      "id": "candy",
+      "text": "candy",
+      "meaning": "kẹo"
+    },
+    {
+      "id": "witch",
+      "text": "witch",
+      "meaning": "phù thủy"
+    },
+    {
+      "id": "hat",
+      "text": "hat",
+      "meaning": "cái mũ"
+    },
+    {
+      "id": "spider",
+      "text": "spider",
+      "meaning": "con nhện"
+    },
+    {
+      "id": "moon",
+      "text": "moon",
+      "meaning": "mặt trăng"
+    },
+    {
+      "id": "broom",
+      "text": "broom",
+      "meaning": "cây chổi"
+    },
+    {
+      "id": "vampire",
+      "text": "vampire",
+      "meaning": "ma cà rồng"
+    },
+    {
+      "id": "owl",
+      "text": "owl",
+      "meaning": "con cú"
+    },
+    {
+      "id": "cauldron",
+      "text": "cauldron",
+      "meaning": "cái vạc"
+    },
+    {
+      "id": "potion",
+      "text": "potion",
+      "meaning": "lọ thuốc phép"
+    },
+    {
+      "id": "mask",
+      "text": "mask",
+      "meaning": "mặt nạ"
+    },
+    {
+      "id": "lantern",
+      "text": "lantern",
+      "meaning": "đèn lồng"
+    },
+    {
+      "id": "skeleton",
+      "text": "skeleton",
+      "meaning": "bộ xương"
+    },
+    {
+      "id": "castle",
+      "text": "castle",
+      "meaning": "lâu đài"
+    },
+    {
+      "id": "monster",
+      "text": "monster",
+      "meaning": "quái vật"
+    },
+    {
+      "id": "costume",
+      "text": "costume",
+      "meaning": "trang phục hóa trang"
+    },
+    {
+      "id": "web",
+      "text": "web",
+      "meaning": "mạng nhện"
+    },
+    {
+      "id": "star",
+      "text": "star",
+      "meaning": "ngôi sao"
+    },
+    {
+      "id": "trick_or_treat",
+      "text": "trick or treat",
+      "meaning": "cho kẹo hay bị ghẹo"
+    },
+    {
+      "id": "haunted_house",
+      "text": "haunted house",
+      "meaning": "ngôi nhà ma"
+    }
+  ]
+}
