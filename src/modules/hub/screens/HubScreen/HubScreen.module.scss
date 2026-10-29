@@ -139,12 +139,18 @@
   .games {
     display: grid;
     grid-template-columns: minmax(0, 1fr);
+    // Mọi hàng cao bằng hàng cao nhất -> các thẻ cao bằng nhau
+    grid-auto-rows: 1fr;
     gap: 18px;
     width: 100%;
     max-width: 440px;
     margin: 0;
     padding: 0;
     list-style: none;
+
+    > li {
+      display: flex;
+    }
 
     // Máy tính / máy chiếu: các game xếp cạnh nhau
     @include wide-landscape {
