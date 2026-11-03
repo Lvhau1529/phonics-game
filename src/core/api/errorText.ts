@@ -6,7 +6,7 @@ import { isApiError, type ApiErrorCode } from '@/core/api/client';
 const MESSAGES: Partial<Record<ApiErrorCode, string>> = {
   NETWORK: 'No internet. Try again later.',
   INVALID_CREDENTIALS: 'Wrong email or password.',
-  EMAIL_TAKEN: 'This email is already used.',
+  EMAIL_TAKEN: 'This email already has an account. Sign in with your password or Google.',
   CLASS_NOT_JOINABLE: 'Please pick another class.',
   ACCOUNT_DISABLED: 'This account is turned off. Ask your teacher.',
   GOOGLE_EMAIL_UNVERIFIED: 'Please verify your Google email first.',
