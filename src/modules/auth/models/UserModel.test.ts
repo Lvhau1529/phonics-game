@@ -21,6 +21,13 @@ const dto: User = {
 };
 
 describe('UserModel', () => {
+  it('cách đăng nhập: theo loginMethods, API cũ thì suy theo provider', () => {
+    const both = new UserModel({ ...dto, loginMethods: { password: true, google: true } });
+    expect([both.hasPassword, both.hasGoogle]).toEqual([true, true]);
+    const legacy = new UserModel({ ...dto, provider: 'GOOGLE' });
+    expect([legacy.hasPassword, legacy.hasGoogle]).toEqual([false, true]);
+  });
+
   it('giữ nguyên field như DTO', () => {
     const user = new UserModel(dto);
     expect(user.id).toBe(dto.id);

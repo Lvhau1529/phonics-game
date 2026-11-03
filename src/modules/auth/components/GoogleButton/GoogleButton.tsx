@@ -11,9 +11,11 @@ import styles from '@/modules/auth/components/GoogleButton/GoogleButton.module.s
 interface GoogleButtonProps {
   onCredential: (idToken: string) => void;
   disabled?: boolean;
+  /** Hiện chữ "OR" phía trên (màn đăng nhập / đăng ký); tắt khi nút đứng riêng (màn sửa hồ sơ) */
+  divider?: boolean;
 }
 
-export default function GoogleButton({ onCredential, disabled = false }: GoogleButtonProps) {
+export default function GoogleButton({ onCredential, disabled = false, divider = true }: GoogleButtonProps) {
   const host = useRef<HTMLDivElement>(null);
   // Google giữ callback từ lúc initialize: trỏ qua ref để luôn gọi bản mới nhất
   const callback = useRef(onCredential);
@@ -54,7 +56,7 @@ export default function GoogleButton({ onCredential, disabled = false }: GoogleB
 
   return (
     <div className={styles.google} aria-busy={state === 'loading'}>
-      <p className={styles.or}>OR</p>
+      {divider && <p className={styles.or}>OR</p>}
       <div className={styles.host} ref={host} inert={disabled || state !== 'ready' ? true : undefined} />
       {state !== 'ready' && (
         <p className={styles.placeholder}>

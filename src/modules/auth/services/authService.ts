@@ -26,6 +26,8 @@ export const authService = {
   login: async (body: LoginBody) => toSession(await authRepository.login(body)),
   register: async (body: RegisterBody) => toSession(await authRepository.register(body)),
   googleSignIn: async (body: GoogleBody) => toSession(await authRepository.googleSignIn(body)),
+  linkGoogle: async (idToken: string) => toUser(await authRepository.linkGoogle({ idToken })),
+  unlinkGoogle: async () => toUser(await authRepository.unlinkGoogle()),
   /** Thu hồi refresh token trên server (ack, không có body trả về) */
   logout: (refreshToken: string) => authRepository.logout({ refreshToken }),
   me: async (): Promise<Me> => {

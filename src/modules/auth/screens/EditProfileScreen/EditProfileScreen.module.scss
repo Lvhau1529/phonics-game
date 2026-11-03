@@ -14,6 +14,16 @@
     line-height: 1.3;
   }
 
+  .google {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding-top: 12px;
+    border-top: 2px dashed var(--color-tan);
+    text-align: center;
+  }
+
   .error {
     @include form-error;
   }

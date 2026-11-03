@@ -1,4 +1,12 @@
-import type { AuthProvider, AvatarKey, Role, StudentClassRef, User, UserStatus } from '@phonics/contracts';
+import type {
+  AuthProvider,
+  AvatarKey,
+  LoginMethods,
+  Role,
+  StudentClassRef,
+  User,
+  UserStatus,
+} from '@phonics/contracts';
 
 /**
  * Người dùng đang đăng nhập (từ `User` của BE). Field giữ nguyên tên như contracts; getter là dữ liệu chỉ phía FE
@@ -16,6 +24,8 @@ export class UserModel {
   /** Chỉ có với STUDENT, null khi chưa vào lớp */
   readonly class: StudentClassRef | null;
   readonly createdAt: string;
+  /** API cũ không trả → suy theo `provider` */
+  readonly loginMethods: LoginMethods | undefined;
 
   constructor(data: User) {
     this.id = data.id;
@@ -27,6 +37,7 @@ export class UserModel {
     this.avatarKey = data.avatarKey;
     this.class = data.class;
     this.createdAt = data.createdAt;
+    this.loginMethods = data.loginMethods;
   }
 
   /** Tên gọi ngắn (từ đầu tiên của displayName) cho nút ở màn chọn game */
@@ -43,6 +54,16 @@ export class UserModel {
     return this.class?.name ?? null;
   }
 
+  /** Có mật khẩu (đăng nhập email) */
+  get hasPassword(): boolean {
+    return this.loginMethods?.password ?? this.provider === 'LOCAL';
+  }
+
+  /** Đã liên kết Google */
+  get hasGoogle(): boolean {
+    return this.loginMethods?.google ?? this.provider === 'GOOGLE';
+  }
+
   /** DTO đúng như BE (lưu localStorage / tạo bản mới) */
   toJSON(): User {
     return {
@@ -55,6 +76,7 @@ export class UserModel {
       avatarKey: this.avatarKey,
       class: this.class,
       createdAt: this.createdAt,
+      loginMethods: this.loginMethods,
     };
   }
 }

@@ -11,6 +11,8 @@ const MESSAGES: Partial<Record<ApiErrorCode, string>> = {
   ACCOUNT_DISABLED: 'This account is turned off. Ask your teacher.',
   GOOGLE_EMAIL_UNVERIFIED: 'Please verify your Google email first.',
   GOOGLE_TOKEN_INVALID: 'Google sign-in did not work. Try again.',
+  GOOGLE_ALREADY_LINKED: 'This Google account is already used by another account.',
+  LAST_LOGIN_METHOD: 'Ask a grown-up to set a password first.',
   PROFILE_REQUIRED: 'Tell us your name and class first.',
   VALIDATION_ERROR: 'Please check what you typed.',
   UNAUTHORIZED: 'Please sign in again.',

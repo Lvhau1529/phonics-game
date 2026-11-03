@@ -8,6 +8,7 @@ import {
   MeResponse,
   User,
   type GoogleBody,
+  type LinkGoogleBody,
   type LoginBody,
   type LogoutBody,
   type RegisterBody,
@@ -37,6 +38,10 @@ export const authRepository = {
       schema: AuthResponse,
       auth: AuthMode.NONE,
     }),
+  /** Liên kết / gỡ Google của tài khoản đang đăng nhập → user mới */
+  linkGoogle: (body: LinkGoogleBody) =>
+    request(ENDPOINTS.auth.googleLink, { method: HttpMethod.POST, body, schema: User }),
+  unlinkGoogle: () => request(ENDPOINTS.auth.googleLink, { method: HttpMethod.DELETE, schema: User }),
   logout: (body: LogoutBody) =>
     request(ENDPOINTS.auth.logout, { method: HttpMethod.POST, body, auth: AuthMode.OPTIONAL }),
   me: () => request(ENDPOINTS.auth.me, { schema: MeResponse }),

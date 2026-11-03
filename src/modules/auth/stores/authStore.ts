@@ -161,6 +161,16 @@ export const authActions = {
     authActions.setUser(await authService.updateProfile(body));
   },
 
+  /** Liên kết Google (ID token từ nút Google) → đăng nhập được bằng cả mật khẩu lẫn Google */
+  async linkGoogle(idToken: string): Promise<void> {
+    authActions.setUser(await authService.linkGoogle(idToken));
+  },
+
+  /** Gỡ Google (server từ chối nếu chưa có mật khẩu: LAST_LOGIN_METHOD) */
+  async unlinkGoogle(): Promise<void> {
+    authActions.setUser(await authService.unlinkGoogle());
+  },
+
   /** Sau khi sửa hồ sơ */
   setUser(user: UserModel): void {
     authStore.set((state) => ({ ...state, user }));
