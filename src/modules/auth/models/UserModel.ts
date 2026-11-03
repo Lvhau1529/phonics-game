@@ -6,7 +6,8 @@ import type { AuthProvider, AvatarKey, Role, StudentClassRef, User, UserStatus }
  */
 export class UserModel {
   readonly id: string;
-  readonly email: string;
+  /** null với học sinh MANAGED (vào qua tài khoản gia đình) */
+  readonly email: string | null;
   readonly role: Role;
   readonly status: UserStatus;
   readonly provider: AuthProvider;
