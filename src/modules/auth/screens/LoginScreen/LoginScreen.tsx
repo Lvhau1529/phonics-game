@@ -1,5 +1,7 @@
 /**
- * Đăng nhập: email + mật khẩu, hoặc Google. Tài khoản Google mới (server cần tên + lớp) -> màn đăng ký.
+ * Đăng nhập tài khoản gia đình (phụ huynh): email + mật khẩu, hoặc Google. Xong → màn chọn bé. Bé không có tài
+ * khoản riêng; tài khoản gia đình do trung tâm tạo (mail mời đặt mật khẩu). Email Google chưa có tài khoản gia đình
+ * → 422 PROFILE_REQUIRED (errorText báo nhờ trung tâm tạo).
  */
 import { useState, type FormEvent } from 'react';
 import { authActions } from '@/modules/auth/stores/authStore';
@@ -29,7 +31,7 @@ export default function LoginScreen() {
     try {
       await authActions.login({ email: email.trim(), password });
       playSfx(SFX.UI_START);
-      platformActions.openAccount('profile');
+      platformActions.openAccount();
     } catch (caught) {
       setError(errorText(caught));
     } finally {
@@ -41,9 +43,9 @@ export default function LoginScreen() {
     setBusy(true);
     setError(null);
     try {
-      const result = await authActions.google(idToken);
+      await authActions.google(idToken);
       playSfx(SFX.UI_START);
-      platformActions.openAccount(result === 'ok' ? 'profile' : 'register');
+      platformActions.openAccount();
     } catch (caught) {
       setError(errorText(caught));
     } finally {
@@ -53,9 +55,12 @@ export default function LoginScreen() {
 
   return (
     <>
-      <ScreenHeader title="SIGN IN" backLabel="All games" onBack={() => platformActions.exitToHub()} />
+      <ScreenHeader title="PARENT SIGN IN" backLabel="All games" onBack={() => platformActions.exitToHub()} />
       <form className={styles.form} onSubmit={submit} aria-busy={busy}>
         <img className={styles.mascot} src={MASCOT.hello} alt="" />
+        <p className={styles.lead}>
+          For grown-ups: sign in with the family account from your child&apos;s center.
+        </p>
         <TextInput
           label="EMAIL"
           type="email"
@@ -85,9 +90,6 @@ export default function LoginScreen() {
         </Button>
         <GoogleButton onCredential={google} disabled={busy} />
       </form>
-      <button type="button" className={styles.link} onClick={() => platformActions.openAccount('register')}>
-        NEW HERE? <b>CREATE ACCOUNT</b>
-      </button>
     </>
   );
 }

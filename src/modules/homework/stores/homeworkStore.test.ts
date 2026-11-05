@@ -16,13 +16,15 @@ vi.mock('@/core/config/account', () => ({
 }));
 vi.mock('@/modules/auth/stores/authStore', () => ({
   authStore: { get: () => ({ status: 'signedIn', user: { id: 'u1' } }), subscribe: () => () => undefined },
+  authActions: {},
+  useAuth: () => ({ status: 'signedIn', user: { id: 'u1' } }),
   isSignedIn: () => true,
-}));
-vi.mock('@/modules/notifications/stores/notificationsStore', () => ({
-  notificationsStore: { get: () => ({ items: [] }), subscribe: () => () => undefined },
+  isFamilySignedIn: () => true,
+  activeStudentId: () => 'u1',
+  watchActiveStudent: () => () => undefined,
 }));
 vi.mock('@/modules/homework/services/assignmentsService', () => ({
-  assignmentsService: { list: services.list, detail: services.detail, ranking: vi.fn() },
+  assignmentsService: { list: services.list, detail: services.detail },
 }));
 vi.mock('@/modules/homework/services/submissionsService', () => ({
   submissionsService: { start: services.start, saveAnswers: services.saveAnswers, submit: services.submit },

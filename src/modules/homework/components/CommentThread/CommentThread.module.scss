@@ -89,44 +89,4 @@
     overflow-wrap: anywhere;
     white-space: pre-wrap;
   }
-
-  .replyBtn {
-    @include text-button;
-    align-self: flex-start;
-    color: var(--color-blue-edge);
-  }
-
-  .composer {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-  }
-
-  .input {
-    width: 100%;
-    padding: 8px 10px;
-    border: 3px solid var(--color-ink);
-    border-radius: 12px;
-    background: #fff;
-    color: var(--color-ink);
-    font-size: 16px;
-    font-weight: 600;
-    resize: vertical;
-    // Cho phép gõ / chọn chữ dù body chặn user-select
-    user-select: text;
-    -webkit-user-select: text;
-  }
-
-  .actions {
-    display: flex;
-    justify-content: flex-end;
-    gap: 8px;
-  }
-
-  .error {
-    margin: 0;
-    color: var(--color-red-edge);
-    font-size: 14px;
-    font-weight: 700;
-  }
 }

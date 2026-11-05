@@ -1,5 +1,6 @@
 /**
- * Gốc của app: màn chọn game (hub), game đang mở, màn tài khoản (#/account/...) hoặc bài tập (#/homework/...).
+ * Gốc của app: màn chọn game (hub), game đang mở, màn tài khoản gia đình (#/account, #/set-password) hoặc bài tập
+ * (#/homework/...).
  * Mỗi game được tải động (chunk riêng) khi mở lần đầu; rời game thì unmount toàn bộ (kể cả Phaser).
  * Màn tài khoản cũng là một chunk riêng, chỉ tải khi có API (ACCOUNT_ENABLED).
  * Màn xem trước cho admin (#/preview) không cần API: nội dung admin gửi qua postMessage.
@@ -37,6 +38,8 @@ function rootOf(game: GameManifest): LazyExoticComponent<ComponentType> {
   return root;
 }
 
+import type { AccountView } from '@/app/AccountRoot/AccountRoot';
+
 const AccountRoot = lazy(() => import('@/app/AccountRoot/AccountRoot'));
 const HomeworkRoot = lazy(() => import('@/modules/homework/screens/HomeworkRoot/HomeworkRoot'));
 const PreviewScreen = lazy(() => import('@/modules/homework/screens/PreviewScreen/PreviewScreen'));
@@ -56,12 +59,18 @@ export default function PlatformApp({ games: baseGames, upcoming: baseUpcoming }
   // Link mở thẳng game đang khoá (#/<id>) -> về màn chọn game
   const game = games.find((item) => item.id === activeId && isUnlocked(item));
   const GameRoot = game ? rootOf(game) : null;
-  const accountPage = route.kind === 'account' && ACCOUNT_ENABLED ? route.page : null;
+  const accountView: AccountView | null = !ACCOUNT_ENABLED
+    ? null
+    : route.kind === 'account'
+      ? { page: route.page }
+      : route.kind === 'set-password'
+        ? { page: 'set-password', token: route.token }
+        : null;
   const homeworkPage = route.kind === 'homework' && ACCOUNT_ENABLED ? route.page : null;
 
   // Game không tồn tại / đang khoá, hoặc #/account, #/homework khi không có API: bỏ hash để lần bấm thẻ game sau vẫn mở được
   useEffect(() => {
-    const needsApi = route.kind === 'account' || route.kind === 'homework';
+    const needsApi = route.kind === 'account' || route.kind === 'homework' || route.kind === 'set-password';
     if ((activeId && !game) || (needsApi && !ACCOUNT_ENABLED)) platformActions.exitToHub();
   }, [activeId, game, route.kind]);
 
@@ -80,10 +89,10 @@ export default function PlatformApp({ games: baseGames, upcoming: baseUpcoming }
 
   return (
     <>
-      {accountPage ? (
+      {accountView ? (
         <LoadErrorBoundary key="account">
           <Suspense fallback={loading}>
-            <AccountRoot page={accountPage} games={games} />
+            <AccountRoot view={accountView} />
           </Suspense>
         </LoadErrorBoundary>
       ) : homeworkPage ? (

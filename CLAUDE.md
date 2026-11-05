@@ -42,7 +42,7 @@ xem `vite.config.ts` của game / admin) — sửa contracts thấy ngay, không
 | `src/app/` | Khung: `PlatformApp` (hub ↔ game ↔ tài khoản, lazy), `AccountRoot` (route `#/account/...`) |
 | `src/core/` | Hạ tầng không nghiệp vụ: `api/` (client, `errorText`), `navigation/platformStore` (hash route), `config/`, `store/`, `storage/`, `sync/`, `hooks/`, `audio/`, `phaser/`, `types/`, `utils/` |
 | `src/ui/` | Design system: mỗi component một thư mục (`Button/Button.tsx` + `.module.scss`), `guide/`, `svg/`, `styles/` |
-| `src/modules/<x>/` | Nghiệp vụ tự đóng gói: `repositories/` → `services/` → `models/`, `stores/`, `hooks/`, `components/<C>/`, `screens/<S>/`, `utils/`, `index.ts` (public API). Module: `auth`, `classes`, `catalog`, `points`, `results`, `notifications`, `analytics`, `gems`, `homework`, `hub`, `pwa` |
+| `src/modules/<x>/` | Nghiệp vụ tự đóng gói: `repositories/` → `services/` → `models/`, `stores/`, `hooks/`, `components/<C>/`, `screens/<S>/`, `utils/`, `index.ts` (public API). Module: `auth` (tài khoản gia đình: phụ huynh đăng nhập → chọn bé), `catalog`, `results`, `analytics`, `gems`, `homework`, `hub`, `pwa` |
 | `src/games/<id>/` | Từng game: `manifest.ts`, `<Name>Game.tsx`, `content/` (dữ liệu / nội dung JSON + schema), `session/` (store + luật + text), `app/` (màn React, `guide/`, `assets.ts`), `game/` (Phaser) |
 
 Ranh giới (ESLint `no-restricted-imports` + `src/test/architecture.test.ts`): `main → app → games → modules → ui / core`;

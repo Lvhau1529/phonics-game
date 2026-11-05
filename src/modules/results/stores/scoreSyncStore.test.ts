@@ -17,9 +17,19 @@ vi.mock('@/modules/auth/stores/authStore', async () => {
     status: 'signedIn',
     user: { id: 'user-1', displayName: 'Kid' },
     accessToken: 'token',
-    pendingGoogleIdToken: null,
+    parent: null,
+    parentRefreshToken: null,
   });
-  return { authStore, isSignedIn: () => authStore.get().status === 'signedIn' };
+  const isSignedIn = () => authStore.get().status === 'signedIn';
+  return {
+    authStore,
+    authActions: {},
+    useAuth: () => authStore.get(),
+    isSignedIn,
+    isFamilySignedIn: isSignedIn,
+    activeStudentId: () => (isSignedIn() ? authStore.get().user.id : null),
+    watchActiveStudent: () => () => undefined,
+  };
 });
 
 import {
@@ -46,7 +56,6 @@ const response = {
   duplicate: false,
   pointsAwarded: 4,
   totals: { all: 12, today: 4, game: 8 },
-  rank: { previous: 3, current: 2 },
 };
 
 const flushIdle = () => new Promise((resolve) => setTimeout(resolve, 0));

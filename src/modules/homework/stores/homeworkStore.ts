@@ -7,9 +7,8 @@
  * Mất mạng: giữ bản nháp, có mạng lại (`online`) thì lưu tiếp; đóng tab thì gửi `keepalive`.
  */
 import type { MediaMap, MediaRef, QuestionAnswer, SubmitResponse } from '@phonics/contracts';
-import { authStore, isSignedIn } from '@/modules/auth';
+import { authStore, isSignedIn, watchActiveStudent } from '@/modules/auth';
 import { ACCOUNT_ENABLED } from '@/core/config/account';
-import { notificationsStore } from '@/modules/notifications';
 import { isApiError } from '@/core/api/client';
 import { assignmentsService } from '@/modules/homework/services/assignmentsService';
 import { submissionsService } from '@/modules/homework/services/submissionsService';
@@ -230,26 +229,13 @@ export const homeworkActions = {
     if (!ACCOUNT_ENABLED) return;
     window.addEventListener('online', () => void homeworkActions.flush());
     window.addEventListener('pagehide', () => void homeworkActions.flush(true));
+    // Rời app → gửi bản nháp; quay lại → làm mới danh sách (bài mới GV vừa giao, bài vừa chấm)
     document.addEventListener('visibilitychange', () => {
       if (document.visibilityState === 'hidden') void homeworkActions.flush(true);
+      else if (isSignedIn() && homeworkStore.get().list.loaded) void homeworkActions.loadList();
     });
-    // Đăng xuất → bỏ dữ liệu của người cũ (máy lớp dùng chung)
-    let wasSignedIn = isSignedIn();
-    authStore.subscribe(() => {
-      const now = isSignedIn();
-      if (now === wasSignedIn) return;
-      wasSignedIn = now;
-      if (!now) homeworkActions.reset();
-    });
-    // Thông báo bài mới / chấm xong → danh sách đổi
-    let seenNewest: string | null = null;
-    notificationsStore.subscribe(() => {
-      const newest = notificationsStore.get().items[0];
-      if (!newest || newest.id === seenNewest) return;
-      const first = seenNewest === null;
-      seenNewest = newest.id;
-      if (!first && newest.target && homeworkStore.get().list.loaded) void homeworkActions.loadList();
-    });
+    // Đổi bé / về phụ huynh / đăng xuất → bỏ dữ liệu của bé trước (badge HOMEWORK tự tải lại cho bé mới)
+    watchActiveStudent(() => homeworkActions.reset());
   },
 };
 
