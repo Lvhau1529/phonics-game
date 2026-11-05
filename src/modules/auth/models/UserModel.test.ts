@@ -62,3 +62,13 @@ describe('UserModel', () => {
     expect(JSON.parse(JSON.stringify(user))).toEqual(dto);
   });
 });
+
+describe('UserModel vai trò', () => {
+  it('phụ huynh / bé', () => {
+    expect([new UserModel({ ...dto, role: 'PARENT' }).isParent, new UserModel(dto).isStudent]).toEqual([
+      true,
+      true,
+    ]);
+    expect(new UserModel(dto).isParent).toBe(false);
+  });
+});

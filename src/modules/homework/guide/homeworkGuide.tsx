@@ -17,8 +17,8 @@ export const HOMEWORK_GUIDE_SECTIONS: GuideSection[] = [
         <p>
           <b>HOMEWORK</b> là phiếu bài tập giáo viên soạn trên trang quản trị (theo đúng các dạng của phiếu
           giấy: điền âm thiếu, ô chữ, xếp chữ, tìm từ, khoanh từ đúng, sắp xếp câu, tô chữ và đọc to, ghi âm…)
-          rồi giao cho lớp theo ngày. Bé đăng nhập tài khoản học sinh, bấm <b>HOMEWORK</b> ở màn chọn game để
-          làm.
+          rồi giao cho lớp theo ngày. Phụ huynh đăng nhập tài khoản gia đình và chọn hồ sơ bé, rồi bé bấm{' '}
+          <b>HOMEWORK</b> ở màn chọn game để làm.
         </p>
         <p className={guide.note}>
           Bài chỉ mở trong cửa sổ thời gian giáo viên đặt (từ giờ mở tới hạn nộp). Hết hạn mà cho nộp muộn thì

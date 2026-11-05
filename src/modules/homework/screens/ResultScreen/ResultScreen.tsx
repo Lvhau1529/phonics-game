@@ -1,7 +1,7 @@
 /**
  * Kết quả một bài: sao + điểm (hoặc TEACHER IS CHECKING khi còn câu chấm tay), hạng trong lớp,
- * SEE ANSWERS (xem lại từng câu: đúng / sai, đáp án nếu GV cho xem, nhận xét từng câu + trả lời),
- * RANKING, TRY AGAIN (còn lượt), nhận xét chung của GV.
+ * SEE ANSWERS (xem lại từng câu: đúng / sai, đáp án nếu GV cho xem, nhận xét từng câu),
+ * TRY AGAIN (còn lượt), nhận xét chung của GV (chỉ xem).
  */
 import { useState } from 'react';
 import clsx from 'clsx';
@@ -19,7 +19,7 @@ import { MediaMapContext } from '@/modules/homework/renderers/mediaContext';
 import QuestionFrame from '@/modules/homework/components/QuestionFrame/QuestionFrame';
 import QuestionRenderer from '@/modules/homework/renderers/QuestionRenderer';
 import Stars from '@/modules/homework/components/Stars/Stars';
-import { homeworkActions, useHomeworkResult } from '@/modules/homework/stores/homeworkStore';
+import { useHomeworkResult } from '@/modules/homework/stores/homeworkStore';
 import { useDelayedLoading } from '@/core/hooks/useDelayedLoading';
 import { platformActions } from '@/core/navigation/platformStore';
 import Button from '@/ui/Button/Button';
@@ -44,11 +44,6 @@ export default function ResultScreen({ assignmentId }: { assignmentId: string })
   const a = assignment.data;
   const s = submission.data;
   const rank = justSent?.rank?.rank ?? a?.best?.rank ?? null;
-
-  const reply = async (parentId: string, body: string) => {
-    await comments.reply(parentId, body);
-    void homeworkActions.loadList();
-  };
 
   const general = (comments.data ?? []).filter((c) => c.isGeneral);
   const byItem = (id: string) => (comments.data ?? []).filter((c) => c.worksheetItemId === id);
@@ -119,12 +114,6 @@ export default function ResultScreen({ assignmentId }: { assignmentId: string })
             <Button color="blue" onClick={() => setShowAnswers((v) => !v)}>
               {showAnswers ? 'HIDE ANSWERS' : 'SEE ANSWERS'}
             </Button>
-            <Button
-              color="orange"
-              onClick={() => platformActions.openHomework({ name: 'ranking', assignmentId })}
-            >
-              <Icon name="trophy" size={22} /> RANKING
-            </Button>
             {a.canStart && (
               <Button
                 color="green"
@@ -140,7 +129,7 @@ export default function ResultScreen({ assignmentId }: { assignmentId: string })
 
           {general.length > 0 && (
             <section className={styles.card}>
-              <CommentThread title="TEACHER SAYS" comments={general} onReply={reply} />
+              <CommentThread title="TEACHER SAYS" comments={general} />
             </section>
           )}
 
@@ -166,7 +155,7 @@ export default function ResultScreen({ assignmentId }: { assignmentId: string })
                       onChange={() => undefined}
                     />
                     {answer?.teacherNote && <p className={styles.note}>💬 {answer.teacherNote}</p>}
-                    <CommentThread comments={byItem(item.worksheetItemId)} onReply={reply} />
+                    <CommentThread comments={byItem(item.worksheetItemId)} />
                   </QuestionFrame>
                 );
               })}

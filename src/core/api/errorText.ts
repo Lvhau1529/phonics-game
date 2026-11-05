@@ -1,5 +1,6 @@
 /**
- * Dịch mã lỗi API (contracts ErrorCode + lỗi mạng) sang câu tiếng Anh ngắn, dễ hiểu cho bé / phụ huynh.
+ * Dịch mã lỗi API (contracts ErrorCode + lỗi mạng) sang câu tiếng Anh ngắn, dễ hiểu cho phụ huynh (đăng nhập,
+ * chọn bé) và bé (bài tập).
  */
 import { isApiError, type ApiErrorCode } from '@/core/api/client';
 
@@ -7,13 +8,19 @@ const MESSAGES: Partial<Record<ApiErrorCode, string>> = {
   NETWORK: 'No internet. Try again later.',
   INVALID_CREDENTIALS: 'Wrong email or password.',
   EMAIL_TAKEN: 'This email already has an account. Sign in with your password or Google.',
-  CLASS_NOT_JOINABLE: 'Please pick another class.',
-  ACCOUNT_DISABLED: 'This account is turned off. Ask your teacher.',
+  ACCOUNT_DISABLED: 'This account is turned off. Please contact the center.',
+  ACCOUNT_PENDING: 'Your family account is waiting for approval from the center.',
+  ACCOUNT_REJECTED: 'This family account was not approved. Please contact the center.',
+  STUDENT_LOGIN_DISABLED: 'Children do not sign in. A grown-up signs in with the family account.',
+  NOT_FAMILY_ACCOUNT: 'This app is for family accounts. Teachers use the admin website.',
+  PROFILE_NOT_APPROVED: 'This child is still waiting for approval.',
+  PROFILE_NOT_ACCESSIBLE: 'This child is not linked to your family account.',
+  INVITE_TOKEN_INVALID: 'This invite link has expired or was already used. Ask the center for a new one.',
+  FORBIDDEN: 'You cannot open this. Pick your child again.',
   GOOGLE_EMAIL_UNVERIFIED: 'Please verify your Google email first.',
   GOOGLE_TOKEN_INVALID: 'Google sign-in did not work. Try again.',
   GOOGLE_ALREADY_LINKED: 'This Google account is already used by another account.',
-  LAST_LOGIN_METHOD: 'Ask a grown-up to set a password first.',
-  PROFILE_REQUIRED: 'Tell us your name and class first.',
+  PROFILE_REQUIRED: 'No family account for this Google email yet. Ask the center to create one.',
   VALIDATION_ERROR: 'Please check what you typed.',
   UNAUTHORIZED: 'Please sign in again.',
   TOKEN_EXPIRED: 'Please sign in again.',

@@ -56,7 +56,7 @@ Match the Pairs tự tắt (không tạo nút loa giả).
 ## Lưu trữ
 
 `phonics-arcade:halloween-candy-quest` (zod): Teacher Setup, bộ từ (id thư viện đang bật + tối đa 30 từ riêng, ảnh
-upload thu nhỏ ≤ 160px dạng data URL), tên đội / nhân vật lần trước. Học sinh đã đăng nhập, ván Solo: gửi kết quả
+upload thu nhỏ ≤ 160px dạng data URL), tên đội / nhân vật lần trước. Đã chọn hồ sơ bé (tài khoản gia đình), ván Solo: gửi kết quả
 lên API (`gameId: halloween-candy-quest`, `levelId` = độ khó, `correct` = số câu đúng ngay lần đầu, `score` = số kẹo)
 — cần `GameId` này trong `@phonics/contracts`; chưa có thì `postSoloResult` bỏ qua, game vẫn chạy.
 

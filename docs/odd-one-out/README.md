@@ -15,7 +15,7 @@ Bản gốc (HTML một file, tách ảnh ra `_source/odd-one-out/art/`): `_sour
   (3) LEARN & SHINE — hình đúng / sai, nhóm của 3 hình còn lại, câu mẫu (máy đọc), NEXT.
   Đồng hồ chạy riêng từng câu.
 - **Điểm:** đúng +10; nói +5 (có micro: nghe được ≥ 2 từ; micro không dùng được: tin bé). Sao: ≥ 90% / ≥ 60% đúng.
-  Kim cương 1 / câu đúng (tối đa 10). Học sinh đã đăng nhập: gửi kết quả lên API (`gameId: odd-one-out`).
+  Kim cương 1 / câu đúng (tối đa 10). Đã chọn hồ sơ bé (tài khoản gia đình): gửi kết quả lên API (`gameId: odd-one-out`).
 - **Bảng xếp hạng** (localStorage `phonics-arcade:odd-one-out`, trên máy này): mỗi tên giữ lượt tốt nhất; xếp theo
   điểm ↓, câu đúng ↓, tổng thời gian ↑; lọc theo chủ đề / cấp / số câu; CLEAR có hỏi lại.
 

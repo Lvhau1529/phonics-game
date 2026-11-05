@@ -1,8 +1,9 @@
 /**
  * Màn đang mở, đồng bộ với URL hash:
  *   #/<game-id>                    — game (giáo viên đánh dấu / chia sẻ link mở thẳng một game)
- *   #/account[/login|register|edit|ranking|notifications] — màn tài khoản (`#/account` = hồ sơ)
- *   #/homework[/<assignmentId>[/result|/ranking]] — bài tập về nhà (phiếu bài tập GV giao)
+ *   #/account[/login]              — tài khoản gia đình (`#/account` = màn chọn bé của phụ huynh)
+ *   #/set-password?token=…         — phụ huynh đặt mật khẩu từ link mời (mail `parent.invite`)
+ *   #/homework[/<assignmentId>[/result]] — bài tập về nhà (phiếu bài tập GV giao)
  *   #/preview                      — xem trước câu hỏi / phiếu cho admin (nhúng iframe, nội dung gửi qua postMessage)
  *   (không có hash)                — màn chọn game
  * Nút Back của trình duyệt / Android quay về màn trước.
@@ -17,28 +18,26 @@ export const ACCOUNT_SEGMENT = 'account';
 export const HOMEWORK_SEGMENT = 'homework';
 /** Đoạn hash của màn xem trước (admin nhúng iframe) — cũng không game nào được dùng */
 export const PREVIEW_SEGMENT = 'preview';
+/** Đoạn hash của màn đặt mật khẩu từ link mời — cũng không game nào được dùng */
+export const SET_PASSWORD_SEGMENT = 'set-password';
 
 export const AccountPage = {
-  PROFILE: 'profile',
+  /** Màn chọn bé (phụ huynh) */
+  PROFILES: 'profiles',
   LOGIN: 'login',
-  REGISTER: 'register',
-  EDIT: 'edit',
-  RANKING: 'ranking',
-  NOTIFICATIONS: 'notifications',
 } as const;
 export type AccountPage = ValueOf<typeof AccountPage>;
 
 const ACCOUNT_PAGES: Record<string, AccountPage> = {
-  '': AccountPage.PROFILE,
+  '': AccountPage.PROFILES,
   ...Object.fromEntries(Object.values(AccountPage).map((page) => [page, page] as const)),
 };
 
-/** Tên màn bài tập: danh sách, làm bài, kết quả, xếp hạng của một bài giao */
+/** Tên màn bài tập: danh sách, làm bài, kết quả của một bài giao */
 export const HomeworkPageName = {
   LIST: 'list',
   DO: 'do',
   RESULT: 'result',
-  RANKING: 'ranking',
 } as const;
 export type HomeworkPageName = ValueOf<typeof HomeworkPageName>;
 
@@ -52,6 +51,7 @@ export const RouteKind = {
   ACCOUNT: 'account',
   HOMEWORK: 'homework',
   PREVIEW: 'preview',
+  SET_PASSWORD: 'set-password',
 } as const;
 export type RouteKind = ValueOf<typeof RouteKind>;
 
@@ -60,25 +60,31 @@ export type Route =
   | { kind: typeof RouteKind.GAME; gameId: string }
   | { kind: typeof RouteKind.ACCOUNT; page: AccountPage }
   | { kind: typeof RouteKind.HOMEWORK; page: HomeworkPage }
-  | { kind: typeof RouteKind.PREVIEW };
+  | { kind: typeof RouteKind.PREVIEW }
+  | { kind: typeof RouteKind.SET_PASSWORD; token: string };
 
 function parseHomework(rest: string[]): HomeworkPage {
   const [assignmentId, sub] = rest;
   if (!assignmentId) return { name: HomeworkPageName.LIST };
-  if (sub === HomeworkPageName.RESULT || sub === HomeworkPageName.RANKING) return { name: sub, assignmentId };
+  if (sub === HomeworkPageName.RESULT) return { name: sub, assignmentId };
   return { name: HomeworkPageName.DO, assignmentId };
 }
 
 export function parseHash(hash: string): Route {
   if (!hash.startsWith(HASH_PREFIX)) return { kind: RouteKind.HUB };
-  const path = decodeURIComponent(hash.slice(HASH_PREFIX.length)).replace(/\/+$/, '');
+  // Query trong hash (`#/set-password?token=…`): tách trước khi đọc đường dẫn
+  const [rawPath = '', rawQuery = ''] = hash.slice(HASH_PREFIX.length).split('?', 2);
+  const path = decodeURIComponent(rawPath).replace(/\/+$/, '');
   if (!path) return { kind: RouteKind.HUB };
   const [head, ...rest] = path.split('/');
   if (head === ACCOUNT_SEGMENT) {
-    return { kind: RouteKind.ACCOUNT, page: ACCOUNT_PAGES[rest.join('/')] ?? AccountPage.PROFILE };
+    return { kind: RouteKind.ACCOUNT, page: ACCOUNT_PAGES[rest.join('/')] ?? AccountPage.PROFILES };
   }
   if (head === HOMEWORK_SEGMENT) return { kind: RouteKind.HOMEWORK, page: parseHomework(rest) };
   if (head === PREVIEW_SEGMENT) return { kind: RouteKind.PREVIEW };
+  if (head === SET_PASSWORD_SEGMENT) {
+    return { kind: RouteKind.SET_PASSWORD, token: new URLSearchParams(rawQuery).get('token') ?? '' };
+  }
   return { kind: RouteKind.GAME, gameId: path };
 }
 
@@ -89,7 +95,7 @@ export function hashOf(route: Route): string {
     case RouteKind.GAME:
       return `${HASH_PREFIX}${encodeURIComponent(route.gameId)}`;
     case RouteKind.ACCOUNT:
-      return `${HASH_PREFIX}${ACCOUNT_SEGMENT}${route.page === AccountPage.PROFILE ? '' : `/${route.page}`}`;
+      return `${HASH_PREFIX}${ACCOUNT_SEGMENT}${route.page === AccountPage.PROFILES ? '' : `/${route.page}`}`;
     case RouteKind.HOMEWORK: {
       const { page } = route;
       if (page.name === HomeworkPageName.LIST) return `${HASH_PREFIX}${HOMEWORK_SEGMENT}`;
@@ -98,6 +104,8 @@ export function hashOf(route: Route): string {
     }
     case RouteKind.PREVIEW:
       return `${HASH_PREFIX}${PREVIEW_SEGMENT}`;
+    case RouteKind.SET_PASSWORD:
+      return `${HASH_PREFIX}${SET_PASSWORD_SEGMENT}?${new URLSearchParams({ token: route.token }).toString()}`;
   }
 }
 
@@ -110,7 +118,7 @@ export const platformActions = {
     window.location.hash = hashOf({ kind: RouteKind.GAME, gameId: id });
   },
 
-  openAccount(page: AccountPage = AccountPage.PROFILE): void {
+  openAccount(page: AccountPage = AccountPage.PROFILES): void {
     window.location.hash = hashOf({ kind: RouteKind.ACCOUNT, page });
   },
 

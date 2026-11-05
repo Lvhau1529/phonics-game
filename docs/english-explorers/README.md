@@ -23,7 +23,7 @@ Mỗi thế giới 10 câu (`content/worlds.json`, test ở `content/worlds.test
   không có micro: I SAID IT!).
 - **Điểm:** đúng ngay 10 / sai 1 lần 5 / sai 2 lần 2; nói đủ câu (≥ 60% từ, micro) +5. Sao theo câu đúng ngay
   lần đầu (≥ 90% / ≥ 60%). Kim cương 1 / câu đúng ngay (tối đa 10). Sao / điểm cao nhất lưu theo thế giới
-  (`phonics-arcade:english-explorers`). Học sinh đã đăng nhập: gửi kết quả lên API (`gameId: english-explorers`).
+  (`phonics-arcade:english-explorers`). Đã chọn hồ sơ bé (tài khoản gia đình): gửi kết quả lên API (`gameId: english-explorers`).
 
 ## Lỗi của bản gốc đã sửa
 

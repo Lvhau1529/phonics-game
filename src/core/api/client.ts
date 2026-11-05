@@ -6,7 +6,7 @@
  * Token:
  *   - access token (15 phút) chỉ giữ trong bộ nhớ (`tokenStore`), gắn `Authorization: Bearer`;
  *   - refresh token nhận qua body (header `X-Refresh-Transport: body` ở mọi lời gọi /auth/*), authStore
- *     lưu localStorage. Mỗi lần refresh server xoay token mới -> luôn ghi đè bản mới.
+ *     lưu localStorage. Mỗi lúc chỉ giữ một phiên — phụ huynh hoặc bé đang chơi (authStore đỗ phiên còn lại). Mỗi lần refresh server xoay token mới -> luôn ghi đè bản mới.
  *   - 401 ở bất kỳ lời gọi nào -> refresh (gộp nhiều lời gọi cùng lúc thành một — single flight) -> gọi lại
  *     đúng một lần; refresh bị từ chối -> xoá token (authStore nghe `tokenStore` để về trạng thái khách).
  */
@@ -30,6 +30,8 @@ export const ClientErrorCode = {
   NETWORK: 'NETWORK',
   /** Server trả về nhưng response không đúng schema */
   BAD_RESPONSE: 'BAD_RESPONSE',
+  /** Đăng nhập được nhưng không phải tài khoản gia đình (vd tài khoản giáo viên) — app game chỉ cho phụ huynh */
+  NOT_FAMILY_ACCOUNT: 'NOT_FAMILY_ACCOUNT',
 } as const;
 export type ClientErrorCode = ValueOf<typeof ClientErrorCode>;
 

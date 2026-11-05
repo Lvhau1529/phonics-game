@@ -21,7 +21,6 @@ import { authActions } from '@/modules/auth';
 import { ACCOUNT_ENABLED } from '@/core/config/account';
 import { gamesSync } from '@/modules/catalog';
 import { homeworkActions } from '@/modules/homework';
-import { notificationsActions } from '@/modules/notifications';
 import { scoreSync } from '@/modules/results';
 import { events } from '@/modules/analytics';
 import PlatformApp from '@/app/PlatformApp/PlatformApp';
@@ -33,11 +32,10 @@ const EMBEDDED_PREVIEW = parseHash(window.location.hash).kind === 'preview';
 
 if (!EMBEDDED_PREVIEW) initPwa();
 
-// Tài khoản & đồng bộ (chỉ khi có VITE_API_URL): khôi phục phiên, gửi điểm / sự kiện đang chờ, thông báo, catalog
+// Tài khoản gia đình & đồng bộ (chỉ khi có VITE_API_URL): khôi phục phiên, gửi điểm / sự kiện đang chờ, catalog, bài tập
 if (ACCOUNT_ENABLED && !EMBEDDED_PREVIEW) {
   void authActions.restore().finally(() => {
     scoreSync.init();
-    notificationsActions.init();
     gamesSync.init();
     homeworkActions.init();
   });

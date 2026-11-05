@@ -9,7 +9,7 @@
  */
 import { GameResultBody, POINT_RULES, type GameResultResponse } from '@phonics/contracts';
 import { resultsService } from '@/modules/results/services/resultsService';
-import { authStore, isSignedIn } from '@/modules/auth';
+import { authStore, isSignedIn, watchActiveStudent } from '@/modules/auth';
 import { ACCOUNT_ENABLED } from '@/core/config/account';
 import { createSyncQueue } from '@/core/sync/syncQueue';
 import { createStore } from '@/core/store/createStore';
@@ -99,18 +99,16 @@ export const scoreSync = {
     syncStore.set((state) => (state.offline === offline ? state : { ...state, offline }));
   },
 
-  /** Gắn các mốc tự gửi lại: mở app, có mạng, quay lại tab, đăng nhập */
+  /** Gắn các mốc tự gửi lại: mở app, có mạng, quay lại tab, chọn bé */
   init(): void {
     if (!ACCOUNT_ENABLED) return;
     window.addEventListener('online', () => void scoreSync.flush());
     document.addEventListener('visibilitychange', () => {
       if (document.visibilityState === 'visible') void scoreSync.flush();
     });
-    let wasSignedIn = isSignedIn();
-    authStore.subscribe(() => {
-      const now = isSignedIn();
-      if (now && !wasSignedIn) void scoreSync.flush();
-      wasSignedIn = now;
+    // Chọn bé / đổi bé: gửi các ván đang chờ của bé đó (hàng đợi giữ ván theo từng bé)
+    watchActiveStudent((id) => {
+      if (id) void scoreSync.flush();
     });
     void scoreSync.flush();
   },

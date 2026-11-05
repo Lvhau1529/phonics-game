@@ -18,6 +18,4 @@ export const submissionsService = {
   submit: (id: string): Promise<SubmitResponse> => submissionsRepository.submit(id),
   comments: async (id: string): Promise<CommentModel[]> =>
     (await submissionsRepository.comments(id)).items.map((item) => new CommentModel(item)),
-  reply: async (id: string, parentId: string, body: string): Promise<CommentModel> =>
-    new CommentModel(await submissionsRepository.reply(id, { body, parentId })),
 };

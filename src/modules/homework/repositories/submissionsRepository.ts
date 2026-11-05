@@ -2,13 +2,11 @@
  * Repository bài nộp của học sinh (/me/submissions): chỉ khai báo endpoint và trả DTO đúng như BE.
  */
 import {
-  CommentView,
   CommentsResponse,
   ENDPOINTS,
   SaveAnswersResponse,
   SubmissionDetail,
   SubmitResponse,
-  type CreateCommentBody,
   type SaveAnswersBody,
 } from '@phonics/contracts';
 import { HttpMethod, request } from '@/core/api/client';
@@ -31,6 +29,4 @@ export const submissionsRepository = {
   submit: (id: string) =>
     request(ENDPOINTS.me.submit(id), { method: HttpMethod.POST, schema: SubmitResponse }),
   comments: (id: string) => request(ENDPOINTS.me.submissionComments(id), { schema: CommentsResponse }),
-  reply: (id: string, body: CreateCommentBody) =>
-    request(ENDPOINTS.me.submissionComments(id), { method: HttpMethod.POST, body, schema: CommentView }),
 };

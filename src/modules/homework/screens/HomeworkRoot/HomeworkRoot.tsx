@@ -1,17 +1,15 @@
 /**
  * Gốc các màn bài tập về nhà (#/homework/...), chunk riêng (PlatformApp):
- *   - khách -> màn SIGN IN tại chỗ (đăng nhập xong về hồ sơ, bấm HOMEWORK để vào lại)
+ *   - chưa chọn bé -> phụ huynh đăng nhập / chọn bé tại chỗ (`ChildRequired`)
  *   - đang khôi phục phiên -> màn chờ ngắn
- *   - list / do / result / ranking theo `HomeworkPage`
+ *   - list / do / result theo `HomeworkPage`
  * Kèm hộp HƯỚNG DẪN (tiếng Việt) cho giáo viên / phụ huynh.
  */
 import type { ReactNode } from 'react';
-import { isSignedIn, useAuth } from '@/modules/auth';
-import LoginScreen from '@/modules/auth/screens/LoginScreen/LoginScreen';
+import { ChildRequired, isSignedIn, useAuth } from '@/modules/auth';
 import { HOMEWORK_GUIDE_SECTIONS, HOMEWORK_GUIDE_TITLE } from '@/modules/homework/guide/homeworkGuide';
 import DoScreen from '@/modules/homework/screens/DoScreen/DoScreen';
 import ListScreen from '@/modules/homework/screens/ListScreen/ListScreen';
-import RankingScreen from '@/modules/homework/screens/RankingScreen/RankingScreen';
 import ResultScreen from '@/modules/homework/screens/ResultScreen/ResultScreen';
 import type { HomeworkPage } from '@/core/navigation/platformStore';
 import GuideDialog from '@/ui/guide/GuideDialog/GuideDialog';
@@ -30,7 +28,7 @@ export default function HomeworkRoot({ page }: { page: HomeworkPage }) {
       </div>
     );
   } else if (!isSignedIn(auth)) {
-    content = <LoginScreen />;
+    content = <ChildRequired title="HOMEWORK" />;
   } else {
     switch (page.name) {
       case 'do':
@@ -38,9 +36,6 @@ export default function HomeworkRoot({ page }: { page: HomeworkPage }) {
         break;
       case 'result':
         content = <ResultScreen key={page.assignmentId} assignmentId={page.assignmentId} />;
-        break;
-      case 'ranking':
-        content = <RankingScreen key={page.assignmentId} assignmentId={page.assignmentId} />;
         break;
       default:
         content = <ListScreen />;
