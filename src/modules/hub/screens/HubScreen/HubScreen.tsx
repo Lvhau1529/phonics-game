@@ -1,14 +1,13 @@
 /**
  * Màn chọn game chung của Phonics Arcade:
- *   - thanh trên: bộ đếm kim cương (bấm để xem lời động viên) + nút cập nhật PWA + chuông thông báo
- *     (khi đã đăng nhập) và nút tài khoản (chưa có API thì bấm ra hộp COMING SOON — platform/account)
+ *   - thanh trên: bộ đếm kim cương (bấm để xem lời động viên) + nút cập nhật PWA + nút tài khoản gia đình
+ *     (bé đang chơi / chọn bé; chưa có API thì bấm ra hộp COMING SOON)
  *   - thẻ từng game (đang khoá thì hiện giá kim cương) + thẻ COMING SOON
  *   - bật/tắt âm thanh, nút thông tin tác giả ở góc màn hình
  * Danh sách game truyền vào từ PlatformApp (manifest ở src/games/index.ts đã phủ catalog server).
  */
 import { useState, type CSSProperties } from 'react';
 import { AccountButton } from '@/modules/auth';
-import { NotificationBell } from '@/modules/notifications';
 import { events } from '@/modules/analytics';
 import { SFX } from '@/core/audio/sfx';
 import { playSfx, preloadSfx } from '@/core/audio/sfxPlayer';
@@ -74,7 +73,6 @@ export default function HubScreen({ games, upcoming, isUnlocked }: HubScreenProp
         <GemCounter onOpen={() => setDialog({ kind: 'gems' })} />
         <div className={styles.barRight}>
           <UpdateBanner className={styles.update} />
-          <NotificationBell />
           <AccountButton onUnavailable={() => setDialog({ kind: 'accountSoon' })} />
         </div>
       </div>

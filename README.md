@@ -69,12 +69,9 @@ src/
 ├── ui/                      # DESIGN SYSTEM: Button/, Dialog/, Icon/, OptionGroup/… (mỗi component một thư mục),
 │                            #   guide/, svg/, icons.ts, tone.ts, styles/ (tailwind.css, global.scss, abstracts/)
 ├── modules/                 # NGHIỆP VỤ — mỗi module tự đóng gói, bố cục cố định (xem "Module" bên dưới)
-│   ├── auth/                #   đăng nhập / đăng ký / Google / sửa hồ sơ, AccountButton
-│   ├── classes/             #   lớp công khai (ClassPicker)
+│   ├── auth/                #   tài khoản gia đình: phụ huynh đăng nhập / Google / đặt mật khẩu, chọn bé, AccountButton
 │   ├── catalog/             #   danh mục game từ server + mở khoá
-│   ├── points/              #   điểm, xếp hạng lớp, màn hồ sơ
 │   ├── results/             #   gửi kết quả ván Solo (scoreSyncStore), PointsSynced
-│   ├── notifications/       #   chuông, hộp thông báo, màn MESSAGES
 │   ├── analytics/           #   sự kiện ẩn danh VIEW / PLAY
 │   ├── gems/                #   ví kim cương, GemCounter, GemReward
 │   ├── homework/            #   bài tập về nhà: renderers/ (14 dạng câu), answers/, màn làm bài / kết quả
@@ -114,7 +111,7 @@ Model. Phụ thuộc một chiều `main → app → games → modules → ui / 
   `screens/` để giữ code-splitting);
 - repository ngoài `services/`; `request()` ngoài `repositories/`;
 - `components/`, `screens/`, `renderers/`, `guide/` gọi service hoặc import `@phonics/contracts` (dùng kiểu /
-  validator module export ở `models/`, `utils/`, vd `homework/models/question.ts`, `auth/utils/profileForm.ts`);
+  validator module export ở `models/`, `utils/`, vd `homework/models/question.ts`, `auth/utils/password.ts`);
 - `core/` / `ui/` import `modules/` / `games/` / `app/`; `modules/` import `games/` / `app/`.
 
 Bố cục thư mục được kiểm tra bằng `src/test/architecture.test.ts`.
@@ -148,11 +145,13 @@ Mỗi game tự chứa (`src/games/<id>/`): `manifest.ts` (thẻ game + `load: (
 
 ## Tài khoản & đồng bộ
 
-Học sinh có thể đăng nhập để **điểm ván Solo được lưu lên server** (API NestJS ở repo [phonics-api](https://github.com/Lvhau1529/phonics-api),
-hợp đồng chung `@phonics/contracts` — xem [bên dưới](#gói-phonicscontracts-github-packages)): tổng điểm, xếp hạng trong lớp, thông báo của giáo viên, game được giáo viên mở khoá.
-Toàn bộ phần này nằm ở các module `auth`, `classes`, `catalog`, `points`, `results`, `notifications` (`src/modules/`) và **chỉ bật khi có `VITE_API_URL` và `VITE_OFFLINE_MODE=false`**.
-Mặc định (BE chưa lên) game chạy **offline mode**: không gọi mạng, kể cả khi đã đặt `VITE_API_URL`. Riêng nút **SIGN IN** vẫn hiện ở màn chọn game; bấm vào chỉ mở hộp **COMING SOON**
-(đăng nhập, điểm, xếp hạng đang phát triển — dùng khi BE chưa lên).
+Bé ~5 tuổi **không có tài khoản riêng** (contracts 2.0, `phonics-api/docs/family-first.md`): bé chơi trên máy lớp
+(giáo viên mở chế độ lớp / đội, không cần tài khoản) hoặc trên điện thoại của phụ huynh. Ở nhà, **phụ huynh đăng
+nhập tài khoản gia đình** (do trung tâm tạo, mail mời đặt mật khẩu) → **chọn hồ sơ bé** → bé chơi; **điểm ván Solo,
+bài tập về nhà, game được mở khoá ghi cho hồ sơ bé** (API NestJS ở repo [phonics-api](https://github.com/Lvhau1529/phonics-api),
+hợp đồng chung `@phonics/contracts` — xem [bên dưới](#gói-phonicscontracts-github-packages)).
+Toàn bộ phần này nằm ở các module `auth`, `catalog`, `results`, `homework` (`src/modules/`) và **chỉ bật khi có `VITE_API_URL` và `VITE_OFFLINE_MODE=false`**.
+Mặc định (BE chưa lên) game chạy **offline mode**: không gọi mạng, kể cả khi đã đặt `VITE_API_URL`. Riêng nút **SIGN IN** vẫn hiện ở màn chọn game; bấm vào chỉ mở hộp **COMING SOON**.
 
 ### Cấu hình (`.env`, mẫu ở `.env.example`)
 
@@ -160,47 +159,38 @@ Mặc định (BE chưa lên) game chạy **offline mode**: không gọi mạng,
 | ----------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
 | `VITE_OFFLINE_MODE`     | **Mặc định bật** (thiếu biến cũng tính là bật): game chạy offline, không gọi API. `false` / `0` / `off` = bật tài khoản khi API đã sẵn sàng. |
 | `VITE_API_URL`          | Gốc API, không có `/` cuối (vd `http://localhost:3000`); client ghép `${VITE_API_URL}${API_PREFIX}${path}` (`/api/v1/...`, hằng số trong contracts). Rỗng = tắt tài khoản.                      |
-| `VITE_GOOGLE_CLIENT_ID` | Client id Google Identity Services cho nút **Continue with Google**; rỗng = ẩn nút Google. Script GIS chỉ nạp khi mở màn đăng nhập / đăng ký. |
+| `VITE_GOOGLE_CLIENT_ID` | Client id Google Identity Services cho nút **Continue with Google** (phụ huynh); rỗng = ẩn nút Google. Script GIS chỉ nạp khi mở màn đăng nhập. |
 | `VITE_ADMIN_URL` | URL admin được nhúng màn xem trước câu hỏi / phiếu `#/preview` (nhiều URL cách nhau dấu phẩy). Rỗng = chỉ admin dev `http://localhost:5174`. Màn này nhận nội dung qua `postMessage`, chỉ từ origin này. |
 
 Biến được kiểm tra bằng zod ở `core/config/account.ts` (`OFFLINE_MODE`, `ACCOUNT_ENABLED`, `API_URL`,
 `GOOGLE_CLIENT_ID`). Chạy cả hệ thống qua phonics-dev mà muốn thử tài khoản thì đặt `VITE_OFFLINE_MODE=false` trong `.env`.
 
-### Màn hình (hash `#/account/...`, `core/navigation/platformStore.ts`)
+### Màn hình (hash, `core/navigation/platformStore.ts`)
 
-| Hash                      | Màn          | Ghi chú                                                                                                                                                                                                            |
-| ------------------------- | ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `#/account`               | MY PROFILE   | avatar, tên, lớp, tổng điểm + hạng (`GET /me/points`), MY GAMES (điểm từng game, khoá / mở), nút RANKING · MESSAGES · EDIT · SIGN OUT                                                                              |
-| `#/account/login`         | SIGN IN      | email + mật khẩu hoặc Google; đã đăng nhập thì chuyển sang hồ sơ                                                                                                                                                   |
-| `#/account/register`      | NEW ACCOUNT  | email, mật khẩu, tên, avatar (preset `AVATARS` của contracts → ảnh ở `avatars.ts`), lớp (`GET /public/classes`). Google lần đầu (422 `PROFILE_REQUIRED`) → form này ở "chế độ Google" (không hỏi email / mật khẩu) |
-| `#/account/edit`          | EDIT PROFILE | tên + avatar (`PATCH /me/profile`); đổi lớp phải nhờ giáo viên                                                                                                                                                     |
-| `#/account/ranking`       | RANKING      | tab WEEK / MONTH / ALL + chip lọc game (`GET /me/class/ranking`)                                                                                                                                                   |
-| `#/account/notifications` | MESSAGES     | thông báo; mở màn là đánh dấu đã đọc (`PATCH /me/notifications/read`)                                                                                                                                              |
-| `#/homework`              | HOMEWORK     | bài tập về nhà (phiếu GV giao): tab TO DO / DONE / ALL (`GET /me/assignments`) — `src/modules/homework/`                                                                                                           |
-| `#/homework/<id>`         | làm bài      | một câu mỗi màn, 14 dạng câu (`renderers/`), chạm để chọn, bàn phím a–z trên màn, ghi âm / tô chữ tải lên object storage; tự lưu `PUT /me/submissions/:id/answers` sau 2 s + bản nháp localStorage; SEND = `POST …/submit` |
-| `#/homework/<id>/result`  | RESULT       | sao / điểm / hạng, SEE ANSWERS (đúng / sai, đáp án nếu GV cho xem), nhận xét của GV + REPLY (`/me/submissions/:id/comments`), TRY AGAIN khi còn lượt                                                             |
-| `#/homework/<id>/ranking` | RANKING      | xếp hạng theo bài (`GET /me/assignments/:id/ranking`)                                                                                                                                                              |
+| Hash                      | Màn             | Ghi chú                                                                                                                                                                                    |
+| ------------------------- | --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `#/account/login`         | PARENT SIGN IN  | phụ huynh: email + mật khẩu hoặc Google (`app: 'game'`). Tài khoản không phải PARENT bị từ chối (`NOT_FAMILY_ACCOUNT`); email Google chưa có tài khoản gia đình → nhờ trung tâm tạo       |
+| `#/account`               | WHO IS PLAYING? | màn chọn bé (`GET /auth/profiles`): bé đã duyệt bấm vào chơi (`POST /auth/switch-profile`), bé chờ duyệt / bị từ chối hiện trạng thái; SIGN OUT                                             |
+| `#/set-password?token=…`  | SET PASSWORD    | link mời trong mail `parent.invite` (`POST /auth/set-password`) → đăng nhập luôn → màn chọn bé                                                                                              |
+| `#/homework`              | HOMEWORK        | bài tập về nhà của bé đang chơi: tab TO DO / DONE / ALL (`GET /me/assignments`) — `src/modules/homework/`. Chưa chọn bé → đăng nhập / chọn bé tại chỗ (`ChildRequired`)                    |
+| `#/homework/<id>`         | làm bài         | một câu mỗi màn, 14 dạng câu (`renderers/`), chạm để chọn, bàn phím a–z trên màn, ghi âm / tô chữ tải lên object storage; tự lưu `PUT /me/submissions/:id/answers` sau 2 s + bản nháp localStorage; SEND = `POST …/submit` |
+| `#/homework/<id>/result`  | RESULT          | sao / điểm / hạng, SEE ANSWERS (đúng / sai, đáp án nếu GV cho xem), nhận xét của GV (chỉ xem — `GET /me/submissions/:id/comments`), TRY AGAIN khi còn lượt                                 |
 
-Khách mở màn cần đăng nhập → hiện SIGN IN tại chỗ (`app/AccountRoot`). Màn tài khoản là một chunk tải động
-riêng (`app/PlatformApp`). Thanh trên màn chọn game có nút **SIGN IN** (khách) / avatar + tên (đã đăng nhập) và
-chuông thông báo kèm số chưa đọc. Chữ trong UI là tiếng Anh ngắn cho bé; mã lỗi API dịch ở `core/api/errorText.ts`.
+Thanh trên màn chọn game có nút tài khoản (`AccountButton`): **SIGN IN** (khách) → **WHO'S PLAYING?** (phụ huynh chưa
+chọn bé) → avatar + tên bé (đang chơi). Bấm tên bé mở **ASK A GROWN-UP** (`GrownUpGate`: phép cộng hai chữ số, chọn
+1 trong 3) rồi mới về màn chọn bé — bé không tự đổi người chơi / đăng xuất. Màn tài khoản là một chunk tải động riêng
+(`app/AccountRoot`). Chữ trong UI là tiếng Anh ngắn; mã lỗi API dịch ở `core/api/errorText.ts`.
 
-**Hộp thông báo ở chuông** (`NotificationBell.tsx` + `NotificationPopover.tsx`): bấm chuông mở thẻ nhỏ neo dưới
-chuông (màn hẹp ≤ 420px: thẻ rộng hết màn ngay dưới thanh trên) với 5 thông báo mới nhất từ `notificationsStore`
-(chấm chưa đọc, "JUST NOW / 3 MIN AGO" — `timeAgo.ts`), bấm một mục = đã đọc, MARK ALL READ, SEE ALL → màn
-MESSAGES. Mở hộp thì tải lại (khi online) và thêm một mục `history` để nút Back đóng hộp; Esc / bấm ra ngoài
-cũng đóng. `role="dialog"`, `aria-expanded` trên chuông, focus vào mục đầu khi mở.
-
-**Màn chờ & chống nháy** (`ui/LottieLoader/`, `core/hooks/useDelayedLoading.ts`, `core/hooks/useRequest.ts` — màn gọi qua hook của module, vd `usePoints`):
+**Màn chờ & chống nháy** (`ui/LottieLoader/`, `core/hooks/useDelayedLoading.ts`, `core/hooks/useRequest.ts` — màn gọi qua hook của module, vd `useFamilyProfiles`):
 
 - `LottieLoader` (lottie-web bản light, file `assets/shared/ui/lottie/loading.json` tải một lần): `sm` nằm trong
   dòng chữ (SAVING POINTS…, góc header đang tải lại), `lg` khối giữa màn + nhãn LOADING…; `prefers-reduced-motion`
   hoặc không tải được file → ba chấm tĩnh.
 - Màn chờ lớn chỉ hiện sau **200 ms** và giữ ít nhất **400 ms** (`useDelayedLoading(loading, { delay, minDuration })`);
   tải nhanh hơn thì không hiện gì.
-- `useRequest` giữ kết quả mới nhất theo key trong bộ nhớ (xoá khi đăng xuất): mở lại RANKING / hồ sơ hiện ngay bản
-  cũ rồi tải lại ngầm (`isRefreshing` → chấm nhỏ ở header, không unmount danh sách). Đổi tab WEEK / MONTH / ALL ×
-  game: bảng cũ mờ đi (`stale`, opacity .6) tới khi có bảng mới. Thông báo cache sẵn trong `notificationsStore`.
+- `useRequest` giữ kết quả mới nhất theo key trong bộ nhớ (xoá khi đổi phiên / đăng xuất): mở lại màn hiện ngay bản
+  cũ rồi tải lại ngầm (`isRefreshing` → chấm nhỏ ở header, không unmount danh sách). Đổi key (tab): dữ liệu cũ mờ đi
+  (`stale`, opacity .6) tới khi có dữ liệu mới.
 
 ### Gọi API: repository → service → model
 
@@ -210,46 +200,50 @@ Mọi lời gọi API đi qua hai lớp + model trong module sở hữu dữ li�
 | ---------- | --------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Repository | `modules/<x>/repositories/<x>Repository.ts`   | Chỉ khai báo endpoint: `request(ENDPOINTS.x, { method, body, query, schema, auth })` (`core/api/client.ts`), trả DTO đúng như BE. Không map / logic.                  |
 | Service    | `modules/<x>/services/<x>Service.ts`          | Gọi repository, đổi DTO → Model. Store / hook **chỉ gọi service**; màn / component chỉ dùng hook hoặc action của store.                                              |
-| Model      | `modules/<x>/models/<Name>Model.ts`           | Class nhận DTO contracts, gán từng field `readonly` cùng tên; getter cho dữ liệu chỉ FE dùng (`UserModel.firstName`, `MyPointsModel.pointsOf(gameId)`…). Lưu localStorage: `toJSON()`; đọc lại `Schema.safeParse` → `new XModel(...)`. |
+| Model      | `modules/<x>/models/<Name>Model.ts`           | Class nhận DTO contracts, gán từng field `readonly` cùng tên; getter cho dữ liệu chỉ FE dùng (`UserModel.firstName`, `FamilyProfileModel.canPlay`…). Lưu localStorage: `toJSON()`; đọc lại `Schema.safeParse` → `new XModel(...)`. |
 
-Ack của mutation / hàng đợi (kết quả ván, sự kiện, đánh dấu đã đọc) không tới UI nên service có thể trả thẳng DTO.
-**Không spread model** (`{ ...model }` mất getter): tạo instance mới (`item.markedRead(now)`).
+Ack của mutation / hàng đợi (kết quả ván, sự kiện) không tới UI nên service có thể trả thẳng DTO.
+**Không spread model** (`{ ...model }` mất getter): tạo instance mới.
 
 ### Token & khôi phục phiên (`core/api/client.ts`, `modules/auth/stores/authStore.ts`)
 
 - Access token (15 phút) chỉ giữ trong bộ nhớ; refresh token nhận qua body (header `X-Refresh-Transport: body`
   ở mọi lời gọi `/auth/*`) và lưu localStorage. Mỗi lần refresh server xoay token mới → luôn lưu bản mới.
-- Mọi lời gọi bị 401 → refresh **một lần** (gộp nhiều lời gọi cùng lúc) → gọi lại; refresh bị từ chối → đăng xuất
-  trên máy. Mở app có refresh token → `status: 'restoring'` rồi `signedIn`; mất mạng lúc mở app vẫn giữ user đã
-  lưu, điểm xếp hàng chờ.
+- `tokenStore` chỉ giữ **một phiên đang dùng**: phiên phụ huynh (màn chọn bé: `auth/profiles`, `auth/switch-profile`)
+  hoặc phiên bé đang chơi (mọi `/me/*`). Khi bé chơi, refresh token phụ huynh "đỗ" trong `authStore.parentRefreshToken`;
+  về màn chọn bé / đổi bé = thu hồi phiên bé (`auth/logout`) rồi lấy lại phiên phụ huynh (`backToParent`).
+- Mọi lời gọi bị 401 → refresh **một lần** (gộp nhiều lời gọi cùng lúc) → gọi lại; refresh phiên bé bị từ chối (phụ
+  huynh mất quyền vào hồ sơ…) → tự về phiên phụ huynh; refresh phiên phụ huynh bị từ chối → đăng xuất trên máy. Mở
+  app có refresh token → `status: 'restoring'` rồi `signedIn`; mất mạng lúc mở app vẫn giữ phiên đã lưu, điểm xếp hàng chờ.
+- Store đồng bộ (catalog, bài tập, điểm chờ gửi) nghe `watchActiveStudent`: đổi bé A → B thì bỏ dữ liệu của A, tải
+  của B, gửi các ván đang chờ của B.
 - Response được kiểm tra bằng zod schema của `@phonics/contracts`; lỗi gom về `ApiError { statusCode, code }`.
 
 ### Đồng bộ điểm, mở khoá, sự kiện (`core/sync/syncQueue.ts`)
 
 Ba hàng đợi localStorage gửi **tuần tự**, chạy khi: vừa thêm, mở app, có mạng (`online`), quay lại tab,
-đăng nhập xong. 2xx → bỏ khỏi hàng đợi; 4xx (trừ 401 / 429) → bỏ + đánh dấu bị từ chối; mất mạng / 5xx → giữ lại.
+chọn bé. 2xx → bỏ khỏi hàng đợi; 4xx (trừ 401 / 429) → bỏ + đánh dấu bị từ chối; mất mạng / 5xx → giữ lại.
 
 | Gì                                                                                                                                                              | Khi nào                                    | Endpoint                                                                                     |
 | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------ | -------------------------------------------------------------------------------------------- |
-| Kết quả ván **Solo** của học sinh đã đăng nhập (`results/stores/scoreSyncStore.ts`, game gọi `postSoloResult`)                                                                      | cuối ván (`finishSession` / `finishRound`) | `POST /game/results` (idempotent theo `clientSessionId`)                                     |
-| Mở khoá game bằng kim cương khi đang đăng nhập (`gamesSync.ts` › `unlockWithGems`)                                                                              | bấm UNLOCK                                 | `POST /me/games/:id/unlock`                                                                  |
-| Sự kiện ẩn danh VIEW (bấm thẻ game) / PLAY (xong ván — mọi chế độ, cả khách, **trừ** ván solo đã đăng nhập vì server tự ghi từ kết quả) (`analytics/events.ts`) | ngay lúc đó, gom ≤ 50                      | `POST /public/events` (kèm bearer nếu đang đăng nhập; đóng trang gửi bằng `fetch keepalive`) |
+| Kết quả ván **Solo** của bé đang chơi (đã chọn hồ sơ bé) (`results/stores/scoreSyncStore.ts`, game gọi `postSoloResult`)                                                            | cuối ván (`finishSession` / `finishRound`) | `POST /game/results` (idempotent theo `clientSessionId`)                                     |
+| Mở khoá game bằng kim cương khi bé đang chơi (`gamesSync.ts` › `unlockWithGems`)                                                                                | bấm UNLOCK                                 | `POST /me/games/:id/unlock`                                                                  |
+| Sự kiện ẩn danh VIEW (bấm thẻ game) / PLAY (xong ván — mọi chế độ, cả khách, **trừ** ván solo của bé đã chọn hồ sơ vì server tự ghi từ kết quả) (`analytics/events.ts`) | ngay lúc đó, gom ≤ 50                      | `POST /public/events` (kèm bearer nếu đang đăng nhập; đóng trang gửi bằng `fetch keepalive`) |
 
-Khách (máy lớp dùng chung) **không** xếp hàng điểm. Màn kết quả hiện `<PointsSynced sessionId />` cạnh
+Khách (máy lớp dùng chung) và phụ huynh chưa chọn bé **không** xếp hàng điểm. Màn kết quả hiện `<PointsSynced sessionId />` cạnh
 `<GemReward>`: "+N POINTS · TOTAL X" / "SAVING POINTS…" / "POINTS WILL BE SAVED WHEN ONLINE".
 
 ### Catalog game & mở khoá (`gamesSync.ts`)
 
 `GET /public/games` (cache localStorage) phủ lên manifest qua `useCatalog()`: `enabled=false` ẩn thẻ,
-`comingSoon=true` thành thẻ COMING SOON, `price` ghi đè giá trong manifest (`null` = miễn phí). Đã đăng nhập:
+`comingSoon=true` thành thẻ COMING SOON, `price` ghi đè giá trong manifest (`null` = miễn phí). Bé đang chơi:
 `GET /me/games` → game server đã mở; `isUnlocked(game)` = server mở ∪ ví kim cương trên máy.
-Thông báo: `GET /me/notifications?unread=true` khi mở app, quay lại tab, mỗi 5 phút khi tab đang hiển thị (`notificationsStore.ts`; tab ẩn không poll).
 
 ### Key localStorage
 
 | Key                           | Nội dung                                      |
 | ----------------------------- | --------------------------------------------- |
-| `phonics-arcade:auth`         | `{ user, refreshToken }` — phiên đăng nhập    |
+| `phonics-arcade:auth`         | `{ user, refreshToken, parent?: { user, refreshToken } }` — phiên đang dùng (phụ huynh hoặc bé) + phiên phụ huynh đang đỗ khi bé chơi |
 | `phonics-arcade:score-queue`  | kết quả ván Solo chờ gửi (`{ userId, body }`) |
 | `phonics-arcade:unlock-queue` | mở khoá bằng kim cương chờ báo server         |
 | `phonics-arcade:event-queue`  | sự kiện VIEW / PLAY chờ gửi                   |
@@ -257,7 +251,7 @@ Thông báo: `GET /me/notifications?unread=true` khi mở app, quay lại tab, m
 | `phonics-arcade:catalog`      | cache `GET /public/games`                     |
 | `phonics-arcade:homework:<submissionId>` | bản nháp câu trả lời bài tập đang làm (`{ userId, assignmentId, answers, updatedAt }`) — gộp với bản server khi mở lại, xoá khi nộp |
 
-Icon dùng riêng cho phần này (trophy, medal, crown, star, chuông, check, settings, linh vật ong ngủ) xuất từ
+Icon dùng riêng cho phần này (trophy, medal, crown, star, check, settings, linh vật ong ngủ) xuất từ
 Bee pack bằng `pnpm assets:ui` (bảng `EXPORTS` / `MASCOTS` trong `tools/arcade_ui/build_ui.py`).
 
 ## Styling

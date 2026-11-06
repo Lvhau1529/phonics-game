@@ -10,7 +10,7 @@
  */
 import { GameCatalogItem } from '@phonics/contracts';
 import { gamesService } from '@/modules/catalog/services/gamesService';
-import { authStore, isSignedIn } from '@/modules/auth';
+import { authStore, isSignedIn, watchActiveStudent } from '@/modules/auth';
 import { ACCOUNT_ENABLED } from '@/core/config/account';
 import { CatalogGameModel } from '@/modules/catalog/models/CatalogGameModel';
 import type { StudentGameModel } from '@/modules/catalog/models/StudentGameModel';
@@ -95,14 +95,10 @@ export const gamesSync = {
       void gamesSync.refreshMine();
       void unlockQueue.flush();
     };
-    let wasSignedIn = isSignedIn();
-    authStore.subscribe(() => {
-      const now = isSignedIn();
-      if (now !== wasSignedIn) {
-        wasSignedIn = now;
-        if (now) sync();
-        else catalogStore.set((state) => ({ ...state, mine: null }));
-      }
+    // Đổi bé (A → B), chọn bé, về phụ huynh / đăng xuất: bỏ danh sách mở khoá của bé trước, tải của bé mới
+    watchActiveStudent((id) => {
+      catalogStore.set((state) => ({ ...state, mine: null }));
+      if (id) sync();
     });
     window.addEventListener('online', sync);
     document.addEventListener('visibilitychange', () => {

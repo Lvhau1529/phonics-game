@@ -14,7 +14,7 @@ import type {
  */
 export class UserModel {
   readonly id: string;
-  /** null với học sinh MANAGED (vào qua tài khoản gia đình) */
+  /** null với học sinh (bé không có thông tin đăng nhập — vào qua tài khoản gia đình) */
   readonly email: string | null;
   readonly role: Role;
   readonly status: UserStatus;
@@ -38,6 +38,16 @@ export class UserModel {
     this.class = data.class;
     this.createdAt = data.createdAt;
     this.loginMethods = data.loginMethods;
+  }
+
+  /** Tài khoản gia đình (phụ huynh) */
+  get isParent(): boolean {
+    return this.role === 'PARENT';
+  }
+
+  /** Hồ sơ bé (phiên do phụ huynh mở) */
+  get isStudent(): boolean {
+    return this.role === 'STUDENT';
   }
 
   /** Tên gọi ngắn (từ đầu tiên của displayName) cho nút ở màn chọn game */

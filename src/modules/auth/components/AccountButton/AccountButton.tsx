@@ -1,10 +1,15 @@
 /**
- * Nút tài khoản ở thanh trên màn chọn game: khách -> SIGN IN (tím); đã đăng nhập -> avatar + tên.
+ * Nút tài khoản ở thanh trên màn chọn game:
+ *   - khách → SIGN IN (tím) → màn đăng nhập phụ huynh
+ *   - phụ huynh đã đăng nhập, chưa chọn bé → WHO'S PLAYING? → màn chọn bé
+ *   - bé đang chơi → avatar + tên bé; bấm → hỏi người lớn (phép cộng) → màn chọn bé (đổi bé / đăng xuất)
  * Chưa có API (ACCOUNT_ENABLED=false, BE chưa lên): vẫn hiện SIGN IN nhưng bấm chỉ gọi `onUnavailable`
  * (màn chọn game mở hộp COMING SOON) — không mở màn tài khoản, không gọi mạng.
  */
+import { useState } from 'react';
 import clsx from 'clsx';
-import { useAuth } from '@/modules/auth/stores/authStore';
+import GrownUpGate from '@/modules/auth/components/GrownUpGate/GrownUpGate';
+import { isSignedIn, useAuth } from '@/modules/auth/stores/authStore';
 import { avatarUrl, isSceneAvatar } from '@/modules/auth/utils/avatars';
 import { ACCOUNT_ENABLED } from '@/core/config/account';
 import { SFX } from '@/core/audio/sfx';
@@ -21,7 +26,9 @@ interface AccountButtonProps {
 }
 
 export default function AccountButton({ className, onUnavailable }: AccountButtonProps) {
-  const { user } = useAuth();
+  const auth = useAuth();
+  const [gate, setGate] = useState(false);
+  const { user } = auth;
 
   if (!ACCOUNT_ENABLED || !user) {
     return (
@@ -35,22 +42,46 @@ export default function AccountButton({ className, onUnavailable }: AccountButto
     );
   }
 
+  // Phụ huynh đăng nhập nhưng chưa chọn bé
+  if (!isSignedIn(auth)) {
+    return (
+      <Button
+        color="purple"
+        className={clsx(styles.signIn, className)}
+        onClick={() => platformActions.openAccount()}
+      >
+        <UserIcon size={22} /> WHO&apos;S PLAYING?
+      </Button>
+    );
+  }
+
   return (
-    <button
-      type="button"
-      className={clsx(styles.account, className)}
-      aria-label={`${user.displayName} — my profile`}
-      onClick={() => {
-        playSfx(SFX.UI_CLICK);
-        platformActions.openAccount('profile');
-      }}
-    >
-      <img
-        className={clsx(styles.avatar, isSceneAvatar(user.avatarKey) && styles.scene)}
-        src={avatarUrl(user.avatarKey)}
-        alt=""
-      />
-      <span className={styles.name}>{user.firstName.toUpperCase()}</span>
-    </button>
+    <>
+      <button
+        type="button"
+        className={clsx(styles.account, className)}
+        aria-label={`${user.displayName} — change player`}
+        onClick={() => {
+          playSfx(SFX.UI_CLICK);
+          setGate(true);
+        }}
+      >
+        <img
+          className={clsx(styles.avatar, isSceneAvatar(user.avatarKey) && styles.scene)}
+          src={avatarUrl(user.avatarKey)}
+          alt=""
+        />
+        <span className={styles.name}>{user.firstName.toUpperCase()}</span>
+      </button>
+      {gate && (
+        <GrownUpGate
+          onClose={() => setGate(false)}
+          onPass={() => {
+            setGate(false);
+            platformActions.openAccount();
+          }}
+        />
+      )}
+    </>
   );
 }

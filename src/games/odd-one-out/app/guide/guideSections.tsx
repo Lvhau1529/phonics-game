@@ -159,7 +159,8 @@ export const ODD_ONE_OUT_GUIDE_SECTIONS: GuideSection[] = [
           đề, cùng cấp, cùng số câu (dùng 3 bộ lọc). Nút <b>CLEAR</b> xoá toàn bộ bảng trên máy (có hỏi lại).
         </p>
         <p className={guide.note}>
-          Học sinh đã đăng nhập: điểm ván được gửi lên server (điểm lớp, xếp hạng lớp) như các game khác.
+          Đã chọn hồ sơ bé (tài khoản gia đình): điểm ván được gửi lên server (điểm lớp, xếp hạng lớp) như các
+          game khác.
         </p>
       </>
     ),

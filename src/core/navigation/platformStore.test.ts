@@ -14,13 +14,14 @@ describe('parseHash', () => {
   });
 
   it('#/account[/trang] -> màn tài khoản', () => {
-    expect(parseHash('#/account')).toEqual({ kind: 'account', page: 'profile' });
-    expect(parseHash('#/account/ranking')).toEqual({ kind: 'account', page: 'ranking' });
+    expect(parseHash('#/account')).toEqual({ kind: 'account', page: 'profiles' });
     expect(parseHash('#/account/login')).toEqual({ kind: 'account', page: 'login' });
-    expect(parseHash('#/account/unknown')).toEqual({ kind: 'account', page: 'profile' });
+    // Màn cũ (xếp hạng, tin nhắn…) đã bỏ → về màn chọn bé
+    expect(parseHash('#/account/ranking')).toEqual({ kind: 'account', page: 'profiles' });
+    expect(parseHash('#/account/unknown')).toEqual({ kind: 'account', page: 'profiles' });
   });
 
-  it('#/homework[/<id>[/result|ranking]] -> màn bài tập', () => {
+  it('#/homework[/<id>[/result]] -> màn bài tập', () => {
     expect(parseHash('#/homework')).toEqual({ kind: 'homework', page: { name: 'list' } });
     expect(parseHash('#/homework/a1')).toEqual({
       kind: 'homework',
@@ -32,7 +33,7 @@ describe('parseHash', () => {
     });
     expect(parseHash('#/homework/a1/ranking')).toEqual({
       kind: 'homework',
-      page: { name: 'ranking', assignmentId: 'a1' },
+      page: { name: 'do', assignmentId: 'a1' },
     });
     expect(parseHash('#/homework/a1/other')).toEqual({
       kind: 'homework',
@@ -45,17 +46,25 @@ describe('parseHash', () => {
     expect(parseHash('#/preview/')).toEqual({ kind: 'preview' });
   });
 
+  it('#/set-password?token=… -> màn đặt mật khẩu (link mời)', () => {
+    expect(parseHash('#/set-password?token=abc_123-XYZ')).toEqual({
+      kind: 'set-password',
+      token: 'abc_123-XYZ',
+    });
+    expect(parseHash('#/set-password')).toEqual({ kind: 'set-password', token: '' });
+  });
+
   it('hashOf là nghịch đảo của parseHash', () => {
     const routes = [
       { kind: 'hub' },
       { kind: 'game', gameId: 'bread-catcher' },
-      { kind: 'account', page: 'profile' },
-      { kind: 'account', page: 'notifications' },
+      { kind: 'account', page: 'profiles' },
+      { kind: 'account', page: 'login' },
       { kind: 'homework', page: { name: 'list' } },
       { kind: 'homework', page: { name: 'do', assignmentId: 'a1' } },
       { kind: 'homework', page: { name: 'result', assignmentId: 'a1' } },
-      { kind: 'homework', page: { name: 'ranking', assignmentId: 'a1' } },
       { kind: 'preview' },
+      { kind: 'set-password', token: 'abc_123-XYZ' },
     ] as const;
     routes.forEach((route) => expect(parseHash(hashOf(route))).toEqual(route));
   });
